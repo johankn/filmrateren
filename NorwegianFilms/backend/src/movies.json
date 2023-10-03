@@ -1,0 +1,40 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Kon-Tiki",
+      "director": "Joachim Rønning, Espen Sandberg",
+      "releaseYear": 2012,
+      "genre": "Adventure",
+      "rating": 7.2,
+      "posterUrl": "https://path-to-image.com/kontiki.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Max Manus",
+      "director": "Joachim Rønning, Espen Sandberg",
+      "releaseYear": 2008,
+      "genre": "Biography, Drama, History",
+      "rating": 7.3,
+      "posterUrl": "https://path-to-image.com/maxmanus.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Bølgen (The Wave)",
+      "director": "Roar Uthaug",
+      "releaseYear": 2015,
+      "genre": "Action, Drama, Thriller",
+      "rating": 6.7,
+      "posterUrl": "https://path-to-image.com/bolgen.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Kraftidioten (In Order of Disappearance)",
+      "director": "Hans Petter Moland",
+      "releaseYear": 2014,
+      "genre": "Action, Comedy, Crime",
+      "rating": 7.2,
+      "posterUrl": "https://path-to-image.com/kraftidioten.jpg"
+    }
+  ]
+}
