@@ -1,5 +1,9 @@
+import MovieCard from "../components/MovieCard";
+
 function MoviePage() {
-    return (<>MoviePage</>
+    return (<>
+    <MovieCard></MovieCard>
+    </>
     )
 }
 
