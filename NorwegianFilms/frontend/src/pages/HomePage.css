@@ -1,0 +1,50 @@
+.homePageStyle {
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Center content vertically */
+  justify-content: flex-start; /* Center content both vertically and horizontally */
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-size: 100% auto;
+  background-position: top;
+  background-image: url("../assets/norskefilmerforside2.png");
+}
+
+.homePageStyle img {
+  position: absolute;
+  width: 100vw;
+  height: auto;
+}
+
+.btn {
+  padding: 1em;
+  position: absolute;
+  margin-top: 18vw;
+}
+
+.btn button {
+  background-color: #3d3d3d;
+  border-radius: 12px; /* Rounded corners */
+  color: #ffffff; /* White text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.screen img {
+  margin-top: 0.5vw;
+  width: 59vw;
+  height: auto;
+}
+
+.screen {
+  margin-top: 9.2vw;
+  width: 60vw;
+  height: 25.2vw;
+  background-color: rgba(255, 247, 238, 0.9);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column; /* Center content vertically */
+  justify-content: flex-start; /* Center content both vertically and horizontally */
+  align-items: center;
+}
