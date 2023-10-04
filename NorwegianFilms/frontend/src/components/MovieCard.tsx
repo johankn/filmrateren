@@ -1,29 +1,30 @@
-import "./MovieCard.css"
+import movieFile from "../../../backend/src/movies.json";
 
-function MovieCard() {
-    type Movie = {
-        id: string;
-        title: string;
-        picture: string; //TODO: find out how to get picture
-        description: string;
-        rating: number; //TODO: make RatingStars, issue #14
-        genre: string;
-        producer: string; 
-        director: string;
-      };
+
+type MovieCardProps = {
+  movieID: string;
+};
+
+function MovieCard({ movieID }: MovieCardProps) {
+  type Movie = {
+    id: number; 
+    title: string;
+    director: string;
+    releaseYear: number;
+    genre: string;
+    "IMDBrating": number; 
+    posterUrl: string;
+    userRatings: { 
+      name: string; 
+      rating: number; 
+      comment: string; 
+    }[];
+  };
     
-      const movie: Movie =
-        // Sample movie data
-        {
-          id: '1',
-          title: 'Movie 1',
-          picture: 'url_to_movie_image_1',
-          description: 'Movie description',
-          rating: 4.5,
-          genre: 'Action',
-          producer: 'Producer 1',
-          director: 'Director 1',
-        }
+  // Find the specific movie by ID
+  const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
+
+  if (!movie) return <p>Movie not found</p>;
     
     return (
     <div className="movieCard">
@@ -36,16 +37,12 @@ function MovieCard() {
         <div className="info">
             <div className="keyinfo">
                 <p>Sjanger: {movie.genre}</p>
-                <p>Produsent: {movie.producer}</p>
                 <p>Regi: {movie.director}</p>
             </div>
             <div className="rating">
-                <p>Rating: {movie.rating}</p>
+                <p>Rating: {movie.IMDBrating}</p>
                 <p>Insert rating stars here</p>
                 <p>Insert rating button here</p>
-            </div>
-            <div className="description">
-                <p>Description: {movie.description}</p>
             </div>
         </div>          
     </div>
