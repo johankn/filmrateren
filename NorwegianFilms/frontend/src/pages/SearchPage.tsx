@@ -1,6 +1,6 @@
 function SearchPage() {
     return (<>
-    <div className="bg-darkgrey w-screen h-screen bg-cover bg-redpurple">hei</div>
+    <div className="w-screen h-screen bg-cover bg-redpurple"></div>
     </>
     )
     
