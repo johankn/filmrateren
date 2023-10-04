@@ -24,6 +24,9 @@ export default {
         'base': '1.25rem',
         'small': '0.625',
       },
+      backgroundImage:{
+        'redpurple': "url('/public/background.jpg')",
+      }
   },
   plugins: [],
   }
