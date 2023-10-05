@@ -45,13 +45,15 @@ function RatingPopup({ onClose }: RatingPopupProps) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-          />
+          />            <FormLabel>Vurdér filmen:</FormLabel>
+
           <div>
-            <FormLabel>Vurdér filmen:</FormLabel>
             {[1, 2, 3, 4, 5].map((star) => (
               <button
+              type="button"
                 key={star}
-                style={{ color: star <= (rating || 0) ? "gold" : "gray" }}
+                style={{ color: star <= (rating || 0) ? "gold" : "gray" ,
+                fontSize: '4vw'}}
                 onClick={() => setRating(star)}
               >
                 ★
