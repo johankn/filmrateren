@@ -12,7 +12,7 @@ function MovieCard({ movieID }: MovieCardProps) {
     director: string;
     releaseYear: number;
     genre: string;
-    "IMDBrating": number; 
+    IMDBrating: number; 
     posterUrl: string;
     userRatings: { 
       name: string; 
@@ -40,7 +40,7 @@ function MovieCard({ movieID }: MovieCardProps) {
                 <p>Regi: {movie.director}</p>
             </div>
             <div className="rating">
-                <p>Rating: {movie.IMDBrating}</p>
+                <p>IMDB rating: {movie.IMDBrating}</p>
                 <p>Insert rating stars here</p>
                 <p>Insert rating button here</p>
             </div>

@@ -2,14 +2,14 @@ import Autocomplete from "@mui/joy/Autocomplete";
 import Input from "@mui/joy/Input";
 import movieFile from "../../../backend/src/movies.json";
 import { useNavigate } from "react-router-dom";
-import RatingCard from "../components/RatingCard";
+import RatingCard from "../components/RatingPopup";
 
 function HomePage() {
   const navigate = useNavigate();
 
   return (
     <>
-      {/* <Autocomplete
+      <Autocomplete
         options={movieFile.movies}
         getOptionLabel={(option) => option.title}
         onChange={(_event, newValue) => {
@@ -17,8 +17,7 @@ function HomePage() {
             navigate(`/project2/moviePage/${newValue.id}`);
           }
         }}
-      /> */}
-      <RatingCard />
+      />
     </>
   );
 }
