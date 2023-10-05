@@ -6,13 +6,13 @@ import { useState } from "react";
 import RatingCard from "../components/RatingCard";
 import movieFile from "../../../backend/src/movies.json";
 
-
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
   const [showPopup, setShowPopup] = useState(false);
 
-  const movie = movieID ? movieFile.movies.find(m => m.id === parseInt(movieID)) : undefined;
-
+  const movie = movieID
+    ? movieFile.movies.find((m) => m.id === parseInt(movieID))
+    : undefined;
 
   const handleClosePopup = () => {
     setShowPopup(false);
@@ -21,31 +21,35 @@ function MoviePage() {
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
-  
-    if (!movie) return <p>Movie not found</p>;
+
+  if (!movie) return <p>Movie not found</p>;
 
   return (
     <>
-      <div className="w-screen h-screen bg-cover bg-redpurple grid grid-cols-2 gap-4 place-content-start">
+      <div className="w-screen h-screen bg-cover bg-redpurple grid gap-4 grid-cols-2">
         <div>
-        <MovieCard movieID={movieID}></MovieCard>
-      </div>
-      <div className="">
-      <Button onClick={() => setShowPopup(!showPopup)}>Anmeld film</Button>
-        {showPopup && <RatingPopup onClose={handleClosePopup} />}
-      </div>
-      <div className="">
-      {movie.userRatings.map((rating, index) => (
-        <div >
-        <RatingCard
-          key={index}
-          name={rating.name}
-          rating={rating.rating}
-          comment={rating.comment}
-        />
+          <MovieCard movieID={movieID}></MovieCard>{" "}
+          <div className="">
+            <Button onClick={() => setShowPopup(!showPopup)}>
+              Anmeld film
+            </Button>
+            {showPopup && <RatingPopup onClose={handleClosePopup} />}
+          </div>
         </div>
-      ))}
-      </div>
+
+        <div className="gap-2">
+          {movie.userRatings.map((rating, index) => (
+            <div>
+              <RatingCard
+                key={index}
+                name={rating.name}
+                rating={rating.rating}
+                comment={rating.comment}
+              />
+            </div>
+          ))}
+        </div>
+        <div></div>
       </div>
     </>
   );
