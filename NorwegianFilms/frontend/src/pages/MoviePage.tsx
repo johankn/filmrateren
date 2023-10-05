@@ -21,7 +21,7 @@ function MoviePage() {
     return (<>
     <div className="w-screen h-screen bg-cover bg-redpurple">
     <MovieCard movieID={movieID}></MovieCard>
-    <Button onClick={() => setShowPopup(!showPopup)}>Rate this movie</Button>
+    <Button onClick={() => setShowPopup(!showPopup)}>Anmeld film</Button>
     {showPopup && <RatingPopup onClose={handleClosePopup} />}
 </div>
     </>

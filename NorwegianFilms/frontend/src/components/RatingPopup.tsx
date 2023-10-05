@@ -11,6 +11,7 @@ type RatingPopupProps = {
 
 function RatingPopup({ onClose }: RatingPopupProps) {
   const [name, setName] = useState("");
+  const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,6 +19,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
 
     const data = {
       name: name,
+      rating: rating,
       comment: comment,
     };
 
@@ -36,24 +38,36 @@ function RatingPopup({ onClose }: RatingPopupProps) {
           alignItems="center"
           spacing={1}
         >
-          <FormLabel>Navnet ditt</FormLabel>
+          <FormLabel>Navnet ditt:</FormLabel>
           <Input
             size="md"
-            placeholder="Name..."
+            placeholder="Eks: Ola Nordmann"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
-          <FormLabel>Kommentarer til filmen</FormLabel>
+          <div>
+            <FormLabel>Vurdér filmen:</FormLabel>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                style={{ color: star <= (rating || 0) ? "gold" : "gray" }}
+                onClick={() => setRating(star)}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+          <FormLabel>Kommentarer til filmen:</FormLabel>
           <Textarea
             size="md"
-            placeholder="General comments..."
+            placeholder="Eks: En skummel, men spennende film!"
             minRows={4}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             required
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Send inn</Button>
         </Stack>
       </form>
     </>
