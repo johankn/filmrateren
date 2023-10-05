@@ -1,54 +1,54 @@
 .movieCard {
-    padding: 20px;
-    margin: 20px;
+  padding: 20px;
+  margin: 20px;
 }
 
 @media (min-width: 768px) {
-    .movieCard {
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        padding: 20px;
-        margin: 20px;
-    }
+  .movieCard {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    margin: 20px;
+  }
 
-    .title {
-        grid-row: 1;
-        grid-column: 1 / span 2;
-        text-align: center;
-    }
+  .title {
+    grid-row: 1;
+    grid-column: 1 / span 2;
+    text-align: center;
+  }
 
-    .picture {
-        grid-row: 2;
-        grid-column: 1;
-        text-align: center;
-    }
+  .picture {
+    grid-row: 2;
+    grid-column: 1;
+    text-align: center;
+  }
 
-    .info {
-        grid-row: 2;
-        grid-column: 2;
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
+  .info {
+    grid-row: 2;
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 
-    .keyinfo {
-        grid-row: 1;
-        grid-column: 1;
-        text-align: left;
-    }
+  .keyinfo {
+    grid-row: 1;
+    grid-column: 1;
+    text-align: left;
+  }
 
-    .rating {
-        grid-row: 1;
-        grid-column: 2;
-        text-align: left;
-    }
+  .rating {
+    grid-row: 1;
+    grid-column: 2;
+    text-align: left;
+  }
 
-    .description {
-        grid-row: 2;
-        grid-column: 1 / span 2;
-        text-align: left;
-    }
+  .description {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+    text-align: left;
+  }
 }
