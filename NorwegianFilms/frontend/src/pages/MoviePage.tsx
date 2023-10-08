@@ -24,7 +24,7 @@ return (
         <div className="">
             <MovieCard movieID={movieID}></MovieCard>
         </div>
-        <div className="mt-28">
+        <div className="mt-28 ">
           <Button onClick= {()=> setShowPopup(!showPopup)}>Rate filmen</Button>
         </div>
       </div>
