@@ -12,19 +12,32 @@ function MoviePage() {
     setShowPopup(false);
   };
 
+
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
 
-  return (
-    <>
-      <div className="w-screen h-screen bg-cover bg-redpurple">
-        <MovieCard movieID={movieID}></MovieCard>
-        <Button onClick={() => setShowPopup(!showPopup)}>Anmeld film</Button>
-        {showPopup && <RatingPopup onClose={handleClosePopup} />}
+return (
+  <>
+    <div className="w-screen h-screen bg-cover bg-redpurple">
+      <div className="grid grid-cols-2">
+        <div className="">
+            <MovieCard movieID={movieID}></MovieCard>
+        </div>
+        <div className="mt-28">
+          <Button onClick= {()=> setShowPopup(!showPopup)}>Rate filmen</Button>
+        </div>
       </div>
-    </>
-  );
+       
+    
+    {showPopup && <RatingPopup onClose={handleClosePopup} />}
+    </div>
+  </>
+);
+
+  
+  
+  
 }
 
 export default MoviePage;
