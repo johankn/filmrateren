@@ -33,7 +33,8 @@ function MovieCard({ movieID }: MovieCardProps) {
         <h1>{movie.title}</h1>
       </div>
       <div className="picture">
-        <p>Insert picture here</p>
+        {/* Display movie cover */}
+        <img src={movie.posterUrl} alt={movie.title} className="max-w-xs h-auto shadow-lg rounded" />
       </div>
       <div className="info">
         <div className="keyinfo">

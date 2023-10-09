@@ -22,7 +22,7 @@ export default {
         small: "0.625",
       },
       backgroundImage: {
-        redpurple: "url('/public/background.jpg')",
+        redpurple: "url('/background.jpg')",
       },
     },
     plugins: [],
