@@ -9,13 +9,20 @@
   overflow-x: hidden;
   background-size: 100% auto;
   background-position: top;
-  background-image: url("../assets/norskefilmerforside2.png");
+  background-image: url("../assets/norskefilmerforside.svg");
+  gap: 25rem;
 }
 
 .homePageStyle img {
   position: absolute;
   width: 100vw;
   height: auto;
+}
+
+.searchBar {
+  position: absolute;
+  margin-top: 15vw;
+  width: 25vw;
 }
 
 .btn {
@@ -42,9 +49,28 @@
   width: 60vw;
   height: 25.2vw;
   background-color: rgba(255, 247, 238, 0.9);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   display: flex;
   flex-direction: column; /* Center content vertically */
   justify-content: flex-start; /* Center content both vertically and horizontally */
   align-items: center;
+  box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9);
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column; /* Center content vertically */
+  justify-content: flex-start; /* Center content both vertically and horizontally */
+  align-items: center;
+  width: 90vw;
+  height: 100rem;
+}
+
+.extendedSearchBar {
+  display: flex;
+  flex-direction: row; /* Center content vertically */
+  width: 70vw;
+  background-color: rgba(255, 247, 238, 0.9);
+  border-radius: 0.5rem;
+  padding: 2rem;
 }
