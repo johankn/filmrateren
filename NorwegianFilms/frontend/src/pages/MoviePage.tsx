@@ -40,19 +40,14 @@ function MoviePage() {
             <span className="custom-arrow-icon text-white text-base">←</span>
           </button>
         </div>
-        {/* MovieCard */}
         <div className="pt-7">
           <MovieCard movieID={movieID} />
         </div>
-
-        {/* Rate filmen button */}
         <div className="ml-36">
           {!showPopup && (
             <Button onClick={() => setShowPopup(true)}>Rate filmen</Button>
           )}
         </div>
-
-        {/* User Ratings */}
         <div className="p-10">
           <div className="font-bold text-large text-white mb-4">
             RATINGS ({movie.userRatings.length})

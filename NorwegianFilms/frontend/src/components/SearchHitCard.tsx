@@ -1,23 +1,4 @@
-// function SearchHitCard() {
-//   return (
-//     <div className="columns-1 ">
-//       <div
-//         style={{
-//           height: "20rem",
-//           width: "15rem",
-//           backgroundColor: "rgb(54, 54, 54)",
-//           borderRadius: "1rem",
-//         }}
-//       ></div>
-//       <div>Tittel</div>
-//     </div>
-//   );
-// }
-//
-// export default SearchHitCard;
-
 import movieFile from "../../../backend/src/movies.json";
-import "./SearchHitCard.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -47,13 +28,10 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
 
   if (!movie) return <p>Movie not found</p>;
 
-  // Create a ref for the h1 element
   const h1Ref = useRef<HTMLHeadingElement>(null);
 
-  // State to track whether the title overflows
   const [titleOverflow, setTitleOverflow] = useState(false);
 
-  // Function to check if the title overflows
   const checkTitleOverflow = () => {
     if (h1Ref.current) {
       const isOverflowing =
@@ -62,7 +40,6 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
     }
   };
 
-  // Use useEffect to check for title overflow on component mount and when the movie changes
   useEffect(() => {
     checkTitleOverflow();
   }, [movie]);
@@ -77,7 +54,7 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
     >
       <Link to={`/project2/moviePage/${movieID}`}>
         <h1
-          ref={h1Ref} // Assign the ref to the h1 element
+          ref={h1Ref}
           className={`text-center ${
             titleOverflow ? "text-small" : ""
           } truncate`}

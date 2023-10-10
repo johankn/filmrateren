@@ -26,7 +26,6 @@ function HomePage() {
     };
   }, []);
 
-  // Calculate opacity based on scroll position
   const opacity = Math.max(0, Math.min(1, 1 - (scrollPosition - 30) / 80));
   const opacityScreenImg = Math.max(
     0,
@@ -35,7 +34,6 @@ function HomePage() {
   const opacitySeats = Math.max(0, Math.min(1, 1 - (scrollPosition - 20) / 60));
   const opacitySearch = Math.min(1, Math.max(0, (scrollPosition - 45) / 80));
 
-  // Adjustments based on opacity
   const boxShadowOpacity = opacity * 0.6;
   const boxShadowOpacityScreen = opacity * 0.9;
   const targetHeight = isMobile
@@ -59,7 +57,7 @@ function HomePage() {
   const targetMarginTopBtn = 1.6 + (18 - 1.6) * opacity;
   const targetLeftBtn = 75.5 + (46.5 - 75.5) * opacity;
   const targetMarginTopSeats = 11 + (0 - 11) * opacity;
-  const targetTopSearch = 40 + (60 - 40) * opacity; // KAN FJERNES HVS IKKE TRENGS
+  const targetTopSearch = 40 + (60 - 40) * opacity;
 
   const homePageStyle = {
     boxShadow: `inset 0 0 0 1000px rgba(16, 16, 16, ${boxShadowOpacity})`,
@@ -112,7 +110,6 @@ function HomePage() {
             }}
           />
         </div>
-        {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
         {!isMobile && (
           <div className="btn" style={btnStyle}>
             <button>Søk</button>

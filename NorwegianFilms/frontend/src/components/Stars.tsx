@@ -4,10 +4,8 @@ type StarProps = {
 
 const Stars: React.FC<StarProps> = ({ rating }) => {
 
-    // Determine the number of stars based on rounding
     const roundedStars = Math.round(rating);
 
-    // Determine the number of empty stars
     const emptyStars = 5 - roundedStars;
 
     return (

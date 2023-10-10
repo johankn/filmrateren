@@ -6,16 +6,11 @@ import "./index.css";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MoviePage from "./pages/MoviePage.tsx";
-import SearchPage from "./pages/SearchPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "project2/",
     element: <HomePage />,
-  },
-  {
-    path: "project2/searchPage",
-    element: <SearchPage />,
   },
   {
     path: "project2/moviePage/:movieID",
