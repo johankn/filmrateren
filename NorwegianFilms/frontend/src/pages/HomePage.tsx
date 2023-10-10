@@ -59,7 +59,7 @@ function HomePage() {
   const targetMarginTopBtn = 1.6 + (18 - 1.6) * opacity;
   const targetLeftBtn = 75.5 + (46.5 - 75.5) * opacity;
   const targetMarginTopSeats = 11 + (0 - 11) * opacity;
-  const targetTopSearch = 50 + (50 - 50) * opacity; // KAN FJERNES HVS IKKE TRENGS
+  const targetTopSearch = 40 + (60 - 40) * opacity; // KAN FJERNES HVS IKKE TRENGS
 
   const homePageStyle = {
     boxShadow: `inset 0 0 0 1000px rgba(16, 16, 16, ${boxShadowOpacity})`,
@@ -130,13 +130,10 @@ function HomePage() {
         style={seatsStyle}
       />
       <div className="searchContainer" style={searchStyle}>
-        <SearchHitCard />
-        <SearchHitCard />
-        <SearchHitCard />
-        <SearchHitCard />
-        <SearchHitCard />
-        <SearchHitCard />
-        <SearchHitCard />
+        <SearchHitCard movieID="1" />
+        <SearchHitCard movieID="2" />
+        <SearchHitCard movieID="3" />
+        <SearchHitCard movieID="4" />
       </div>
     </div>
   );
