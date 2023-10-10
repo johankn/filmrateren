@@ -31,7 +31,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
   };
   return (
     <>
-      <div className="grid bg-darkblue bg-opacity-80 rounded-xl p-3 pl-10 pr-10">
+      <div className="grid bg-darkblue bg-opacity-80 rounded-xl p-3 pl-10 pr-10 pb-5">
         <div className="ml-auto">
           <button
             className=" text-white hover:text-gold rounded-full p-2 focus:outline-none transition-transform transform hover:scale-125"
