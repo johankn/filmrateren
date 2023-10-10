@@ -66,7 +66,7 @@ function MovieCard({ movieID }: MovieCardProps) {
               <p>
                 <span className="font-bold">Average user rating:</span> {averageUserRating.toFixed(1)}
               </p>
-              <div className="flex">
+              <div className="flex text-yellow">
                 <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
               </div>
             </div>

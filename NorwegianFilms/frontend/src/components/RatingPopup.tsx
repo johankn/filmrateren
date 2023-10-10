@@ -55,7 +55,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
                 type="button"
                 key={star}
                 style={{
-                  color: star <= (rating || 0) ? "gold" : "gray",
+                  color: star <= (rating || 0) ? "gold" : "lightgrey",
                   fontSize: "4vw",
                 }}
                 onClick={() => setRating(star)}

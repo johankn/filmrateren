@@ -13,13 +13,13 @@ const RatingCard: React.FC<RatingProps> = ({ name, rating, comment }) => {
         {[...Array(5)].map((_, i) => (
           <span
             key={i}
-            className={`text-2xl ${i < rating ? 'text-gold' : 'text-darkgrey'}`}
+            className={`text-2xl ${i < rating ? 'text-yellow' : 'text-gray-300'}`}
           >
             ★
           </span>
         ))}
       </div>
-      <p className="mt-2 text-white">{comment}</p>
+      <p className="mt-2 text-white italic">{comment}</p>
     </div>
   );
 };
