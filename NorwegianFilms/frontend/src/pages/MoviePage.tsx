@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import RatingPopup from "../components/RatingPopup";
 import Button from "@mui/joy/Button";
@@ -18,6 +18,9 @@ function MoviePage() {
     setShowPopup(false);
   };
 
+  const navigate = useNavigate();
+
+
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
@@ -31,10 +34,16 @@ function MoviePage() {
         showPopup ? "blur-sm" : ""
       }`}
     >
+      <div className="ml-5 pt-5 absolute">
+        <button onClick={()=> navigate(-1)}>
+          <span className="custom-arrow-icon text-white text-base">←</span>
+        </button>
+      </div>
       {/* MovieCard */}
-      <div className="">
+      <div className="pt-7">
         <MovieCard movieID={movieID} />
       </div>
+      
 
       {/* Rate filmen button */}
       <div className="ml-36">
