@@ -57,15 +57,18 @@
 }
 
 .screen {
-  margin-top: 9.2vw;
-  width: 60vw;
-  height: 25.2vw;
   background-color: rgba(255, 247, 238, 0.9);
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column; /* Center content vertically */
   justify-content: flex-start; /* Center content both vertically and horizontally */
   align-items: center;
+}
+
+@media (max-width: 767px) {
+  .screen img {
+    width: 70vw;
+  }
 }
 
 .searchContainer {
