@@ -18,7 +18,6 @@ function MoviePage() {
     setShowPopup(false);
   };
 
-
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
@@ -26,47 +25,48 @@ function MoviePage() {
   if (!movie) return <p>Movie not found</p>;
 
   return (
-    <>
-      <div 
-        className={`relative min-h-screen bg-cover bg-redpurple overflow-auto ${showPopup ? 'blur-sm' : ''}`}
-      >
-        <div className="grid grid-cols-3 gap-4 p-4">
-  
-          <div className="col-span-2">
-            <MovieCard movieID={movieID}></MovieCard>
-          </div>
-  
-          <div className="mt-28">
-            {!showPopup && 
-              <Button onClick= {()=> setShowPopup(true)}>Rate filmen</Button>
-            }
-          </div>
-  
-          <div className="col-span-3">
-            {movie.userRatings.map((rating, index) => (
-              <div key={index} className="mt-4">
-                <RatingCard
-                  name={rating.name}
-                  rating={rating.rating}
-                  comment={rating.comment}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-  
-
+    <div>
+    <div
+      className={`relative min-h-screen bg-cover bg-redpurple ${
+        showPopup ? "blur-sm" : ""
+      }`}
+    >
+      {/* MovieCard */}
+      <div className="">
+        <MovieCard movieID={movieID} />
       </div>
-      {showPopup && 
-          <div className="fixed inset-0 flex items-center justify-center z-10">
-            <RatingPopup onClose={handleClosePopup} />
+
+      {/* Rate filmen button */}
+      <div className="ml-36">
+        {!showPopup && (
+          <Button onClick={() => setShowPopup(true)}>Rate filmen</Button>
+        )}
+      </div>
+
+      {/* User Ratings */}
+      <div className="p-10">
+        <div className="font-bold text-large text-white mb-4">
+          RATINGS ({movie.userRatings.length})
+        </div>
+        {movie.userRatings.map((rating, index) => (
+          <div key={index} className="mt-4">
+            <RatingCard
+              name={rating.name}
+              rating={rating.rating}
+              comment={rating.comment}
+            />
           </div>
-        }
-    </>
+        ))}
+      </div>
+
+
+    </div>      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-10">
+          <RatingPopup onClose={handleClosePopup} />
+        </div>
+      )}
+    </div>
   );
-  
-  
-  
 }
 
 export default MoviePage;

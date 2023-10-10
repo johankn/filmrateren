@@ -37,23 +37,23 @@ function MovieCard({ movieID }: MovieCardProps) {
       : 0;
 
   return (
-    <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-20 p-10 m-2 text-white italic">
+    <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-10 p-10 m-2 text-white italic">
       <div className="grid-row-1 grid-col-1-span-2 text-large">
         <h1>{movie.title}</h1>
       </div>
 
-      <div className="flex flex-wrap w-2/5">
-        <div className=" image md:w-1/2 md:pr-4 w-full">
+      <div className="flex flex-wrap w-1/2 ">
+        <div className=" image md:w-1/2 md:pr-1 w-full">
           <img src={movie.posterUrl} alt={movie.title} />
         </div>
 
-        <div className="info md:w-1/2 md:pl-4 w-full ">
+        <div className="info md:w-1/2 md:pl-4 w-full">
           <div className="mb-6">
             <p>
-              <span className="font-bold">Sjanger:</span> {movie.genre}
+              <span className="font-bold">Sjanger: </span> {movie.genre}
             </p>
             <p>
-              <span className="font-bold">Regi:</span>
+              <span className="font-bold">Regi: </span> 
               {movie.director}
             </p>
           </div>
@@ -61,10 +61,10 @@ function MovieCard({ movieID }: MovieCardProps) {
             <p>
               <span className="font-bold">IMDB rating:</span> {movie.IMDBrating}
             </p>
+            <div> </div>
             <div>
               <p>
-                <span className="font-bold">Average user rating:</span>{" "}
-                {averageUserRating.toFixed(1)}
+                <span className="font-bold">Average user rating:</span> {averageUserRating.toFixed(1)}
               </p>
               <div className="flex">
                 <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
