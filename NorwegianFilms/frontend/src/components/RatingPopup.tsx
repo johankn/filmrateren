@@ -40,7 +40,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
           alignItems="center"
           spacing={1}
         >
-          <FormLabel>Navnet ditt:</FormLabel>
+          <FormLabel className="color">Navnet ditt:</FormLabel>
           <Input
             size="md"
             placeholder="Eks: Ola Nordmann"
