@@ -31,16 +31,24 @@ function RatingPopup({ onClose }: RatingPopupProps) {
   };
   return (
     <>
-      <div className="flex">
-
-      <form onSubmit={handleSubmit} className="flex-grow">  
+      <div className="grid bg-darkblue bg-opacity-80 rounded-xl p-3 pl-10 pr-10 pb-5">
+        <div className="ml-auto">
+          <button
+            className=" text-white hover:text-gold rounded-full p-2 focus:outline-none transition-transform transform hover:scale-125"
+            onClick={onClose}
+          >
+            X
+          </button>
+        </div>
+      <div className="formen">
+        <form onSubmit={handleSubmit} className="flex-grow">  
         <Stack
           direction="column"
           justifyContent="center"
           alignItems="center"
           spacing={1}
         >
-          <FormLabel className="color">Navnet ditt:</FormLabel>
+          <FormLabel style={{color: "white", fontSize: "large"}}>Navn</FormLabel>
           <Input
             size="md"
             placeholder="Eks: Ola Nordmann"
@@ -48,7 +56,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
             onChange={(e) => setName(e.target.value)}
             required
           />{" "}
-          <FormLabel>Vurdér filmen:</FormLabel>
+          <FormLabel style={{color: "white", fontSize: "large"}}>Gi din anmeldelse</FormLabel>
           <div>
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -64,7 +72,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
               </button>
             ))}
           </div>
-          <FormLabel>Kommentarer til filmen:</FormLabel>
+          <FormLabel style={{color: "white", fontSize: "large"}}>Kommentarer</FormLabel>
           <Textarea
             size="md"
             placeholder="Eks: En skummel, men spennende film!"
@@ -73,17 +81,11 @@ function RatingPopup({ onClose }: RatingPopupProps) {
             onChange={(e) => setComment(e.target.value)}
             required
           />
-          <Button type="submit">Send inn</Button>
+        <Button style={{fontSize: "base"}}type="submit">Send inn</Button>
         </Stack>
       </form>
-      <div className="ml-4">
-        <button
-          className="bg-gray-600 hover:bg-gray-700 text-white rounded-full p-2 focus:outline-none"
-          onClick={onClose}
-        >
-          X
-        </button>
-      </div>
+      </div> 
+      
     </div>
     </>
   );
