@@ -74,6 +74,7 @@
 .searchContainer {
   position: absolute;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row; /* Center content vertically */
   justify-content: center; /* Center content both vertically and horizontally */
   width: 90vw;

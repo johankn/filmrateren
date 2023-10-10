@@ -7,7 +7,7 @@ import mobileSeats from "../assets/mobile_seats.png";
 import Autocomplete from "@mui/joy/Autocomplete";
 import movieFile from "../../../backend/src/movies.json";
 import { useNavigate } from "react-router-dom";
-import MovieCard from "../components/MovieCard";
+import SearchHitCard from "../components/SearchHitCard";
 import { isMobile } from "react-device-detect";
 
 function HomePage() {
@@ -130,7 +130,13 @@ function HomePage() {
         style={seatsStyle}
       />
       <div className="searchContainer" style={searchStyle}>
-        Insert all movies here
+        <SearchHitCard />
+        <SearchHitCard />
+        <SearchHitCard />
+        <SearchHitCard />
+        <SearchHitCard />
+        <SearchHitCard />
+        <SearchHitCard />
       </div>
     </div>
   );
