@@ -37,7 +37,7 @@ function MovieCard({ movieID }: MovieCardProps) {
       : 0;
 
   return (
-    <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-10 p-10 m-2 text-white italic">
+    <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-7 p-10 ml-2 text-white italic">
       <div className="grid-row-1 grid-col-1-span-2 text-large">
         <h1>{movie.title}</h1>
       </div>
