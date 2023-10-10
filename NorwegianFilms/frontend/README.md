@@ -1,6 +1,6 @@
 # Dokumentasjon
 
-## NorwegianFilms
+## Filmrateren
 
 ### Tema for prosjektet
 
@@ -10,7 +10,7 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 
 ### 1. Funksjonelt
 
-- Vi har valgt å ha en søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. 
+- Vi har valgt å ha en søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Søkeknappen som skal gi brukeren mulighet til å skrive inn et søkeord i stedet for å velge et av forslagene fra autocomplete er ikke implementert enda. 
 - I underveisinnlevering 1 presenteres et fåtall mockup-filmer listebasert med filmtittel og -cover. Senere er det tenkt at bruker skal kunne søke på en filmtittel, og at resultatene fra søket da skal presenteres med samme type liste med dynamisk scrolling. Dette legger til rette for at brukeren kan søke på filmer som hen ikke helt husker hva heter eller filmserier hvor det finnes flere filmer. Basert på tittel og cover kan brukeren velge hvilken film hen vil vite mer om. 
 - Ved å trykke på et søkeresultat navigerer applikasjonen inn på siden for den aktuelle filmen, og det presenteres mer detaljer om objektet. På denne måten unngår vi å bruke ressurser på å laste inn unødvendig informasjon om filmer som ikke er aktuelle.
 - I underveisinnlevering 1 er det ikke implementert filtrering og sortering. Det er tenkt at søkeresultatene skal kunne sorteres på f.eks. rating eller utgivelsesår. Filtreringen kan baseres på f.eks. sjanger. Dette skal utføres på hele resultatsettet basert på lagret informasjon i databasen. Dette skal bidra til at brukeren lettere finner filmer som passer til hen.
