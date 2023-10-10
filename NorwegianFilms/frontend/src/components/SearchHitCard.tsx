@@ -1,6 +1,6 @@
-import movieFile from "../../../backend/src/movies.json";
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import movieFile from '../../../backend/src/movies.json';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type SearchHitCardProps = {
   movieID: string;
@@ -22,9 +22,7 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
     }[];
   };
 
-  const movie: Movie | undefined = movieFile.movies.find(
-    (m) => m.id === Number(movieID)
-  );
+  const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
 
   if (!movie) return <p>Movie not found</p>;
 
@@ -34,8 +32,7 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
 
   const checkTitleOverflow = () => {
     if (h1Ref.current) {
-      const isOverflowing =
-        h1Ref.current.scrollWidth > h1Ref.current.clientWidth;
+      const isOverflowing = h1Ref.current.scrollWidth > h1Ref.current.clientWidth;
       setTitleOverflow(isOverflowing);
     }
   };
@@ -48,17 +45,12 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
     <div
       className="text-white italic flex flex-col justify-center items-center"
       style={{
-        height: "20rem",
-        width: "13rem",
+        height: '20rem',
+        width: '13rem',
       }}
     >
       <Link to={`/project2/moviePage/${movieID}`}>
-        <h1
-          ref={h1Ref}
-          className={`text-center ${
-            titleOverflow ? "text-small" : ""
-          } truncate`}
-        >
+        <h1 ref={h1Ref} className={`text-center ${titleOverflow ? 'text-small' : ''} truncate`}>
           {movie.title}
         </h1>
         <div className="flex justify-center items-center h-full">
@@ -66,9 +58,9 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
             src={movie.posterUrl}
             alt={movie.title}
             style={{
-              height: "17.8rem",
-              maxWidth: "100%",
-              borderRadius: "1rem",
+              height: '17.8rem',
+              maxWidth: '100%',
+              borderRadius: '1rem',
             }}
             className="max-h-full max-w-full"
           />
