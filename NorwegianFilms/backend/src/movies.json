@@ -7,15 +7,15 @@
       "releaseYear": 2012,
       "genre": "Adventure",
       "IMDBrating": 7.2,
-      "posterUrl": "https://www.imdb.com/title/tt1613750/mediaviewer/rm3784681728/?ref_=ext_shr_lnk",
+      "posterUrl": "https://m.media-amazon.com/images/M/MV5BMjMxOTU2NzQxMF5BMl5BanBnXkFtZTcwODIwODY0OA@@._V1_.jpg",
       "userRatings": [
         {
-          "name": "John",
+          "name": "Ola Nordmann",
           "rating": 4,
           "comment": "Great movie!"
         },
         {
-          "name": "Doe",
+          "name": "John Doe",
           "rating": 3,
           "comment": "Mid movie"
         }
@@ -28,15 +28,15 @@
       "releaseYear": 2008,
       "genre": "Biography, Drama, History",
       "IMDBrating": 7.3,
-      "posterUrl": "https://path-to-image.com/maxmanus.jpg",
+      "posterUrl": "https://m.media-amazon.com/images/M/MV5BMTg1NDg0NDk0NF5BMl5BanBnXkFtZTcwNjYxMTQyMg@@._V1_.jpg",
       "userRatings": [
         {
-          "name": "John",
+          "name": "Ola Nordmann",
           "rating": 4,
           "comment": "Great movie!"
         },
         {
-          "name": "Doe",
+          "name": "John Doe",
           "rating": 3,
           "comment": "Mid movie"
         }
@@ -49,15 +49,15 @@
       "releaseYear": 2015,
       "genre": "Action, Drama, Thriller",
       "IMDBrating": 6.7,
-      "posterUrl": "https://path-to-image.com/bolgen.jpg",
+      "posterUrl": "https://m.media-amazon.com/images/M/MV5BZTE2NmNjOWMtZWJmNC00ZmFiLWI3ZDgtYWU3MWZhOGVhMTlkXkEyXkFqcGdeQXVyMjg0NDI1MjU@._V1_FMjpg_UX1000_.jpg",
       "userRatings": [
         {
-          "name": "John",
+          "name": "Ola Nordmann",
           "rating": 4,
           "comment": "Great movie!"
         },
         {
-          "name": "Doe",
+          "name": "John Doe",
           "rating": 3,
           "comment": "Mid movie"
         }
@@ -70,15 +70,15 @@
       "releaseYear": 2014,
       "genre": "Action, Comedy, Crime",
       "IMDBrating": 7.2,
-      "posterUrl": "https://path-to-image.com/kraftidioten.jpg",
+      "posterUrl": "https://www.platekompaniet.no/pimcorecdn/Products/Movies/DVD/DVDF/1667324789.jpg",
       "userRatings": [
         {
-          "name": "John",
+          "name": "Ola Nordmann",
           "rating": 4,
           "comment": "Great movie!"
         },
         {
-          "name": "Doe",
+          "name": "John Doe",
           "rating": 3,
           "comment": "Mid movie"
         }
