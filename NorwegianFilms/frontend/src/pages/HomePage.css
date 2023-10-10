@@ -74,12 +74,13 @@
 .searchContainer {
   position: absolute;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row; /* Center content vertically */
   justify-content: center; /* Center content both vertically and horizontally */
   width: 90vw;
   height: 50rem;
   top: 70%;
-  gap: 2rem;
+  gap: 3.5rem;
   color: #ffffff;
 }
 
