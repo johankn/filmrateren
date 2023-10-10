@@ -1,3 +1,7 @@
+:root {
+  --box-shadow-opacity: 0.6;
+}
+
 .homePageStyle {
   margin: 0;
   display: flex;
@@ -5,30 +9,38 @@
   justify-content: flex-start; /* Center content both vertically and horizontally */
   align-items: center;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: 200vh; /* Needs to CHANGE */
   overflow-x: hidden;
   background-size: 100% auto;
   background-position: top;
-  background-image: url("../assets/norskefilmerforside.svg");
-  gap: 25rem;
+  background-image: url("../assets/background.svg");
+  gap: 4rem;
 }
 
-.homePageStyle img {
-  position: absolute;
+.seatsImage {
+  transition: opacity 0 ease;
+}
+
+.screenContentWrapper {
+  display: flex;
+  justify-content: center;
   width: 100vw;
   height: auto;
 }
 
-.searchBar {
+.searchBarWrapper {
   position: absolute;
+  left: 37.5vw; /* (100vw - 25vw) / 2 */
   margin-top: 15vw;
   width: 25vw;
+  z-index: 9999;
 }
 
 .btn {
   padding: 1em;
   position: absolute;
   margin-top: 18vw;
+  z-index: 999;
 }
 
 .btn button {
@@ -54,16 +66,28 @@
   flex-direction: column; /* Center content vertically */
   justify-content: flex-start; /* Center content both vertically and horizontally */
   align-items: center;
-  box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9);
 }
 
 .searchContainer {
+  position: absolute;
   display: flex;
-  flex-direction: column; /* Center content vertically */
-  justify-content: flex-start; /* Center content both vertically and horizontally */
-  align-items: center;
+  flex-direction: row; /* Center content vertically */
+  justify-content: center; /* Center content both vertically and horizontally */
   width: 90vw;
-  height: 100rem;
+  height: 50rem;
+  top: 70%;
+  gap: 2rem;
+  color: #ffffff;
+}
+
+.arrow {
+  color: rgba(255, 247, 238, 0.4);
+  position: absolute;
+  top: 93%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .extendedSearchBar {
