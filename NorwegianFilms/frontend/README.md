@@ -1,6 +1,6 @@
 # Dokumentasjon
 
-## NorwegianFilms
+## Filmrateren
 
 ### Tema for prosjektet
 
@@ -11,7 +11,7 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 ### 1. Funksjonelt
 
 - Vi har valgt å ha en søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. 
-- I underveisinnlevering 1 presenteres et fåtall mockup-filmer listebasert med filmtittel og -cover. Senere er det tenkt at bruker skal kunne søke på en filmtittel, og at resultatene fra søket da skal presenteres med samme type liste med dynamisk scrolling. Dette legger til rette for at brukeren kan søke på filmer som hen ikke helt husker hva heter eller filmserier hvor det finnes flere filmer. Basert på tittel og cover kan brukeren velge hvilken film hen vil vite mer om. 
+- I underveisinnlevering 1 presenteres et fåtall mockup-filmer listebasert med filmtittel og -cover. Senere er det tenkt at bruker skal kunne søke på en filmtittel, og at resultatene fra søket da skal presenteres med samme type liste med dynamisk scrolling. Søkeknappen er ikke implementert ennå, men den skal gi mulighet for brukeren til å søke på andre ting enn filmtitlene som dukker opp i autocomplete. Dette legger til rette for at brukeren kan søke på filmer som hen ikke helt husker hva heter eller filmserier hvor det finnes flere filmer. Basert på tittel og cover kan brukeren velge hvilken film hen vil vite mer om. 
 - Ved å trykke på et søkeresultat navigerer applikasjonen inn på siden for den aktuelle filmen, og det presenteres mer detaljer om objektet. På denne måten unngår vi å bruke ressurser på å laste inn unødvendig informasjon om filmer som ikke er aktuelle.
 - I underveisinnlevering 1 er det ikke implementert filtrering og sortering. Det er tenkt at søkeresultatene skal kunne sorteres på f.eks. rating eller utgivelsesår. Filtreringen kan baseres på f.eks. sjanger. Dette skal utføres på hele resultatsettet basert på lagret informasjon i databasen. Dette skal bidra til at brukeren lettere finner filmer som passer til hen.
 - Brukergenerert data skal lagres persistent på databaseserveren i form av reviews som legges inn på den aktuelle filmens side. Alle reviewsene som gjelder denne filmen hentes fra databasen og presenteres på denne siden. Ratingen av filmen oppdateres basert på gjennomsnittet av ratingene i databasen, og presenteres for bruker som stjerner. Dette valget er gjort slik at brukerne enkelt kan dele sin mening om filmen med hverandre.  
