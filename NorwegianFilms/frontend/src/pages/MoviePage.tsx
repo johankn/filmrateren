@@ -18,6 +18,7 @@ function MoviePage() {
     setShowPopup(false);
   };
 
+
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
@@ -26,33 +27,46 @@ function MoviePage() {
 
   return (
     <>
-      <div className="w-screen h-screen bg-cover bg-redpurple grid gap-4 grid-cols-2">
-        <div>
-          <MovieCard movieID={movieID}></MovieCard>{" "}
-          <div className="">
-            <Button onClick={() => setShowPopup(!showPopup)}>
-              Anmeld film
-            </Button>
-            {showPopup && <RatingPopup onClose={handleClosePopup} />}
+      <div 
+        className={`relative min-h-screen bg-cover bg-redpurple overflow-auto ${showPopup ? 'blur-sm' : ''}`}
+      >
+        <div className="grid grid-cols-3 gap-4 p-4">
+  
+          <div className="col-span-2">
+            <MovieCard movieID={movieID}></MovieCard>
+          </div>
+  
+          <div className="mt-28">
+            {!showPopup && 
+              <Button onClick= {()=> setShowPopup(true)}>Rate filmen</Button>
+            }
+          </div>
+  
+          <div className="col-span-3">
+            {movie.userRatings.map((rating, index) => (
+              <div key={index} className="mt-4">
+                <RatingCard
+                  name={rating.name}
+                  rating={rating.rating}
+                  comment={rating.comment}
+                />
+              </div>
+            ))}
           </div>
         </div>
+  
 
-        <div className="gap-2">
-          {movie.userRatings.map((rating, index) => (
-            <div>
-              <RatingCard
-                key={index}
-                name={rating.name}
-                rating={rating.rating}
-                comment={rating.comment}
-              />
-            </div>
-          ))}
-        </div>
-        <div></div>
       </div>
+      {showPopup && 
+          <div className="fixed inset-0 flex items-center justify-center z-10">
+            <RatingPopup onClose={handleClosePopup} />
+          </div>
+        }
     </>
   );
+  
+  
+  
 }
 
 export default MoviePage;

@@ -1,4 +1,5 @@
 import movieFile from "../../../backend/src/movies.json";
+import Stars from "./Stars";
 
 type MovieCardProps = {
   movieID: string;
@@ -20,31 +21,56 @@ function MovieCard({ movieID }: MovieCardProps) {
     }[];
   };
 
-  // Find the specific movie by ID
   const movie: Movie | undefined = movieFile.movies.find(
-    (m) => m.id === Number(movieID),
+    (m) => m.id === Number(movieID)
   );
 
   if (!movie) return <p>Movie not found</p>;
 
+  const totalUserRatings = movie.userRatings.reduce(
+    (acc, curr) => acc + curr.rating,
+    0
+  );
+  const averageUserRating =
+    movie.userRatings.length > 0
+      ? totalUserRatings / movie.userRatings.length
+      : 0;
+
   return (
-    <div className="movieCard">
-      <div className="title">
+    <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-20 p-10 m-2 text-white italic">
+      <div className="grid-row-1 grid-col-1-span-2 text-large">
         <h1>{movie.title}</h1>
       </div>
-      <div className="picture">
-        {/* Display movie cover */}
-        <img src={movie.posterUrl} alt={movie.title} className="max-w-xs h-auto shadow-lg rounded" />
-      </div>
-      <div className="info">
-        <div className="keyinfo">
-          <p>Sjanger: {movie.genre}</p>
-          <p>Regi: {movie.director}</p>
+
+      <div className="flex flex-wrap w-2/5">
+        <div className=" image md:w-1/2 md:pr-4 w-full">
+          <img src={movie.posterUrl} alt={movie.title} />
         </div>
-        <div className="rating">
-          <p>IMDB rating: {movie.IMDBrating}</p>
-          <p>Insert rating stars here</p>
-          <p>Insert rating button here</p>
+
+        <div className="info md:w-1/2 md:pl-4 w-full ">
+          <div className="mb-6">
+            <p>
+              <span className="font-bold">Sjanger:</span> {movie.genre}
+            </p>
+            <p>
+              <span className="font-bold">Regi:</span>
+              {movie.director}
+            </p>
+          </div>
+          <div className="rating">
+            <p>
+              <span className="font-bold">IMDB rating:</span> {movie.IMDBrating}
+            </p>
+            <div>
+              <p>
+                <span className="font-bold">Average user rating:</span>{" "}
+                {averageUserRating.toFixed(1)}
+              </p>
+              <div className="flex">
+                <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

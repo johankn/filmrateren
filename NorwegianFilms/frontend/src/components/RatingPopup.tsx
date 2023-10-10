@@ -23,7 +23,7 @@ function RatingPopup({ onClose }: RatingPopupProps) {
       comment: comment,
     };
 
-    console.log(data); // This logs the input data as a JSON dictionary
+    console.log(data); 
 
     if (onClose) {
       onClose();
@@ -31,7 +31,9 @@ function RatingPopup({ onClose }: RatingPopupProps) {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <div className="flex">
+
+      <form onSubmit={handleSubmit} className="flex-grow">  
         <Stack
           direction="column"
           justifyContent="center"
@@ -74,6 +76,15 @@ function RatingPopup({ onClose }: RatingPopupProps) {
           <Button type="submit">Send inn</Button>
         </Stack>
       </form>
+      <div className="ml-4">
+        <button
+          className="bg-gray-600 hover:bg-gray-700 text-white rounded-full p-2 focus:outline-none"
+          onClick={onClose}
+        >
+          X
+        </button>
+      </div>
+    </div>
     </>
   );
 }

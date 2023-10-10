@@ -19,10 +19,10 @@ export default {
         xl: "3.125rem",
         large: "2.188rem",
         base: "1.25rem",
-        small: "0.625",
+        small: "0.625rem",
       },
       backgroundImage: {
-        redpurple: "url('/background.jpg')",
+        redpurple: "url('/background.svg')",
       },
     },
     plugins: [],
