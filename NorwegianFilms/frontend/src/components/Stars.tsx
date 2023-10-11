@@ -1,21 +1,22 @@
 type StarProps = {
   rating: number;
-}
+};
 
 const Stars: React.FC<StarProps> = ({ rating }) => {
+  const roundedStars = Math.round(rating);
 
-    // Determine the number of stars based on rounding
-    const roundedStars = Math.round(rating);
+  const emptyStars = 5 - roundedStars;
 
-    // Determine the number of empty stars
-    const emptyStars = 5 - roundedStars;
-
-    return (
-        <div>
-            {[...Array(roundedStars)].map((_, i) => <span key={`full-${i}`}>★</span>)}
-            {[...Array(emptyStars)].map((_, i) => <span key={`empty-${i}`}>☆</span>)}
-        </div>
-    )
-}
+  return (
+    <div>
+      {[...Array(roundedStars)].map((_, i) => (
+        <span key={`full-${i}`}>★</span>
+      ))}
+      {[...Array(emptyStars)].map((_, i) => (
+        <span key={`empty-${i}`}>☆</span>
+      ))}
+    </div>
+  );
+};
 
 export default Stars;

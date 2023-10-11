@@ -1,4 +1,3 @@
-
 type RatingProps = {
   name: string;
   rating: number;
@@ -11,10 +10,7 @@ const RatingCard: React.FC<RatingProps> = ({ name, rating, comment }) => {
       <h4 className="text-lg text-white font-bold">{name}</h4>
       <div className="flex justify-start space-x-1">
         {[...Array(5)].map((_, i) => (
-          <span
-            key={i}
-            className={`text-2xl ${i < rating ? 'text-yellow' : 'text-gray-300'}`}
-          >
+          <span key={i} className={`text-2xl ${i < rating ? 'text-yellow' : 'text-gray-300'}`}>
             ★
           </span>
         ))}
@@ -23,6 +19,5 @@ const RatingCard: React.FC<RatingProps> = ({ name, rating, comment }) => {
     </div>
   );
 };
-
 
 export default RatingCard;

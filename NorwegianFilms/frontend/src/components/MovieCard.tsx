@@ -1,5 +1,5 @@
-import movieFile from "../../../backend/src/movies.json";
-import Stars from "./Stars";
+import movieFile from '../../../backend/src/movies.json';
+import Stars from './Stars';
 
 type MovieCardProps = {
   movieID: string;
@@ -21,20 +21,13 @@ function MovieCard({ movieID }: MovieCardProps) {
     }[];
   };
 
-  const movie: Movie | undefined = movieFile.movies.find(
-    (m) => m.id === Number(movieID)
-  );
+  const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
 
   if (!movie) return <p>Movie not found</p>;
 
-  const totalUserRatings = movie.userRatings.reduce(
-    (acc, curr) => acc + curr.rating,
-    0
-  );
-  const averageUserRating =
-    movie.userRatings.length > 0
-      ? totalUserRatings / movie.userRatings.length
-      : 0;
+  const totalUserRatings = movie.userRatings.reduce((acc, curr) => acc + curr.rating, 0);
+
+  const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
   return (
     <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-7 p-10 ml-2 text-white italic">
@@ -53,7 +46,7 @@ function MovieCard({ movieID }: MovieCardProps) {
               <span className="font-bold">Sjanger: </span> {movie.genre}
             </p>
             <p>
-              <span className="font-bold">Regi: </span> 
+              <span className="font-bold">Regi: </span>
               {movie.director}
             </p>
           </div>
