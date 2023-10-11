@@ -1,6 +1,6 @@
 # Dokumentasjon
 
-## NorwegianFilms
+## Filmrateren
 
 ### Tema for prosjektet
 
