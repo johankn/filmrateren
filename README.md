@@ -43,7 +43,7 @@ pnpm install
 
 ### Run the project
 
-First, run the development server:
+Then, run the development server:
 
 ```bash
 npm run dev
