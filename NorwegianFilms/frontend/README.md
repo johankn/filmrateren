@@ -8,7 +8,7 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 
 ## Valg
 
-### 1. Funksjonelt
+### 1. Funksjonalitet
 
 - Vi har valgt å ha en søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete.
 - I underveisinnlevering 1 presenteres et fåtall mockup-filmer listebasert med filmtittel og -cover. Senere er det tenkt at bruker skal kunne søke på en filmtittel, og at resultatene fra søket da skal presenteres med samme type liste med dynamisk scrolling. Dette legger til rette for at brukeren kan søke på filmer som hen ikke helt husker hva heter eller filmserier hvor det finnes flere filmer. Basert på tittel og cover kan brukeren velge hvilken film hen vil vite mer om.
@@ -26,11 +26,13 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 - Brukergrensesnitt er basert på React og programmert i Typeskript. Prosjektet er satt opp med Vite.
 - I underveisinnlevering 1 er det ikke ennå implementert state managment.
 - I underveisinnlevering 1 er det ikke ennå implementert GraphQL og database i backend.
-- Tailwind brukes for å gjøre det mest mulig oversiktlig med formattering i frontend.
+- Tailwind brukes for å gjøre det mest mulig oversiktlig med formatering i frontend.
+  - For HomePage.tsx har vi en egen css-fil fordi vi først etterhvert implementerte Tailwind.
+  - Planen er å bruke Tailwind her også.
 - React Router brukes for å gjøre navigeringen mellom sidene mest mulig intuitiv.
 
 ### 3. Utvikling og testing
 
 - Vi har brukt issues og issue board på gitlab for å holde oversikt over utviklingsoppgavene. Vi har organisert issuene i labels _setup_, _frontend_ og _backend_. Slik har vi lett holdt oversikt over hvilke typer utviklingsoppgaver som må gjøres. Hver issue har også vært koblet til en milestone. Slik har vi kontinuerlig holdt oversikt over hvor mye som gjenstår på prosjektet. I tillegg har vi opprettet merge request etter hver issue ble ferdig, og en annen på teamet har gått igjennom koden og kvalitetsikret den før den har blitt merget til main.
 
-- I underveisinnlevering 1 er det ikke ennå implementert tester.
+- I underveisinnlevering 1 er det ikke enda implementert tester.

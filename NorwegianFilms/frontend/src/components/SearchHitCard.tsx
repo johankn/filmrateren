@@ -23,12 +23,14 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
   };
 
   const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const [titleOverflow, setTitleOverflow] = useState(false);
+
+  useEffect(() => {
+    checkTitleOverflow();
+  }, [movie]);
 
   if (!movie) return <p>Movie not found</p>;
-
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-
-  const [titleOverflow, setTitleOverflow] = useState(false);
 
   const checkTitleOverflow = () => {
     if (h1Ref.current) {
@@ -36,10 +38,6 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
       setTitleOverflow(isOverflowing);
     }
   };
-
-  useEffect(() => {
-    checkTitleOverflow();
-  }, [movie]);
 
   return (
     <div

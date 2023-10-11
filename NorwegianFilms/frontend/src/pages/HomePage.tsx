@@ -4,13 +4,12 @@ import screen from '../assets/screenContent.svg';
 import mobileScreen from '../assets/mobile_screen.svg';
 import seats from '../assets/seats.png';
 import mobileSeats from '../assets/mobile_seats.png';
-import logo from "../assets/film_rateren.svg";
+import logo from '../assets/film_rateren.svg';
 import Autocomplete from '@mui/joy/Autocomplete';
 import movieFile from '../../../backend/src/movies.json';
 import { useNavigate } from 'react-router-dom';
 import SearchHitCard from '../components/SearchHitCard';
 import { isMobile } from 'react-device-detect';
-import ScrollToTop from "../components/ScrollToTop";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -77,17 +76,13 @@ function HomePage() {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to the top
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
   return (
     <div className="homePageStyle" style={homePageStyle}>
       <div className="logo" onClick={scrollToTop}>
-        <img
-          src={logo}
-          alt="logo"
-          style={{ opacity: opacitySearch, cursor: "pointer" }}
-        />
+        <img src={logo} alt="logo" style={{ opacity: opacitySearch, cursor: 'pointer' }} />
       </div>
 
       <div className="screen" style={screenStyle}>
@@ -123,13 +118,13 @@ function HomePage() {
         <SearchHitCard movieID="4" />
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            color: "rgb(255, 255, 255)",
-            width: "100%",
-            textAlign: "center",
-            fontSize: "1rem",
-            fontWeight: "bold",
+            display: 'flex',
+            justifyContent: 'center',
+            color: 'rgb(255, 255, 255)',
+            width: '100%',
+            textAlign: 'center',
+            fontSize: '1rem',
+            fontWeight: 'bold',
           }}
         >
           Flere filmer kommer...
