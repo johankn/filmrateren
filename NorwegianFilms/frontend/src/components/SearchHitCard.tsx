@@ -1,4 +1,5 @@
 import movieFile from '../../../backend/src/movies.json';
+import './SearchHitCard.css';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -26,18 +27,19 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const [titleOverflow, setTitleOverflow] = useState(false);
 
-  useEffect(() => {
-    checkTitleOverflow();
-  }, [movie]);
-
-  if (!movie) return <p>Movie not found</p>;
-
   const checkTitleOverflow = () => {
     if (h1Ref.current) {
       const isOverflowing = h1Ref.current.scrollWidth > h1Ref.current.clientWidth;
       setTitleOverflow(isOverflowing);
     }
   };
+
+  // Use useEffect to check for title overflow on component mount and when the movie changes
+  useEffect(() => {
+    checkTitleOverflow();
+  }, [movieID]); // Change this to watch 'movieID' instead of 'movie'
+
+  if (!movie) return <p>Movie not found</p>;
 
   return (
     <div
@@ -51,7 +53,7 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
         <h1 ref={h1Ref} className={`text-center ${titleOverflow ? 'text-small' : ''} truncate`}>
           {movie.title}
         </h1>
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full moviePoster">
           <img
             src={movie.posterUrl}
             alt={movie.title}
