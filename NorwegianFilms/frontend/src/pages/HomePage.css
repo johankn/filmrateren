@@ -9,7 +9,7 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 100vw;
-  min-height: 200vh;
+  min-height: 150vh; /* Needs to CHANGE */
   overflow-x: hidden;
   background-size: 100% auto;
   background-position: top;
@@ -23,6 +23,7 @@
 
 .screenContentWrapper {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   width: 100vw;
   height: auto;
@@ -48,6 +49,7 @@
   border-radius: 12px;
   color: #ffffff;
   padding: 10px 20px;
+  min-height: 3.3rem;
 }
 
 .screen img {
@@ -112,4 +114,16 @@
   background-color: rgba(255, 247, 238, 0.9);
   border-radius: 0.5rem;
   padding: 2rem;
+}
+
+.sort {
+  position: absolute;
+  top: 12.7rem;
+  right: 23rem;
+}
+
+.filter {
+  position: absolute;
+  top: 12.7rem;
+  right: 38rem;
 }
