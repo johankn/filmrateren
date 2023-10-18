@@ -2,6 +2,7 @@ import movieFile from '../../../backend/src/norwegian_movies.json';
 import './SearchHitCard.css';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import noPoster from '../assets/noImage.png';
 
 type SearchHitCardProps = {
   movieID: string;
@@ -55,7 +56,7 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
         </h1>
         <div className="flex justify-center items-center h-full moviePoster">
           <img
-            src={movie.posterUrl}
+            src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
             style={{
               height: '17.8rem',

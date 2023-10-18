@@ -18,6 +18,7 @@ function HomePage() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedSort, setSelectedSort] = useState('');
 
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -117,9 +118,10 @@ function HomePage() {
   };
 
   const handleSearchClick = () => {
-    const selectedGenresSet = new Set(selectedGenres);
+    console.log('Selected Sort:', selectedSort);
 
-    const filtered = movieFile.movies.filter((movie) => {
+    const selectedGenresSet = new Set(selectedGenres);
+    let filtered = movieFile.movies.filter((movie) => {
       if (selectedGenresSet.size === 0) {
         // If no genres are selected, show all movies
         return true;
@@ -137,6 +139,41 @@ function HomePage() {
       // If none of the selected genres match, skip the movie
       return false;
     });
+
+    console.log('Before selection');
+
+    if (selectedSort == '10') {
+      // Sort by title in ascending order
+      filtered = filtered.sort((a, b) => {
+        if (a.title < b.title) return -1;
+        if (a.title > b.title) return 1;
+        return 0;
+      });
+    } else if (selectedSort == '20') {
+      console.log('If selected is 20');
+      // Sort by title in descending order
+      filtered = filtered.sort((a, b) => {
+        if (a.title < b.title) return 1;
+        if (a.title > b.title) return -1;
+        return 0;
+      });
+    } else if (selectedSort == '30') {
+      // Sort by title in ascending order
+      filtered = filtered.sort((a, b) => {
+        if (a.IMDBrating < b.IMDBrating) return 1;
+        if (a.IMDBrating > b.IMDBrating) return -1;
+        return 0;
+      });
+    } else if (selectedSort == '40') {
+      // Sort by title in ascending order
+      filtered = filtered.sort((a, b) => {
+        if (a.IMDBrating < b.IMDBrating) return -1;
+        if (a.IMDBrating > b.IMDBrating) return 1;
+        return 0;
+      });
+    }
+
+    console.log('After');
 
     setFilteredMovies(filtered);
   };
@@ -204,7 +241,7 @@ function HomePage() {
               pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
             }}
           >
-            <Sort />
+            <Sort selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
           </div>
           {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
           <div
