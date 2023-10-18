@@ -10,11 +10,11 @@ function Sort({ selectedSort, setSelectedSort }) {
 
   return (
     <FormControl sx={{ m: 1, minWidth: 220 }} className="bg-white rounded">
-      <InputLabel id="sort-select-label">Sortering (kun demo)</InputLabel>
+      <InputLabel id="sort-select-label">Sortering</InputLabel>
       <Select
         labelId="sort-select-label"
         id="sort-select"
-        label="Sortering (kun demo)"
+        label="Sortering"
         value={selectedSort}
         onChange={handleSortChange}
       >
