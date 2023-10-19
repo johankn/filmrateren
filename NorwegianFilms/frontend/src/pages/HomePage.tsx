@@ -12,6 +12,8 @@ import SearchHitCard from '../components/SearchHitCard';
 import { isMobile } from 'react-device-detect';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
+import { useQuery } from '@apollo/client';
+import { SEARCH_MOVIES_QUERY } from '../queries/SearchQueries';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -22,6 +24,28 @@ function HomePage() {
 
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [debouncedValue, setDebouncedValue] = useState(inputValue);
+
+  useEffect(() => {
+    // Setup a debouncer for 1500ms
+    const debouncer = setTimeout(() => {
+      setDebouncedValue(inputValue);
+    }, 1500);
+
+    // Cleanup the debouncer
+    return () => {
+      clearTimeout(debouncer);
+    };
+  }, [inputValue]);
+
+  const { data, loading, error } = useQuery(SEARCH_MOVIES_QUERY, {
+    variables: { title: debouncedValue },
+    skip: !debouncedValue, // Skip the query if debouncedValue is empty
+  });
+
+  const movies = data?.movies || [];
+
+  console.log('Movies:', movies)
 
   const initialCardsToShow = 28; // Number of cards to display initially
   const cardsToLoad = 28; // Number of cards to load when clicking "Load More"
@@ -213,7 +237,6 @@ function HomePage() {
               inputValue={inputValue}
               onInputChange={(_e, value) => {
                 setInputValue(value);
-
                 // only open when inputValue is not empty after the user typed something
                 if (!value) {
                   setOpen(false);
@@ -222,13 +245,13 @@ function HomePage() {
               freeSolo
               placeholder="Tittel..."
               style={{ height: '3.5rem', backgroundColor: 'white' }}
-              options={movieFile.movies}
+              options={loading ? [] : movies} // display empty array if loading
               getOptionLabel={(option) => option.title}
-              onChange={(_event, newValue) => {
+              onChange={(_event, newValue) => { 
                 if (newValue) {
-                  navigate(`/project2/moviePage/${newValue.id}`);
+                    navigate(`/project2/moviePage/${newValue.id}`);
                 }
-              }}
+            }}
             />
           </div>
           <div className="filter" style={{ ...filterStyle, pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none' }}>
