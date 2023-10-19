@@ -6,9 +6,10 @@ import noPoster from '../assets/noImage.png';
 
 type SearchHitCardProps = {
   movieID: string;
+  smallScreen: boolean;
 };
 
-function SearchHitCard({ movieID }: SearchHitCardProps) {
+function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
   type Movie = {
     id: number;
     title: string;
@@ -35,6 +36,16 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
     }
   };
 
+  let posterHeight;
+  let titleHeight;
+  let titleWidth;
+
+  if (smallScreen) {
+    (posterHeight = '7.9'), (titleHeight = '10'), (titleWidth = '5');
+  } else {
+    (posterHeight = '17.8'), (titleHeight = '20'), (titleWidth = '13');
+  }
+
   // Use useEffect to check for title overflow on component mount and when the movie changes
   useEffect(() => {
     checkTitleOverflow();
@@ -46,8 +57,8 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
     <div
       className="text-white italic flex flex-col justify-center items-center"
       style={{
-        height: '20rem',
-        width: '13rem',
+        height: `${titleHeight}rem`,
+        width: `${titleWidth}rem`,
       }}
     >
       <Link to={`/project2/moviePage/${movieID}`}>
@@ -59,7 +70,7 @@ function SearchHitCard({ movieID }: SearchHitCardProps) {
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
             style={{
-              height: '17.8rem',
+              height: `${posterHeight}rem`,
               maxWidth: '100%',
               borderRadius: '1rem',
             }}
