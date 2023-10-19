@@ -10,21 +10,29 @@ mongoose.connection.once('open', () => {
 });
 
 const express = require('express');
+const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require('./src/graphql/typeDefs');
 const resolvers = require('./src/graphql/resolvers');
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
-});
+const corsOptions = {
+  origin: 'http://localhost:5173', 
+  credentials: true  // allows cookies to be sent with the request
+};
 
 const app = express();
+app.use(cors(corsOptions));
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  cors: false,
+});
 
 async function startApolloServer() {
   await server.start();
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, cors: false });
 
   app.listen({ port: 4000 }, () => {
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
