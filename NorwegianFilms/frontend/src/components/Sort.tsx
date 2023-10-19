@@ -3,13 +3,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-function Sort({ selectedSort, setSelectedSort }) {
+function Sort({ selectedSort, setSelectedSort, smallScreen }) {
   const handleSortChange = (event) => {
     setSelectedSort(event.target.value);
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 220 }} className="bg-white rounded">
+    <FormControl sx={{ m: 1, minWidth: smallScreen ? 143 : 200 }} className="bg-white rounded">
       <InputLabel id="sort-select-label">Sortering</InputLabel>
       <Select
         labelId="sort-select-label"

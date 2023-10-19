@@ -10,9 +10,11 @@ import Checkbox from '@mui/material/Checkbox';
 interface FilterProps {
   selectedGenres: string[];
   setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
+  smallScreen: boolean;
 }
 
 function MultipleSelectCheckmarks(props: FilterProps) {
+  console.log(props.smallScreen);
   const ITEM_HEIGHT = 80;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -59,7 +61,7 @@ function MultipleSelectCheckmarks(props: FilterProps) {
   };
 
   return (
-    <FormControl sx={{ m: 1, width: 220 }} className="bg-white rounded">
+    <FormControl sx={{ m: 1, width: props.smallScreen ? 143 : 200 }} className="bg-white rounded">
       <InputLabel id="genreLabel">Sjanger</InputLabel>
       <Select
         labelId="genreLabel"
