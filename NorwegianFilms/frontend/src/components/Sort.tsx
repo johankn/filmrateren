@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useRecoilState } from 'recoil';
 import { selectedSortState } from '../atoms';
 
-function Sort() {
+function Sort({smallScreen}) {
   const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
   
   const handleSortChange = (event: SelectChangeEvent) => {
@@ -13,7 +13,7 @@ function Sort() {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 220 }} className="bg-white rounded">
+    <FormControl sx={{ m: 1, minWidth: smallScreen ? 143 : 200 }} className="bg-white rounded">
       <InputLabel id="sort-select-label">Sortering</InputLabel>
       <Select
         labelId="sort-select-label"
