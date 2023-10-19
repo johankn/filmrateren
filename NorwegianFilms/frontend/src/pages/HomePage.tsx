@@ -280,6 +280,10 @@ function HomePage() {
     setFilteredMovies(filtered);
   };
 
+  useEffect(() => { // Search every time HomePage renders in order to load the right movies for the saved user choices 
+    handleSearchClick();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
