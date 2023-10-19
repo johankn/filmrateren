@@ -2,18 +2,22 @@
   --box-shadow-opacity: 0.6;
 }
 
+body {
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: top;
+  background-image: url('../assets/background.svg');
+}
+
 .homePageStyle {
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-width: 100vw;
-  min-height: 150vh; /* Needs to CHANGE */
+  width: 100%;
+  min-height: 150vh;
   overflow-x: hidden;
-  background-size: 100% auto;
-  background-position: top;
-  background-image: url('../assets/background.svg');
   gap: 4rem;
 }
 
@@ -50,6 +54,23 @@
   color: #ffffff;
   padding: 10px 20px;
   min-height: 3.3rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.btn button:hover {
+  border-color: rgb(41, 93, 227);
+}
+
+.load {
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.load:hover {
+  border-color: rgb(41, 93, 227);
 }
 
 .screen img {
@@ -79,7 +100,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  width: 90vw;
+  width: 80vw;
   height: 50rem;
   top: 70%;
   gap: 3.5rem;
@@ -118,12 +139,8 @@
 
 .sort {
   position: absolute;
-  top: 12.7rem;
-  right: 23rem;
 }
 
 .filter {
   position: absolute;
-  top: 12.7rem;
-  right: 38rem;
 }

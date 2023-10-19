@@ -1,4 +1,4 @@
-import movieFile from '../../../backend/src/movies.json';
+import movieFile from '../../../backend/src/norwegian_movies.json';
 import Stars from './Stars';
 
 type MovieCardProps = {
@@ -9,9 +9,10 @@ function MovieCard({ movieID }: MovieCardProps) {
   type Movie = {
     id: number;
     title: string;
-    director: string;
+    directors: string;
+    plot: string;
     releaseYear: number;
-    genre: string;
+    genres: Array<string>;
     IMDBrating: number;
     posterUrl: string;
     userRatings: {
@@ -43,11 +44,19 @@ function MovieCard({ movieID }: MovieCardProps) {
         <div className="info md:w-1/2 md:pl-4 w-full">
           <div className="mb-6">
             <p>
-              <span className="font-bold">Sjanger: </span> {movie.genre}
+              <span className="font-bold">Sjanger: </span> {movie.genres}
             </p>
             <p>
               <span className="font-bold">Regi: </span>
-              {movie.director}
+              {movie.directors}
+            </p>
+            <p>
+              <span className="font-bold">Utgivelsesår: </span>
+              {movie.releaseYear}
+            </p>
+            <p>
+              <span className="font-bold">Beskrivelse: </span>
+              {movie.plot}
             </p>
           </div>
           <div className="rating">
