@@ -1,4 +1,3 @@
-import * as React from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,10 +5,10 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import { useRecoilState } from 'recoil';
+import { selectedGenresState } from '../atoms';
 
 interface FilterProps {
-  selectedGenres: string[];
-  setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
   smallScreen: boolean;
 }
 
@@ -48,7 +47,7 @@ function MultipleSelectCheckmarks(props: FilterProps) {
     'Western',
   ];
 
-  const { selectedGenres, setSelectedGenres } = props;
+  const [selectedGenres, setSelectedGenres] = useRecoilState(selectedGenresState);
 
   const handleChange = (event: SelectChangeEvent<typeof selectedGenres>) => {
     const {

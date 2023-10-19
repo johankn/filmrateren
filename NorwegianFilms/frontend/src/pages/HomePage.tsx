@@ -11,22 +11,24 @@ import { useNavigate } from 'react-router-dom';
 import SearchHitCard from '../components/SearchHitCard';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { selectedSortState, scrollPositionState, selectedGenresState, inputValueState, cardsToShowState} from '../atoms';
 import { useQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY } from '../queries/SearchQueries';
 
 function HomePage() {
   const navigate = useNavigate();
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useRecoilState(scrollPositionState);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [selectedSort, setSelectedSort] = useState('');
+  const selectedGenres = useRecoilValue(selectedGenresState)
+  const selectedSort = useRecoilValue(selectedSortState)
 
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useRecoilState(inputValueState);
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
   useEffect(() => {
@@ -50,9 +52,8 @@ function HomePage() {
 
   console.log('Movies:', movies)
 
-  const initialCardsToShow = 28; // Number of cards to display initially
   const cardsToLoad = 28; // Number of cards to load when clicking "Load More"
-  const [cardsToShow, setCardsToShow] = useState(initialCardsToShow);
+  const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
 
   const [filteredMovies, setFilteredMovies] = useState(movieFile.movies);
 
@@ -279,6 +280,10 @@ function HomePage() {
     setFilteredMovies(filtered);
   };
 
+  useEffect(() => { // Search every time HomePage renders in order to load the right movies for the saved user choices 
+    handleSearchClick();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
@@ -333,8 +338,6 @@ function HomePage() {
           </div>
           <div className="filter" style={{ ...filterStyle, pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none' }}>
             <Filter
-              selectedGenres={selectedGenres}
-              setSelectedGenres={setSelectedGenres}
               smallScreen={windowSize.width < 740 ? true : false}
             />
           </div>
@@ -345,9 +348,7 @@ function HomePage() {
               pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
             }}
           >
-            <Sort
-              selectedSort={selectedSort}
-              setSelectedSort={setSelectedSort}
+            <Sort        
               smallScreen={windowSize.width < 740 ? true : false}
             />
           </div>

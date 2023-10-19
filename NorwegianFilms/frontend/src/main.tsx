@@ -9,6 +9,9 @@ import { apolloClient } from './apolloClient';
 import './index.css';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RecoilRoot,
+} from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -23,9 +26,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ApolloProvider client={apolloClient}>  {/* <-- Wrap your app with ApolloProvider */}
-      <RouterProvider router={router} />
-    </ApolloProvider>
+    <RecoilRoot>
+      <ApolloProvider client={apolloClient}>  {/* <-- Wrap your app with ApolloProvider */}
+        <RouterProvider router={router} />
+      </ApolloProvider>
+    </RecoilRoot>
   </StrictMode>,
 );
 
