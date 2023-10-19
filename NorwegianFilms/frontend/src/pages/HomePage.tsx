@@ -12,20 +12,21 @@ import SearchHitCard from '../components/SearchHitCard';
 import { isMobile } from 'react-device-detect';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { selectedSortState, scrollPositionState, selectedGenresState, inputValueState, cardsToShowState} from '../atoms';
 
 function HomePage() {
   const navigate = useNavigate();
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useRecoilState(scrollPositionState);
 
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [selectedSort, setSelectedSort] = useState('');
+  const selectedGenres = useRecoilValue(selectedGenresState)
+  const selectedSort = useRecoilValue(selectedSortState)
 
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useRecoilState(inputValueState);
 
-  const initialCardsToShow = 28; // Number of cards to display initially
   const cardsToLoad = 28; // Number of cards to load when clicking "Load More"
-  const [cardsToShow, setCardsToShow] = useState(initialCardsToShow);
+  const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
 
   const [filteredMovies, setFilteredMovies] = useState(movieFile.movies);
 
@@ -232,7 +233,7 @@ function HomePage() {
             />
           </div>
           <div className="filter" style={{ ...filterStyle, pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none' }}>
-            <Filter selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} />
+            <Filter />
           </div>
           <div
             className="sort"
@@ -241,7 +242,7 @@ function HomePage() {
               pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
             }}
           >
-            <Sort selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
+            <Sort />
           </div>
           {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
           <div

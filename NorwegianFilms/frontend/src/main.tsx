@@ -6,6 +6,9 @@ import './index.css';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MoviePage from './pages/MoviePage.tsx';
+import {
+  RecoilRoot,
+} from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +23,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </StrictMode>,
 );
 
