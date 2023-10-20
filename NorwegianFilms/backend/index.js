@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/moviesDB', {
+mongoose.connect('mongodb+srv://web-team-05:EJYez2cLugo6oyeU@cluster0.aytvtnm.mongodb.net/moviesDB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -17,6 +17,7 @@ const resolvers = require('./src/graphql/resolvers');
 
 const corsOptions = {
   origin: 'http://localhost:5173', 
+  origin: 'https://studio.apollographql.com',
   credentials: true  // allows cookies to be sent with the request
 };
 

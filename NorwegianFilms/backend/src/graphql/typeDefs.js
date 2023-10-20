@@ -21,6 +21,10 @@ const typeDefs = gql`
   }
 
   type Query {
+    getAllMovies: [Movie]
+  }
+
+  type Query {
     movies(title: String!): [Movie]
   }
 

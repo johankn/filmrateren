@@ -7,6 +7,11 @@ const resolvers = {
         return await Movie.find({ title: new RegExp(title, 'i') });
     },
   },
+  Query: {
+    getAllMovies: async () => {
+        return await Movie.find();
+    },
+  },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {
       // Find the movie by its ID from the JSON
