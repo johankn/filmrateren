@@ -1,11 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import HomePage from './pages/HomePage.tsx';
+import HomePage from './pages/HomePage';
+import MoviePage from './pages/MoviePage';
+
+import { ApolloProvider } from '@apollo/client';
+import { apolloClient } from './apolloClient'; 
 
 import './index.css';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import MoviePage from './pages/MoviePage.tsx';
+import {
+  RecoilRoot,
+} from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +26,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <ApolloProvider client={apolloClient}>  {/* <-- Wrap your app with ApolloProvider */}
+        <RouterProvider router={router} />
+      </ApolloProvider>
+    </RecoilRoot>
   </StrictMode>,
 );
 

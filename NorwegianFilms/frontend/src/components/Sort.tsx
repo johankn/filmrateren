@@ -1,13 +1,27 @@
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useRecoilState } from 'recoil';
+import { selectedSortState } from '../atoms';
 
-function Sort() {
+function Sort({smallScreen}) {
+  const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
+  
+  const handleSortChange = (event: SelectChangeEvent) => {
+    setSelectedSort(event.target.value);
+  };
+
   return (
-    <FormControl sx={{ m: 1, minWidth: 220 }} className="bg-white rounded">
-      <InputLabel id="sort-select-label">Sortering (kun demo)</InputLabel>
-      <Select labelId="sort-select-label" id="sort-select" label="Sortering (kun demo)">
+    <FormControl sx={{ m: 1, minWidth: smallScreen ? 143 : 200 }} className="bg-white rounded">
+      <InputLabel id="sort-select-label">Sortering</InputLabel>
+      <Select
+        labelId="sort-select-label"
+        id="sort-select"
+        label="Sortering"
+        value={selectedSort}
+        onChange={handleSortChange}
+      >
         <MenuItem value="">
           <em>Ingen</em>
         </MenuItem>
