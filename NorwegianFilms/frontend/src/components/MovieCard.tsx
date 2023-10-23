@@ -30,18 +30,18 @@ function MovieCard({ movieID }: MovieCardProps) {
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
   return (
-    <div className="grid grid-rows-auto-auto grid-cols-1fr-1fr gap-7 p-10 ml-2 text-white italic">
-      <div className="grid-row-1 grid-col-1-span-2 text-large">
+    <div className="grid grid-rows-auto-auto  gap-7 p-10 ml-2 text-white italic place-items-center ">
+      <div className="grid-row-1 grid-col-1-span-2  text-twoxl">
         <h1>{movie.title}</h1>
       </div>
-
-      <div className="flex flex-wrap w-1/2 ">
-        <div className=" image md:w-1/2 md:pr-1 w-full">
+  
+      <div className="grid grid-rows-auto-auto md:grid-rows-auto md:grid-cols-auto w-3/5 md:grid-cols-2 gap-4 place-items-center">
+        <div className="image">
           <img src={movie.posterUrl} alt={movie.title} />
         </div>
-
-        <div className="info md:w-1/2 md:pl-4 w-full">
-          <div className="mb-6">
+  
+        <div className="info text-2xl ">
+          <div className="mb-6 ">
             <p>
               <span className="font-bold">Sjanger: </span> {movie.genre}
             </p>
@@ -59,7 +59,7 @@ function MovieCard({ movieID }: MovieCardProps) {
               <p>
                 <span className="font-bold">Average user rating:</span> {averageUserRating.toFixed(1)}
               </p>
-              <div className="flex text-yellow">
+              <div className="text-yellow text-left">
                 <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
               </div>
             </div>
@@ -68,6 +68,7 @@ function MovieCard({ movieID }: MovieCardProps) {
       </div>
     </div>
   );
+  
+  
 }
-
 export default MovieCard;
