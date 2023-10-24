@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/moviesDB', {
+mongoose.connect('mongodb+srv://web-team-05:EJYez2cLugo6oyeU@cluster0.aytvtnm.mongodb.net/moviesDB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

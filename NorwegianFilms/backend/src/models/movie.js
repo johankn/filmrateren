@@ -20,4 +20,4 @@ const movieSchema = new Schema({
     userRatings: [userRatingSchema] // an array of user ratings
 });
 
-module.exports = mongoose.model('Movie', movieSchema);
+module.exports = mongoose.model('Movie', movieSchema, 'movies');

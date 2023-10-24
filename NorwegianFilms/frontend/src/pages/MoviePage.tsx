@@ -29,7 +29,7 @@ function MoviePage() {
 
   return (
     <div>
-      <div className={`relative min-h-screen bg-cover bg-redpurple ${showPopup ? 'blur-sm' : ''}`}>
+      <div className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
         <ScrollToTop />
         <div className="pl-10 pt-5 absolute">
           <button className="hover:scale-125" onClick={() => navigate(-1)}>
