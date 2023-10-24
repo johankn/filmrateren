@@ -18,8 +18,8 @@ import {
   inputValueState,
   cardsToShowState,
 } from '../atoms';
-import { useQuery } from '@apollo/client';
-import { SEARCH_MOVIES_QUERY } from '../queries/SearchQueries';
+import { useQuery, useLazyQuery } from '@apollo/client';
+import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from './HomePageDynamicStyles';
 
 function HomePage() {
@@ -64,29 +64,62 @@ function HomePage() {
     };
   }, [inputValue]);
 
-  const { data, loading, error } = useQuery(SEARCH_MOVIES_QUERY, {
+  const { data: searchData, loading: searchLoading, error: searchError } = useQuery(SEARCH_MOVIES_QUERY, {
     variables: { title: debouncedValue },
     skip: !debouncedValue, // Skip the query if debouncedValue is empty
   });
 
-  const movies = data?.searchMovies || [];
+  const movies = searchData?.searchMovies || [];
 
-  if (error) {
-    console.error("Error fetching movies:", error.message);
+  if (searchError) {
+    console.error("Error fetching movies:", searchError.message);
 }
 
-
-  console.log('Movies:', movies);
-
-  const cardsToLoad = 28; // Number of cards to load when clicking "Load More"
+  const initialCardsToShow = 28;
   const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
 
-  const [filteredMovies, setFilteredMovies] = useState(movieFile.movies);
 
-  // Function to load more cards
+  const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] = useLazyQuery(GET_FILTERED_MOVIES_QUERY);
+
+
   const loadMoreCards = () => {
-    setCardsToShow(cardsToShow + cardsToLoad);
+    const newSkip = cardsToShow;  
+
+    getFilteredMovies({  
+      variables: {
+        title: debouncedValue,
+        genres: selectedGenres,
+        limit: initialCardsToShow,
+        skip: newSkip
+      }
+    });
+
+  setCardsToShow(prev => prev + initialCardsToShow);  // Increase the number of cards to show
+};
+
+  type Movie = {
+    id: number;
+    title: string;
+    directors: string;
+    plot: string;
+    releaseYear: number;
+    genres: Array<string>;
+    IMDBrating: number;
+    posterUrl: string;
+    userRatings: {
+      name: string;
+      rating: number;
+      comment: string;
+    }[];
   };
+
+  const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    if (moviesData && moviesData.getFilteredMovies) {
+      setPagedMovies((prevMovies) => [...prevMovies, ...moviesData.getFilteredMovies]);
+    }
+  }, [moviesData, cardsToShow]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,60 +155,21 @@ function HomePage() {
   };
 
   const handleSearchClick = () => {
-    console.log('Selected Sort:', selectedSort);
+    setCardsToShow(initialCardsToShow);  
+    setPagedMovies([]); 
+     
 
-    const selectedGenresSet = new Set(selectedGenres);
-    let filtered = movieFile.movies.filter((movie) => {
-      if (selectedGenresSet.size === 0) {
-        // If no genres are selected, show all movies
-        return true;
+    getFilteredMovies({
+      variables: {
+        title: null,
+        genres: selectedGenres,
+        limit: initialCardsToShow,
+        skip: 0  
       }
-
-      const movieGenres = movie.genres;
-
-      for (const selectedGenre of selectedGenresSet) {
-        if (movieGenres.includes(selectedGenre)) {
-          // If any selected genre is present, show the movie
-          return true;
-        }
-      }
-
-      // If none of the selected genres match, skip the movie
-      return false;
     });
-
-    if (selectedSort == '10') {
-      // Sort by title in ascending order
-      filtered = filtered.sort((a, b) => {
-        if (a.title < b.title) return -1;
-        if (a.title > b.title) return 1;
-        return 0;
-      });
-    } else if (selectedSort == '20') {
-      // Sort by title in descending order
-      filtered = filtered.sort((a, b) => {
-        if (a.title < b.title) return 1;
-        if (a.title > b.title) return -1;
-        return 0;
-      });
-    } else if (selectedSort == '30') {
-      // Sort by title in ascending order
-      filtered = filtered.sort((a, b) => {
-        if (a.IMDBrating < b.IMDBrating) return 1;
-        if (a.IMDBrating > b.IMDBrating) return -1;
-        return 0;
-      });
-    } else if (selectedSort == '40') {
-      // Sort by title in ascending order
-      filtered = filtered.sort((a, b) => {
-        if (a.IMDBrating < b.IMDBrating) return -1;
-        if (a.IMDBrating > b.IMDBrating) return 1;
-        return 0;
-      });
-    }
-
-    setFilteredMovies(filtered);
+    console.log(pagedMovies)
   };
+  
 
   useEffect(() => {
     // Search every time HomePage renders in order to load the right movies for the saved user choices
@@ -222,9 +216,9 @@ function HomePage() {
             }}
             freeSolo
             placeholder="Tittel..."
-            options={loading ? [] : movies} // display empty array if loading
-            getOptionLabel={(option) => option.title}
-            onChange={(_event, newValue) => {
+            options={searchLoading ? [] : movies}
+            getOptionLabel={(option: Movie) => option.title}
+            onChange={(_event, newValue: Movie | null) => {
               if (newValue) {
                 navigate(`/project2/moviePage/${newValue.id}`);
               }
@@ -257,7 +251,7 @@ function HomePage() {
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       <div className="absolute flex flex-wrap flex-row justify-center w-[77%] gap-14 text-white" style={searchStyle}>
         {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
-        {filteredMovies.slice(0, cardsToShow).map((movie, index) => (
+        {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
           <SearchHitCard
             key={index}
             movieID={movie.id.toString()}

@@ -6,9 +6,19 @@ const resolvers = {
         // Use a regex for case-insensitive and partial matching
         return await Movie.find({ title: new RegExp(title, 'i') });
     },
-    getAllMovies: async () => {
-      return await Movie.find();
-  },
+    getFilteredMovies: async (_, { title, genres, limit, skip }) => {
+      let query = {};
+  
+      if (title) {
+        query.title = new RegExp(title, 'i'); // For case insensitive matching
+      }
+  
+      if (genres && genres.length > 0) {
+        query.genres = { $in: genres };
+      }
+  
+      return await Movie.find(query).limit(limit).skip(skip);
+    },
   },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {

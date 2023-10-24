@@ -13,7 +13,6 @@ interface FilterProps {
 }
 
 function MultipleSelectCheckmarks(props: FilterProps) {
-  console.log(props.smallScreen);
   const ITEM_HEIGHT = 80;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
