@@ -1,5 +1,4 @@
 import movieFile from '../../../backend/src/norwegian_movies.json';
-import './SearchHitCard.css';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
@@ -65,7 +64,7 @@ function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
         <h1 ref={h1Ref} className={`text-center ${titleOverflow ? 'text-small' : ''} truncate`}>
           {movie.title}
         </h1>
-        <div className="flex justify-center items-center h-full moviePoster">
+        <div className="flex justify-center items-center h-full group">
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
@@ -74,7 +73,7 @@ function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
               maxWidth: '100%',
               borderRadius: '1rem',
             }}
-            className="max-h-full max-w-full"
+            className="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
           />
         </div>
       </Link>

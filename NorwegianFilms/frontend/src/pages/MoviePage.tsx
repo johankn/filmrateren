@@ -30,7 +30,7 @@ function MoviePage() {
 
   return (
     <div>
-      <div className={`relative min-h-screen bg-cover bg-redpurple ${showPopup ? 'blur-sm' : ''}`}>
+      <div className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
         <ScrollToTop />
         <div className="ml-5 pt-5 absolute">
           <button onClick={() => navigate(-1)}>
