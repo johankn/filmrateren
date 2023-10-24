@@ -47,8 +47,8 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetMarginTopSearch = 15 + (250 - 15) * opacity;
     targetWidthSearch = 565 + (380 - 565) * opacity;
     targetLeftSearch = 30 + (165 - 30) * opacity;
-    targetMarginTopBtn = 17 + (2351 - 17) * opacity;
-    targetRightBtn = 36 + (500 - 36) * opacity;
+    targetMarginTopBtn = 18 + (250 - 18) * opacity;
+    targetRightBtn = 36 + (300 - 36) * opacity;
     targetMarginTopSeats = 200 + (0 - 200) * opacity;
     targetTopSearch = 350 + (525 - 350) * opacity;
     targetRightFilter = 343 + (343 - 343) * opacity;
