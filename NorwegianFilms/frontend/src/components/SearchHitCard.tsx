@@ -2,6 +2,7 @@ import movieFile from '../../../backend/src/norwegian_movies.json';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
+import { Movie } from './types';
 
 type SearchHitCardProps = {
   movieID: string;
@@ -9,21 +10,6 @@ type SearchHitCardProps = {
 };
 
 function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
-  type Movie = {
-    id: number;
-    title: string;
-    directors: Array<string>;
-    releaseYear: string;
-    genres: Array<string>;
-    IMDBrating: number;
-    posterUrl: string;
-    userRatings: {
-      name: string;
-      rating: number;
-      comment: string;
-    }[];
-  };
-
   const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const [titleOverflow, setTitleOverflow] = useState(false);

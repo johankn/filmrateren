@@ -93,21 +93,21 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     opacity: opacityFilterSort,
     right: `${targetRightFilter}px`,
     marginTop: `${targetTopFilterSort}px`,
-    pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
+    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
   const sortStyle = {
     opacity: opacityFilterSort,
     right: `${targetRightSort}px`,
     marginTop: `${targetTopFilterSort}px`,
-    pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
+    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
   const btnStyle = {
     marginTop: `${targetMarginTopBtn}px`,
     right: `${targetRightBtn}px`,
     opacity: opacityFilterSort,
-    pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
+    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
   const seatsStyle = {
@@ -118,7 +118,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   const searchStyle = {
     opacity: opacitySearch,
     top: `${targetTopSearch}px`,
-    pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
+    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
   const screenContentStyle = {
@@ -129,7 +129,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
 
   const logoStyle = {
     opacity: windowSize.width < 740 ? 0 : opacitySearch,
-    pointerEvents: opacityFilterSort > 0 ? 'auto' : 'none',
+    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
   return {

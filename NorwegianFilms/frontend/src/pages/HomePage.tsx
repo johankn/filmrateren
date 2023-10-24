@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import screen from '../assets/screenContent.svg';
 import mobileScreen from '../assets/mobile_screen.svg';
 import seats from '../assets/seats.png';
 import mobileSeats from '../assets/mobile_seats.png';
 import logo from '../assets/film_rateren.svg';
 import Autocomplete from '@mui/joy/Autocomplete';
-import movieFile from '../../../backend/src/norwegian_movies.json';
 import { useNavigate } from 'react-router-dom';
 import SearchHitCard from '../components/SearchHitCard';
 import Filter from '../components/Filter';
@@ -21,6 +20,7 @@ import {
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from './HomePageDynamicStyles';
+import { Movie } from '../components/types';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ function HomePage() {
     skip: !debouncedValue, // Skip the query if debouncedValue is empty
   });
 
-  const movies = searchData?.searchMovies || [];
+  const movies: Movie[] | undefined = searchData?.searchMovies || [];
 
   if (searchError) {
     console.error("Error fetching movies:", searchError.message);
@@ -97,22 +97,6 @@ function HomePage() {
   setCardsToShow(prev => prev + initialCardsToShow);  // Increase the number of cards to show
 };
 
-  type Movie = {
-    id: number;
-    title: string;
-    directors: string;
-    plot: string;
-    releaseYear: number;
-    genres: Array<string>;
-    IMDBrating: number;
-    posterUrl: string;
-    userRatings: {
-      name: string;
-      rating: number;
-      comment: string;
-    }[];
-  };
-
   const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -131,7 +115,7 @@ function HomePage() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [setScrollPosition]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -154,11 +138,11 @@ function HomePage() {
     }
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = useCallback(() => {
+    console.log('Selected Sort:', selectedSort);
     setCardsToShow(initialCardsToShow);  
     setPagedMovies([]); 
-     
-
+    
     getFilteredMovies({
       variables: {
         title: null,
@@ -166,10 +150,8 @@ function HomePage() {
         limit: initialCardsToShow,
         skip: 0  
       }
-    });
-    console.log(pagedMovies)
-  };
-  
+    })
+  }, [selectedGenres]);
 
   useEffect(() => {
     // Search every time HomePage renders in order to load the right movies for the saved user choices
@@ -216,20 +198,20 @@ function HomePage() {
             }}
             freeSolo
             placeholder="Tittel..."
-            options={searchLoading ? [] : movies}
-            getOptionLabel={(option: Movie) => option.title}
-            onChange={(_event, newValue: Movie | null) => {
-              if (newValue) {
-                navigate(`/project2/moviePage/${newValue.id}`);
-              }
+            options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
+            getOptionLabel={(option) => (option as Movie)?.title || ''}
+            onChange={(_event, newValue) => {
+              // Assert that newValue is of type 'Movie'
+              const movie = newValue as Movie;
+              navigate(`/project2/moviePage/${movie.id}`);
             }}
           />
         </div>
         <div className="absolute" style={filterStyle}>
-          <Filter selectedGenres={selectedGenres} smallScreen={windowSize.width < 740 ? true : false} />
+          <Filter smallScreen={windowSize.width < 740 ? true : false} />
         </div>
         <div className="absolute" style={sortStyle}>
-          <Sort selectedSort={selectedSort} smallScreen={windowSize.width < 740 ? true : false} />
+          <Sort smallScreen={windowSize.width < 740 ? true : false} />
         </div>
         {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
         <div className="absolute z-999" style={btnStyle}>
