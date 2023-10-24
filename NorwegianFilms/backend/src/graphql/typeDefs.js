@@ -22,11 +22,9 @@ const typeDefs = gql`
 
   type Query {
     getAllMovies: [Movie]
+    searchMovies(title: String!): [Movie]
   }
 
-  type Query {
-    movies(title: String!): [Movie]
-  }
 
   input UserRatingInput {
     name: String!

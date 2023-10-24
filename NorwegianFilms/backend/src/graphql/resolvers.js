@@ -2,15 +2,13 @@ const Movie = require('../models/movie');
 
 const resolvers = {
   Query: {
-    movies: async (_, { title }) => {
+    searchMovies: async (_, { title }) => {
         // Use a regex for case-insensitive and partial matching
         return await Movie.find({ title: new RegExp(title, 'i') });
     },
-  },
-  Query: {
     getAllMovies: async () => {
-        return await Movie.find();
-    },
+      return await Movie.find();
+  },
   },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {

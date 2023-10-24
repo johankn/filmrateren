@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const SEARCH_MOVIES_QUERY = gql`
-    query SearchMovies($title: String!) {
-        movies(title: $title) {
+    query($title: String!) {
+        searchMovies(title: $title) {
             id
             title
         }

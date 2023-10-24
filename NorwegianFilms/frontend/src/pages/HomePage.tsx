@@ -48,7 +48,12 @@ function HomePage() {
     skip: !debouncedValue, // Skip the query if debouncedValue is empty
   });
 
-  const movies = data?.movies || [];
+  const movies = data?.searchMovies || [];
+
+  if (error) {
+    console.error("Error fetching movies:", error.message);
+}
+
 
   console.log('Movies:', movies)
 
