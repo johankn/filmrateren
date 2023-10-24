@@ -227,18 +227,10 @@ function HomePage() {
           />
         </div>
         <div className="absolute" style={filterStyle}>
-          <Filter
-            selectedGenres={selectedGenres}
-            setSelectedGenres={setSelectedGenres}
-            smallScreen={windowSize.width < 740 ? true : false}
-          />
+          <Filter selectedGenres={selectedGenres} smallScreen={windowSize.width < 740 ? true : false} />
         </div>
         <div className="absolute" style={sortStyle}>
-          <Sort
-            selectedSort={selectedSort}
-            setSelectedSort={setSelectedSort}
-            smallScreen={windowSize.width < 740 ? true : false}
-          />
+          <Sort selectedSort={selectedSort} smallScreen={windowSize.width < 740 ? true : false} />
         </div>
         {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
         <div className="absolute z-999" style={btnStyle}>
