@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import RatingPopup from '../components/RatingPopup';
-import Button from '@mui/joy/Button';
 import { useState } from 'react';
 import RatingCard from '../components/RatingCard';
 import movieFile from '../../../backend/src/norwegian_movies.json';
