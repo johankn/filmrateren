@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import screen from '../assets/screenContent.svg';
 import mobileScreen from '../assets/mobile_screen.svg';
 import seats from '../assets/seats.png';
@@ -21,6 +21,7 @@ import {
 import { useQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from './HomePageDynamicStyles';
+import { Movie } from '../components/types';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -69,12 +70,11 @@ function HomePage() {
     skip: !debouncedValue, // Skip the query if debouncedValue is empty
   });
 
-  const movies = data?.searchMovies || [];
+  const movies: Movie[] | undefined = data?.searchMovies || [];
 
   if (error) {
-    console.error("Error fetching movies:", error.message);
-}
-
+    console.error('Error fetching movies:', error.message);
+  }
 
   console.log('Movies:', movies);
 
@@ -98,7 +98,7 @@ function HomePage() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [setScrollPosition]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -121,7 +121,7 @@ function HomePage() {
     }
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = useCallback(() => {
     console.log('Selected Sort:', selectedSort);
 
     const selectedGenresSet = new Set(selectedGenres);
@@ -175,12 +175,12 @@ function HomePage() {
     }
 
     setFilteredMovies(filtered);
-  };
+  }, [selectedGenres, selectedSort]);
 
   useEffect(() => {
     // Search every time HomePage renders in order to load the right movies for the saved user choices
     handleSearchClick();
-  }, []);
+  }, [handleSearchClick]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
@@ -222,20 +222,20 @@ function HomePage() {
             }}
             freeSolo
             placeholder="Tittel..."
-            options={loading ? [] : movies} // display empty array if loading
-            getOptionLabel={(option) => option.title}
+            options={loading ? [] : (movies as Movie[])} // display empty array if loading
+            getOptionLabel={(option) => (option as Movie)?.title || ''}
             onChange={(_event, newValue) => {
-              if (newValue) {
-                navigate(`/project2/moviePage/${newValue.id}`);
-              }
+              // Assert that newValue is of type 'Movie'
+              const movie = newValue as Movie;
+              navigate(`/project2/moviePage/${movie.id}`);
             }}
           />
         </div>
         <div className="absolute" style={filterStyle}>
-          <Filter selectedGenres={selectedGenres} smallScreen={windowSize.width < 740 ? true : false} />
+          <Filter smallScreen={windowSize.width < 740 ? true : false} />
         </div>
         <div className="absolute" style={sortStyle}>
-          <Sort selectedSort={selectedSort} smallScreen={windowSize.width < 740 ? true : false} />
+          <Sort smallScreen={windowSize.width < 740 ? true : false} />
         </div>
         {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
         <div className="absolute z-999" style={btnStyle}>
