@@ -34,12 +34,10 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem value="">
           <em>Ingen</em>
         </MenuItem>
-        <MenuItem value={10}>Alfabetisk A-Å</MenuItem>
-        <MenuItem value={20}>Alfabetisk Å-A</MenuItem>
-        <MenuItem value={30}>Rating IMDB synkende</MenuItem>
-        <MenuItem value={40}>Rating IMDB stigende</MenuItem>
-        <MenuItem value={50}>Rating brukere synkende</MenuItem>
-        <MenuItem value={60}>Rating brukere stigende</MenuItem>
+        <MenuItem value="ALPHABETICAL_ASC">Alfabetisk A-Å</MenuItem>
+        <MenuItem value="ALPHABETICAL_DESC">Alfabetisk Å-A</MenuItem>
+        <MenuItem value="IMDB_DESC">Rating IMDB synkende</MenuItem>
+        <MenuItem value="IMDB_ASC">Rating IMDB stigende</MenuItem>
       </Select>
     </FormControl>
   );

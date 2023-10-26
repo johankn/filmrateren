@@ -1,15 +1,11 @@
-import movieFile from '../../../backend/src/norwegian_movies.json';
 import Stars from './Stars';
 import { Movie } from './types';
 
-export type MovieCardProps = {
-  movieID: string;
+type MovieCardProps = {
+  movie: Movie;
 };
 
-function MovieCard({ movieID }: MovieCardProps) {
-  const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
-
-  if (!movie) return <p>Movie not found</p>;
+function MovieCard({ movie }: MovieCardProps) {
 
   const totalUserRatings = movie.userRatings.reduce((acc, curr) => acc + curr.rating, 0);
 

@@ -6,7 +6,7 @@ import seats from '../assets/seats.png';
 import mobileSeats from '../assets/mobile_seats.png';
 import logo from '../assets/film_rateren.svg';
 import Autocomplete from '@mui/joy/Autocomplete';
-import movieFile from '../../../backend/src/norwegian_movies.json';
+import CircularProgress from '@mui/joy/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 import SearchHitCard from '../components/SearchHitCard';
 import Filter from '../components/Filter';
@@ -19,8 +19,8 @@ import {
   inputValueState,
   cardsToShowState,
 } from '../atoms';
-import { useQuery } from '@apollo/client';
-import { SEARCH_MOVIES_QUERY } from '../queries/SearchQueries';
+import { useQuery, useLazyQuery } from '@apollo/client';
+import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from '../assets/HomePageDynamicStyles';
 import { Movie } from '../components/types';
 
@@ -33,7 +33,9 @@ function HomePage() {
   });
 
   const selectedGenres = useRecoilValue(selectedGenresState);
+  const [previousGenres, setPreviousGenres] = useState<string[]>([]);
   const selectedSort = useRecoilValue(selectedSortState);
+  const [previousSort, setPreviousSort] = useState<string>('');
 
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useRecoilState(inputValueState);
@@ -67,28 +69,50 @@ function HomePage() {
     };
   }, [inputValue]);
 
-  const { data, loading, error } = useQuery(SEARCH_MOVIES_QUERY, {
+  const {
+    data: searchData,
+    loading: searchLoading,
+    error: searchError,
+  } = useQuery(SEARCH_MOVIES_QUERY, {
     variables: { title: debouncedValue },
     skip: !debouncedValue, // Skip the query if debouncedValue is empty
   });
 
-  const movies: Movie[] | undefined = data?.searchMovies || [];
+  const movies: Movie[] | undefined = searchData?.searchMovies || [];
 
-  if (error) {
-    console.error('Error fetching movies:', error.message);
+  if (searchError) {
+    console.error('Error fetching movies:', searchError.message);
   }
 
-  console.log('Movies:', movies);
-
-  const cardsToLoad = 28; // Number of cards to load when clicking "Load More"
+  const initialCardsToShow = 28;
   const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
 
-  const [filteredMovies, setFilteredMovies] = useState(movieFile.movies);
+  const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
+    useLazyQuery(GET_FILTERED_MOVIES_QUERY);
 
-  // Function to load more cards
   const loadMoreCards = () => {
-    setCardsToShow(cardsToShow + cardsToLoad);
+    const newSkip = cardsToShow;
+
+    getFilteredMovies({
+      variables: {
+        title: debouncedValue,
+        genres: selectedGenres,
+        sort: selectedSort,
+        limit: initialCardsToShow,
+        skip: newSkip,
+      },
+    });
+
+    setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
   };
+
+  const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    if (moviesData && moviesData.getFilteredMovies) {
+      setPagedMovies((prevMovies) => [...prevMovies, ...moviesData.getFilteredMovies]);
+    }
+  }, [moviesData, cardsToShow]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,64 +149,33 @@ function HomePage() {
 
   const handleSearchClick = useCallback(() => {
     console.log('Selected Sort:', selectedSort);
+    setCardsToShow(initialCardsToShow);
+    setPagedMovies([]);
+    setPreviousGenres(selectedGenres);
+    setPreviousSort(selectedSort);
 
-    const selectedGenresSet = new Set(selectedGenres);
-    let filtered = movieFile.movies.filter((movie) => {
-      if (selectedGenresSet.size === 0) {
-        // If no genres are selected, show all movies
-        return true;
-      }
-
-      const movieGenres = movie.genres;
-
-      for (const selectedGenre of selectedGenresSet) {
-        if (movieGenres.includes(selectedGenre)) {
-          // If any selected genre is present, show the movie
-          return true;
-        }
-      }
-
-      // If none of the selected genres match, skip the movie
-      return false;
+    getFilteredMovies({
+      variables: {
+        title: null,
+        genres: selectedGenres,
+        sort: selectedSort,
+        limit: initialCardsToShow,
+        skip: 0,
+      },
     });
-
-    if (selectedSort == '10') {
-      // Sort by title in ascending order
-      filtered = filtered.sort((a, b) => {
-        if (a.title < b.title) return -1;
-        if (a.title > b.title) return 1;
-        return 0;
-      });
-    } else if (selectedSort == '20') {
-      // Sort by title in descending order
-      filtered = filtered.sort((a, b) => {
-        if (a.title < b.title) return 1;
-        if (a.title > b.title) return -1;
-        return 0;
-      });
-    } else if (selectedSort == '30') {
-      // Sort by title in ascending order
-      filtered = filtered.sort((a, b) => {
-        if (a.IMDBrating < b.IMDBrating) return 1;
-        if (a.IMDBrating > b.IMDBrating) return -1;
-        return 0;
-      });
-    } else if (selectedSort == '40') {
-      // Sort by title in ascending order
-      filtered = filtered.sort((a, b) => {
-        if (a.IMDBrating < b.IMDBrating) return -1;
-        if (a.IMDBrating > b.IMDBrating) return 1;
-        return 0;
-      });
-    }
-
-    setFilteredMovies(filtered);
   }, [selectedGenres, selectedSort]);
+
+  const hasSelectionChanged = () => {
+    return (
+      JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
+      previousSort !== selectedSort
+    );
+  };
 
   useEffect(() => {
     // Search every time HomePage renders in order to load the right movies for the saved user choices
     handleSearchClick();
-  }, [handleSearchClick]);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
@@ -229,7 +222,7 @@ function HomePage() {
             }}
             freeSolo
             placeholder="Tittel..."
-            options={loading ? [] : (movies as Movie[])} // display empty array if loading
+            options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
             getOptionLabel={(option) => (option as Movie)?.title || ''}
             onChange={(_event, newValue) => {
               // Assert that newValue is of type 'Movie'
@@ -252,15 +245,11 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </div>
-        {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
-        {/* Search button */}
         <div className="absolute z-999" style={btnStyle}>
           <button
             onClick={handleSearchClick}
-            style={buttonStyle}
-            className={
-              'bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]'
-            }
+            disabled={!hasSelectionChanged()}
+            className='bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]'
           >
             Søk
           </button>
@@ -278,20 +267,29 @@ function HomePage() {
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       {/* Search hits */}
       <div className="absolute flex flex-wrap flex-row justify-center w-[77%] gap-14 text-white" style={searchStyle}>
-        {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
-        {filteredMovies.slice(0, cardsToShow).map((movie, index) => (
-          <SearchHitCard
-            key={index}
-            movieID={movie.id.toString()}
-            smallScreen={windowSize.width < 740 ? true : false}
-          />
-        ))}
-        {/* "Load More" button */}
-        <div className="h-40 flex justify-center items-center w-full">
-          <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-            <button onClick={loadMoreCards}>Last flere filmer</button>
+        {moviesLoading ? (
+          <div className="flex justify-center items-center w-full h-60">
+            <CircularProgress />
           </div>
-        </div>
+        ) : (
+          <>
+            {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
+            {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
+              <SearchHitCard
+                key={index}
+                movie={movie}
+                smallScreen={windowSize.width < 740 ? true : false}
+              />
+            ))}
+
+            {/* "Load More" button */}
+            <div className="h-40 flex justify-center items-center w-full">
+              <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <button onClick={loadMoreCards}>Last flere filmer</button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
