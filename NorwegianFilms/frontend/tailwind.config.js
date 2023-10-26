@@ -13,14 +13,14 @@ export default {
         darkblue: '#413b5c',
         red: '#d6353c',
         darkpurple: '#441c4c',
-
+        screen: '#E5DCD8',
       },
       fontFamily: {
         inter: '@apply sans-serif',
         roboto: '@aaply sans-serif',
       },
       fontSize: {
-        twoxl:'4rem',
+        twoxl: '4rem',
         xl: '3.125rem',
         large: '2.188rem',
         base: '1.25rem',
