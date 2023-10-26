@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import screen from '../assets/screenContent.svg';
 import mobileScreen from '../assets/mobile_screen.svg';
+import mediumScreen from '../assets/medium_screen.svg';
 import seats from '../assets/seats.png';
 import mobileSeats from '../assets/mobile_seats.png';
 import logo from '../assets/film_rateren.svg';
@@ -51,6 +52,7 @@ function HomePage() {
     searchStyle,
     screenContentStyle,
     logoStyle,
+    buttonStyle,
   } = getHomePageStyles(windowSize, scrollPosition);
 
   useEffect(() => {
@@ -196,13 +198,14 @@ function HomePage() {
         <img src={logo} alt="logo" className="cursor-pointer" style={logoStyle} />
       </div>
       {/* Movie screen container */}
-      <div
-        className="bg-[rgba(255,247,238,0.9)] rounded-[0.3rem] flex flex-col justify-start items-center relative"
-        style={screenStyle}
-      >
+      <div className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative" style={screenStyle}>
         {/* Picture with logo and screen content */}
         <div className="absolute flex flex-row justify-center">
-          <img src={windowSize.width < 740 ? mobileScreen : screen} alt="screenContent" style={screenContentStyle} />
+          <img
+            src={windowSize.width < 740 ? mobileScreen : windowSize.width < 1110 ? mediumScreen : screen}
+            alt="screenContent"
+            style={screenContentStyle}
+          />
         </div>
         {/* Search bar */}
         <div className="absolute z-50" style={searchBarWrapperStyle}>
@@ -237,18 +240,29 @@ function HomePage() {
         </div>
         {/* Filter on genres*/}
         <div className="absolute" style={filterStyle}>
-          <Filter smallScreen={windowSize.width < 740 ? true : false} />
+          <Filter
+            selectedGenres={selectedGenres}
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+          />
         </div>
         {/* Sort */}
         <div className="absolute" style={sortStyle}>
-          <Sort smallScreen={windowSize.width < 740 ? true : false} />
+          <Sort
+            selectedSort={selectedSort}
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+          />
         </div>
         {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
         {/* Search button */}
         <div className="absolute z-999" style={btnStyle}>
           <button
             onClick={handleSearchClick}
-            className="bg-gray-700 rounded-lg text-white p-2 px-4 min-h-[3.3rem] border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            style={buttonStyle}
+            className={
+              'bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]'
+            }
           >
             Søk
           </button>
