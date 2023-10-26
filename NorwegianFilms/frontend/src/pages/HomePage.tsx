@@ -241,7 +241,6 @@ function HomePage() {
         {/* Filter on genres*/}
         <div className="absolute" style={filterStyle}>
           <Filter
-            selectedGenres={selectedGenres}
             smallScreen={windowSize.width < 740 ? true : false}
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
@@ -249,7 +248,6 @@ function HomePage() {
         {/* Sort */}
         <div className="absolute" style={sortStyle}>
           <Sort
-            selectedSort={selectedSort}
             smallScreen={windowSize.width < 740 ? true : false}
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />

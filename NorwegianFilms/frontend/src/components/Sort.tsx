@@ -19,7 +19,7 @@ function Sort({ smallScreen, mediumScreen }) {
     >
       <InputLabel
         id="sort-select-label"
-        sx={{ fontSize: mediumScreen ? '0.8rem' : '1rem', lineHeight: mediumScreen ? '.9rem' : '01.4375rem' }}
+        sx={{ fontSize: mediumScreen ? '0.8rem' : '1rem', lineHeight: mediumScreen ? '0.9rem' : '1.4375rem' }}
       >
         Sortering
       </InputLabel>
