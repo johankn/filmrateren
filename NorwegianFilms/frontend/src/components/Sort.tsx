@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useRecoilState } from 'recoil';
 import { selectedSortState } from '../atoms';
 
-function Sort({ smallScreen, mediumScreen }) {
+function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScreen: boolean }) {
   const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
 
   const handleSortChange = (event: SelectChangeEvent) => {
