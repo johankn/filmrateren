@@ -20,8 +20,8 @@ query($title: String, $genres: [String!], $sort: String, $limit: Int, $skip: Int
 `;
 
 export const GET_MOVIE_BY_ID_QUERY = gql`
-  query($id: ID!) {
-    getMovieByID(id: $id) {
+  query($movieId: ID!) {
+    getMovieByID(movieId: $movieId) {
       id
       title
       releaseYear
@@ -30,6 +30,11 @@ export const GET_MOVIE_BY_ID_QUERY = gql`
       plot
       IMDBrating
       posterUrl
+      userRatings {
+        name
+        rating
+        comment
+      }
     }
   }
 `;

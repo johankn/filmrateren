@@ -12,26 +12,28 @@ function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
   const [showPopup, setShowPopup] = useState(false);
 
+  const navigate = useNavigate();
+
   const { loading, error, data } = useQuery(GET_MOVIE_BY_ID_QUERY, {
-    variables: { id: Number(movieID) }
+    variables: { movieId: Number(movieID) }
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   console.log("Data", data)
 
-  const movie: Movie | undefined = data.movie;
+  const movie: Movie | undefined = data.getMovieByID;
   if (!movie) return <p>Movie not found</p>;
 
   const handleClosePopup = () => {
     setShowPopup(false);
   };
 
-  const navigate = useNavigate();
-
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
+
+  console.log(movie)
 
 
   return (
