@@ -29,9 +29,6 @@ function MoviePage() {
 
   const navigate = useNavigate();
 
-  console.log(movieID);
-  console.log(movie);
-
   if (!movieID) {
     return <div>Movie ID is missing!</div>;
   }
@@ -62,7 +59,7 @@ function MoviePage() {
       </div>{' '}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
-          <RatingPopup onClose={handleClosePopup} />
+          <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
         </div>
       )}
     </div>

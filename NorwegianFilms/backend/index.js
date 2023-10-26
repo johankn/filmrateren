@@ -16,8 +16,8 @@ const typeDefs = require('./src/graphql/typeDefs');
 const resolvers = require('./src/graphql/resolvers');
 
 const corsOptions = {
-  origin: 'http://localhost:5173', 
-  // origin: 'https://studio.apollographql.com',
+  origin: 'http://localhost:5173',
+  // origin: 'https://studio.apollographql.com', 
   credentials: true  // allows cookies to be sent with the request
 };
 
