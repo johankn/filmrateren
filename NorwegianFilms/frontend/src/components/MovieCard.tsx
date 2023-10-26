@@ -1,7 +1,7 @@
 import movieFile from '../../../backend/src/norwegian_movies.json';
 import Stars from './Stars';
 
-type MovieCardProps = {
+export type MovieCardProps = {
   movieID: string;
 };
 

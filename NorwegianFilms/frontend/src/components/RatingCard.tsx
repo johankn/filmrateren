@@ -4,7 +4,7 @@ type RatingProps = {
   comment: string;
 };
 
-const RatingCard: React.FC<RatingProps> = ({ name, rating, comment }) => {
+const RatingCard: React.FC<RatingProps> = ({name, rating, comment }) => {
   return (
     <div className="rating-card p-4 shadow-md rounded-md space-y-2 mx-auto w-3/5">
       <h4 className="text-lg text-white font-bold">{name}</h4>
