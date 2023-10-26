@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import screen from '../assets/screenContent.svg';
 import mobileScreen from '../assets/mobile_screen.svg';
+import mediumScreen from '../assets/medium_screen.svg';
 import seats from '../assets/seats.png';
 import mobileSeats from '../assets/mobile_seats.png';
 import logo from '../assets/film_rateren.svg';
@@ -20,7 +21,7 @@ import {
 } from '../atoms';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
-import { getHomePageStyles } from './HomePageDynamicStyles';
+import { getHomePageStyles } from '../assets/HomePageDynamicStyles';
 import { Movie } from '../components/types';
 
 function HomePage() {
@@ -53,6 +54,7 @@ function HomePage() {
     searchStyle,
     screenContentStyle,
     logoStyle,
+    buttonStyle,
   } = getHomePageStyles(windowSize, scrollPosition);
 
   useEffect(() => {
@@ -140,7 +142,7 @@ function HomePage() {
   }, []);
 
   const handleLogoClick = () => {
-    if (opacitySearch > 0) {
+    if (opacitySearch == 1) {
       scrollToTop();
     }
   };
@@ -184,16 +186,21 @@ function HomePage() {
       className="m-0 flex flex-col justify-start items-center w-full min-h-[150vh] overflow-x-hidden gap-16"
       style={homePageStyle}
     >
+      {/* Clickable logo top left */}
       <div className="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998" onClick={handleLogoClick}>
         <img src={logo} alt="logo" className="cursor-pointer" style={logoStyle} />
       </div>
-      <div
-        className="bg-[rgba(255,247,238,0.9)] rounded-[0.3rem] flex flex-col justify-start items-center relative"
-        style={screenStyle}
-      >
+      {/* Movie screen container */}
+      <div className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative" style={screenStyle}>
+        {/* Picture with logo and screen content */}
         <div className="absolute flex flex-row justify-center">
-          <img src={windowSize.width < 740 ? mobileScreen : screen} alt="screenContent" style={screenContentStyle} />
+          <img
+            src={windowSize.width < 740 ? mobileScreen : windowSize.width < 1110 ? mediumScreen : screen}
+            alt="screenContent"
+            style={screenContentStyle}
+          />
         </div>
+        {/* Search bar */}
         <div className="absolute z-50" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
@@ -224,22 +231,31 @@ function HomePage() {
             }}
           />
         </div>
+        {/* Filter on genres*/}
         <div className="absolute" style={filterStyle}>
-          <Filter smallScreen={windowSize.width < 740 ? true : false} />
+          <Filter
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+          />
         </div>
+        {/* Sort */}
         <div className="absolute" style={sortStyle}>
-          <Sort smallScreen={windowSize.width < 740 ? true : false} />
+          <Sort
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+          />
         </div>
         <div className="absolute z-999" style={btnStyle}>
           <button
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className="bg-gray-700 rounded-lg text-white p-2 px-4 min-h-[3.3rem] border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            className='bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]'
           >
             Søk
           </button>
         </div>
       </div>
+      {/* Scroll down indicator */}
       <div
         className="text-[rgba(255,247,238,0.4)] absolute top-[93%] flex flex-col justify-center items-center"
         style={{ opacity: opacityScreenImg }}
@@ -247,7 +263,9 @@ function HomePage() {
         <p>Bla ned for avansert søk</p>
         <p>&darr;</p>
       </div>
+      {/* Seats */}
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
+      {/* Search hits */}
       <div className="absolute flex flex-wrap flex-row justify-center w-[77%] gap-14 text-white" style={searchStyle}>
         {moviesLoading ? (
           <div className="flex justify-center items-center w-full h-60">

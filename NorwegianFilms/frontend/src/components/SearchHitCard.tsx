@@ -24,7 +24,7 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
   let titleWidth;
 
   if (smallScreen) {
-    (posterHeight = '7.9'), (titleHeight = '10'), (titleWidth = '5');
+    (posterHeight = '10'), (titleHeight = '10'), (titleWidth = '7');
   } else {
     (posterHeight = '17.8'), (titleHeight = '20'), (titleWidth = '13');
   }

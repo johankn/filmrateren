@@ -23,39 +23,45 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   let targetTopFilterSort;
   let targetHeightImg;
   let targetTopScreenContent;
+  let targetButtonHeight;
+  let targetButtonWidth;
 
   if (windowSize.width >= 1110) {
     targetHeight = 125 + (382 - 125) * opacity;
     targetWidth = 1040 + (910 - 1040) * opacity;
     targetMarginTop = 174 + (96 - 174) * opacity;
     targetMarginTopSearch = 35 + (250 - 35) * opacity;
-    targetWidthSearch = 380 + (380 - 380) * opacity;
+    targetWidthSearch = 480 + (380 - 480) * opacity;
     targetLeftSearch = 30 + (265 - 30) * opacity;
     targetMarginTopBtn = 36 + (251 - 36) * opacity;
     targetRightBtn = 36 + (500 - 36) * opacity;
     targetMarginTopSeats = 200 + (0 - 200) * opacity;
     targetTopSearch = 350 + (525 - 350) * opacity;
-    targetRightFilter = 375 + (500 - 375) * opacity;
-    targetRightSort = 125 + (500 - 125) * opacity;
+    targetRightFilter = 310 + (500 - 310) * opacity;
+    targetRightSort = 100 + (500 - 100) * opacity;
     targetTopFilterSort = 27 + (245 - 27) * opacity;
     targetHeightImg = 300 + (570 - 300) * opacity;
     targetTopScreenContent = 1 + (10 - 1) * opacity;
+    targetButtonHeight = 3.3 + (3.3 - 3.3) * opacity;
+    targetButtonWidth = 4 + (4 - 4) * opacity;
   } else if (windowSize.width >= 740) {
-    targetHeight = 150 + (382 - 150) * opacity;
+    targetHeight = 138 + (382 - 138) * opacity;
     targetWidth = 720 + (700 - 720) * opacity;
     targetMarginTop = 176 + (96 - 176) * opacity;
     targetMarginTopSearch = 15 + (250 - 15) * opacity;
     targetWidthSearch = 565 + (380 - 565) * opacity;
     targetLeftSearch = 30 + (165 - 30) * opacity;
-    targetMarginTopBtn = 17 + (2351 - 17) * opacity;
-    targetRightBtn = 36 + (500 - 36) * opacity;
+    targetMarginTopBtn = 16 + (250 - 16) * opacity;
+    targetRightBtn = 31 + (300 - 31) * opacity;
     targetMarginTopSeats = 200 + (0 - 200) * opacity;
     targetTopSearch = 350 + (525 - 350) * opacity;
-    targetRightFilter = 343 + (343 - 343) * opacity;
-    targetRightSort = 117 + (117 - 117) * opacity;
-    targetTopFilterSort = 70 + (245 - 70) * opacity;
-    targetHeightImg = 300 + (570 - 300) * opacity;
+    targetRightFilter = 403 + (255 - 403) * opacity;
+    targetRightSort = 117 + (145 - 117) * opacity;
+    targetTopFilterSort = 70 + (195 - 70) * opacity;
+    targetHeightImg = 0 + (380 - 0) * opacity;
     targetTopScreenContent = 0 + (0 - 0) * opacity;
+    targetButtonHeight = 6.6 + (0 - 6.6) * opacity;
+    targetButtonWidth = 5 + (4 - 5) * opacity;
   } else {
     targetHeight = 200 + (250 - 200) * opacity;
     targetWidth = 350 + (350 - 350) * opacity;
@@ -72,6 +78,8 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetTopFilterSort = 70 + (110 - 70) * opacity;
     targetHeightImg = 160 + (160 - 160) * opacity;
     targetTopScreenContent = 1 + (10 - 1) * opacity;
+    targetButtonHeight = 3.3 + (3.3 - 3.3) * opacity;
+    targetButtonWidth = 4 + (4 - 4) * opacity;
   }
 
   const homePageStyle = {
@@ -110,6 +118,11 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
+  const buttonStyle = {
+    minHeight: `${targetButtonHeight}rem`,
+    width: `${targetButtonWidth}rem`,
+  };
+
   const seatsStyle = {
     opacity: opacitySeats,
     marginTop: `${targetMarginTopSeats}px`,
@@ -146,5 +159,6 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     searchStyle,
     screenContentStyle,
     logoStyle,
+    buttonStyle,
   };
 }

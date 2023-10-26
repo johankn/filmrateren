@@ -10,6 +10,7 @@ import { selectedGenresState } from '../atoms';
 
 interface FilterProps {
   smallScreen: boolean;
+  mediumScreen: boolean;
 }
 
 function MultipleSelectCheckmarks(props: FilterProps) {
@@ -59,17 +60,29 @@ function MultipleSelectCheckmarks(props: FilterProps) {
   };
 
   return (
-    <FormControl sx={{ m: 1, width: props.smallScreen ? 143 : 200 }} className="bg-white rounded">
-      <InputLabel id="genreLabel">Sjanger</InputLabel>
+    <FormControl
+      sx={{ m: 1, width: props.smallScreen ? 143 : props.mediumScreen ? 278 : 200 }}
+      className="bg-white rounded"
+    >
+      <InputLabel
+        id="genreLabel"
+        sx={{
+          fontSize: props.mediumScreen ? '0.8rem' : '1rem',
+          lineHeight: props.mediumScreen ? '0.9rem' : '1.4375rem',
+        }}
+      >
+        Sjanger
+      </InputLabel>
       <Select
         labelId="genreLabel"
         id="genre"
         multiple
         value={selectedGenres}
         onChange={handleChange}
-        input={<OutlinedInput label="Sjanger (kun demo)" />}
+        input={<OutlinedInput label="Sjanger (kun demo)" margin="dense" />}
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
+        sx={{ fontSize: props.mediumScreen ? '0.5rem' : '1rem' }}
       >
         {names.map((name) => (
           <MenuItem key={name} value={name}>
