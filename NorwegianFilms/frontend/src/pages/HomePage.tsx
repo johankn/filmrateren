@@ -32,7 +32,9 @@ function HomePage() {
   });
 
   const selectedGenres = useRecoilValue(selectedGenresState);
+  const [previousGenres, setPreviousGenres] = useState<string[]>([]);
   const selectedSort = useRecoilValue(selectedSortState);
+  const [previousSort, setPreviousSort] = useState<string>('');
 
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useRecoilState(inputValueState);
@@ -93,6 +95,7 @@ function HomePage() {
       variables: {
         title: debouncedValue,
         genres: selectedGenres,
+        sort: selectedSort,
         limit: initialCardsToShow,
         skip: newSkip,
       },
@@ -146,16 +149,26 @@ function HomePage() {
     console.log('Selected Sort:', selectedSort);
     setCardsToShow(initialCardsToShow);
     setPagedMovies([]);
+    setPreviousGenres(selectedGenres);
+    setPreviousSort(selectedSort);
 
     getFilteredMovies({
       variables: {
         title: null,
         genres: selectedGenres,
+        sort: selectedSort,
         limit: initialCardsToShow,
         skip: 0,
       },
     });
-  }, [selectedGenres]);
+  }, [selectedGenres, selectedSort]);
+
+  const hasSelectionChanged = () => {
+    return (
+      JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
+      previousSort !== selectedSort
+    );
+  };
 
   useEffect(() => {
     // Search every time HomePage renders in order to load the right movies for the saved user choices
@@ -217,10 +230,10 @@ function HomePage() {
         <div className="absolute" style={sortStyle}>
           <Sort smallScreen={windowSize.width < 740 ? true : false} />
         </div>
-        {/* <button onClick={() => (window.location.href = "./searchPage")}> */}
         <div className="absolute z-999" style={btnStyle}>
           <button
             onClick={handleSearchClick}
+            disabled={!hasSelectionChanged()}
             className="bg-gray-700 rounded-lg text-white p-2 px-4 min-h-[3.3rem] border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
           >
             Søk

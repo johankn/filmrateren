@@ -6,19 +6,39 @@ const resolvers = {
         // Use a regex for case-insensitive and partial matching
         return await Movie.find({ title: new RegExp(title, 'i') });
     },
-    getFilteredMovies: async (_, { title, genres, limit, skip }) => {
+    getFilteredMovies: async (_, { title, genres, sort, limit, skip }) => {
       let query = {};
-  
+    
       if (title) {
         query.title = new RegExp(title, 'i'); // For case insensitive matching
       }
-  
+    
       if (genres && genres.length > 0) {
         query.genres = { $in: genres };
       }
-  
-      return await Movie.find(query).limit(limit).skip(skip);
+    
+      let sortOption = {};
+    
+      switch (sort) {
+        case 'ALPHABETICAL_ASC':
+          sortOption = { title: 1 }; // 1 means ascending order in MongoDB
+          break;
+        case 'ALPHABETICAL_DESC':
+          sortOption = { title: -1 }; // -1 means descending order in MongoDB
+          break;
+        case 'IMDB_DESC':
+          sortOption = { IMDBrating: -1 };
+          break;
+        case 'IMDB_ASC':
+          sortOption = { IMDBrating: 1 };
+          break;
+        default:
+          break; // No sorting
+      }
+    
+      return await Movie.find(query).sort(sortOption).limit(limit).skip(skip);
     },
+    
   },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {
