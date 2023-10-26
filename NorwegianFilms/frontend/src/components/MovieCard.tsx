@@ -1,27 +1,12 @@
 import movieFile from '../../../backend/src/norwegian_movies.json';
 import Stars from './Stars';
+import { Movie } from './types';
 
 export type MovieCardProps = {
   movieID: string;
 };
 
 function MovieCard({ movieID }: MovieCardProps) {
-  type Movie = {
-    id: number;
-    title: string;
-    directors: string;
-    plot: string;
-    releaseYear: number;
-    genres: Array<string>;
-    IMDBrating: number;
-    posterUrl: string;
-    userRatings: {
-      name: string;
-      rating: number;
-      comment: string;
-    }[];
-  };
-
   const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
 
   if (!movie) return <p>Movie not found</p>;
