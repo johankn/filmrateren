@@ -5,6 +5,7 @@ import seats from '../assets/seats.png';
 import mobileSeats from '../assets/mobile_seats.png';
 import logo from '../assets/film_rateren.svg';
 import Autocomplete from '@mui/joy/Autocomplete';
+import CircularProgress from '@mui/joy/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 import SearchHitCard from '../components/SearchHitCard';
 import Filter from '../components/Filter';
@@ -64,7 +65,11 @@ function HomePage() {
     };
   }, [inputValue]);
 
-  const { data: searchData, loading: searchLoading, error: searchError } = useQuery(SEARCH_MOVIES_QUERY, {
+  const {
+    data: searchData,
+    loading: searchLoading,
+    error: searchError,
+  } = useQuery(SEARCH_MOVIES_QUERY, {
     variables: { title: debouncedValue },
     skip: !debouncedValue, // Skip the query if debouncedValue is empty
   });
@@ -72,30 +77,29 @@ function HomePage() {
   const movies: Movie[] | undefined = searchData?.searchMovies || [];
 
   if (searchError) {
-    console.error("Error fetching movies:", searchError.message);
-}
+    console.error('Error fetching movies:', searchError.message);
+  }
 
   const initialCardsToShow = 28;
   const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
 
-
-  const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] = useLazyQuery(GET_FILTERED_MOVIES_QUERY);
-
+  const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
+    useLazyQuery(GET_FILTERED_MOVIES_QUERY);
 
   const loadMoreCards = () => {
-    const newSkip = cardsToShow;  
+    const newSkip = cardsToShow;
 
-    getFilteredMovies({  
+    getFilteredMovies({
       variables: {
         title: debouncedValue,
         genres: selectedGenres,
         limit: initialCardsToShow,
-        skip: newSkip
-      }
+        skip: newSkip,
+      },
     });
 
-  setCardsToShow(prev => prev + initialCardsToShow);  // Increase the number of cards to show
-};
+    setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
+  };
 
   const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
 
@@ -140,17 +144,17 @@ function HomePage() {
 
   const handleSearchClick = useCallback(() => {
     console.log('Selected Sort:', selectedSort);
-    setCardsToShow(initialCardsToShow);  
-    setPagedMovies([]); 
-    
+    setCardsToShow(initialCardsToShow);
+    setPagedMovies([]);
+
     getFilteredMovies({
       variables: {
         title: null,
         genres: selectedGenres,
         limit: initialCardsToShow,
-        skip: 0  
-      }
-    })
+        skip: 0,
+      },
+    });
   }, [selectedGenres]);
 
   useEffect(() => {
@@ -232,21 +236,29 @@ function HomePage() {
       </div>
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       <div className="absolute flex flex-wrap flex-row justify-center w-[77%] gap-14 text-white" style={searchStyle}>
-        {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
-        {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
-          <SearchHitCard
-            key={index}
-            movieID={movie.id.toString()}
-            smallScreen={windowSize.width < 740 ? true : false}
-          />
-        ))}
-
-        {/* "Load More" button */}
-        <div className="h-40 flex justify-center items-center w-full">
-          <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-            <button onClick={loadMoreCards}>Last flere filmer</button>
+        {moviesLoading ? (
+          <div className="flex justify-center items-center w-full h-60">
+            <CircularProgress />
           </div>
-        </div>
+        ) : (
+          <>
+            {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
+            {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
+              <SearchHitCard
+                key={index}
+                movieID={movie.id.toString()}
+                smallScreen={windowSize.width < 740 ? true : false}
+              />
+            ))}
+
+            {/* "Load More" button */}
+            <div className="h-40 flex justify-center items-center w-full">
+              <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <button onClick={loadMoreCards}>Last flere filmer</button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
