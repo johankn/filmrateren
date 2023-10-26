@@ -15,6 +15,7 @@ query($title: String, $genres: [String!], $sort: String, $limit: Int, $skip: Int
     id
     title
     genres
+    posterUrl
   }
 }
 `;

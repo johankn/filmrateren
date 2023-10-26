@@ -259,7 +259,7 @@ function HomePage() {
             {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
               <SearchHitCard
                 key={index}
-                movieID={movie.id.toString()}
+                movie={movie}
                 smallScreen={windowSize.width < 740 ? true : false}
               />
             ))}

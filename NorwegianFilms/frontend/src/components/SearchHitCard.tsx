@@ -1,16 +1,14 @@
-import movieFile from '../../../backend/src/norwegian_movies.json';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
 import { Movie } from './types';
 
 type SearchHitCardProps = {
-  movieID: string;
+  movie: Movie;
   smallScreen: boolean;
 };
 
-function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
-  const movie: Movie | undefined = movieFile.movies.find((m) => m.id === Number(movieID));
+function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const [titleOverflow, setTitleOverflow] = useState(false);
 
@@ -34,9 +32,9 @@ function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
   // Use useEffect to check for title overflow on component mount and when the movie changes
   useEffect(() => {
     checkTitleOverflow();
-  }, [movieID]); // Change this to watch 'movieID' instead of 'movie'
+  }, [movie]); // Change this to watch 'movieID' instead of 'movie'
 
-  if (!movie) return <p>Movie not found {movieID}</p>;
+  if (!movie) return <p>Movie not found {movie}</p>;
 
   return (
     <div
@@ -46,7 +44,7 @@ function SearchHitCard({ movieID, smallScreen }: SearchHitCardProps) {
         width: `${titleWidth}rem`,
       }}
     >
-      <Link to={`/project2/moviePage/${movieID}`}>
+      <Link to={`/project2/moviePage/${movie.id}`}>
         <h1 ref={h1Ref} className={`text-center ${titleOverflow ? 'text-small' : ''} truncate`}>
           {movie.title}
         </h1>
