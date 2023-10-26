@@ -38,7 +38,15 @@ const resolvers = {
     
       return await Movie.find(query).sort(sortOption).limit(limit).skip(skip);
     },
-    
+    getMovieByID: async (_, { movieId }) => {
+      const movie = await Movie.findOne({ id: movieId });
+      
+      if (!movie) {
+        throw new Error('Movie not found');
+      }  
+
+      return movie;
+    },
   },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {

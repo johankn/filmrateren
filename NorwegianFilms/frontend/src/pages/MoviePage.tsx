@@ -3,14 +3,25 @@ import MovieCard from '../components/MovieCard';
 import RatingPopup from '../components/RatingPopup';
 import { useState } from 'react';
 import RatingCard from '../components/RatingCard';
-import movieFile from '../../../backend/src/norwegian_movies.json';
 import ScrollToTop from '../components/ScrollToTop';
+import {GET_MOVIE_BY_ID_QUERY} from '../queries/SearchQueries';
+import { useQuery } from '@apollo/client';
+import { Movie } from '../components/types';
 
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
   const [showPopup, setShowPopup] = useState(false);
 
-  const movie = movieID ? movieFile.movies.find((m) => m.id === parseInt(movieID)) : undefined;
+  const { loading, error, data } = useQuery(GET_MOVIE_BY_ID_QUERY, {
+    variables: { id: Number(movieID) }
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  console.log("Data", data)
+
+  const movie: Movie | undefined = data.movie;
+  if (!movie) return <p>Movie not found</p>;
 
   const handleClosePopup = () => {
     setShowPopup(false);
@@ -25,7 +36,6 @@ function MoviePage() {
     return <div>Movie ID is missing!</div>;
   }
 
-  if (!movie) return <p>Movie not found</p>;
 
   return (
     <div>
@@ -37,7 +47,7 @@ function MoviePage() {
           </button>
         </div>
         <div className="pt-7">
-          <MovieCard movieID={movieID} />
+          <MovieCard movie={movie} />
         </div>
         <div className="flex mx-auto w-2/6">
           {!showPopup && <button className=" rounded-md w-36 h-12 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple" onClick={() => setShowPopup(true)}>Rate filmen</button>}</div>

@@ -23,6 +23,7 @@ const typeDefs = gql`
   type Query {
     getFilteredMovies(title: String, genres: [String!], sort: String, limit: Int, skip: Int): [Movie]
     searchMovies(title: String!): [Movie]
+    getMovieByID(movieId: ID!): Movie!
   }
 
 
