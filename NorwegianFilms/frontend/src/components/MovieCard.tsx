@@ -1,4 +1,5 @@
 import Stars from './Stars';
+import noPoster from '../assets/noImage.png';
 import { Movie } from './types';
 
 type MovieCardProps = {
@@ -6,7 +7,6 @@ type MovieCardProps = {
 };
 
 function MovieCard({ movie }: MovieCardProps) {
-
   const totalUserRatings = movie.userRatings.reduce((acc, curr) => acc + curr.rating, 0);
 
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
@@ -19,19 +19,22 @@ function MovieCard({ movie }: MovieCardProps) {
 
       <div className="flex flex-wrap w-1/2 ">
         <div className=" image md:w-1/2 md:pr-1 w-full">
-          <img src={movie.posterUrl} alt={movie.title} />
+          <img
+            src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
+            alt={movie.title}
+          />
         </div>
 
         <div className="mt-6 info md:w-1/2 md:pl-4 w-full text-base">
           <div className="mb-10">
-            <p className='mb-2'>
-              <span className="font-bold">Sjanger: </span> {movie.genres}
+            <p className="mb-2">
+              <span className="font-bold">Sjanger: </span> {movie.genres.join(', ')}
             </p>
-            <p className='mb-2'>
+            <p className="mb-2">
               <span className="font-bold">Regi: </span>
-              {movie.directors}
+              {movie.directors.join(', ')}
             </p>
-            <p className='mb-2'>
+            <p className="mb-2">
               <span className="font-bold">Utgivelsesår: </span>
               {movie.releaseYear}
             </p>
@@ -41,7 +44,7 @@ function MovieCard({ movie }: MovieCardProps) {
             </p>
           </div>
           <div className="rating">
-            <p className='mb-2'>
+            <p className="mb-2">
               <span className="font-bold">IMDB rating:</span> {movie.IMDBrating}
             </p>
             <div> </div>
