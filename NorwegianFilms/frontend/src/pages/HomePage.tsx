@@ -38,6 +38,8 @@ function HomePage() {
   const selectedSort = useRecoilValue(selectedSortState);
   const [previousSort, setPreviousSort] = useState<string>('');
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
+  const [previousTitle, setPreviousTitle] = useState<string>('');
+
 
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -160,6 +162,7 @@ function HomePage() {
     console.log('Selected Sort:', selectedSort);
     setCardsToShow(initialCardsToShow);
     setPagedMovies([]);
+    setPreviousTitle(selectedTitle);
     setPreviousGenres(selectedGenres);
     setPreviousSort(selectedSort);
 
@@ -175,7 +178,7 @@ function HomePage() {
   }, [selectedTitle, selectedGenres, selectedSort]);
 
   const hasSelectionChanged = () => {
-    return JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) || previousSort !== selectedSort;
+    return JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) || previousSort !== selectedSort || previousTitle !== selectedTitle;
   };
 
   useEffect(() => {
