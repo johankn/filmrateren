@@ -42,13 +42,13 @@ function MoviePage() {
         <ScrollToTop />
         <div className="fixed top-0 left-0 p-4">
           <button className="hover:scale-125" onClick={() => navigate(-1)}>
-            <span className="custom-arrow-icon text-white text-large sm:text-large md:text-xl lg:text-twoxl ">←</span>
+            <span className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
           </button>
         </div>
         <div className="pt-7">
           <MovieCard movie={movie} />
         </div>
-        <div className="flex mx-auto w-2/6">
+        <div className="flex mx-auto w-2/5">
           {!showPopup && <button className=" rounded-md w-36 h-12 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple" onClick={() => setShowPopup(true)}>Rate filmen</button>}</div>
         <div className="p-10">
           <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">RATINGS ({movie.userRatings.length})</div>

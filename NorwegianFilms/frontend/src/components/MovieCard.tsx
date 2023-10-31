@@ -13,7 +13,7 @@ function MovieCard({ movie }: MovieCardProps) {
 
   return (
     <div className="grid grid-rows-auto-auto  gap-7 p-10 ml-2 text-white italic place-items-center ">
-      <div className="grid-row-1 grid-col-1-span-2 text-large sm:text-xl md:text-xl lg:text-twoxl ">
+      <div className="grid-row-1 grid-col-1-span-2 text-base sm:text-medium md:text-large lg:text-twoxl ">
         <h1>{movie.title}</h1>
       </div>
 
@@ -22,7 +22,7 @@ function MovieCard({ movie }: MovieCardProps) {
           <img src={movie.posterUrl} alt={movie.title} />
         </div>
 
-        <div className="mt-6 info md:w-1/2 md:pl-4 w-full text-small sm:text-base md:text-small lg:text-base ">
+        <div className="mt-6 info md:w-1/2 md:pl-4 w-full text-xsmall sm:text-small md:text-small lg:text-base ">
           <div className="mb-5">
             <p className='mb-2'>
               <span className="font-bold">Sjanger: </span> {movie.genres}
