@@ -28,11 +28,11 @@ function MovieCard({ movie }: MovieCardProps) {
         <div className="mt-6 info md:w-1/2 md:pl-4 w-full text-base">
           <div className="mb-10">
             <p className="mb-2">
-              <span className="font-bold">Sjanger: </span> {movie.genres}
+              <span className="font-bold">Sjanger: </span> {movie.genres.join(', ')}
             </p>
             <p className="mb-2">
               <span className="font-bold">Regi: </span>
-              {movie.directors}
+              {movie.directors.join(', ')}
             </p>
             <p className="mb-2">
               <span className="font-bold">Utgivelsesår: </span>
