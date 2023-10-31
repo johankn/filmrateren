@@ -16,13 +16,14 @@ import {
   selectedSortState,
   scrollPositionState,
   selectedGenresState,
-  inputValueState,
   cardsToShowState,
+  selectedTitleState,
 } from '../atoms';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
-import { getHomePageStyles } from '../assets/HomePageDynamicStyles';
+import { getHomePageStyles } from '../components/DynamicStyles';
 import { Movie } from '../components/types';
+import { TextField } from '@mui/material';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -36,9 +37,10 @@ function HomePage() {
   const [previousGenres, setPreviousGenres] = useState<string[]>([]);
   const selectedSort = useRecoilValue(selectedSortState);
   const [previousSort, setPreviousSort] = useState<string>('');
+  const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
 
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useRecoilState(inputValueState);
+  const [inputValue, setInputValue] = useState(''); // Sjekk om riktig innhold
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
   const {
@@ -55,6 +57,8 @@ function HomePage() {
     screenContentStyle,
     logoStyle,
     buttonStyle,
+    newSearchBarStyle,
+    targetWidthSearch,
   } = getHomePageStyles(windowSize, scrollPosition);
 
   useEffect(() => {
@@ -147,6 +151,11 @@ function HomePage() {
     }
   };
 
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSelectedTitle(event.target.value);
+    console.log(event.target.value);
+  };
+
   const handleSearchClick = useCallback(() => {
     console.log('Selected Sort:', selectedSort);
     setCardsToShow(initialCardsToShow);
@@ -166,10 +175,7 @@ function HomePage() {
   }, [selectedGenres, selectedSort]);
 
   const hasSelectionChanged = () => {
-    return (
-      JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
-      previousSort !== selectedSort
-    );
+    return JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) || previousSort !== selectedSort;
   };
 
   useEffect(() => {
@@ -200,7 +206,7 @@ function HomePage() {
             style={screenContentStyle}
           />
         </div>
-        {/* Search bar */}
+        {/* Search bar autocomplete*/}
         <div className="absolute z-50" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
@@ -231,6 +237,17 @@ function HomePage() {
             }}
           />
         </div>
+        {/* Search bar input */}
+        <div className="absolute z-50" style={newSearchBarStyle}>
+          <TextField
+            className="bg-white rounded"
+            style={{ width: targetWidthSearch }}
+            label="Tittel..."
+            variant="outlined"
+            value={selectedTitle}
+            onChange={handleTitleChange}
+          />
+        </div>
         {/* Filter on genres*/}
         <div className="absolute" style={filterStyle}>
           <Filter
@@ -245,11 +262,12 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </div>
+        {/* Search button */}
         <div className="absolute z-999" style={btnStyle}>
           <button
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className='bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]'
+            className="bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
           >
             Søk
           </button>
@@ -275,11 +293,7 @@ function HomePage() {
           <>
             {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
             {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
-              <SearchHitCard
-                key={index}
-                movie={movie}
-                smallScreen={windowSize.width < 740 ? true : false}
-              />
+              <SearchHitCard key={index} movie={movie} smallScreen={windowSize.width < 740 ? true : false} />
             ))}
 
             {/* "Load More" button */}
