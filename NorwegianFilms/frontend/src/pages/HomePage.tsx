@@ -108,8 +108,6 @@ function HomePage() {
       },
     });
 
-    console.log('movie data: ', moviesData.getFilteredMovies.length);
-
     setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
   };
 
@@ -156,7 +154,6 @@ function HomePage() {
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setSelectedTitle(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleSearchClick = useCallback(() => {
