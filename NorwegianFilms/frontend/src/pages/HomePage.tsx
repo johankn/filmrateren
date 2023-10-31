@@ -40,7 +40,6 @@ function HomePage() {
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
   const [previousTitle, setPreviousTitle] = useState<string>('');
 
-
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
@@ -108,6 +107,8 @@ function HomePage() {
         skip: newSkip,
       },
     });
+
+    console.log('movie data: ', moviesData.getFilteredMovies.length);
 
     setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
   };
@@ -178,7 +179,11 @@ function HomePage() {
   }, [selectedTitle, selectedGenres, selectedSort]);
 
   const hasSelectionChanged = () => {
-    return JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) || previousSort !== selectedSort || previousTitle !== selectedTitle;
+    return (
+      JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
+      previousSort !== selectedSort ||
+      previousTitle !== selectedTitle
+    );
   };
 
   useEffect(() => {
@@ -301,11 +306,18 @@ function HomePage() {
             ))}
 
             {/* "Load More" button */}
-            <div className="h-40 flex justify-center items-center w-full">
-              <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                <button onClick={loadMoreCards}>Last flere filmer</button>
+            {moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length === 0 ? (
+              <div className="h-40 flex justify-center items-center w-full">
+              <div className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <p>Ingen flere filmer funnet.</p>
               </div>
-            </div>
+            </div>            ) : (
+              <div className="h-40 flex justify-center items-center w-full">
+                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                  <button onClick={loadMoreCards}>Last flere filmer</button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
