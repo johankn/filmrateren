@@ -40,7 +40,7 @@ function HomePage() {
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
 
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(''); // Sjekk om riktig innhold
+  const [inputValue, setInputValue] = useState('');
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
   const {
@@ -99,7 +99,7 @@ function HomePage() {
 
     getFilteredMovies({
       variables: {
-        title: debouncedValue,
+        title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
         limit: initialCardsToShow,
@@ -165,14 +165,14 @@ function HomePage() {
 
     getFilteredMovies({
       variables: {
-        title: null,
+        title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
         limit: initialCardsToShow,
         skip: 0,
       },
     });
-  }, [selectedGenres, selectedSort]);
+  }, [selectedTitle, selectedGenres, selectedSort]);
 
   const hasSelectionChanged = () => {
     return JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) || previousSort !== selectedSort;
@@ -265,6 +265,7 @@ function HomePage() {
         {/* Search button */}
         <div className="absolute z-999" style={btnStyle}>
           <button
+            style={buttonStyle}
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
             className="bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
