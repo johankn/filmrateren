@@ -4,13 +4,13 @@
 
 ### Tema for prosjektet
 
-Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på film. Vi har derfor laget en løsning hvor brukeren kan finne informasjon om norske filmer. Fra forsiden kan brukeren kan søke på sin ønskede film, eller bla ned for  et mer avansert søk med fritekst, sjangerfiltrering og sorteringsvalg. Bruker skal ha mulighet til å trykke på en film for å få opp nøkkelinformasjon om filmen. Basert på denne informasjonen og reviews fra andre brukere kan brukeren vurdere om dette er en film hen vil se. Etter å ha sett en film kan brukeren selv skrive et review og rate filmen. Reviewet publiseres på siden til den aktuelle filmen slik at andre brukere kan ha nytte av det. Ratingen oppdateres også fortløpende basert på de innsendte ratingene. Dermed er brukerne av *Filmrateren* klare til å utforske alle de beste norske filmene!
+Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på film. Vi har derfor laget en løsning hvor brukeren kan finne informasjon om norske filmer. Fra forsiden kan brukeren kan søke på sin ønskede film, eller bla ned for et mer avansert søk med fritekst, sjangerfiltrering og sorteringsvalg. Bruker skal ha mulighet til å trykke på en film for å få opp nøkkelinformasjon om filmen. Basert på denne informasjonen og reviews fra andre brukere kan brukeren vurdere om dette er en film hen vil se. Etter å ha sett en film kan brukeren selv skrive et review og rate filmen. Reviewet publiseres på siden til den aktuelle filmen slik at andre brukere kan ha nytte av det. Ratingen oppdateres også fortløpende basert på de innsendte ratingene. Dermed er brukerne av _Filmrateren_ klare til å utforske alle de beste norske filmene!
 
 ## Valg
 
 ### 1. Funksjonalitet
 
-- Vi har valgt å ha et søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Brukeren har dog mulighet til å bla ned for et avansert søk. 
+- Vi har valgt å ha et søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Brukeren har dog mulighet til å bla ned for et avansert søk.
 - I underveisinnlevering 1 presenteres et fåtall mockup-filmer listebasert med filmtittel og coverbilde. Senere er det tenkt at bruker skal kunne søke på en filmtittel, og at resultatene fra søket da skal presenteres med samme type liste med dynamisk scrolling. Dette legger til rette for at brukeren kan søke på filmer som hen ikke helt husker hva heter eller filmserier hvor det finnes flere filmer. Basert på tittel og cover kan brukeren velge hvilken film hen vil vite mer om.
 - Ved å trykke på et søkeresultat navigerer applikasjonen inn på siden for den aktuelle filmen, og det presenteres mer detaljer om objektet. På denne måten unngår vi at brukeren blir overøset med detaljer når hen skal velge film.
 - I underveisinnlevering 1 er det ikke implementert filtrering og sortering.

@@ -4,14 +4,12 @@ import HomePage from './pages/HomePage';
 import MoviePage from './pages/MoviePage';
 
 import { ApolloProvider } from '@apollo/client';
-import { apolloClient } from './apolloClient'; 
+import { apolloClient } from './apolloClient';
 
 import './index.css';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import {
-  RecoilRoot,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +25,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RecoilRoot>
-      <ApolloProvider client={apolloClient}>  {/* <-- Wrap your app with ApolloProvider */}
+      <ApolloProvider client={apolloClient}>
+        {' '}
+        {/* <-- Wrap your app with ApolloProvider */}
         <RouterProvider router={router} />
       </ApolloProvider>
     </RecoilRoot>

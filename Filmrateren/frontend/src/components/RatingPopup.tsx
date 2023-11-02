@@ -7,7 +7,6 @@ import FormLabel from '@mui/joy/FormLabel';
 import { useMutation } from '@apollo/client';
 import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
 
-
 type RatingPopupProps = {
   onClose: () => void;
   movieID: number;
@@ -22,7 +21,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     if (movieID && name && rating !== null && comment) {
       const variables = {
         movieId: movieID,
@@ -32,7 +31,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
           comment: comment,
         },
       };
-  
+
       addRatingToMovie({ variables })
         .then((response) => {
           console.log('Rating added successfully', response.data.addRatingToMovie);
@@ -40,7 +39,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
         .catch((error) => {
           console.error('Error adding rating', error);
         });
-  
+
       if (onClose) {
         onClose();
       }
@@ -48,7 +47,6 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
       console.error('Incomplete data. Please fill in all fields.');
     }
   };
-  
 
   return (
     <>

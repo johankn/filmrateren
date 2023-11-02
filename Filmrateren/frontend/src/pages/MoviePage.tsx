@@ -4,7 +4,7 @@ import RatingPopup from '../components/RatingPopup';
 import { useState } from 'react';
 import RatingCard from '../components/RatingCard';
 import ScrollToTop from '../components/ScrollToTop';
-import {GET_MOVIE_BY_ID_QUERY} from '../queries/SearchQueries';
+import { GET_MOVIE_BY_ID_QUERY } from '../queries/SearchQueries';
 import { useQuery } from '@apollo/client';
 import { Movie } from '../components/types';
 
@@ -15,12 +15,12 @@ function MoviePage() {
   const navigate = useNavigate();
 
   const { loading, error, data } = useQuery(GET_MOVIE_BY_ID_QUERY, {
-    variables: { movieId: Number(movieID) }
+    variables: { movieId: Number(movieID) },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log("Data", data)
+  console.log('Data', data);
 
   const movie: Movie | undefined = data.getMovieByID;
   if (!movie) return <p>Movie not found</p>;
@@ -33,11 +33,10 @@ function MoviePage() {
     return <div>Movie ID is missing!</div>;
   }
 
-  console.log(movie)
-
+  console.log(movie);
 
   return (
-    <div className=''>
+    <div className="">
       <div className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
         <ScrollToTop />
         <div className="fixed top-0 left-0 p-4">
@@ -49,10 +48,19 @@ function MoviePage() {
           <MovieCard movie={movie} />
         </div>
         <div className="flex md:justify-center mx-auto w-full md:ml-28 ml-32 pb-8  ">
-          {!showPopup && <button className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple" onClick={() => setShowPopup(true)}>Rate filmen</button>}
-          </div>
+          {!showPopup && (
+            <button
+              className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+              onClick={() => setShowPopup(true)}
+            >
+              Rate filmen
+            </button>
+          )}
+        </div>
         <div className="p-10">
-          <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">RATINGS ({movie.userRatings.length})</div>
+          <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
+            RATINGS ({movie.userRatings.length})
+          </div>
           {movie.userRatings.map((rating, index) => (
             <div key={index} className="mt-6 mb-6 mx-auto w-4/6 ">
               <RatingCard name={rating.name} rating={rating.rating} comment={rating.comment} />

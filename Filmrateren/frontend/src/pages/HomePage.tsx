@@ -95,6 +95,10 @@ function HomePage() {
   const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
     useLazyQuery(GET_FILTERED_MOVIES_QUERY);
 
+  if (moviesError) {
+    console.error('Error fetching movies:', moviesError.message);
+  }
+
   const loadMoreCards = () => {
     const newSkip = cardsToShow;
 
@@ -305,10 +309,11 @@ function HomePage() {
             {/* "Load More" button */}
             {moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length === 0 ? (
               <div className="h-40 flex justify-center items-center w-full">
-              <div className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                <p>Ingen flere filmer funnet.</p>
+                <div className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                  <p>Ingen flere filmer funnet.</p>
+                </div>
               </div>
-            </div>            ) : (
+            ) : (
               <div className="h-40 flex justify-center items-center w-full">
                 <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
                   <button onClick={loadMoreCards}>Last flere filmer</button>
