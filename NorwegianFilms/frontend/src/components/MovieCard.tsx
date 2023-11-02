@@ -12,36 +12,32 @@ function MovieCard({ movie }: MovieCardProps) {
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
   return (
-    <div className="grid grid-rows-auto-auto  gap-7 p-10 ml-2 text-white italic place-items-center ">
-      <div className="grid-row-1 grid-col-1-span-2 text-base sm:text-medium md:text-large lg:text-twoxl ">
-        <h1>{movie.title}</h1>
+    <div className="grid max-h-full gap-7 mt-6 ml-2 text-white italic place-items-center  ">
+      <div className="text-base sm:text-medium md:text-large lg:text-xl ">
+      <h1>{movie.title}</h1>
       </div>
 
-      <div className="flex flex-wrap w-2/3  ">
-        <div className=" image  w-full md:w-1/2 md:pr-1 ">
-          <img src={movie.posterUrl} alt={movie.title} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-4   ">
+        <div className="mt-6 flex md:  justify-center md:justify-end max-w-full  ">
+          <img src={movie.posterUrl} alt={movie.title} className="w-3/4 md:w-96 h-auto "/>
         </div>
-
-        <div className="mt-6 info md:w-1/2 md:pl-4 w-full text-xsmall sm:text-small md:text-small lg:text-base ">
+        <div className="mt-6  info text-xsmall sm:text-small md:text-small lg:text-base pl-4 ">
           <div className="mb-5">
-            <p className='mb-2'>
+            <p className="mb-2">
               <span className="font-bold">Sjanger: </span> {movie.genres}
             </p>
-            <p className='mb-2'>
-              <span className="font-bold">Regi: </span>
-              {movie.directors}
+            <p className="mb-2">
+              <span className="font-bold">Regi: </span> {movie.directors}
             </p>
-            <p className='mb-2'>
-              <span className="font-bold">Utgivelsesår: </span>
-              {movie.releaseYear}
+            <p className="mb-2">
+              <span className="font-bold">Utgivelsesår: </span> {movie.releaseYear}
             </p>
             <p>
-              <span className="font-bold">Beskrivelse: </span>
-              {movie.plot}
+              <span className="font-bold">Beskrivelse: </span> {movie.plot}
             </p>
           </div>
           <div className="rating">
-            <p className='mb-2'>
+            <p className="mb-2">
               <span className="font-bold">IMDB rating:</span> {movie.IMDBrating}
             </p>
             <div> </div>

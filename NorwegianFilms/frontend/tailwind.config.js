@@ -31,6 +31,9 @@ export default {
       backgroundImage: {
         redpurple: "url('/background.svg')",
       },
+      screens:{
+        small: '100px',
+      }
     },
     plugins: [],
   },
