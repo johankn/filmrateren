@@ -23,12 +23,17 @@ export default {
         twoxl: '4rem',
         xl: '3.125rem',
         large: '2.188rem',
+        medium: '1.8rem',
         base: '1.25rem',
-        small: '0.625rem',
+        small: '0.9rem',
+        xsmall: '0.7rem',
       },
       backgroundImage: {
         redpurple: "url('/background.svg')",
       },
+      screens:{
+        small: '100px',
+      }
     },
     plugins: [],
   },
