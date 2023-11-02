@@ -1,7 +1,7 @@
 export function getHomePageStyles(windowSize: { width: number }, scrollPosition: number) {
   const opacity = Math.max(0, Math.min(1, 1 - (scrollPosition - 30) / 80));
   const opacityScreenImg = Math.max(0, Math.min(1, 1 - (scrollPosition - 15) / 30));
-
+  const opacityNewSearch = Math.max(0, Math.min(1, (scrollPosition - 30) / 10));
   const opacitySeats = Math.max(0, Math.min(1, 1 - (scrollPosition - 20) / 60));
   const opacitySearch = Math.min(1, Math.max(0, (scrollPosition - 45) / 80));
   const opacityFilterSort = Math.min(1, Math.max(0, (scrollPosition - 60) / 40));
@@ -92,6 +92,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     marginTop: `${targetMarginTop}px`,
   };
   const searchBarWrapperStyle = {
+    opacity: opacity,
     marginTop: `${targetMarginTopSearch}px`,
     width: `${targetWidthSearch}px`,
     left: `${targetLeftSearch}px`,
@@ -145,6 +146,13 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
+  const newSearchBarStyle = {
+    opacity: opacityNewSearch,
+    marginTop: `${targetMarginTopSearch}px`,
+    left: `${targetLeftSearch}px`,
+    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+  };
+
   return {
     opacitySearch,
     opacityFilterSort,
@@ -160,5 +168,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     screenContentStyle,
     logoStyle,
     buttonStyle,
+    newSearchBarStyle,
+    targetWidthSearch,
   };
 }

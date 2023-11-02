@@ -16,13 +16,14 @@ import {
   selectedSortState,
   scrollPositionState,
   selectedGenresState,
-  inputValueState,
   cardsToShowState,
+  selectedTitleState,
 } from '../atoms';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
-import { getHomePageStyles } from '../assets/HomePageDynamicStyles';
+import { getHomePageStyles } from '../components/DynamicStyles';
 import { Movie } from '../components/types';
+import { TextField } from '@mui/material';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -36,9 +37,11 @@ function HomePage() {
   const [previousGenres, setPreviousGenres] = useState<string[]>([]);
   const selectedSort = useRecoilValue(selectedSortState);
   const [previousSort, setPreviousSort] = useState<string>('');
+  const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
+  const [previousTitle, setPreviousTitle] = useState<string>('');
 
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useRecoilState(inputValueState);
+  const [inputValue, setInputValue] = useState('');
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
   const {
@@ -55,6 +58,8 @@ function HomePage() {
     screenContentStyle,
     logoStyle,
     buttonStyle,
+    newSearchBarStyle,
+    targetWidthSearch,
   } = getHomePageStyles(windowSize, scrollPosition);
 
   useEffect(() => {
@@ -95,7 +100,7 @@ function HomePage() {
 
     getFilteredMovies({
       variables: {
-        title: debouncedValue,
+        title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
         limit: initialCardsToShow,
@@ -147,28 +152,34 @@ function HomePage() {
     }
   };
 
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSelectedTitle(event.target.value);
+  };
+
   const handleSearchClick = useCallback(() => {
     console.log('Selected Sort:', selectedSort);
     setCardsToShow(initialCardsToShow);
     setPagedMovies([]);
+    setPreviousTitle(selectedTitle);
     setPreviousGenres(selectedGenres);
     setPreviousSort(selectedSort);
 
     getFilteredMovies({
       variables: {
-        title: null,
+        title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
         limit: initialCardsToShow,
         skip: 0,
       },
     });
-  }, [selectedGenres, selectedSort]);
+  }, [selectedTitle, selectedGenres, selectedSort]);
 
   const hasSelectionChanged = () => {
     return (
       JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
-      previousSort !== selectedSort
+      previousSort !== selectedSort ||
+      previousTitle !== selectedTitle
     );
   };
 
@@ -200,7 +211,7 @@ function HomePage() {
             style={screenContentStyle}
           />
         </div>
-        {/* Search bar */}
+        {/* Search bar autocomplete*/}
         <div className="absolute z-50" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
@@ -231,6 +242,17 @@ function HomePage() {
             }}
           />
         </div>
+        {/* Search bar input */}
+        <div className="absolute z-50" style={newSearchBarStyle}>
+          <TextField
+            className="bg-white rounded"
+            style={{ width: targetWidthSearch }}
+            label="Tittel..."
+            variant="outlined"
+            value={selectedTitle}
+            onChange={handleTitleChange}
+          />
+        </div>
         {/* Filter on genres*/}
         <div className="absolute" style={filterStyle}>
           <Filter
@@ -245,11 +267,13 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </div>
+        {/* Search button */}
         <div className="absolute z-999" style={btnStyle}>
           <button
+            style={buttonStyle}
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className='bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]'
+            className="bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
           >
             Søk
           </button>
@@ -275,19 +299,22 @@ function HomePage() {
           <>
             {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
             {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
-              <SearchHitCard
-                key={index}
-                movie={movie}
-                smallScreen={windowSize.width < 740 ? true : false}
-              />
+              <SearchHitCard key={index} movie={movie} smallScreen={windowSize.width < 740 ? true : false} />
             ))}
 
             {/* "Load More" button */}
-            <div className="h-40 flex justify-center items-center w-full">
-              <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                <button onClick={loadMoreCards}>Last flere filmer</button>
+            {moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length === 0 ? (
+              <div className="h-40 flex justify-center items-center w-full">
+              <div className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <p>Ingen flere filmer funnet.</p>
               </div>
-            </div>
+            </div>            ) : (
+              <div className="h-40 flex justify-center items-center w-full">
+                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                  <button onClick={loadMoreCards}>Last flere filmer</button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
