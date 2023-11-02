@@ -1,14 +1,4 @@
-# Prosjekt 2 
-
-## Filmrateren
-
-
-### Prerequisites
-
-Ensure you have the following installed on your local machine:
-
-- [Node.js](https://nodejs.org/) (Confirm with `node -v` in the terminal)
-- A package manager: either npm (bundled with Node.js), [Yarn](https://yarnpkg.com/), or [pnpm](https://pnpm.io/). 
+# Project 2 - Filmrateren
 
 
 ## Getting Started
@@ -25,34 +15,35 @@ git clone https://gitlab.stud.idi.ntnu.no/it2810-h23/Team-5/prosjekt-2.git
 Navigate to the project directory:
 
 ```bash
-cd PROSJEKT-2/NorwegianFilms/frontend
+cd Filmrateren/
 ```
 
 
-### 2. Install Dependencies
+### 2. Navigate to the backend-repository and start the server by running the following commands:
 
-Next, install the project's dependencies:
 
 ```bash
+cd backend
 npm install
-# or
-yarn install
-# or
-pnpm install
+npm start
 ```
 
-### Run the project
-
-Then, run the development server:
+### 3. In a new terminal, navigate to the frontend-repository and start the client by running the following commands:
 
 ```bash
+cd frontend
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Then, open local host (as shown in terminal) with your browser to see the result.
+Then, open local host (as shown in terminal) with your browser to view the project.
 
-The documentation for the project can be found [here](/NorwegianFilms/frontend/README.md).
+### 4. Run the tests we have so far:
+
+```bash
+cd frontend
+npm install
+npm run test
+```
+
+The documentation for the project deliveries can be found [here](/Filmrateren/docs/). These are written in Norwegian. 
