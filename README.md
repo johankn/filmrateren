@@ -1,5 +1,6 @@
 # Project 2 - Filmrateren
 
+Test
 
 ## Getting Started
 
