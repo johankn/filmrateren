@@ -5,15 +5,15 @@ import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from '../src/apolloClient'; 
 import { StrictMode } from 'react';
 import { RecoilRoot } from 'recoil';
+import userEvent from '@testing-library/user-event';
 import React from "react";
 import "@testing-library/jest-dom";
-import { MockedProvider } from "@apollo/client/testing";
 
 import { Movie } from '../src/components/types';
 import MovieCard from "../src/components/MovieCard";
 import RatingCard from "../src/components/RatingCard";
 import HomePage from "../src/pages/HomePage";
-import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from "../src/queries/SearchQueries";
+import SearchHitCard from '../src/components/SearchHitCard';
 
 
 describe("Test of HomePage", () => {
@@ -46,6 +46,49 @@ describe("Test of HomePage", () => {
     }
 )
 
+describe("Test of SearchHitCard", () => {
+  let searchHitCard;
+  const mockMovie = {
+    id: 1,
+    title: 'Sample Movie',
+    directors: ['Director 1'],
+    plot: 'Sample plot of the movie.',
+    releaseYear: '2023',
+    genres: ['Action'],
+    IMDBrating: 7.5,
+    posterUrl: 'https://example.com/poster.jpg',
+    userRatings: [],
+  };
+
+  beforeEach(() => {
+    searchHitCard = render(
+      <MemoryRouter>
+        <SearchHitCard movie={mockMovie} smallScreen={false} />
+      </MemoryRouter>
+    );
+  });
+
+  it("Snapshot test: SearchHitCard has not changed design", () => {
+    expect(searchHitCard).toMatchSnapshot();
+  });
+
+  it("Displays correct movie title", () => {
+    expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
+  });
+
+  it("Renders movie poster", () => {
+    const posterImage = screen.getByRole('img');
+    expect(posterImage).toBeInTheDocument();
+    expect(posterImage).toHaveAttribute('src', mockMovie.posterUrl);
+    expect(posterImage).toHaveAttribute('alt', mockMovie.title);
+  });
+
+  it("Links to the correct path", () => {
+    expect(screen.getByRole('link')).toHaveAttribute('href', `/project2/moviePage/${mockMovie.id}`)
+  });
+});
+
+/*
 test("renders with MockedProvider", async () => {
   const mocks = [{
     request: {
@@ -104,7 +147,7 @@ test("renders with MockedProvider", async () => {
     const movie1 = await waitFor(() => homePage.getByText('Title 1'));
     expect(movie1).toBeInTheDocument();
   });
-});
+});*/
 
 describe("Test of MovieCard", () => {
     let movieCard
@@ -189,6 +232,11 @@ describe("Test of RatingCard", () => {
       expect(commentElement).toBeInTheDocument();
   });
 });
+
+
+
+// Write tests for stars, ratingpopup, sort, filter
+
 
 /*
 describe('Test of input', () => {

@@ -1086,3 +1086,114 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
   "unmount": [Function],
 }
 `;
+
+exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed design 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="text-white italic flex flex-col justify-center items-center"
+        style="height: 20rem; width: 13rem;"
+      >
+        <a
+          href="/project2/moviePage/1"
+        >
+          <h1
+            class="text-center  truncate"
+          >
+            Sample Movie
+          </h1>
+          <div
+            class="flex justify-center items-center h-full group"
+          >
+            <img
+              alt="Sample Movie"
+              class="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
+              src="https://example.com/poster.jpg"
+              style="height: 17.8rem; max-width: 100%; border-radius: 1rem;"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="text-white italic flex flex-col justify-center items-center"
+      style="height: 20rem; width: 13rem;"
+    >
+      <a
+        href="/project2/moviePage/1"
+      >
+        <h1
+          class="text-center  truncate"
+        >
+          Sample Movie
+        </h1>
+        <div
+          class="flex justify-center items-center h-full group"
+        >
+          <img
+            alt="Sample Movie"
+            class="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
+            src="https://example.com/poster.jpg"
+            style="height: 17.8rem; max-width: 100%; border-radius: 1rem;"
+          />
+        </div>
+      </a>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
