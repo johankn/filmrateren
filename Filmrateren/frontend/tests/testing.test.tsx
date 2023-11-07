@@ -84,7 +84,7 @@ describe("Test of MovieCard", () => {
           expect(screen.getAllByText(/Utgivelsesår/i)).toBeTruthy();
           expect(screen.getAllByText(/Beskrivelse/i)).toBeTruthy();
           expect(screen.getAllByText(/IMDB rating/i)).toBeTruthy();
-          expect(screen.getAllByText(/Average user rating/i)).toBeTruthy();
+          expect(screen.getAllByText(/Brukeranmeldelser/i)).toBeTruthy();
         });
     it("Displays correct movie details", () => {
     expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
