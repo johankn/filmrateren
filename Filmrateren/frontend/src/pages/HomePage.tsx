@@ -95,10 +95,6 @@ function HomePage() {
   const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
     useLazyQuery(GET_FILTERED_MOVIES_QUERY);
 
-  if (moviesError) {
-    console.error('Error fetching movies:', moviesError.message);
-  }
-
   const loadMoreCards = () => {
     const newSkip = cardsToShow;
 
@@ -294,7 +290,7 @@ function HomePage() {
       {/* Seats */}
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       {/* Search hits */}
-      <div className="absolute flex flex-wrap flex-row justify-center w-[77%] gap-14 text-white" style={searchStyle}>
+      <div className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white" style={searchStyle}>
         {moviesLoading ? (
           <div className="flex justify-center items-center w-full h-60">
             <CircularProgress />
@@ -316,7 +312,9 @@ function HomePage() {
             ) : (
               <div className="h-40 flex justify-center items-center w-full">
                 <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                  <button onClick={loadMoreCards}>Last flere filmer</button>
+                  <button className="h-14" onClick={loadMoreCards}>
+                    Last flere filmer
+                  </button>
                 </div>
               </div>
             )}
