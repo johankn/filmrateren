@@ -63,6 +63,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           >
             <div
               class="MuiFormControl-root MuiTextField-root bg-white rounded css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+              data-testid="Searchbar"
               style="width: 380px;"
             >
               <label
@@ -347,6 +348,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         >
           <div
             class="MuiFormControl-root MuiTextField-root bg-white rounded css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+            data-testid="Searchbar"
             style="width: 380px;"
           >
             <label

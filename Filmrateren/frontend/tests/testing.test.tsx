@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vitest } from "vitest";
 import { render, screen, act } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
@@ -7,8 +7,13 @@ import { StrictMode } from 'react';
 import { RecoilRoot } from 'recoil';
 import React from "react";
 import "@testing-library/jest-dom";
+import { useRecoilValue } from "recoil";
+import { useEffect } from "react";
+import { vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 
 import { Movie } from '../src/components/types';
+import { selectedTitleState } from "../src/atoms";
 import MovieCard from "../src/components/MovieCard";
 import RatingCard from "../src/components/RatingCard"
 import HomePage from "../src/pages/HomePage";
@@ -125,5 +130,46 @@ describe("Test of RatingCard", () => {
       expect(nameElement).toBeInTheDocument();
       expect(ratingElement).toBeTruthy();
       expect(commentElement).toBeInTheDocument();
+  });
+});
+
+describe('Test of input', () => {
+  it('Updates the input based on the typed search input.', async () => {
+    const RecoilObserver = ({ node, onChange }) => {
+      const value = useRecoilValue(node);
+      useEffect(() => {
+        console.log('Recoil state:', value);
+        onChange(value);
+      }, [onChange, value]);
+      return null;
+    };
+    
+      const setSelectedTitle = vi.fn();
+      const user = userEvent.setup()
+
+      render(
+      <StrictMode>
+              <ApolloProvider client={apolloClient}>
+                  <MemoryRouter>
+                      <RecoilRoot>
+                          <RecoilObserver node={selectedTitleState} onChange={setSelectedTitle} />
+                          <HomePage />
+                      </RecoilRoot>
+                  </MemoryRouter>,
+              </ApolloProvider>
+        </StrictMode>,
+    );
+
+    const searchbar = screen.getByTestId('Searchbar');
+    expect(searchbar).toBeTruthy();
+    console.log(searchbar.style);
+    console.log(searchbar.role);
+    await user.type(searchbar, 'Test', {skipPointerEventsCheck: true});
+    expect(searchbar).toHaveValue('Test')
+
+    /*
+    expect(setSelectedTitle).toHaveBeenCalledTimes(2);
+    expect(setSelectedTitle).toHaveBeenCalledWith(''); // New value on change.
+    expect(setSelectedTitle).toHaveBeenCalledWith('Test'); // New value on change.*/
   });
 });

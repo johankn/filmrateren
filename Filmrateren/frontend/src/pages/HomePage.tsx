@@ -255,6 +255,7 @@ function HomePage() {
             variant="outlined"
             value={selectedTitle}
             onChange={handleTitleChange}
+            data-testid = 'Searchbar'
           />
         </div>
         {/* Filter on genres*/}
