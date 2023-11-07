@@ -1,33 +1,36 @@
-const mongoose = require('mongoose');
-const Movie = require('./src/models/movie');
-const moviesData = require('./src/norwegian_movies.json');
+const mongoose = require("mongoose");
+const Movie = require("./src/models/movie");
+const moviesData = require("./src/norwegian_movies.json");
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/moviesDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  "mongodb://admin:EJYez2cLugo6oyeU@it2810-05.idi.ntnu.no:27017/moviesDB?authSource=admin&authMechanism=DEFAULT",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
-mongoose.connection.once('open', async () => {
-  console.log('Connected to MongoDB');
+mongoose.connection.once("open", async () => {
+  console.log("Connected to MongoDB");
 
   try {
     // Drop the existing movies collection if it exists
-    await mongoose.connection.collection('movies').drop();
+    await mongoose.connection.collection("movies").drop();
   } catch (error) {
-    console.log('Movies collection does not exist. Skipping drop...');
+    console.log("Movies collection does not exist. Skipping drop...");
   }
 
   async function importData() {
     try {
-        await Movie.insertMany(moviesData.movies);
-        console.log('Data import completed.');
+      await Movie.insertMany(moviesData.movies);
+      console.log("Data import completed.");
     } catch (error) {
-        console.error('Error inserting data: ', error);
+      console.error("Error inserting data: ", error);
     } finally {
-        mongoose.connection.close();
+      mongoose.connection.close();
     }
-}
+  }
 
-importData();
+  importData();
 });
