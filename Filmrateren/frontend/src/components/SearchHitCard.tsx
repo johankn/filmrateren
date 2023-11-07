@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
 import { Movie } from './types';
@@ -10,29 +10,16 @@ type SearchHitCardProps = {
 
 function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
   const h1Ref = useRef<HTMLHeadingElement>(null);
-  const [titleOverflow, setTitleOverflow] = useState(false);
-
-  const checkTitleOverflow = () => {
-    if (h1Ref.current) {
-      const isOverflowing = h1Ref.current.scrollWidth > h1Ref.current.clientWidth;
-      setTitleOverflow(isOverflowing);
-    }
-  };
 
   let posterHeight;
   let titleHeight;
   let titleWidth;
 
   if (smallScreen) {
-    (posterHeight = '10'), (titleHeight = '10'), (titleWidth = '7');
+    (posterHeight = '12'), (titleHeight = '14'), (titleWidth = '7.4');
   } else {
-    (posterHeight = '17.8'), (titleHeight = '20'), (titleWidth = '13');
+    (posterHeight = '17.8'), (titleHeight = '21'), (titleWidth = '13');
   }
-
-  // Use useEffect to check for title overflow on component mount and when the movie changes
-  useEffect(() => {
-    checkTitleOverflow();
-  }, [movie]); // Change this to watch 'movieID' instead of 'movie'
 
   if (!movie) return <p>Movie not found {movie}</p>;
 
@@ -45,10 +32,17 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
       }}
     >
       <Link to={`/project2/moviePage/${movie.id}`}>
-        <h1 ref={h1Ref} className={`text-center ${titleOverflow ? 'text-small' : ''} truncate`}>
-          {movie.title}
-        </h1>
-        <div className="flex justify-center items-center h-full group">
+        <div className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} leading-5 h-10 line-clamp-2`}>
+          <h1
+            ref={h1Ref}
+            className={`text-center overflow-hidden ${
+              smallScreen ? 'text-small' : 'text-base'
+            } leading-5 h-10 line-clamp-2 flex flex-col justify-end`}
+          >
+            {movie.title}
+          </h1>
+        </div>
+        <div className={`flex justify-center items-center ${smallScreen ? 'h-[95%]' : 'h-full'} group`}>
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
