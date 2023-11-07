@@ -1,7 +1,5 @@
 # Project 2 - Filmrateren
 
-Test
-
 ## Getting Started
 
 ### 1. Clone the Repository
