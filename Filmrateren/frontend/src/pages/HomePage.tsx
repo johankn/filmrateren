@@ -95,6 +95,10 @@ function HomePage() {
   const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
     useLazyQuery(GET_FILTERED_MOVIES_QUERY);
 
+  if (moviesError) {
+    console.error('Error fetching movies:', moviesError.message);
+  }
+
   const loadMoreCards = () => {
     const newSkip = cardsToShow;
 
@@ -186,10 +190,16 @@ function HomePage() {
   useEffect(() => {
     // Search every time HomePage renders in order to load the right movies for the saved user choices
     handleSearchClick();
+    console.log(pagedMovies)
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+  };
+
+  const handleFocus = () => {
+    // Scroll back to the stored position when focusing on the text field, bug on mobile devices
+    window.scrollTo(0, scrollPosition);
   };
 
   return (
@@ -247,6 +257,7 @@ function HomePage() {
           <TextField
             className="bg-white rounded"
             style={{ width: targetWidthSearch }}
+            onFocus={handleFocus}
             label="Tittel..."
             variant="outlined"
             value={selectedTitle}

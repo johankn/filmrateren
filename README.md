@@ -1,6 +1,15 @@
 # Project 2 - Filmrateren
 
-## Getting Started
+## Link to the project hosted by our virtual machine (must be on NTNU network)
+
+
+http://it2810-05.idi.ntnu.no/project2/
+
+
+The backend server is run by our virtual machine, and is ready at http://it2810-05.idi.ntnu.no:4000/graphql.
+
+
+## Run it all locally
 
 ### 1. Clone the Repository
 
@@ -45,4 +54,4 @@ npm install
 npm run test
 ```
 
-The documentation for the project deliveries can be found [here](/Filmrateren/docs/). These are written in Norwegian. 
+## The documentation for the project deliveries can be found [here](/Filmrateren/docs/). These are written in Norwegian. 
