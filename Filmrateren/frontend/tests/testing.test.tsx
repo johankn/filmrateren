@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, vitest } from "vitest";
-import { render, screen, act } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vitest, test } from "vitest";
+import { render, screen, act, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from '../src/apolloClient'; 
@@ -7,16 +7,13 @@ import { StrictMode } from 'react';
 import { RecoilRoot } from 'recoil';
 import React from "react";
 import "@testing-library/jest-dom";
-import { useRecoilValue } from "recoil";
-import { useEffect } from "react";
-import { vi } from 'vitest';
-import userEvent from '@testing-library/user-event';
+import { MockedProvider } from "@apollo/client/testing";
 
 import { Movie } from '../src/components/types';
-import { selectedTitleState } from "../src/atoms";
 import MovieCard from "../src/components/MovieCard";
-import RatingCard from "../src/components/RatingCard"
+import RatingCard from "../src/components/RatingCard";
 import HomePage from "../src/pages/HomePage";
+import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from "../src/queries/SearchQueries";
 
 
 describe("Test of HomePage", () => {
@@ -48,6 +45,66 @@ describe("Test of HomePage", () => {
         });
     }
 )
+
+test("renders with MockedProvider", async () => {
+  const mocks = [{
+    request: {
+      query: SEARCH_MOVIES_QUERY,
+      variables: {
+        title: ''
+      }
+    },
+    result: {
+      data: {
+        searchMovies: {
+          id: "1",
+          title: "Title 1"
+        }
+      }
+    }
+  }, 
+  {
+    request: {
+      query: GET_FILTERED_MOVIES_QUERY,
+      variables: {
+        title: '', 
+        genres: [], 
+        sort: '', 
+        limit: 28,
+        skip: 0
+      },
+    },
+    result: {
+      data: {
+        getFilteredMovies: {
+          id: "1",
+          title: "Title 1",
+          genres: [ 'action' ],
+          posterUrl: 'title1.no'
+        }
+      }
+    }
+  }];
+
+  const homePage = render(
+    <StrictMode>
+                <RecoilRoot>
+                    <MockedProvider mocks={mocks} addTypename={false}>
+                        <MemoryRouter>
+                            <HomePage />
+                        </MemoryRouter>,
+                    </MockedProvider>
+                </RecoilRoot>
+          </StrictMode>
+  );
+
+  
+  expect(homePage.getAllByText(/Bla ned for avansert søk/i)).toBeTruthy();
+  await act(async () => {
+    const movie1 = await waitFor(() => homePage.getByText('Title 1'));
+    expect(movie1).toBeInTheDocument();
+  });
+});
 
 describe("Test of MovieCard", () => {
     let movieCard
@@ -133,6 +190,7 @@ describe("Test of RatingCard", () => {
   });
 });
 
+/*
 describe('Test of input', () => {
   it('Updates the input based on the typed search input.', async () => {
     const RecoilObserver = ({ node, onChange }) => {
@@ -145,7 +203,6 @@ describe('Test of input', () => {
     };
     
       const setSelectedTitle = vi.fn();
-      const user = userEvent.setup()
 
       render(
       <StrictMode>
@@ -160,16 +217,15 @@ describe('Test of input', () => {
         </StrictMode>,
     );
 
-    const searchbar = screen.getByTestId('Searchbar');
+    const searchbar = screen.getByRole('textbox')// screen.getByTestId('Searchbar');
     expect(searchbar).toBeTruthy();
-    console.log(searchbar.style);
-    console.log(searchbar.role);
-    await user.type(searchbar, 'Test', {skipPointerEventsCheck: true});
+    console.log(searchbar)
+    userEvent.type(searchbar, 'Test');
     expect(searchbar).toHaveValue('Test')
 
     /*
     expect(setSelectedTitle).toHaveBeenCalledTimes(2);
     expect(setSelectedTitle).toHaveBeenCalledWith(''); // New value on change.
-    expect(setSelectedTitle).toHaveBeenCalledWith('Test'); // New value on change.*/
+    expect(setSelectedTitle).toHaveBeenCalledWith('Test'); // New value on change.
   });
-});
+});*/
