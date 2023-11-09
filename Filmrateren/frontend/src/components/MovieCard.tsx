@@ -31,7 +31,6 @@ return (
       <div className="text-base sm:text-medium md:text-large lg:text-xl ">
         <h1>{movie.title}</h1>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-4   ">
         <div className="flex flex-col">
           <div className="mt-9 flex justify-center md:justify-end max-w-full  ">
