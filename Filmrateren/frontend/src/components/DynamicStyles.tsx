@@ -1,18 +1,44 @@
 export function getHomePageStyles(windowSize: { width: number }, scrollPosition: number) {
   const transitionDuration = '0.2s'; // Set your desired duration
 
-  const opacity = Math.max(0, Math.min(1, 1 - (scrollPosition - 95) / 60));
+  const change = -0;
+
+  const opacity =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, 1 - (scrollPosition - 95) / 60))
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 195 + change) / 60));
 
   // Easing functions for smoother transitions
   const easeOutQuart = 'cubic-bezier(0.165, 0.84, 0.44, 1)';
 
-  const opacityScreenImg = Math.max(0, Math.min(1, 1 - (scrollPosition - 85) / 30));
-  const opacityNewSearch = Math.max(0, Math.min(1, (scrollPosition - 95) / 10));
-  const opacitySeats = Math.max(0, Math.min(1, 1 - (scrollPosition - 90) / 60));
-  const opacitySearch = Math.min(1, Math.max(0, (scrollPosition - 115) / 80));
-  const opacityFilterSort = Math.min(1, Math.max(0, (scrollPosition - 95) / 60));
-  const boxShadowOpacity = Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.6;
-  const boxShadowOpacityScreen = Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.9;
+  const opacityScreenImg =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, 1 - (scrollPosition - 85) / 30))
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 185 + change) / 30));
+  const opacityNewSearch =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, (scrollPosition - 95) / 10))
+      : Math.max(0, Math.min(1, (scrollPosition - 195 + change) / 10));
+  const opacitySeats =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, 1 - (scrollPosition - 90) / 60))
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 190 + change) / 30));
+  const opacitySearch =
+    windowSize.width >= 740
+      ? Math.min(1, Math.max(0, (scrollPosition - 115) / 80))
+      : Math.min(1, Math.max(0, (scrollPosition - 215 + change) / 80));
+  const opacityFilterSort =
+    windowSize.width >= 740
+      ? Math.min(1, Math.max(0, (scrollPosition - 95) / 60))
+      : Math.min(1, Math.max(0, (scrollPosition - 195 + change) / 60));
+  const boxShadowOpacity =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.6
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 200 + change) / 80)) * 0.6;
+  const boxShadowOpacityScreen =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.9
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 200 + change) / 80)) * 0.9;
 
   let targetHeight;
   let targetWidth;
@@ -42,7 +68,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetMarginTopBtn = 36 + (251 - 36) * opacity;
     targetRightBtn = 36 + (500 - 36) * opacity;
     targetMarginTopSeats = 0 + (60 - 0) * opacity;
-    targetTopSearch = 550 + (525 - 550) * opacity;
+    targetTopSearch = 490 + (525 - 490) * opacity;
     targetRightFilter = 310 + (500 - 310) * opacity;
     targetRightSort = 100 + (500 - 100) * opacity;
     targetTopFilterSort = 27 + (245 - 27) * opacity;
@@ -60,7 +86,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetMarginTopBtn = 16 + (250 - 16) * opacity;
     targetRightBtn = 31 + (300 - 31) * opacity;
     targetMarginTopSeats = 0 + (60 - 0) * opacity;
-    targetTopSearch = 550 + (625 - 550) * opacity;
+    targetTopSearch = 510 + (625 - 510) * opacity;
     targetRightFilter = 403 + (255 - 403) * opacity;
     targetRightSort = 117 + (145 - 117) * opacity;
     targetTopFilterSort = 70 + (245 - 70) * opacity;
@@ -71,14 +97,14 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   } else {
     targetHeight = 200 + (250 - 200) * opacity;
     targetWidth = 350 + (350 - 350) * opacity;
-    targetMarginTop = 286 + (146 - 286) * opacity;
+    targetMarginTop = 526 + (146 - 526) * opacity;
     targetMarginTopSearch = 15 + (165 - 15) * opacity;
     targetWidthSearch = 300 + (300 - 300) * opacity;
     targetLeftSearch = 25 + (25 - 25) * opacity;
     targetMarginTopBtn = 141 + (160 - 141) * opacity;
     targetRightBtn = 139 + (139 - 139) * opacity;
-    targetMarginTopSeats = 0 + (60 - 0) * opacity;
-    targetTopSearch = 520 + (640 - 520) * opacity;
+    targetMarginTopSeats = 0 + (10 - 0) * opacity;
+    targetTopSearch = 680 + (840 - 680) * opacity;
     targetRightFilter = 172 + (172 - 172) * opacity;
     targetRightSort = 18 + (18 - 18) * opacity;
     targetTopFilterSort = 70 + (150 - 70) * opacity;
@@ -106,6 +132,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     marginTop: `${targetMarginTopSearch}px`,
     width: `${targetWidthSearch}px`,
     left: `${targetLeftSearch}px`,
+    pointerEvents: opacity == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
     transition: `opacity ${transitionDuration} ${easeOutQuart}, margin-top ${transitionDuration} ${easeOutQuart}, width ${transitionDuration} ${easeOutQuart}, left ${transitionDuration} ${easeOutQuart}`,
   };
 
@@ -148,7 +175,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   const searchStyle = {
     opacity: opacitySearch,
     top: `${targetTopSearch}px`,
-    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+    pointerEvents: opacitySearch == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
     transition: `opacity ${transitionDuration} ${easeOutQuart}, top ${transitionDuration} ${easeOutQuart}`,
   };
 
@@ -161,7 +188,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
 
   const logoStyle = {
     opacity: windowSize.width < 740 ? 0 : opacitySearch,
-    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+    pointerEvents: opacitySearch == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
     transition: `opacity ${transitionDuration} ${easeOutQuart}`,
   };
 
@@ -169,7 +196,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     opacity: opacityNewSearch,
     marginTop: `${targetMarginTopSearch}px`,
     left: `${targetLeftSearch}px`,
-    pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+    pointerEvents: opacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
     transition: `opacity ${transitionDuration} ${easeOutQuart}, margin-top ${transitionDuration} ${easeOutQuart}, left ${transitionDuration} ${easeOutQuart}`,
   };
 

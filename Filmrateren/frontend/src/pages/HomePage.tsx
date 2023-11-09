@@ -28,6 +28,9 @@ import { TextField } from '@mui/material';
 function HomePage() {
   const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useRecoilState(scrollPositionState);
+  const [moviesLoaded, setMoviesLoaded] = useState(false);
+  const [changeHeight, setChangeHeight] = useState(false);
+
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -101,6 +104,7 @@ function HomePage() {
 
   const loadMoreCards = () => {
     const newSkip = cardsToShow;
+    console.log('New Skip:', newSkip);
 
     getFilteredMovies({
       variables: {
@@ -113,6 +117,7 @@ function HomePage() {
     });
 
     setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
+    console.log('Cards to show:', cardsToShow);
   };
 
   const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
@@ -120,12 +125,24 @@ function HomePage() {
   useEffect(() => {
     if (moviesData && moviesData.getFilteredMovies) {
       setPagedMovies((prevMovies) => [...prevMovies, ...moviesData.getFilteredMovies]);
+
+      // Check if movies have loaded, and set the moviesLoaded state accordingly
+      if (moviesData.getFilteredMovies.length > 0) {
+        setMoviesLoaded(true);
+
+        setTimeout(() => {
+          setChangeHeight(true);
+        }, 1);
+      }
     }
   }, [moviesData, cardsToShow]);
+
+  const heightStyle = changeHeight ? { height: '0px', width: '100%' } : { height: '50000px', width: '100%' };
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
+      console.log('Scroll Position:', window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -179,6 +196,25 @@ function HomePage() {
     });
   }, [selectedTitle, selectedGenres, selectedSort]);
 
+  const handleRender = useCallback(() => {
+    console.log('Selected Sort:', selectedSort);
+    setCardsToShow(cardsToShow);
+    setPagedMovies([]);
+    setPreviousTitle(selectedTitle);
+    setPreviousGenres(selectedGenres);
+    setPreviousSort(selectedSort);
+
+    getFilteredMovies({
+      variables: {
+        title: selectedTitle,
+        genres: selectedGenres,
+        sort: selectedSort,
+        limit: cardsToShow,
+        skip: 0,
+      },
+    });
+  }, [selectedTitle, selectedGenres, selectedSort]);
+
   const hasSelectionChanged = () => {
     return (
       JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
@@ -188,9 +224,7 @@ function HomePage() {
   };
 
   useEffect(() => {
-    // Search every time HomePage renders in order to load the right movies for the saved user choices
-    handleSearchClick();
-    console.log(pagedMovies)
+    handleRender();
   }, []);
 
   const scrollToTop = () => {
@@ -255,7 +289,7 @@ function HomePage() {
         {/* Search bar input */}
         <div className="absolute z-50" style={newSearchBarStyle}>
           <TextField
-            className="bg-white rounded"
+            className="bg-white rounded fixed"
             style={{ width: targetWidthSearch }}
             onFocus={handleFocus}
             label="Tittel..."
@@ -292,7 +326,9 @@ function HomePage() {
       </div>
       {/* Scroll down indicator */}
       <div
-        className="text-[rgba(255,247,238,0.4)] absolute top-[93%] flex flex-col justify-center items-center"
+        className={`text-[rgba(255,247,238,0.5)] absolute ${
+          windowSize.width < 740 ? 'top-[91%]' : 'top-[92%]'
+        } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-medium'}`}
         style={{ opacity: opacityScreenImg }}
       >
         <p>Bla ned for avansert søk</p>
@@ -302,8 +338,9 @@ function HomePage() {
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       {/* Search hits */}
       <div className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white" style={searchStyle}>
+        <div style={heightStyle} />
         {moviesLoading ? (
-          <div className="flex justify-center items-center w-full h-60">
+          <div className="flex justify-center items-center w-full">
             <CircularProgress />
           </div>
         ) : (
