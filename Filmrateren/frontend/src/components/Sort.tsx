@@ -38,6 +38,8 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem value="ALPHABETICAL_DESC">Alfabetisk Å-A</MenuItem>
         <MenuItem value="IMDB_DESC">Rating IMDB synkende</MenuItem>
         <MenuItem value="IMDB_ASC">Rating IMDB stigende</MenuItem>
+        <MenuItem value="RELEASEYEAR_DESC">Utgivelsesår synkende</MenuItem>
+        <MenuItem value="RELEASEYEAR_ASC">Utgivelsesår stigende</MenuItem>
       </Select>
     </FormControl>
   );
