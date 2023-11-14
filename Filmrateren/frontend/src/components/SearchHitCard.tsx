@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
 import { Movie } from './types';
 
@@ -10,6 +10,8 @@ type SearchHitCardProps = {
 
 function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
   const h1Ref = useRef<HTMLHeadingElement>(null);
+
+  const navigate = useNavigate(); // Get the navigate function
 
   let posterHeight;
   let titleHeight;
@@ -31,7 +33,7 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
         width: `${titleWidth}rem`,
       }}
     >
-      <Link to={`/project2/moviePage/${movie.id}`}>
+      <div onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
         <div className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} leading-5 h-10 line-clamp-2`}>
           <h1
             ref={h1Ref}
@@ -54,7 +56,7 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
             className="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
           />
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
