@@ -1,10 +1,11 @@
-import { beforeEach, describe, expect, it, vitest, test } from "vitest";
-import { render, screen, act, waitFor } from "@testing-library/react";
+import { beforeEach, afterEach, describe, expect, it, vitest, test, vi } from "vitest";
+import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
+import { MockedProvider } from "@apollo/client/testing";
 import { apolloClient } from '../src/apolloClient'; 
 import { StrictMode } from 'react';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilState } from 'recoil';
 import userEvent from '@testing-library/user-event';
 import React from "react";
 import "@testing-library/jest-dom";
@@ -14,6 +15,8 @@ import MovieCard from "../src/components/MovieCard";
 import RatingCard from "../src/components/RatingCard";
 import HomePage from "../src/pages/HomePage";
 import SearchHitCard from '../src/components/SearchHitCard';
+import RatingPopup from '../src/components/RatingPopup';
+import { ADD_RATING_TO_MOVIE } from '../src/queries/AddRatingMutation';
 
 
 describe("Test of HomePage", () => {
@@ -87,67 +90,6 @@ describe("Test of SearchHitCard", () => {
     expect(screen.getByRole('link')).toHaveAttribute('href', `/project2/moviePage/${mockMovie.id}`)
   });
 });
-
-/*
-test("renders with MockedProvider", async () => {
-  const mocks = [{
-    request: {
-      query: SEARCH_MOVIES_QUERY,
-      variables: {
-        title: ''
-      }
-    },
-    result: {
-      data: {
-        searchMovies: {
-          id: "1",
-          title: "Title 1"
-        }
-      }
-    }
-  }, 
-  {
-    request: {
-      query: GET_FILTERED_MOVIES_QUERY,
-      variables: {
-        title: '', 
-        genres: [], 
-        sort: '', 
-        limit: 28,
-        skip: 0
-      },
-    },
-    result: {
-      data: {
-        getFilteredMovies: {
-          id: "1",
-          title: "Title 1",
-          genres: [ 'action' ],
-          posterUrl: 'title1.no'
-        }
-      }
-    }
-  }];
-
-  const homePage = render(
-    <StrictMode>
-                <RecoilRoot>
-                    <MockedProvider mocks={mocks} addTypename={false}>
-                        <MemoryRouter>
-                            <HomePage />
-                        </MemoryRouter>,
-                    </MockedProvider>
-                </RecoilRoot>
-          </StrictMode>
-  );
-
-  
-  expect(homePage.getAllByText(/Bla ned for avansert søk/i)).toBeTruthy();
-  await act(async () => {
-    const movie1 = await waitFor(() => homePage.getByText('Title 1'));
-    expect(movie1).toBeInTheDocument();
-  });
-});*/
 
 describe("Test of MovieCard", () => {
     let movieCard
@@ -233,47 +175,91 @@ describe("Test of RatingCard", () => {
   });
 });
 
+describe("Test of RatingPopup", () => {
+  const mockOnClose = vi.fn();
+  const mockMovieID = 1;
+  let movieIdOfAddedRating = 0;
 
+  const mocks = [
+    {
+      request: {
+        query: ADD_RATING_TO_MOVIE,
+        variables: {
+          movieId: mockMovieID,
+          rating: {
+            name: 'User1',
+            rating: 4,
+            comment: 'Great movie!',
+          },
+        },
+      },
+      result: () => {
+        movieIdOfAddedRating = mockMovieID;
+        return {
+          data: {
+            addRatingToMovie: {
+              id: mockMovieID,
+              userRatings: {
+                name: 'User1',
+                rating: 4,
+                comment: 'Great movie!',
+              },
+            },
+          },
+        }
+      },     
+    },
+  ];
 
-// Write tests for stars, ratingpopup, sort, filter
-
-
-/*
-describe('Test of input', () => {
-  it('Updates the input based on the typed search input.', async () => {
-    const RecoilObserver = ({ node, onChange }) => {
-      const value = useRecoilValue(node);
-      useEffect(() => {
-        console.log('Recoil state:', value);
-        onChange(value);
-      }, [onChange, value]);
-      return null;
-    };
-    
-      const setSelectedTitle = vi.fn();
-
-      render(
-      <StrictMode>
-              <ApolloProvider client={apolloClient}>
-                  <MemoryRouter>
-                      <RecoilRoot>
-                          <RecoilObserver node={selectedTitleState} onChange={setSelectedTitle} />
-                          <HomePage />
-                      </RecoilRoot>
-                  </MemoryRouter>,
-              </ApolloProvider>
-        </StrictMode>,
-    );
-
-    const searchbar = screen.getByRole('textbox')// screen.getByTestId('Searchbar');
-    expect(searchbar).toBeTruthy();
-    console.log(searchbar)
-    userEvent.type(searchbar, 'Test');
-    expect(searchbar).toHaveValue('Test')
-
-    /*
-    expect(setSelectedTitle).toHaveBeenCalledTimes(2);
-    expect(setSelectedTitle).toHaveBeenCalledWith(''); // New value on change.
-    expect(setSelectedTitle).toHaveBeenCalledWith('Test'); // New value on change.
+  beforeEach(() => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <RatingPopup onClose={mockOnClose} movieID={mockMovieID} />
+      </MockedProvider>);
   });
-});*/
+
+  afterEach(() => {
+      mockOnClose.mockClear();
+      movieIdOfAddedRating = 0;
+  });
+
+  it("Renders RatingPopup correctly", () => {
+    const nameInput = screen.getByPlaceholderText('Eks: Ola Nordmann');
+    const ratingButtons = screen.getAllByRole('button', { name: '★' });
+    const commentInput = screen.getByPlaceholderText('Eks: En skummel, men spennende film!');
+    const submitButton = screen.getByText('Send inn');
+
+    expect(nameInput).toBeInTheDocument();
+    expect(ratingButtons.length).toBe(5); 
+    expect(commentInput).toBeInTheDocument();
+    expect(submitButton).toBeInTheDocument();
+  });
+
+
+  it("Adds correct rating with valid data", async () => {
+    const nameInput = screen.getByPlaceholderText('Eks: Ola Nordmann');
+    const ratingButtons = screen.getAllByRole('button', { name: '★' });
+    const commentInput = screen.getByPlaceholderText('Eks: En skummel, men spennende film!');
+    const submitButton = screen.getByText('Send inn');
+
+    await userEvent.type(nameInput, 'User1');
+    await userEvent.click(ratingButtons[3]);
+    await userEvent.type(commentInput, 'Great movie!');
+    
+    await userEvent.click(submitButton);
+    
+    expect(mockOnClose).toHaveBeenCalled();
+    expect(movieIdOfAddedRating).toBe(mockMovieID);
+  });
+
+  
+
+  it("Does not add rating with invalid data", async() => {
+    const submitButton = screen.getByText('Send inn'); 
+
+    await userEvent.click(submitButton);
+    
+    expect(mockOnClose).toHaveBeenCalledTimes(0);
+    expect(movieIdOfAddedRating).toBe(0);
+  });
+});
