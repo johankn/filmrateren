@@ -238,7 +238,7 @@ function HomePage() {
 
   return (
     <div
-      className="m-0 flex flex-col justify-start items-center w-full min-h-[150vh] overflow-x-hidden gap-16"
+      className="m-0 flex flex-col justify-start items-center w-full min-h-[400vh] overflow-x-hidden gap-16"
       style={homePageStyle}
     >
       {/* Clickable logo top left */}
@@ -326,10 +326,10 @@ function HomePage() {
       </div>
       {/* Scroll down indicator */}
       <div
-        className={`text-[rgba(255,247,238,0.5)] absolute ${
-          windowSize.width < 740 ? 'top-[91%]' : 'top-[92%]'
-        } flex flex-col justify-center items-center text-base`}
-        style={{ opacity: opacityScreenImg }}
+        className={`text-[rgba(255,247,238,0.8)] fixed ${
+          windowSize.width < 740 ? 'top-[90%]' : 'top-[92%]'
+        } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-base'}`}
+        style={{ opacity: opacityScreenImg, textShadow: '0 0 20px rgba(255, 247, 238, 0.6)' }}
       >
         <p>Bla ned for avansert søk</p>
         <p>&darr;</p>
