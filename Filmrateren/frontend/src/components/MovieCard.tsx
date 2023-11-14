@@ -5,8 +5,6 @@ import Speech from 'react-text-to-speech';
 import { AiFillSound } from 'react-icons/ai';
 import { FaVolumeMute } from 'react-icons/fa';
 import { IoMdRefresh } from 'react-icons/io';
-import { useEffect } from 'react';
-
 
 type MovieCardProps = {
   movie: Movie;
@@ -61,6 +59,9 @@ return (
               <span className="font-bold">Utgivelsesår: </span>{' '}
               {movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}
             </p>
+            <p className="mb-2">
+              <span className="font-bold">Varighet: </span> {'Finner ingen varighet'}
+            </p>
             <p>
               <span className="font-bold">Beskrivelse: </span>{' '}
               {movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot}
@@ -68,14 +69,14 @@ return (
           </div>
           <div className="rating">
             <p className="mb-2">
-              <span className="font-bold">IMDB rating:</span>{' '}
-              {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}
+              <span className="font-bold">IMDB-rating:</span>{' '}
+              {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10`}
             </p>
             <div> </div>
             <div>
               <p>
-                <span className="font-bold">Brukeranmeldelser:</span>{' '}
-                {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)}
+                <span className="font-bold">Bruker-rating:</span>{' '}
+                {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5`}
               </p>
               <div className="flex text-yellow">
                 <Stars rating={parseFloat(averageUserRating.toFixed(1))} />

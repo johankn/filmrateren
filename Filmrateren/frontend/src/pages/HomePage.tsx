@@ -328,7 +328,7 @@ function HomePage() {
       <div
         className={`text-[rgba(255,247,238,0.5)] absolute ${
           windowSize.width < 740 ? 'top-[91%]' : 'top-[92%]'
-        } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-medium'}`}
+        } flex flex-col justify-center items-center text-base`}
         style={{ opacity: opacityScreenImg }}
       >
         <p>Bla ned for avansert søk</p>
