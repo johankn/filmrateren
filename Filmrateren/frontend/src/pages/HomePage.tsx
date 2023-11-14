@@ -222,7 +222,7 @@ function HomePage() {
           />
         </div>
         {/* Search bar autocomplete*/}
-        <div className="absolute z-50" style={searchBarWrapperStyle}>
+        <div className="absolute z-50" id="autocomplete-search-bar" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
             open={open}
