@@ -48,14 +48,12 @@ function MoviePage() {
           <MovieCard movie={movie} />
         </div>
         <div className="flex md:justify-center justify-center mx-auto w-full md:ml-28 pb-8  ">
-          {!showPopup && (
             <button
               className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
               onClick={() => setShowPopup(true)}
             >
               Rate filmen
             </button>
-          )}
         </div>
         <div className="p-10">
           <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-medium md:text-large lg:text-large">
