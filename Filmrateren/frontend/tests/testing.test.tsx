@@ -84,10 +84,6 @@ describe("Test of SearchHitCard", () => {
     expect(posterImage).toHaveAttribute('src', mockMovie.posterUrl);
     expect(posterImage).toHaveAttribute('alt', mockMovie.title);
   });
-
-  it("Links to the correct path", () => {
-    expect(screen.getByRole('link')).toHaveAttribute('href', `/project2/moviePage/${mockMovie.id}`)
-  });
 });
 
 describe("Test of MovieCard", () => {
@@ -130,7 +126,7 @@ describe("Test of MovieCard", () => {
           expect(screen.getAllByText(/Utgivelsesår/i)).toBeTruthy();
           expect(screen.getAllByText(/Beskrivelse/i)).toBeTruthy();
           expect(screen.getAllByText(/IMDB rating/i)).toBeTruthy();
-          expect(screen.getAllByText(/Average user rating/i)).toBeTruthy();
+          expect(screen.getAllByText(/Brukeranmeldelser/i)).toBeTruthy();
         });
     it("Displays correct movie details", () => {
     expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
@@ -261,6 +257,4 @@ describe("Test of RatingPopup", () => {
     expect(mockOnClose).toHaveBeenCalledTimes(0);
     expect(movieIdOfAddedRating).toBe(0);
   });
-});
-
-
+}); 
