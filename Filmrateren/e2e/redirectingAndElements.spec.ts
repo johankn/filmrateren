@@ -22,10 +22,11 @@ test('autocomplete and redirect', async ({ page }) => {
 
 test('scroll down and click on the movie: Helt Super', async ({ page }) => {
   await page.goto('http://localhost:5173/project2');
-  await page.getByRole('link', { name: 'Helt Super Helt Super' }).click();
+  await page.getByRole('img', { name: 'Helt Super' }).click();
 
   await expect(page.getByRole('heading', { name: 'Helt Super' })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Helt Super' })).toBeVisible();
+  await expect(page.getByText('Regi: Rasmus A. Sivertsen')).toBeVisible();
 
 });
 

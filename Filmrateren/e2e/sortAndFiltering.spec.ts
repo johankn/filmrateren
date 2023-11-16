@@ -10,9 +10,9 @@ test('test sorting and filtering', async ({ page }) => {
   await page.getByRole('option', { name: 'Rating IMDB synkende' }).click();
   await page.getByRole('button', { name: 'Søk' }).click();
 
-  await expect(page.getByRole('link', { name: 'Det lyse mørket Det lyse mørket' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Pikselhjerte Pikselhjerte' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Fyret Fyret' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Det lyse mørket' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Pikselhjerte' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Fyret' })).toBeVisible();
 });
 
 test('test sorting and filtering with text input', async ({ page }) => {
@@ -24,6 +24,6 @@ test('test sorting and filtering with text input', async ({ page }) => {
   await page.locator('.MuiBackdrop-root').click();
   await page.getByRole('button', { name: 'Søk' }).click();
 
-  await expect(page.getByRole('link', { name: 'Kon-Tiki Kon-Tiki' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Helt Super Helt Super' })).toBeHidden();
+  await expect(page.getByRole('img', { name: 'Kon-Tiki' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Helt Super' })).toBeHidden();
 });

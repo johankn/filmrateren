@@ -1,6 +1,6 @@
 # end-2-end testing with Playwright 
 
-This folder contains end-to-end tests for our project using Playwright. Playwright provides good TypeScript support, making it a suitable choice for this TypeScript project.
+This folder contains end-to-end tests for our project using Playwright. Playwright uses TypeScript as its default language, making it a suitable choice for our TypeScript project.
 
 
 ### Running the tests
