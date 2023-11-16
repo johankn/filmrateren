@@ -4,6 +4,7 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Textarea from '@mui/joy/Textarea';
 import FormLabel from '@mui/joy/FormLabel';
+import { FormControl, FormHelperText } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
 
@@ -19,10 +20,13 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
 
   const [addRatingToMovie] = useMutation(ADD_RATING_TO_MOVIE);
 
+  const nameIsValid = !(/^\s+$/.test(name)); // Check if input contains only spaces
+  const commentIsValid = !(/^\s+$/.test(comment)); // Check if input contains only spaces
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (movieID && name && rating !== null && comment) {
+    if (movieID && name && rating !== null && nameIsValid && commentIsValid) {
       const variables = {
         movieId: movieID,
         rating: {
@@ -31,6 +35,8 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
           comment: comment,
         },
       };
+
+      
 
       addRatingToMovie({ variables })
         .then((response) => {
@@ -69,7 +75,13 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                error={!nameIsValid}
               />
+              {!(nameIsValid) && (
+                <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+                  Navnet må inneholde andre karakterer enn mellomrom.
+                </FormHelperText>
+              )}
               <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
               <div>
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -86,7 +98,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
                   </button>
                 ))}
               </div>
-              <FormLabel style={{ color: 'white', fontSize: 'large' }}>Kommentarer</FormLabel>
+              <FormLabel style={{ color: 'white', fontSize: 'large'}}>Kommentarer</FormLabel>
               <Textarea
                 size="md"
                 placeholder="Eks: En skummel, men spennende film!"
@@ -94,7 +106,13 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 required
+                error={!(commentIsValid)}
               />
+              {!(commentIsValid) && (
+                <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+                  Kommentaren må inneholde andre karakterer enn mellomrom.
+                </FormHelperText>
+              )}
               <Button style={{ fontSize: 'base' }} type="submit">
                 Send inn
               </Button>
