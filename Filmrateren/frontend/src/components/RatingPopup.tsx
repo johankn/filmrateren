@@ -18,15 +18,21 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
 
+  const [showRatingError, setRatingError] = useState(false);
+  const [showNameError, setNameError] = useState(false);
+  const [showCommentError, setCommentError] = useState(false);
+
   const [addRatingToMovie] = useMutation(ADD_RATING_TO_MOVIE);
 
-  const nameIsValid = !(/^\s+$/.test(name)); // Check if name contains other characters than whitespace
-  const commentIsValid = !(/^\s+$/.test(comment)); // Check if comment contains  other characters than whitespace
+  const nameIsValid = !(/^\s+$/.test(name)) && name; // Check if name contains other characters than whitespace
+  const commentIsValid = !(/^\s+$/.test(comment)) && comment; // Check if comment contains  other characters than whitespace
+  const ratingIsValid = (rating !== null);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (movieID && name && rating !== null && nameIsValid && commentIsValid) {
+    if (movieID && ratingIsValid && nameIsValid && commentIsValid) {
+
       const variables = {
         movieId: movieID,
         rating: {
@@ -49,8 +55,12 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
       if (onClose) {
         onClose();
       }
-    } else {
-      console.error('Incomplete data. Please fill in all fields.');
+    }
+    else {
+        console.error('Incomplete data. Please fill in all fields.');
+        if (!nameIsValid) {setNameError(true)} else setNameError(false)
+        if (!ratingIsValid) {setRatingError(true)} else setRatingError(false)
+        if (!commentIsValid) {setCommentError(true)} else setCommentError(false)
     }
   };
 
@@ -67,19 +77,18 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
         </div>
         <div className="formen">
           <form onSubmit={handleSubmit} className="flex-grow">
-            <Stack direction="column" justifyContent="center" alignItems="center" spacing={1}>
+            <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
               <FormLabel style={{ color: 'white', fontSize: 'large' }}>Navn</FormLabel>
               <Input
                 size="md"
                 placeholder="Eks: Ola Nordmann"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
-                error={!nameIsValid}
+                error={showNameError}
               />
-              {!(nameIsValid) && (
+              {(showNameError) && (
                 <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                  Navnet må inneholde andre karakterer enn mellomrom.
+                  Navnet må inneholde andre karakterer enn mellomrom
                 </FormHelperText>
               )}
               <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
@@ -98,6 +107,11 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
                   </button>
                 ))}
               </div>
+              {(showRatingError) && (
+                <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+                  Klikk på en stjerne for å velge rating
+                </FormHelperText>
+              )}
               <FormLabel style={{ color: 'white', fontSize: 'large'}}>Kommentarer</FormLabel>
               <Textarea
                 size="md"
@@ -105,17 +119,19 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
                 minRows={4}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                required
-                error={!(commentIsValid)}
+                error={showCommentError}
               />
-              {!(commentIsValid) && (
+              {(showCommentError) && (
                 <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                  Kommentaren må inneholde andre karakterer enn mellomrom.
+                  Kommentaren må inneholde andre karakterer enn mellomrom
                 </FormHelperText>
               )}
-              <Button style={{ fontSize: 'base' }} type="submit">
+              <button 
+                className="ml-5 rounded-lg w-16 h-8 sm:w-16 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple" 
+                type="submit"
+                >
                 Send inn
-              </Button>
+              </button>
             </Stack>
           </form>
         </div>
