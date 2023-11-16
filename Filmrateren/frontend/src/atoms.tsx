@@ -10,6 +10,11 @@ const scrollPositionState = atom({
   default: 0, // default value (aka initial value)
 });
 
+const isCheckedState = atom({
+  key: 'isCheckedState', // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});
+
 const selectedGenresState = atom<string[]>({
   key: 'selectedGenresState', // unique ID (with respect to other atoms/selectors)
   default: [], // default value (aka initial value)
@@ -38,4 +43,5 @@ export {
   inputValueState,
   selectedTitleState,
   cardsToShowState,
+  isCheckedState,
 };

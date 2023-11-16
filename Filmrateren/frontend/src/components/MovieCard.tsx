@@ -60,7 +60,8 @@ return (
               {movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}
             </p>
             <p className="mb-2">
-              <span className="font-bold">Varighet: </span> {'Finner ingen varighet'}
+              <span className="font-bold">Varighet: </span>{' '}
+              {movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} min`}
             </p>
             <p>
               <span className="font-bold">Beskrivelse: </span>{' '}
