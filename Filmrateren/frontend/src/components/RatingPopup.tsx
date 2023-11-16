@@ -4,7 +4,7 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Textarea from '@mui/joy/Textarea';
 import FormLabel from '@mui/joy/FormLabel';
-import { FormControl, FormHelperText } from '@mui/material';
+import { FormHelperText } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
 
@@ -20,8 +20,8 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
 
   const [addRatingToMovie] = useMutation(ADD_RATING_TO_MOVIE);
 
-  const nameIsValid = !(/^\s+$/.test(name)); // Check if input contains only spaces
-  const commentIsValid = !(/^\s+$/.test(comment)); // Check if input contains only spaces
+  const nameIsValid = !(/^\s+$/.test(name)); // Check if name contains other characters than whitespace
+  const commentIsValid = !(/^\s+$/.test(comment)); // Check if comment contains  other characters than whitespace
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
