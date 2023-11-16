@@ -39,7 +39,7 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
             ref={h1Ref}
             className={`text-center overflow-hidden ${
               smallScreen ? 'text-small' : 'text-base'
-            } leading-5 h-10 line-clamp-2 flex flex-col justify-end`}
+            } leading-5 h-10 line-clamp-2 flex flex-col `}
           >
             {movie.title}
           </h1>
