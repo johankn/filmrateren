@@ -58,7 +58,7 @@ function MoviePage() {
           )}
         </div>
         <div className="p-10">
-          <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
+          <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-medium md:text-large lg:text-large">
             RATINGS ({movie.userRatings.length})
           </div>
           {movie.userRatings.map((rating, index) => (
