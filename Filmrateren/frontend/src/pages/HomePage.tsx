@@ -274,7 +274,7 @@ function HomePage() {
           />
         </div>
         {/* Search bar autocomplete*/}
-        <div className="absolute z-50" style={searchBarWrapperStyle}>
+        <div className="absolute z-50" id="autocomplete-search-bar" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
             open={open}
@@ -284,15 +284,22 @@ function HomePage() {
                 setOpen(true);
               }
             }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                // Prevent's default 'Enter' behavior.
+                event.defaultMuiPrevented = true;
+              }
+            }}
             onClose={() => setOpen(false)}
             inputValue={inputValue}
-            onInputChange={(_e, value) => {
+            onInputChange={(_e, value) => {        
               setInputValue(value);
               // only open when inputValue is not empty after the user typed something
               if (!value) {
                 setOpen(false);
               }
             }}
+
             freeSolo
             placeholder="Tittel..."
             options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
