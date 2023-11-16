@@ -25,6 +25,7 @@ export default {
         large: '2.188rem',
         medium: '1.8rem',
         base: '1.25rem',
+        baseSmall: '1.15rem',
         small: '0.9rem',
         xsmall: '0.7rem',
       },
