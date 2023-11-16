@@ -5,6 +5,7 @@ import Speech from 'react-text-to-speech';
 import { AiFillSound } from 'react-icons/ai';
 import { FaVolumeMute } from 'react-icons/fa';
 import { IoMdRefresh } from 'react-icons/io';
+import { useEffect } from 'react';
 
 
 type MovieCardProps = {
@@ -16,10 +17,17 @@ function MovieCard({ movie }: MovieCardProps) {
 
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
   
+  useEffect(() => {
+    // Cleanup function
+    return () => {
+      // Stop speech synthesis when the component is unmounted
+      window.speechSynthesis.cancel();
+    };
+  }, []);
+
   const startBtn = <button className='text-large transform hover:scale-125 transition-transform'><AiFillSound></AiFillSound></button>
   const pauseBtn = <button className='text-large transform hover:scale-125 transition-transform'><FaVolumeMute></FaVolumeMute></button>
   const stopBtn = <button className='text-large transform hover:scale-125 transition-transform'><IoMdRefresh></IoMdRefresh></button>
-
 return (
   <div className="grid max-h-full gap-7 mt-6 ml-2 text-white italic place-items-center  ">
     <Speech text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')}. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Beskrivelse av filmen: ${movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot}.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)} `}
