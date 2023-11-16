@@ -6,7 +6,10 @@ const resolvers = {
       // Use a regex for case-insensitive and partial matching
       return await Movie.find({ title: new RegExp(title, "i") });
     },
-    getFilteredMovies: async (_, { title, genres, sort, limit, skip }) => {
+    getFilteredMovies: async (
+      _,
+      { title, genres, sort, checkbox, limit, skip }
+    ) => {
       let query = {};
 
       if (title) {
@@ -15,6 +18,25 @@ const resolvers = {
 
       if (genres && genres.length > 0) {
         query.genres = { $in: genres };
+      }
+
+      console.log(checkbox);
+
+      if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
+        // Exclude records with "Unknown" releaseYear
+        query.IMDBrating = { $ne: 0 };
+      } else if (
+        checkbox &&
+        (sort === "RELEASEYEAR_DESC" || sort === "RELEASEYEAR_ASC")
+      ) {
+        // Exclude records with "Unknown" releaseYear
+        query.releaseYear = { $ne: "0" };
+      } else if (
+        checkbox &&
+        (sort === "RUNTIME_DESC" || sort === "RUNTIME_ASC")
+      ) {
+        // Exclude records with "Unknown" releaseYear
+        query.runtime = { $ne: 0 };
       }
 
       let sortOption = {};
@@ -38,6 +60,13 @@ const resolvers = {
         case "RELEASEYEAR_ASC":
           sortOption = { releaseYear: 1 };
           break;
+        case "RUNTIME_DESC":
+          sortOption = { runtime: -1 };
+          break;
+        case "RUNTIME_ASC":
+          sortOption = { runtime: 1 };
+          break;
+
         default:
           break; // No sorting
       }
