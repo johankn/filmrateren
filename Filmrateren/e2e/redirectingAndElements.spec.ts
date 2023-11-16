@@ -30,3 +30,31 @@ test('scroll down and click on the movie: Helt Super', async ({ page }) => {
 
 });
 
+test('redirecting and rate movie test', async ({ page }) => {
+  await page.goto('http://localhost:5173/project2');
+  await page.getByLabel('Sortering').click();
+  await page.locator('#menu- div').first().click();
+  await page.getByLabel('Sjanger').click();
+  await page.getByRole('option', { name: 'Fantasy' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'Krig' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'Krim' }).getByRole('checkbox').check();
+  await page.locator('.MuiBackdrop-root').click();
+  await page.getByLabel('Tittel...').click();
+  await page.getByLabel('Tittel...').fill('hei');
+  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.getByRole('button', { name: 'Last flere filmer' }).click();
+
+  await expect(page.getByText('Ingen flere filmer funnet.')).toBeVisible();
+
+  await page.getByRole('img', { name: 'Det grodde fram: Trondheim 1940-1945' }).click();
+  await page.getByRole('button', { name: 'Rate filmen' }).click();
+  await page.getByPlaceholder('Eks: Ola Nordmann').click();
+  await page.getByPlaceholder('Eks: Ola Nordmann').fill('Ola Nordmann');
+  await page.getByRole('button', { name: '★' }).nth(2).click();
+  await page.getByPlaceholder('Eks: En skummel, men spennende film!').click();
+  await page.getByPlaceholder('Eks: En skummel, men spennende film!').fill('Dette er for å teste denne funksjonen (e2e).');
+  await page.getByRole('button', { name: 'Send inn' }).click();
+
+  await expect(page.getByText('Ola Nordmann★★★★★Dette er for å teste denne funksjonen (e2e).')).toBeVisible();
+
+});
