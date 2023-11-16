@@ -12,4 +12,5 @@ export type Movie = {
     rating: number;
     comment: string;
   }[];
+  runtime: number;
 };
