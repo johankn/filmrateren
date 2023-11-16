@@ -1,5 +1,7 @@
 # Project 2 - Filmrateren
 
+## The documentation for the project deliveries can be found [here](/Filmrateren/docs/). These are written in Norwegian. 
+
 ## Link to the project hosted by our virtual machine (must be on NTNU network)
 
 
@@ -46,7 +48,7 @@ npm run dev
 
 Then, open local host (as shown in terminal) with your browser to view the project.
 
-### 4. Run the tests we have so far:
+### 4. Run the components tests we have so far:
 
 ```bash
 cd frontend
@@ -54,4 +56,14 @@ npm install
 npm run test
 ```
 
-## The documentation for the project deliveries can be found [here](/Filmrateren/docs/). These are written in Norwegian. 
+### 5. Run all the playwright tests (e2e). Make sure to do it from the root folder of the project:
+
+```bash
+npm install
+npx playwright test
+```
+*To run the tests in Playwright's UI-mode, use the following command:*
+```bash
+npm install
+npx playwright test --ui
+```

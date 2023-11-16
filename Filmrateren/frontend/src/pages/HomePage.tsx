@@ -18,12 +18,13 @@ import {
   selectedGenresState,
   cardsToShowState,
   selectedTitleState,
+  isCheckedState,
 } from '../atoms';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from '../components/DynamicStyles';
 import { Movie } from '../components/types';
-import { TextField } from '@mui/material';
+import { Checkbox, TextField, Tooltip, Zoom } from '@mui/material';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -42,8 +43,10 @@ function HomePage() {
   const [previousSort, setPreviousSort] = useState<string>('');
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
   const [previousTitle, setPreviousTitle] = useState<string>('');
+  const [previousCheckbox, setPreviousCheckbox] = useState(false);
 
   const [open, setOpen] = useState(false);
+  const [isChecked, setIsChecked] = useRecoilState(isCheckedState);
   const [inputValue, setInputValue] = useState('');
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
@@ -63,7 +66,8 @@ function HomePage() {
     buttonStyle,
     newSearchBarStyle,
     targetWidthSearch,
-  } = getHomePageStyles(windowSize, scrollPosition);
+    checkBoxStyle,
+  } = getHomePageStyles(windowSize, scrollPosition, selectedSort != '');
 
   useEffect(() => {
     // Setup a debouncer for 1500ms
@@ -111,6 +115,7 @@ function HomePage() {
         title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
+        checkbox: Boolean(isChecked),
         limit: initialCardsToShow,
         skip: newSkip,
       },
@@ -130,6 +135,7 @@ function HomePage() {
       if (moviesData.getFilteredMovies.length > 0) {
         setMoviesLoaded(true);
 
+        // Set a timeout to change the height of the screen so that it has time to return to the previous scroll position when returning from MoviePage
         setTimeout(() => {
           setChangeHeight(true);
         }, 1);
@@ -184,17 +190,19 @@ function HomePage() {
     setPreviousTitle(selectedTitle);
     setPreviousGenres(selectedGenres);
     setPreviousSort(selectedSort);
+    setPreviousCheckbox(isChecked);
 
     getFilteredMovies({
       variables: {
         title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
+        checkbox: Boolean(isChecked),
         limit: initialCardsToShow,
         skip: 0,
       },
     });
-  }, [selectedTitle, selectedGenres, selectedSort]);
+  }, [selectedTitle, selectedGenres, selectedSort, isChecked]);
 
   const handleRender = useCallback(() => {
     console.log('Selected Sort:', selectedSort);
@@ -203,25 +211,35 @@ function HomePage() {
     setPreviousTitle(selectedTitle);
     setPreviousGenres(selectedGenres);
     setPreviousSort(selectedSort);
+    setPreviousCheckbox(isChecked);
 
     getFilteredMovies({
       variables: {
         title: selectedTitle,
         genres: selectedGenres,
         sort: selectedSort,
+        checkbox: Boolean(isChecked),
         limit: cardsToShow,
         skip: 0,
       },
     });
-  }, [selectedTitle, selectedGenres, selectedSort]);
+  }, [selectedTitle, selectedGenres, selectedSort, isChecked]);
 
   const hasSelectionChanged = () => {
     return (
       JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
       previousSort !== selectedSort ||
-      previousTitle !== selectedTitle
+      previousTitle !== selectedTitle ||
+      previousCheckbox !== isChecked
     );
   };
+
+  const handleCheckBoxChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsChecked(event.target.checked);
+    },
+    [setIsChecked],
+  );
 
   useEffect(() => {
     handleRender();
@@ -238,7 +256,7 @@ function HomePage() {
 
   return (
     <div
-      className="m-0 flex flex-col justify-start items-center w-full min-h-[150vh] overflow-x-hidden gap-16"
+      className="m-0 flex flex-col justify-start items-center w-full min-h-[400vh] overflow-x-hidden gap-16"
       style={homePageStyle}
     >
       {/* Clickable logo top left */}
@@ -256,7 +274,7 @@ function HomePage() {
           />
         </div>
         {/* Search bar autocomplete*/}
-        <div className="absolute z-50" style={searchBarWrapperStyle}>
+        <div className="absolute z-50" id="autocomplete-search-bar" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
             open={open}
@@ -266,15 +284,22 @@ function HomePage() {
                 setOpen(true);
               }
             }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                // Prevent's default 'Enter' behavior.
+                event.defaultMuiPrevented = true;
+              }
+            }}
             onClose={() => setOpen(false)}
             inputValue={inputValue}
-            onInputChange={(_e, value) => {
+            onInputChange={(_e, value) => {        
               setInputValue(value);
               // only open when inputValue is not empty after the user typed something
               if (!value) {
                 setOpen(false);
               }
             }}
+
             freeSolo
             placeholder="Tittel..."
             options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
@@ -305,6 +330,30 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </div>
+        <div style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
+          <div className="italic text-zinc-600">Fjern filmer uten data</div>
+          <Tooltip
+            TransitionComponent={Zoom}
+            arrow
+            onChange={handleCheckBoxChange}
+            title={
+              <h2 style={{ fontSize: '14px' }}>
+                Denne knappen vil fjerne alle filmer som ikke har den dataen du har sortert på. F.eks. filmer som ikke
+                har noen IMDB rating.
+              </h2>
+            }
+          >
+            <Checkbox
+              checked={isChecked}
+              sx={{
+                color: 'gray-700',
+                '&.Mui-checked': {
+                  color: 'rgb(55, 65, 81)',
+                },
+              }}
+            />
+          </Tooltip>
+        </div>
         {/* Sort */}
         <div className="absolute" style={sortStyle}>
           <Sort
@@ -326,10 +375,10 @@ function HomePage() {
       </div>
       {/* Scroll down indicator */}
       <div
-        className={`text-[rgba(255,247,238,0.5)] absolute ${
-          windowSize.width < 740 ? 'top-[91%]' : 'top-[92%]'
-        } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-medium'}`}
-        style={{ opacity: opacityScreenImg }}
+        className={`text-[rgba(255,247,238,0.8)] fixed ${
+          windowSize.width < 740 ? 'top-[90%]' : 'top-[92%]'
+        } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-base'}`}
+        style={{ opacity: opacityScreenImg, textShadow: '0 0 20px rgba(255, 247, 238, 0.6)' }}
       >
         <p>Bla ned for avansert søk</p>
         <p>&darr;</p>
