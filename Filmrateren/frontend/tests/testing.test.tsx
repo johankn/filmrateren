@@ -18,7 +18,6 @@ import SearchHitCard from '../src/components/SearchHitCard';
 import RatingPopup from '../src/components/RatingPopup';
 import { ADD_RATING_TO_MOVIE } from '../src/queries/AddRatingMutation';
 
-
 describe("Test of HomePage", () => {
     let homePage
     beforeEach(() => {
@@ -263,3 +262,5 @@ describe("Test of RatingPopup", () => {
     expect(movieIdOfAddedRating).toBe(0);
   });
 });
+
+
