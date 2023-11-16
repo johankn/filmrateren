@@ -30,7 +30,7 @@ const resolvers = {
         (sort === "RELEASEYEAR_DESC" || sort === "RELEASEYEAR_ASC")
       ) {
         // Exclude records with "Unknown" releaseYear
-        query.releaseYear = { $ne: "Unknown" };
+        query.releaseYear = { $ne: "0" };
       } else if (
         checkbox &&
         (sort === "RUNTIME_DESC" || sort === "RUNTIME_ASC")
