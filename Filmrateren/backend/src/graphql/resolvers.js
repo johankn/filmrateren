@@ -20,8 +20,6 @@ const resolvers = {
         query.genres = { $in: genres };
       }
 
-      console.log(checkbox);
-
       if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
         // Exclude records with "Unknown" releaseYear
         query.IMDBrating = { $ne: 0 };
