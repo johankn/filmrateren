@@ -18,9 +18,7 @@ function MovieCard({ movie }: MovieCardProps) {
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
   
   useEffect(() => {
-    // Cleanup function
     return () => {
-      // Stop speech synthesis when the component is unmounted
       window.speechSynthesis.cancel();
     };
   }, []);
