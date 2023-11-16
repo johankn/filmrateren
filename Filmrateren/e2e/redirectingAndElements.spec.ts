@@ -1,32 +1,34 @@
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  // Runs before each test.
+  await page.goto('http://localhost:5173/project2');
+  // await page.goto('http://it2810-05.idi.ntnu.no/project2/');
+
+});
+
 // Test to check if the title contains "Film rateren"
 test('has title', async ({ page }) => {
-  await page.goto('http://localhost:5173/project2');
   await expect(page).toHaveTitle("Film rateren");
 });
 
 // Test for autocomplete, redirect, and URL validation
 test('autocomplete and redirect', async ({ page }) => {
-  await page.goto('http://localhost:5173/project2');
-  
   // Interact with the autocomplete input
   await page.getByPlaceholder('Tittel...').click();
   await page.getByPlaceholder('Tittel...').fill('Kongens nei');
   await page.waitForTimeout(1600); // Wait for the autocomplete to show up
   await page.getByPlaceholder('Tittel...').click(); // Click the autocomplete again
   await page.getByRole('option', { name: 'Kongens nei' }).click();
-
   // Validate the redirected URL
   const url = await page.url();
   expect(url).toContain('http://localhost:5173/project2/moviePage/318'); 
+  // expect(url).toContain('http://it2810-05.idi.ntnu.no/project2/moviePage/318');
 });
 
 // Test for scrolling down, clicking on a movie, and validating visibility of elements
 test('scroll down and click on the movie: Helt Super', async ({ page }) => {
-  await page.goto('http://localhost:5173/project2');
   await page.getByRole('img', { name: 'Helt Super' }).click();
-
   // Validate visibility of elements on the new page
   await expect(page.getByRole('heading', { name: 'Helt Super' })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Helt Super' })).toBeVisible();
@@ -35,8 +37,6 @@ test('scroll down and click on the movie: Helt Super', async ({ page }) => {
 
 // Test for redirecting, filtering, and rating a movie
 test('redirecting and rate movie test', async ({ page }) => {
-  await page.goto('http://localhost:5173/project2');
-  
   // Interaction with filters and search
   await page.getByLabel('Sortering').click();
   await page.locator('#menu- div').first().click();
@@ -69,8 +69,6 @@ test('redirecting and rate movie test', async ({ page }) => {
 
 // Test for checking the return button functionality
 test('test return button', async ({ page }) => {
-  await page.goto('http://localhost:5173/project2');
-  
   // Interaction with movies and return button
   await page.getByRole('img', { name: 'There\'s Something in the Barn' }).click();
   await page.getByRole('button', { name: '←' }).click();
