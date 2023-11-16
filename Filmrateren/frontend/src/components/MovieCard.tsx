@@ -7,7 +7,6 @@ import { FaVolumeMute } from 'react-icons/fa';
 import { IoMdRefresh } from 'react-icons/io';
 import { useEffect } from 'react';
 
-
 type MovieCardProps = {
   movie: Movie;
 };
@@ -16,7 +15,7 @@ function MovieCard({ movie }: MovieCardProps) {
   const totalUserRatings = movie.userRatings.reduce((acc, curr) => acc + curr.rating, 0);
 
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
-  
+
   useEffect(() => {
     return () => {
       window.speechSynthesis.cancel();
@@ -57,7 +56,11 @@ return (
             </p>
             <p className="mb-2">
               <span className="font-bold">Utgivelsesår: </span>{' '}
-              {movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}
+              {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
+            </p>
+            <p className="mb-2">
+              <span className="font-bold">Varighet: </span>{' '}
+              {movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} min`}
             </p>
             <p>
               <span className="font-bold">Beskrivelse: </span>{' '}
@@ -66,14 +69,14 @@ return (
           </div>
           <div className="rating">
             <p className="mb-2">
-              <span className="font-bold">IMDB rating:</span>{' '}
-              {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}
+              <span className="font-bold">IMDB-rating:</span>{' '}
+              {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10`}
             </p>
             <div> </div>
             <div>
               <p>
-                <span className="font-bold">Brukeranmeldelser:</span>{' '}
-                {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)}
+                <span className="font-bold">Bruker-rating:</span>{' '}
+                {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5`}
               </p>
               <div className="flex text-yellow">
                 <Stars rating={parseFloat(averageUserRating.toFixed(1))} />

@@ -1,4 +1,4 @@
-export function getHomePageStyles(windowSize: { width: number }, scrollPosition: number) {
+export function getHomePageStyles(windowSize: { width: number }, scrollPosition: number, isChecked: boolean) {
   const transitionDuration = '0.2s'; // Set your desired duration
 
   const change = -0;
@@ -39,6 +39,10 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.9
       : Math.max(0, Math.min(1, 1 - (scrollPosition - 200 + change) / 80)) * 0.9;
+  const checkBoxOpacity =
+    windowSize.width >= 740
+      ? Math.max(0, Math.min(1, 1 - (scrollPosition - 155) / 10))
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 195 + change) / 60));
 
   let targetHeight;
   let targetWidth;
@@ -57,6 +61,8 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   let targetTopScreenContent;
   let targetButtonHeight;
   let targetButtonWidth;
+  let targetMarginTopCheck;
+  let targetRightCheck;
 
   if (windowSize.width >= 1110) {
     targetHeight = 125 + (382 - 125) * opacity;
@@ -76,24 +82,28 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetTopScreenContent = 1 + (10 - 1) * opacity;
     targetButtonHeight = 3.3 + (3.3 - 3.3) * opacity;
     targetButtonWidth = 4 + (4 - 4) * opacity;
+    targetMarginTopCheck = 86 + (60 - 86) * checkBoxOpacity;
+    targetRightCheck = 103 + (103 - 103) * checkBoxOpacity;
   } else if (windowSize.width >= 740) {
-    targetHeight = 138 + (382 - 138) * opacity;
+    targetHeight = 172 + (382 - 138) * opacity;
     targetWidth = 720 + (700 - 720) * opacity;
     targetMarginTop = 376 + (96 - 376) * opacity;
-    targetMarginTopSearch = 15 + (250 - 15) * opacity;
+    targetMarginTopSearch = 32 + (250 - 32) * opacity;
     targetWidthSearch = 565 + (380 - 565) * opacity;
     targetLeftSearch = 30 + (165 - 30) * opacity;
-    targetMarginTopBtn = 16 + (250 - 16) * opacity;
+    targetMarginTopBtn = 33 + (250 - 33) * opacity;
     targetRightBtn = 31 + (300 - 31) * opacity;
     targetMarginTopSeats = 0 + (60 - 0) * opacity;
     targetTopSearch = 510 + (625 - 510) * opacity;
     targetRightFilter = 403 + (255 - 403) * opacity;
     targetRightSort = 117 + (145 - 117) * opacity;
-    targetTopFilterSort = 70 + (245 - 70) * opacity;
+    targetTopFilterSort = 87 + (245 - 87) * opacity;
     targetHeightImg = 0 + (380 - 0) * opacity;
     targetTopScreenContent = 0 + (0 - 0) * opacity;
     targetButtonHeight = 6.6 + (0 - 6.6) * opacity;
     targetButtonWidth = 5 + (4 - 5) * opacity;
+    targetMarginTopCheck = 133 + (100 - 133) * checkBoxOpacity;
+    targetRightCheck = 155 + (155 - 155) * checkBoxOpacity;
   } else {
     targetHeight = 200 + (250 - 200) * opacity;
     targetWidth = 350 + (350 - 350) * opacity;
@@ -112,6 +122,8 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetTopScreenContent = 1 + (10 - 1) * opacity;
     targetButtonHeight = 3.3 + (3.3 - 3.3) * opacity;
     targetButtonWidth = 4 + (4 - 4) * opacity;
+    targetMarginTopCheck = 0 + (0 - 0) * checkBoxOpacity;
+    targetRightCheck = 0 + (0 - 0) * checkBoxOpacity;
   }
 
   const homePageStyle = {
@@ -200,6 +212,13 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     transition: `opacity ${transitionDuration} ${easeOutQuart}, margin-top ${transitionDuration} ${easeOutQuart}, left ${transitionDuration} ${easeOutQuart}`,
   };
 
+  const checkBoxStyle = {
+    opacity: isChecked ? 1 - checkBoxOpacity : '0',
+    marginTop: `${targetMarginTopCheck}px`,
+    right: `${targetRightCheck}px`,
+    pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+  };
+
   return {
     opacitySearch,
     opacityFilterSort,
@@ -217,5 +236,6 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     buttonStyle,
     newSearchBarStyle,
     targetWidthSearch,
+    checkBoxStyle,
   };
 }
