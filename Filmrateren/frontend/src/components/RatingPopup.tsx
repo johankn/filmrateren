@@ -88,7 +88,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
               />
               {(showNameError) && (
                 <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                  Navnet må inneholde andre karakterer enn mellomrom
+                  Skriv inn navnet ditt
                 </FormHelperText>
               )}
               <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
@@ -123,7 +123,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
               />
               {(showCommentError) && (
                 <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                  Kommentaren må inneholde andre karakterer enn mellomrom
+                  Skriv inn en kommentar til ratingen
                 </FormHelperText>
               )}
               <button 
