@@ -58,3 +58,18 @@ test('redirecting and rate movie test', async ({ page }) => {
   await expect(page.getByText('Ola Nordmann★★★★★Dette er for å teste denne funksjonen (e2e).')).toBeVisible();
 
 });
+
+test('test return button', async ({ page }) => {
+  await page.goto('http://localhost:5173/project2');
+  await page.getByRole('img', { name: 'There\'s Something in the Barn' }).click();
+  await page.getByRole('button', { name: '←' }).click();
+  await page.getByRole('img', { name: 'Verdens verste menneske' }).click();
+  await expect(page.getByText('Regi: Joachim Trier')).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Verdens verste menneske' })).toBeVisible();
+  await page.getByRole('button', { name: '←' }).click();
+  await page.getByRole('button', { name: 'Last flere filmer' }).click();
+  await page.getByRole('img', { name: 'Børning 2' }).click();
+  await expect(page.getByRole('img', { name: 'Børning 2' })).toBeVisible();
+  await page.getByRole('button', { name: '←' }).click();
+  await expect(page.getByRole('img', { name: 'Børning 2' })).toBeVisible();
+});
