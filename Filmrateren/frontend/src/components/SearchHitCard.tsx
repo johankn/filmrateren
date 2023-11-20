@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
 import { Movie } from './types';
@@ -9,8 +8,6 @@ type SearchHitCardProps = {
 };
 
 function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-
   const navigate = useNavigate(); // Get the navigate function
 
   let posterHeight;
@@ -34,16 +31,14 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
       }}
     >
       <div onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
-        <div className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} leading-5 h-10 line-clamp-2`}>
-          <h1
-            ref={h1Ref}
-            className={`text-center overflow-hidden ${
-              smallScreen ? 'text-small' : 'text-base'
-            } leading-5 h-10 line-clamp-2 flex flex-col justify-end`}
-          >
-            {movie.title}
-          </h1>
+        <div
+          className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} ${
+            smallScreen ? 'text-small' : 'text-base'
+          } leading-5 h-10`}
+        >
+          <h1 className="text-center leading-5 overflow-hidden line-clamp-2">{movie.title}</h1>
         </div>
+
         <div className={`flex justify-center items-center ${smallScreen ? 'h-[95%]' : 'h-full'} group`}>
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
