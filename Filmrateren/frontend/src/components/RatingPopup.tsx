@@ -28,6 +28,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
   const commentIsValid = !(/^\s+$/.test(comment)) && comment; // Check if comment contains  other characters than whitespace
   const ratingIsValid = (rating !== null);
 
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -107,7 +108,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
               Klikk på en stjerne for å velge rating
             </FormHelperText>
           )}
-          <FormLabel style={{ color: 'white', fontSize: 'large'}}>Kommentarer</FormLabel>
+          <FormLabel style={{ color: 'white', fontSize: 'large' }}>Kommentarer</FormLabel>
           <Textarea
             size="md"
             placeholder="Eks: En skummel, men spennende film!"
@@ -121,10 +122,10 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
               Skriv inn en kommentar til ratingen
             </FormHelperText>
           )}
-          <button 
+          <button
             className="ml-5 rounded-lg w-44 h-14 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
             type="submit"
-            >
+          >
             Send inn
           </button>
         </Stack>

@@ -1,12 +1,15 @@
-export function getHomePageStyles(windowSize: { width: number }, scrollPosition: number, isChecked: boolean) {
-  const transitionDuration = '0.2s'; // Set your desired duration
-
-  const change = -0;
+export function getHomePageStyles(
+  windowSize: { width: number },
+  scrollPosition: number,
+  isChecked: boolean,
+  isEmpty: boolean,
+) {
+  const transitionDuration = '0.2s';
 
   const opacity =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 95) / 60))
-      : Math.max(0, Math.min(1, 1 - (scrollPosition - 195 + change) / 60));
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 195) / 60));
 
   // Easing functions for smoother transitions
   const easeOutQuart = 'cubic-bezier(0.165, 0.84, 0.44, 1)';
@@ -14,35 +17,35 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   const opacityScreenImg =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 85) / 30))
-      : Math.max(0, Math.min(1, 1 - (scrollPosition - 185 + change) / 30));
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 185) / 30));
   const opacityNewSearch =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, (scrollPosition - 95) / 10))
-      : Math.max(0, Math.min(1, (scrollPosition - 195 + change) / 10));
+      : Math.max(0, Math.min(1, (scrollPosition - 195) / 10));
   const opacitySeats =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 90) / 60))
-      : Math.max(0, Math.min(1, 1 - (scrollPosition - 190 + change) / 30));
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 190) / 30));
   const opacitySearch =
     windowSize.width >= 740
       ? Math.min(1, Math.max(0, (scrollPosition - 115) / 80))
-      : Math.min(1, Math.max(0, (scrollPosition - 215 + change) / 80));
+      : Math.min(1, Math.max(0, (scrollPosition - 215) / 80));
   const opacityFilterSort =
     windowSize.width >= 740
       ? Math.min(1, Math.max(0, (scrollPosition - 95) / 60))
-      : Math.min(1, Math.max(0, (scrollPosition - 195 + change) / 60));
+      : Math.min(1, Math.max(0, (scrollPosition - 195) / 60));
   const boxShadowOpacity =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.6
-      : Math.max(0, Math.min(1, 1 - (scrollPosition - 200 + change) / 80)) * 0.6;
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 200) / 80)) * 0.6;
   const boxShadowOpacityScreen =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 100) / 80)) * 0.9
-      : Math.max(0, Math.min(1, 1 - (scrollPosition - 200 + change) / 80)) * 0.9;
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 200) / 80)) * 0.9;
   const checkBoxOpacity =
     windowSize.width >= 740
       ? Math.max(0, Math.min(1, 1 - (scrollPosition - 155) / 10))
-      : Math.max(0, Math.min(1, 1 - (scrollPosition - 195 + change) / 60));
+      : Math.max(0, Math.min(1, 1 - (scrollPosition - 195) / 60));
 
   let targetHeight;
   let targetWidth;
@@ -63,6 +66,8 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   let targetButtonWidth;
   let targetMarginTopCheck;
   let targetRightCheck;
+  let targetMarginTopReset;
+  let targetRightReset;
 
   if (windowSize.width >= 1110) {
     targetHeight = 125 + (382 - 125) * opacity;
@@ -74,16 +79,18 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetMarginTopBtn = 36 + (251 - 36) * opacity;
     targetRightBtn = 36 + (500 - 36) * opacity;
     targetMarginTopSeats = 0 + (60 - 0) * opacity;
-    targetTopSearch = 490 + (525 - 490) * opacity;
+    targetTopSearch = 500 + (525 - 500) * opacity;
     targetRightFilter = 310 + (500 - 310) * opacity;
     targetRightSort = 100 + (500 - 100) * opacity;
     targetTopFilterSort = 27 + (245 - 27) * opacity;
     targetHeightImg = 300 + (570 - 300) * opacity;
     targetTopScreenContent = 1 + (10 - 1) * opacity;
-    targetButtonHeight = 3.3 + (3.3 - 3.3) * opacity;
-    targetButtonWidth = 4 + (4 - 4) * opacity;
+    targetButtonHeight = 3.3;
+    targetButtonWidth = 4;
     targetMarginTopCheck = 86 + (60 - 86) * checkBoxOpacity;
     targetRightCheck = 103 + (103 - 103) * checkBoxOpacity;
+    targetMarginTopReset = 96 + (70 - 96) * checkBoxOpacity;
+    targetRightReset = 500;
   } else if (windowSize.width >= 740) {
     targetHeight = 172 + (382 - 138) * opacity;
     targetWidth = 720 + (700 - 720) * opacity;
@@ -94,36 +101,40 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     targetMarginTopBtn = 33 + (250 - 33) * opacity;
     targetRightBtn = 31 + (300 - 31) * opacity;
     targetMarginTopSeats = 0 + (60 - 0) * opacity;
-    targetTopSearch = 510 + (625 - 510) * opacity;
+    targetTopSearch = 550 + (625 - 550) * opacity;
     targetRightFilter = 403 + (255 - 403) * opacity;
     targetRightSort = 117 + (145 - 117) * opacity;
     targetTopFilterSort = 87 + (245 - 87) * opacity;
     targetHeightImg = 0 + (380 - 0) * opacity;
-    targetTopScreenContent = 0 + (0 - 0) * opacity;
+    targetTopScreenContent = 0;
     targetButtonHeight = 6.6 + (0 - 6.6) * opacity;
     targetButtonWidth = 5 + (4 - 5) * opacity;
     targetMarginTopCheck = 133 + (100 - 133) * checkBoxOpacity;
-    targetRightCheck = 155 + (155 - 155) * checkBoxOpacity;
+    targetRightCheck = 155;
+    targetMarginTopReset = 142 + (125 - 142) * checkBoxOpacity;
+    targetRightReset = 530;
   } else {
-    targetHeight = 200 + (250 - 200) * opacity;
+    targetHeight = isChecked ? 250 : 200 + (250 - 200) * opacity;
     targetWidth = 350 + (350 - 350) * opacity;
     targetMarginTop = 526 + (146 - 526) * opacity;
     targetMarginTopSearch = 15 + (165 - 15) * opacity;
-    targetWidthSearch = 300 + (300 - 300) * opacity;
-    targetLeftSearch = 25 + (25 - 25) * opacity;
-    targetMarginTopBtn = 141 + (160 - 141) * opacity;
-    targetRightBtn = 139 + (139 - 139) * opacity;
+    targetWidthSearch = 300;
+    targetLeftSearch = 25;
+    targetMarginTopBtn = isChecked ? 180 + (160 - 180) * opacity : 141 + (160 - 141) * opacity;
+    targetRightBtn = 139;
     targetMarginTopSeats = 0 + (10 - 0) * opacity;
-    targetTopSearch = 680 + (840 - 680) * opacity;
-    targetRightFilter = 172 + (172 - 172) * opacity;
-    targetRightSort = 18 + (18 - 18) * opacity;
+    targetTopSearch = isChecked ? 750 + (840 - 750) * opacity : 710 + (800 - 710) * opacity;
+    targetRightFilter = 172;
+    targetRightSort = 18;
     targetTopFilterSort = 70 + (150 - 70) * opacity;
     targetHeightImg = 160 + (160 - 160) * opacity;
     targetTopScreenContent = 1 + (10 - 1) * opacity;
-    targetButtonHeight = 3.3 + (3.3 - 3.3) * opacity;
-    targetButtonWidth = 4 + (4 - 4) * opacity;
-    targetMarginTopCheck = 0 + (0 - 0) * checkBoxOpacity;
-    targetRightCheck = 0 + (0 - 0) * checkBoxOpacity;
+    targetButtonHeight = 3.3;
+    targetButtonWidth = 4;
+    targetMarginTopCheck = 135 + (0 - 0) * checkBoxOpacity;
+    targetRightCheck = 67 + (0 - 0) * checkBoxOpacity;
+    targetMarginTopReset = isChecked ? 210 + (190 - 210) * checkBoxOpacity : 170 + (190 - 170) * checkBoxOpacity;
+    targetRightReset = 20;
   }
 
   const homePageStyle = {
@@ -219,6 +230,13 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
+  const resetStyle = {
+    opacity: isEmpty ? '0' : 1 - checkBoxOpacity,
+    marginTop: `${targetMarginTopReset}px`,
+    right: `${targetRightReset}px`,
+    pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+  };
+
   return {
     opacitySearch,
     opacityFilterSort,
@@ -237,5 +255,6 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     newSearchBarStyle,
     targetWidthSearch,
     checkBoxStyle,
+    resetStyle,
   };
 }

@@ -19,13 +19,14 @@ function MoviePage() {
   const { loading, error, data } = useQuery(GET_MOVIE_BY_ID_QUERY, {
     variables: { movieId: Number(movieID) },
   });
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   const movie: Movie | undefined = data.getMovieByID;
   if (!movie) return <p>Movie not found</p>;
 
-  const handleClosePopup = () => {
+  const handleClosePopup = async () => {
     setShowPopup(false);
     setShowSuccessMessage(false);
   };

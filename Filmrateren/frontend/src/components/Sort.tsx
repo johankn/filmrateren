@@ -14,7 +14,12 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
 
   return (
     <FormControl
-      sx={{ m: 1, minWidth: smallScreen ? 143 : mediumScreen ? 278 : 200, minHeight: 10 }}
+      sx={{
+        m: 1,
+        minWidth: smallScreen ? 143 : mediumScreen ? 278 : 200,
+        minHeight: 10,
+        maxWidth: smallScreen ? 143 : undefined,
+      }}
       className="bg-white rounded"
     >
       <InputLabel
@@ -29,7 +34,12 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         label="Sortering"
         value={selectedSort}
         onChange={handleSortChange}
-        sx={{ fontSize: mediumScreen ? '0.5rem' : '1rem' }}
+        inputProps={{
+          sx: {
+            padding: mediumScreen ? '13.5px' : undefined, // Adjust the padding value as needed
+          },
+        }}
+        sx={{ fontSize: mediumScreen ? '0.8rem' : '1rem' }}
       >
         <MenuItem value="">
           <em>Ingen</em>

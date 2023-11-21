@@ -1,6 +1,6 @@
 # Project 2 - Filmrateren
 
-## The documentation for the project deliveries can be found [here](/Filmrateren/docs/). These are written in Norwegian. 
+## The documentation for the project can be found [here](/Filmrateren/README.md). This is written in Norwegian. 
 
 ## Link to the project hosted by our virtual machine (must be on NTNU network)
 
