@@ -265,13 +265,18 @@ function HomePage() {
 
   return (
     <div
-      className="home-page m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16" style={homePageStyle}>
+      className="home-page m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16"
+      style={homePageStyle}
+    >
       {/* Clickable logo top left */}
       <figure className="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998" onClick={handleLogoClick}>
         <img src={logo} alt="logo" className="cursor-pointer" style={logoStyle} />
       </figure>
       {/* Movie screen container */}
-      <main className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative" style={screenStyle}>
+      <main
+        className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative"
+        style={screenStyle}
+      >
         {/* Picture with logo and screen content */}
         <figure className="absolute flex flex-row justify-center">
           <img
@@ -299,14 +304,13 @@ function HomePage() {
             }}
             onClose={() => setOpen(false)}
             inputValue={inputValue}
-            onInputChange={(_e, value) => {        
+            onInputChange={(_e, value) => {
               setInputValue(value);
               // only open when inputValue is not empty after the user typed something
               if (!value) {
                 setOpen(false);
               }
             }}
-
             freeSolo
             placeholder="Tittel..."
             options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
@@ -338,13 +342,13 @@ function HomePage() {
           />
         </section>
         <section style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
-          <p className="italic text-zinc-600">Fjern filmer uten data</p>
+          <p className="text-zinc-800">Fjern filmer uten data</p>
           <Tooltip
             TransitionComponent={Zoom}
             arrow
             onChange={handleCheckBoxChange}
             title={
-              <h2 className='text-base'>
+              <h2 className="text-base">
                 Denne knappen vil fjerne alle filmer som ikke har den dataen du har sortert på. F.eks. filmer som ikke
                 har noen IMDB rating.
               </h2>
@@ -361,9 +365,9 @@ function HomePage() {
             />
           </Tooltip>
         </section>
-        <div className="absolute italic text-zinc-600 underline" style={resetStyle} onClick={handleResetClick}>
+        <button className="absolute text-zinc-800 underline" style={resetStyle} onClick={handleResetClick}>
           Reset
-        </div>
+        </button>
         {/* Sort */}
         <section className="absolute" style={sortStyle}>
           <Sort
@@ -390,13 +394,16 @@ function HomePage() {
         } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-base'}`}
         style={{ opacity: opacityScreenImg, textShadow: '0 0 20px rgba(255, 247, 238, 0.6)' }}
       >
-        Bla ned for avansert søk 
+        Bla ned for avansert søk
         <span>&darr;</span>
       </p>
       {/* Seats */}
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       {/* Search hits */}
-      <section className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white" style={searchStyle}>
+      <section
+        className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white"
+        style={searchStyle}
+      >
         <div style={heightStyle} />
         {moviesLoading ? (
           <div className="flex justify-center items-center w-full">
@@ -413,7 +420,8 @@ function HomePage() {
             {moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length === 0 ? (
               <section className="h-40 flex justify-center items-center w-full">
                 <p className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                  Ingen flere filmer funnet.</p>
+                  Ingen flere filmer funnet.
+                </p>
               </section>
             ) : (
               <section className="h-40 flex justify-center items-center w-full">
