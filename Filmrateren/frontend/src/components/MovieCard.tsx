@@ -33,9 +33,10 @@ return (
       pauseBtn={pauseBtn}
       stopBtn={stopBtn}
       onError={() => console.error('Browser not supported!')}/>
-    <h1 className="text-base sm:text-medium md:text-large lg:text-xl ">
-      {movie.title}
-    </h1>
+    <header className="text-base sm:text-medium md:text-large lg:text-xl ">
+      <h1>{movie.title}
+      </h1>
+    </header>
     <section className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  ">
       <figure className=" flex justify-center md:justify-end  max-w-full">
         <img
