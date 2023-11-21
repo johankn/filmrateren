@@ -7,7 +7,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import { GET_MOVIE_BY_ID_QUERY } from '../queries/SearchQueries';
 import { useQuery } from '@apollo/client';
 import { Movie } from '../components/types';
-import { FaCheck } from "react-icons/fa";
+import { FaCheck } from 'react-icons/fa';
 
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
@@ -30,7 +30,6 @@ function MoviePage() {
     setShowPopup(false);
     setShowSuccessMessage(false);
   };
-    
 
   const handleRatingSuccess = () => {
     setShowSuccessMessage(true);
@@ -39,8 +38,8 @@ function MoviePage() {
       setShowSuccessMessage(false);
     }, 3000);
 
-    if(!movieID){
-      return <div>Movie ID is missing!</div>
+    if (!movieID) {
+      return <div>Movie ID is missing!</div>;
     }
   };
 
@@ -79,7 +78,7 @@ function MoviePage() {
       {showSuccessMessage && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <span className="success-message bg-darkpurple text-base md:text-medium text-white p-3 rounded-lg">
-            Ratingen din er lagt til 
+            Ratingen din er lagt til
             <FaCheck className="inline ml-2" />
           </span>
         </div>

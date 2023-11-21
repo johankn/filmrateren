@@ -35,9 +35,7 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
         }
       }}
     >
-      <a
-        onClick={() => navigate(`/project2/moviePage/${movie.id}`)}
-      >
+      <a onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
         <figcaption
           className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} ${
             smallScreen ? 'text-small' : 'text-base'
