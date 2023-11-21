@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import noPoster from '../assets/noImage.png';
 import { Movie } from './types';
 
@@ -26,14 +26,14 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
   if (!movie) return <p>Movie not found {movie}</p>;
 
   return (
-    <div
+    <button
       className="text-white italic flex flex-col justify-center items-center"
       style={{
         height: `${titleHeight}rem`,
         width: `${titleWidth}rem`,
       }}
     >
-      <div 
+      <a 
         onClick={() => navigate(`/project2/moviePage/${movie.id}`)} 
         tabIndex={0}
         onKeyDown={(event) => {
@@ -42,7 +42,7 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
           }
         }}
         >
-        <div className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} leading-5 h-10 line-clamp-2`}>
+        <figcaption className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} leading-5 h-10 line-clamp-2`}>
           <h1
             ref={h1Ref}
             className={`text-center overflow-hidden ${
@@ -51,8 +51,8 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
           >
             {movie.title}
           </h1>
-        </div>
-        <div className={`flex justify-center items-center ${smallScreen ? 'h-[95%]' : 'h-full'} group`}>
+        </figcaption>
+        <figure className={`flex justify-center items-center ${smallScreen ? 'h-[95%]' : 'h-full'} group`}>
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
@@ -63,9 +63,9 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
             }}
             className="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
           />
-        </div>
-      </div>
-    </div>
+        </figure>
+      </a>
+    </button>
   );
 }
 
