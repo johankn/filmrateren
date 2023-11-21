@@ -72,11 +72,8 @@ function HomePage() {
     windowSize,
     scrollPosition,
     selectedSort == 'RELEASEYEAR_ASC' ||
-      selectedSort == 'RELEASEYEAR_DESC' ||
       selectedSort == 'RUNTIME_ASC' ||
-      selectedSort == 'RUNTIME_DESC' ||
-      selectedSort == 'IMDB_ASC' ||
-      selectedSort == 'IMDB_DESC',
+      selectedSort == 'IMDB_ASC',
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
   );
 
@@ -362,7 +359,7 @@ function HomePage() {
       selectedSort === 'RUNTIME_ASC' ||
       selectedSort === 'RUNTIME_DESC' ||
       selectedSort === 'IMDB_ASC' ||
-      selectedSort === 'IMDB_DESC' 
+      selectedSort === 'IMDB_DESC'
         ? 'auto'
         : 'none',
   }}
