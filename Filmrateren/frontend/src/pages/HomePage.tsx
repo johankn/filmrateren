@@ -29,7 +29,6 @@ import { Checkbox, TextField, Tooltip, Zoom } from '@mui/material';
 function HomePage() {
   const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useRecoilState(scrollPositionState);
-  const [moviesLoaded, setMoviesLoaded] = useState(false);
   const [changeHeight, setChangeHeight] = useState(false);
 
   const [windowSize, setWindowSize] = useState({
@@ -133,7 +132,6 @@ function HomePage() {
 
       // Check if movies have loaded, and set the moviesLoaded state accordingly
       if (moviesData.getFilteredMovies.length > 0) {
-        setMoviesLoaded(true);
 
         // Set a timeout to change the height of the screen so that it has time to return to the previous scroll position when returning from MoviePage
         setTimeout(() => {
