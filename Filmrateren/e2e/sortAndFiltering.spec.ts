@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   // Runs before each test.
-  await page.goto('http://localhost:5173/project2');
-  // await page.goto('http://it2810-05.idi.ntnu.no/project2/');
+  // await page.goto('http://localhost:5173/project2');
+  await page.goto('http://it2810-05.idi.ntnu.no/project2/');
 
 });
 
@@ -52,6 +52,6 @@ test('test remove movies without data toggle', async ({ page }) => {
   await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Søk' }).click();
   await page.getByRole('img', { name: 'Dis - en historie om kjærlighet' }).click();
-  
+
   await expect(page.getByText('IMDB-rating: 1.5 / 10')).toBeVisible();
 });
