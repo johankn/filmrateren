@@ -265,25 +265,23 @@ function HomePage() {
 
   return (
     <div
-      className="m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16"
-      style={homePageStyle}
-    >
+      className="home-page m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16" style={homePageStyle}>
       {/* Clickable logo top left */}
-      <div className="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998" onClick={handleLogoClick}>
+      <figure className="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998" onClick={handleLogoClick}>
         <img src={logo} alt="logo" className="cursor-pointer" style={logoStyle} />
-      </div>
+      </figure>
       {/* Movie screen container */}
-      <div className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative" style={screenStyle}>
+      <main className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative" style={screenStyle}>
         {/* Picture with logo and screen content */}
-        <div className="absolute flex flex-row justify-center">
+        <figure className="absolute flex flex-row justify-center">
           <img
             src={windowSize.width < 740 ? mobileScreen : windowSize.width < 1110 ? mediumScreen : screen}
             alt="screenContent"
             style={screenContentStyle}
           />
-        </div>
+        </figure>
         {/* Search bar autocomplete*/}
-        <div className="absolute z-50" id="autocomplete-search-bar" style={searchBarWrapperStyle}>
+        <section className="absolute z-50" id="autocomplete-search-bar" style={searchBarWrapperStyle}>
           <Autocomplete
             className="h-14 bg-white p-2 rounded"
             open={open}
@@ -319,9 +317,9 @@ function HomePage() {
               navigate(`/project2/moviePage/${movie.id}`);
             }}
           />
-        </div>
+        </section>
         {/* Search bar input */}
-        <div className="absolute z-50" style={newSearchBarStyle}>
+        <section className="absolute z-50" style={newSearchBarStyle}>
           <TextField
             className="bg-white rounded fixed"
             style={{ width: targetWidthSearch }}
@@ -331,22 +329,22 @@ function HomePage() {
             value={selectedTitle}
             onChange={handleTitleChange}
           />
-        </div>
+        </section>
         {/* Filter on genres*/}
-        <div className="absolute" style={filterStyle}>
+        <section className="absolute" style={filterStyle}>
           <Filter
             smallScreen={windowSize.width < 740 ? true : false}
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
-        </div>
-        <div style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
-          <div className="italic text-zinc-600">Fjern filmer uten data</div>
+        </section>
+        <section style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
+          <p className="italic text-zinc-600">Fjern filmer uten data</p>
           <Tooltip
             TransitionComponent={Zoom}
             arrow
             onChange={handleCheckBoxChange}
             title={
-              <h2 style={{ fontSize: '14px' }}>
+              <h2 className='text-base'>
                 Denne knappen vil fjerne alle filmer som ikke har den dataen du har sortert på. F.eks. filmer som ikke
                 har noen IMDB rating.
               </h2>
@@ -362,43 +360,43 @@ function HomePage() {
               }}
             />
           </Tooltip>
-        </div>
+        </section>
         <div className="absolute italic text-zinc-600 underline" style={resetStyle} onClick={handleResetClick}>
           Reset
         </div>
         {/* Sort */}
-        <div className="absolute" style={sortStyle}>
+        <section className="absolute" style={sortStyle}>
           <Sort
             smallScreen={windowSize.width < 740 ? true : false}
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
-        </div>
+        </section>
         {/* Search button */}
-        <div className="absolute z-999" style={btnStyle}>
+        <section className="absolute z-999" style={btnStyle}>
           <button
             style={buttonStyle}
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className="bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            className="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
           >
             Søk
           </button>
-        </div>
-      </div>
+        </section>
+      </main>
       {/* Scroll down indicator */}
-      <div
+      <p
         className={`text-[rgba(255,247,238,0.8)] fixed ${
           windowSize.width < 740 ? 'top-[90%]' : 'top-[92%]'
         } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-base'}`}
         style={{ opacity: opacityScreenImg, textShadow: '0 0 20px rgba(255, 247, 238, 0.6)' }}
       >
-        <p>Bla ned for avansert søk</p>
-        <p>&darr;</p>
-      </div>
+        Bla ned for avansert søk 
+        <span>&darr;</span>
+      </p>
       {/* Seats */}
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       {/* Search hits */}
-      <div className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white" style={searchStyle}>
+      <section className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white" style={searchStyle}>
         <div style={heightStyle} />
         {moviesLoading ? (
           <div className="flex justify-center items-center w-full">
@@ -413,23 +411,22 @@ function HomePage() {
 
             {/* "Load More" button */}
             {moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length === 0 ? (
-              <div className="h-40 flex justify-center items-center w-full">
-                <div className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                  <p>Ingen flere filmer funnet.</p>
-                </div>
-              </div>
+              <section className="h-40 flex justify-center items-center w-full">
+                <p className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                  Ingen flere filmer funnet.</p>
+              </section>
             ) : (
-              <div className="h-40 flex justify-center items-center w-full">
-                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+              <section className="h-40 flex justify-center items-center w-full">
+                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
                   <button className="h-14" onClick={loadMoreCards}>
                     Last flere filmer
                   </button>
                 </div>
-              </div>
+              </section>
             )}
           </>
         )}
-      </div>
+      </section>
     </div>
   );
 }
