@@ -20,8 +20,6 @@ const resolvers = {
         query.genres = { $in: genres };
       }
 
-      console.log(checkbox);
-
       if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
         // Exclude records with "Unknown" releaseYear
         query.IMDBrating = { $ne: 0 };
@@ -101,6 +99,32 @@ const resolvers = {
       // Return the updated movie
       return movie;
     },
+    deleteReview: async (_, { movieId, comment }) => {
+      try {
+        const movie = await Movie.findOne({ id: movieId });
+    
+        if (!movie) {
+          throw new Error("Movie not found");
+        }
+    
+        const reviewIndex = movie.userRatings.findIndex((review) => review.comment === comment);
+    
+        if (reviewIndex !== -1) {
+          // Remove the review from the array
+          movie.userRatings.splice(reviewIndex, 1);
+          
+          // Save the movie with the updated userRatings array
+          await movie.save();
+    
+          return true; // Deletion successful
+        } else {
+          return false; // Review not found or not deleted
+        }
+      } catch (error) {
+        console.error(error);
+        return false; // Error during deletion
+      }
+    },    
   },
 };
 

@@ -1,4 +1,4 @@
-# Dokumentasjon - underveisinnlevering 3
+# Dokumentasjon
 
 ## Filmrateren
 
@@ -43,10 +43,30 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 
 - Vi har brukt issues og issue board på gitlab for å holde oversikt over utviklingsoppgavene. Vi har organisert issuene i labels *setup*, *frontend* og *backend*. Slik har vi lett holdt oversikt over hvilke typer utviklingsoppgaver som må gjøres. Hver issue har også vært koblet til en milestone. Slik har vi kontinuerlig holdt oversikt over hvor mye som gjenstår på prosjektet. I tillegg har vi opprettet merge request etter hver issue ble ferdig, og en annen på teamet har gått igjennom koden og kvalitetsikret den før den har blitt merget til main (peer review).
 
-- I underveisinnlevering 2 er det implementert noen tester:
+#### I underveisinnlevering 2 er det implementert noen tester:
   - vi har **snapshot-tester** som gir oss muligheten til å ta "snapshots" av komponenter og sammenligne dem med tidligere kjøringer for å oppdage uventede endringer.
   - Vi har testet at komponentene mottar riktige **props** og viser riktig innhold basert på disse propsene. Dette sikrer at komponentene våre fungerer som forventet og at de er i stand til å vise variert innhold basert på de data de mottar.
 
-- e2e testing:
-  - **Playwright**
+### Ende-til-ende testing med Playwright:
+Vi har implementert ende-til-ende tester ved hjelp av Playwright for å teste samspillet mellom server og frontend, og at riktig data hentes. Playwright er et verktøy som gjør det mulig å automatisere testingen av nettapplikasjoner i ulike nettlesere (chrome, firefox, safari). Vi har i tillegg til å bruke Playwright testet backenden mye i Apollo Studio sin UI for å sikre at spørringene fungerer som forventet. 
+
+**Testscenarioer**
+
+Vi har utviklet flere testscenarioer for å verifisere at ulike funksjoner i applikasjonen fungerer som forventet. Dette inkluderer testing av navigasjon, at riktige filmer blir hentet etter filtrering og sortering, og håndtering av brukeranmeldelser.
+
+**Utfordringer med brukeranmeldelser**
+
+I løpet av testprosessen identifiserte vi en utfordring knyttet til brukeranmeldelser på filmer. En av testene innebar å legge til en brukeranmeldelse på en film ved hjelp av Playwright-tester på tvers av ulike nettlesere. Denne testen støtte imidlertid på begrensninger i eksisterende funksjonalitet, spesielt relatert til håndtering av dupliserte anmeldelser. For å løse denne utfordringen implementerte vi en midlertidig løsning ved å opprette en tilpasset backend-metode. Denne metoden tillot sletting av brukeranmeldelser med en spesifikk kommentar og var spesifikt utformet for testingsscenarier.
+
+Noen av de vurderte alternativene for å forbedre denne funksjonaliteten er:
+
+- **Test-database:**
+
+  - Ideelt sett ville en test-database ha gitt oss muligheten til å legge til og slette brukeranmeldelser under testprosessen. Dette ville ha eliminert utfordringen med duplikater, da vi kunne ha kontrollert tilstanden til databasen før hver test.
+
+- **Brukerinnlogging:**
+
+  - Implementering av brukerinnlogging kunne ha tillatt en test-bruker å ha en egen knapp for å slette egne anmeldelser. Dette ville ha gjort det mulig å håndtere dupliserte anmeldelser ved å slette dem etter hver test. Imidlertid er ikke brukerinnlogging for øyeblikket implementert i prosjektet vårt, og derfor er ikke denne tilnærmingen tilgjengelig.
+
+
 
