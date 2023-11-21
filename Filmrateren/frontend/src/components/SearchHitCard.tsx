@@ -29,15 +29,14 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
         height: `${titleHeight}rem`,
         width: `${titleWidth}rem`,
       }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') {
+          navigate(`/project2/moviePage/${movie.id}`);
+        }
+      }}
     >
       <a
         onClick={() => navigate(`/project2/moviePage/${movie.id}`)}
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter') {
-            navigate(`/project2/moviePage/${movie.id}`);
-          }
-        }}
       >
         <figcaption
           className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} ${
