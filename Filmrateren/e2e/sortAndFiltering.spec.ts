@@ -38,3 +38,20 @@ test('test sorting and filtering with text input', async ({ page }) => {
   await expect(page.getByRole('img', { name: 'Kon-Tiki' })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Helt Super' })).toBeHidden();
 });
+
+test('test remove movies without data toggle', async ({ page }) => {
+  await page.getByLabel('Sortering').click();
+  await page.getByRole('option', { name: 'Rating IMDB stigende' }).click();
+  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.getByRole('img', { name: 'Håndtering av udøde' }).click();
+
+  await expect(page.getByText('IMDB-rating: Ingen anmeldelser')).toBeVisible();
+  
+  await page.getByRole('button', { name: '←' }).click();
+  await expect(page.getByText('Fjern filmer uten data')).toBeVisible();
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.getByRole('img', { name: 'Dis - en historie om kjærlighet' }).click();
+
+  await expect(page.getByText('IMDB-rating: 1.5 / 10')).toBeVisible();
+});

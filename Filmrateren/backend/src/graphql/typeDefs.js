@@ -42,6 +42,7 @@ const typeDefs = gql`
 
   type Mutation {
     addRatingToMovie(movieId: ID!, rating: UserRatingInput!): Movie!
+    deleteReview(movieId: ID!, comment: String!): Boolean
   }
 `;
 

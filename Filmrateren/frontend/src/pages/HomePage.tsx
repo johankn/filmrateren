@@ -138,6 +138,7 @@ function HomePage() {
 
       // Check if movies have loaded, and set the moviesLoaded state accordingly
       if (moviesData.getFilteredMovies.length > 0) {
+
         // Set a timeout to change the height of the screen so that it has time to return to the previous scroll position when returning from MoviePage
         setTimeout(() => {
           setChangeHeight(true);
