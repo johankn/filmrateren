@@ -21,7 +21,7 @@ const resolvers = {
       }
 
       if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
-        // Exclude records with "Unknown" releaseYear
+        // Exclude records with "Unknown" IMDBrating
         query.IMDBrating = { $ne: 0 };
       } else if (
         checkbox &&
@@ -33,7 +33,7 @@ const resolvers = {
         checkbox &&
         (sort === "RUNTIME_DESC" || sort === "RUNTIME_ASC")
       ) {
-        // Exclude records with "Unknown" releaseYear
+        // Exclude records with "Unknown" runtime
         query.runtime = { $ne: 0 };
       }
 
@@ -64,8 +64,22 @@ const resolvers = {
         case "RUNTIME_ASC":
           sortOption = { runtime: 1 };
           break;
-
         default:
+          if (!sort) {
+            const movies = await Movie.find(query).limit(limit).skip(skip);
+
+            // Sort movies based on the count of genre matches
+            return movies.sort((a, b) => {
+              const genreMatchesA = genres.filter((genre) =>
+                a.genres.includes(genre)
+              ).length;
+              const genreMatchesB = genres.filter((genre) =>
+                b.genres.includes(genre)
+              ).length;
+
+              return genreMatchesB - genreMatchesA; // Sort in descending order
+            });
+          }
           break; // No sorting
       }
 

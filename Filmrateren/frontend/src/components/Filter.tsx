@@ -79,10 +79,20 @@ function MultipleSelectCheckmarks(props: FilterProps) {
         multiple
         value={selectedGenres}
         onChange={handleChange}
-        input={<OutlinedInput label="Sjanger (kun demo)" margin="dense" />}
+        input={
+          <OutlinedInput
+            label="Sjanger"
+            margin="dense"
+            inputProps={{
+              sx: {
+                padding: props.mediumScreen ? '13.5px' : undefined, // Adjust the padding value as needed
+              },
+            }}
+          />
+        }
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
-        sx={{ fontSize: props.mediumScreen ? '0.5rem' : '1rem' }}
+        sx={{ fontSize: props.mediumScreen ? '0.8rem' : '1rem' }}
       >
         {names.map((name) => (
           <MenuItem key={name} value={name}>

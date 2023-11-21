@@ -17,6 +17,7 @@ function MoviePage() {
   const { loading, error, data } = useQuery(GET_MOVIE_BY_ID_QUERY, {
     variables: { movieId: Number(movieID) },
   });
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -25,7 +26,7 @@ function MoviePage() {
   const movie: Movie | undefined = data.getMovieByID;
   if (!movie) return <p>Movie not found</p>;
 
-  const handleClosePopup = () => {
+  const handleClosePopup = async () => {
     setShowPopup(false);
   };
 
@@ -48,11 +49,12 @@ function MoviePage() {
           <MovieCard movie={movie} />
         </main>
         <div className="flex md:justify-center justify-center mx-auto w-full md:ml-28 pb-8  ">
-            <button
-              className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
-              onClick={() => setShowPopup(true)}>
-              Rate filmen
-            </button>
+          <button
+            className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+            onClick={() => setShowPopup(true)}
+          >
+            Rate filmen
+          </button>
         </div>
         <section className="p-10">
           <h1 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
@@ -67,11 +69,11 @@ function MoviePage() {
       </div>{' '}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
-        <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
-      </div>
+          <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
+        </div>
       )}
     </div>
   );
-};
+}
 
 export default MoviePage;
