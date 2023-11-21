@@ -37,30 +37,27 @@ function MoviePage() {
 
   return (
     <>
-      <main className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
-        <ScrollToTop />
-        <nav className="fixed top-0 left-0 p-4">
+      <nav className="fixed top-0 left-0 p-4">
           <button className="hover:scale-125" onClick={() => navigate(-1)}>
             <span className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
           </button>
         </nav>
-        <article className="pt-7 ">
+      <main className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
+        <ScrollToTop />
+        <section className="pt-7 ">
           <MovieCard movie={movie} />
-        </article>
-        <div className="flex md:justify-center justify-center mx-auto w-full md:ml-28 pb-8  ">
-          {!showPopup && (
+        </section>
+        <article className="flex md:justify-center justify-center mx-auto w-full md:ml-28 pb-8  ">
             <button
               className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
-              onClick={() => setShowPopup(true)}
-            >
+              onClick={() => setShowPopup(true)}>
               Rate filmen
             </button>
-          )}
-        </div>
+        </article>
         <section className="p-10">
-          <div className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
+          <h1 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
             RATINGS ({movie.userRatings.length})
-          </div>
+          </h1>
           {movie.userRatings.map((rating, index) => (
             <article key={index} className="mt-6 mb-6 mx-auto w-4/6 ">
               <RatingCard name={rating.name} rating={rating.rating} comment={rating.comment} />
@@ -70,8 +67,8 @@ function MoviePage() {
       </main>{' '}
       {showPopup && (
         <article className="fixed inset-0 flex items-center justify-center z-10">
-          <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
-        </article>
+        <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
+      </article>
       )}
     </>
   );
