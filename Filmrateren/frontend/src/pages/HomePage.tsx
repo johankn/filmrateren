@@ -70,7 +70,12 @@ function HomePage() {
   } = getHomePageStyles(
     windowSize,
     scrollPosition,
-    selectedSort == 'RELEASEYEAR_ASC' || selectedSort == 'RUNTIME_ASC' || selectedSort == 'IMDB_ASC',
+    selectedSort == 'RELEASEYEAR_ASC' ||
+      selectedSort == 'RELEASEYEAR_DESC' ||
+      selectedSort == 'RUNTIME_ASC' ||
+      selectedSort == 'RUNTIME_DESC' ||
+      selectedSort == 'IMDB_ASC' ||
+      selectedSort == 'IMDB_DESC',
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
   );
 
@@ -255,17 +260,16 @@ function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
-  const handleFocus = () => {
-    const searchBar = document.getElementById('new-search-bar');
-    if (searchBar) {
-      searchBar.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      });
-    }
-
-  };
+  // const handleFocus = () => {
+  //   const searchBar = document.getElementById('new-search-bar');
+  //   if (searchBar) {
+  //     searchBar.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'start',
+  //       inline: 'nearest',
+  //     });
+  //   }
+  // };
 
   return (
     <div
@@ -325,7 +329,7 @@ function HomePage() {
           <TextField
             className="bg-white rounded fixed"
             style={{ width: targetWidthSearch }}
-            onFocus={handleFocus}
+            // onFocus={handleFocus}
             id="new-search-bar"
             label="Tittel..."
             variant="outlined"
@@ -348,20 +352,20 @@ function HomePage() {
           />
         </section>
         <section
-  style={{
-    ...checkBoxStyle,
-    pointerEvents:
-      selectedSort === 'RELEASEYEAR_ASC' ||
-      selectedSort === 'RELEASEYEAR_DESC' ||
-      selectedSort === 'RUNTIME_ASC' ||
-      selectedSort === 'RUNTIME_DESC' ||
-      selectedSort === 'IMDB_ASC' ||
-      selectedSort === 'IMDB_DESC' 
-        ? 'auto'
-        : 'none',
-  }}
-  className="absolute flex flex-row justify-center items-center"
->
+          style={{
+            ...checkBoxStyle,
+            pointerEvents:
+              selectedSort === 'RELEASEYEAR_ASC' ||
+              selectedSort === 'RELEASEYEAR_DESC' ||
+              selectedSort === 'RUNTIME_ASC' ||
+              selectedSort === 'RUNTIME_DESC' ||
+              selectedSort === 'IMDB_ASC' ||
+              selectedSort === 'IMDB_DESC'
+                ? 'auto'
+                : 'none',
+          }}
+          className="absolute flex flex-row justify-center items-center"
+        >
           <p className="text-zinc-800">Fjern filmer uten data</p>
           <Tooltip
             TransitionComponent={Zoom}
@@ -402,7 +406,11 @@ function HomePage() {
             Søk
           </button>
         </section>
-        <button className="absolute text-zinc-800 underline" style={resetStyle} onClick={handleResetClick}>
+        <button
+          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          style={resetStyle}
+          onClick={handleResetClick}
+        >
           Reset
         </button>
       </main>
@@ -445,8 +453,8 @@ function HomePage() {
             ) : (
               <section className="h-40 flex justify-center items-center w-full">
                 <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                <button 
-                    className="h-14" 
+                  <button
+                    className="h-14"
                     onClick={loadMoreCards}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {

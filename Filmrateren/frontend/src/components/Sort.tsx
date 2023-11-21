@@ -16,9 +16,8 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
     <FormControl
       sx={{
         m: 1,
-        minWidth: smallScreen ? 143 : mediumScreen ? 278 : 200,
+        width: smallScreen ? 143 : mediumScreen ? 278 : 200,
         minHeight: 10,
-        maxWidth: smallScreen ? 143 : undefined,
       }}
       className="bg-white rounded"
     >
