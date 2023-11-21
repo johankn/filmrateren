@@ -249,9 +249,21 @@ function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
+  const scrollToElement = (element: HTMLElement) => {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+  };
+
   const handleFocus = () => {
     // Scroll back to the stored position when focusing on the text field, bug on mobile devices
-    window.scrollTo(0, scrollPosition);
+    // window.scrollTo(0, scrollPosition);
+    const searchBar = document.getElementById('new-search-bar');
+    if (searchBar) {
+      scrollToElement(searchBar);
+    }
   };
 
   return (
@@ -308,6 +320,7 @@ function HomePage() {
         <div className="absolute z-50" style={newSearchBarStyle}>
           <TextField
             className="bg-white rounded fixed"
+            id="new-search-bar"
             style={{ width: targetWidthSearch }}
             onFocus={handleFocus}
             label="Tittel..."
@@ -411,7 +424,6 @@ function HomePage() {
                   <button 
                     className="h-14" 
                     onClick={loadMoreCards} 
-                    tabIndex={0} 
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {
                         loadMoreCards();
