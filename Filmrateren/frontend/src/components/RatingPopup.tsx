@@ -9,10 +9,11 @@ import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
 
 type RatingPopupProps = {
   onClose: () => void;
+  onRatingSuccess: () => void;
   movieID: number;
 };
 
-function RatingPopup({ onClose, movieID }: RatingPopupProps) {
+function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
   const [name, setName] = useState('');
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
@@ -44,6 +45,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
       addRatingToMovie({ variables })
         .then((response) => {
           console.log('Rating added successfully', response.data.addRatingToMovie);
+          onRatingSuccess(); // Notify MoviePage about the success
         })
         .catch((error) => {
           console.error('Error adding rating', error);
@@ -54,15 +56,9 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
       }
     } else {
       console.error('Incomplete data. Please fill in all fields.');
-      if (!nameIsValid) {
-        setNameError(true);
-      } else setNameError(false);
-      if (!ratingIsValid) {
-        setRatingError(true);
-      } else setRatingError(false);
-      if (!commentIsValid) {
-        setCommentError(true);
-      } else setCommentError(false);
+      setNameError(!nameIsValid);
+      setRatingError(!ratingIsValid);
+      setCommentError(!commentIsValid);
     }
   };
 

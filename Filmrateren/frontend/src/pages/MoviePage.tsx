@@ -7,10 +7,12 @@ import ScrollToTop from '../components/ScrollToTop';
 import { GET_MOVIE_BY_ID_QUERY } from '../queries/SearchQueries';
 import { useQuery } from '@apollo/client';
 import { Movie } from '../components/types';
+import { FaCheck } from "react-icons/fa";
 
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
   const [showPopup, setShowPopup] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,20 +23,26 @@ function MoviePage() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log('Data', data);
-
   const movie: Movie | undefined = data.getMovieByID;
   if (!movie) return <p>Movie not found</p>;
 
   const handleClosePopup = async () => {
     setShowPopup(false);
+    setShowSuccessMessage(false);
   };
+    
 
-  if (!movieID) {
-    return <div>Movie ID is missing!</div>;
-  }
+  const handleRatingSuccess = () => {
+    setShowSuccessMessage(true);
 
-  console.log(movie);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
+
+    if(!movieID){
+      return <div>Movie ID is missing!</div>
+    }
+  };
 
   return (
     <div className="movie-page">
@@ -66,10 +74,19 @@ function MoviePage() {
             </div>
           ))}
         </section>
-      </div>{' '}
+      </div>
+      {/* Success message */}
+      {showSuccessMessage && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <span className="success-message bg-darkpurple text-medium text-white p-3 rounded-lg">
+            Ratingen din er lagt til 
+            <FaCheck className="inline ml-2" />
+          </span>
+        </div>
+      )}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
-          <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
+          <RatingPopup onClose={handleClosePopup} onRatingSuccess={handleRatingSuccess} movieID={Number(movieID)} />
         </div>
       )}
     </div>
