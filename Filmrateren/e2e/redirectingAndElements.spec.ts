@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   // Runs before each test.
-  await page.goto("http://localhost:5173/project2");
-  // await page.goto('http://it2810-05.idi.ntnu.no/project2/');
+  // await page.goto("http://localhost:5173/project2");
+  await page.goto('http://it2810-05.idi.ntnu.no/project2/');
 });
 
 // Test to check if the title contains "Film rateren"
@@ -21,8 +21,8 @@ test("autocomplete and redirect", async ({ page }) => {
   await page.getByRole("option", { name: "Kongens nei" }).click();
   // Validate the redirected URL
   const url = await page.url();
-  expect(url).toContain("http://localhost:5173/project2/moviePage/1058");
-  // expect(url).toContain('http://it2810-05.idi.ntnu.no/project2/moviePage/1058');
+  // expect(url).toContain("http://localhost:5173/project2/moviePage/1058");
+  expect(url).toContain('http://it2810-05.idi.ntnu.no/project2/moviePage/1058');
 });
 
 // Test for scrolling down, clicking on a movie, and validating visibility of elements
@@ -79,7 +79,7 @@ test("redirecting and rate movie test", async ({ page }) => {
 
   // Method for deleting the userrating, and then expect it to be gone
   const deletionResult = await page.evaluate(async () => {
-    return fetch("http://localhost:4000/graphql", {
+    return fetch("http://it2810-05.idi.ntnu.no:4000/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

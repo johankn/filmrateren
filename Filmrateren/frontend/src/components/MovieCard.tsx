@@ -86,7 +86,7 @@ function MovieCard({ movie }: MovieCardProps) {
             {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10`}
           </p>
           <span className="font-bold">Bruker-rating:</span>{' '}
-          {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5`}
+          {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}
           <figure className="flex text-yellow">
             <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
           </figure>
