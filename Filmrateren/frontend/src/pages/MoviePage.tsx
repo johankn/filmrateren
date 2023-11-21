@@ -78,7 +78,7 @@ function MoviePage() {
       {/* Success message */}
       {showSuccessMessage && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <span className="success-message bg-darkpurple text-medium text-white p-3 rounded-lg">
+          <span className="success-message bg-darkpurple text-base md:text-medium text-white p-3 rounded-lg">
             Ratingen din er lagt til 
             <FaCheck className="inline ml-2" />
           </span>

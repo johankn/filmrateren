@@ -1,6 +1,6 @@
 # Project 2 - Filmrateren
 
-## The documentation for the project can be found [here](/Filmrateren/README.md). This is written in Norwegian. 
+### The documentation for the project can be found [here](/Filmrateren/README.md). This is written in Norwegian. 
 
 ## Link to the project hosted by our virtual machine (must be on NTNU network)
 
@@ -67,3 +67,5 @@ npx playwright test
 npm install
 npx playwright test --ui
 ```
+
+**Read more about the e2e-tests [here](/Filmrateren/e2e/).**
