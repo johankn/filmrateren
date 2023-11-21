@@ -145,6 +145,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     width: `${targetWidthSearch}px`,
     left: `${targetLeftSearch}px`,
     pointerEvents: opacity == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+    tabIndex: opacity === 1 ? 0 : -1,
     transition: `opacity ${transitionDuration} ${easeOutQuart}, margin-top ${transitionDuration} ${easeOutQuart}, width ${transitionDuration} ${easeOutQuart}, left ${transitionDuration} ${easeOutQuart}`,
   };
 
@@ -153,6 +154,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     right: `${targetRightFilter}px`,
     marginTop: `${targetTopFilterSort}px`,
     pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+    tabIndex: opacityFilterSort === 1 ? 0 : -1,
     transition: `opacity ${transitionDuration} ${easeOutQuart}, right ${transitionDuration} ${easeOutQuart}, margin-top ${transitionDuration} ${easeOutQuart}`,
   };
 
@@ -161,6 +163,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
     right: `${targetRightSort}px`,
     marginTop: `${targetTopFilterSort}px`,
     pointerEvents: opacityFilterSort == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+    tabIndex: opacityFilterSort === 1 ? 0 : -1,
     transition: `opacity ${transitionDuration} ${easeOutQuart}, right ${transitionDuration} ${easeOutQuart}, margin-top ${transitionDuration} ${easeOutQuart}`,
   };
 
@@ -173,6 +176,7 @@ export function getHomePageStyles(windowSize: { width: number }, scrollPosition:
   };
 
   const buttonStyle = {
+    tabIndex: opacityFilterSort === 1 ? 0 : -1,
     minHeight: `${targetButtonHeight}rem`,
     width: `${targetButtonWidth}rem`,
     transition: `min-height ${transitionDuration} ${easeOutQuart}, width ${transitionDuration} ${easeOutQuart}`,
