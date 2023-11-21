@@ -71,9 +71,7 @@ function HomePage() {
   } = getHomePageStyles(
     windowSize,
     scrollPosition,
-    selectedSort == 'RELEASEYEAR_ASC' ||
-      selectedSort == 'RUNTIME_ASC' ||
-      selectedSort == 'IMDB_ASC',
+    selectedSort == 'RELEASEYEAR_ASC' || selectedSort == 'RUNTIME_ASC' || selectedSort == 'IMDB_ASC',
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
   );
 
@@ -267,7 +265,6 @@ function HomePage() {
         inline: 'nearest',
       });
     }
-
   };
 
   return (
@@ -351,20 +348,20 @@ function HomePage() {
           />
         </section>
         <section
-  style={{
-    ...checkBoxStyle,
-    pointerEvents:
-      selectedSort === 'RELEASEYEAR_ASC' ||
-      selectedSort === 'RELEASEYEAR_DESC' ||
-      selectedSort === 'RUNTIME_ASC' ||
-      selectedSort === 'RUNTIME_DESC' ||
-      selectedSort === 'IMDB_ASC' ||
-      selectedSort === 'IMDB_DESC'
-        ? 'auto'
-        : 'none',
-  }}
-  className="absolute flex flex-row justify-center items-center"
->
+          style={{
+            ...checkBoxStyle,
+            pointerEvents:
+              selectedSort === 'RELEASEYEAR_ASC' ||
+              selectedSort === 'RELEASEYEAR_DESC' ||
+              selectedSort === 'RUNTIME_ASC' ||
+              selectedSort === 'RUNTIME_DESC' ||
+              selectedSort === 'IMDB_ASC' ||
+              selectedSort === 'IMDB_DESC'
+                ? 'auto'
+                : 'none',
+          }}
+          className="absolute flex flex-row justify-center items-center"
+        >
           <p className="text-zinc-800">Fjern filmer uten data</p>
           <Tooltip
             TransitionComponent={Zoom}
@@ -463,8 +460,8 @@ function HomePage() {
             ) : (
               <section className="h-40 flex justify-center items-center w-full">
                 <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                <button 
-                    className="h-14" 
+                  <button
+                    className="h-14"
                     onClick={loadMoreCards}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {
