@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   // Runs before each test.
-  // await page.goto('http://localhost:5173/project2');
-  await page.goto('http://it2810-05.idi.ntnu.no/project2/');
+  await page.goto('http://localhost:5173/project2');
+  // await page.goto('http://it2810-05.idi.ntnu.no/project2/');
 
 });
 
