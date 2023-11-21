@@ -36,7 +36,7 @@ function MoviePage() {
   console.log(movie);
 
   return (
-    <>
+    <body>
       <main className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
         <ScrollToTop />
         <nav className="fixed top-0 left-0 p-4">
@@ -70,8 +70,8 @@ function MoviePage() {
         <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
       </section>
       )}
-    </>
+    </body>
   );
-}
+};
 
 export default MoviePage;

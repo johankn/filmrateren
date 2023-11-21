@@ -26,7 +26,7 @@ function MovieCard({ movie }: MovieCardProps) {
   const pauseBtn = <button className='text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform'><FaVolumeMute></FaVolumeMute></button>
   const stopBtn = <button className='text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform'><IoMdRefresh></IoMdRefresh></button>
 return (
-  <main className="grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center ">
+  <body className="grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center ">
     <Speech text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')}. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Beskrivelse av filmen: ${movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot}.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)} `}
       rate={0.8}
       startBtn={startBtn}
@@ -37,7 +37,7 @@ return (
       <h1>{movie.title}
       </h1>
     </header>
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  ">
+    <main className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  ">
       <figure className=" flex justify-center md:justify-end  max-w-full">
         <img
           src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
@@ -80,8 +80,8 @@ return (
           </figure>
         </section>
       </section>
-    </section>
-  </main>
+    </main>
+  </body>
   );
 }
 
