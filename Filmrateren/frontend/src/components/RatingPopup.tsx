@@ -73,54 +73,58 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
         </button>
         <form onSubmit={handleSubmit} className="flex-grow">
           <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-            <FormLabel style={{ color: 'white', fontSize: 'large' }}>Navn</FormLabel>
-            <Input
-              size="md"
-              placeholder="Eks: Ola Nordmann"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              error={showNameError}
-            />
-            {(showNameError) && (
-              <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                Skriv inn navnet ditt
-              </FormHelperText>
-            )}
-            <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
+            <section>
+              <FormLabel style={{ color: 'white', fontSize: 'large' }}>Navn</FormLabel>
+              <Input
+                size="md"
+                placeholder="Eks: Ola Nordmann"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                error={showNameError}
+              />
+              {(showNameError) && (
+                <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+                  Skriv inn navnet ditt
+                </FormHelperText>
+              )}
+            </section>
             <figure>
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  type="button"
-                  key={star}
-                  style={{
-                    color: star <= (rating || 0) ? 'gold' : 'lightgrey',
-                    fontSize: '4vw',
-                  }}
-                  onClick={() => setRating(star)}
-                >
-                  ★
-                </button>
-              ))}
+              <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    type="button"
+                    key={star}
+                    style={{
+                      color: star <= (rating || 0) ? 'gold' : 'lightgrey',
+                      fontSize: '4vw',
+                    }}
+                    onClick={() => setRating(star)}
+                  >
+                    ★
+                  </button>
+                ))}
             </figure>
-            {(showRatingError) && (
-              <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                Klikk på en stjerne for å velge rating
-              </FormHelperText>
-            )}
-            <FormLabel style={{ color: 'white', fontSize: 'large'}}>Kommentarer</FormLabel>
-            <Textarea
-              size="md"
-              placeholder="Eks: En skummel, men spennende film!"
-              minRows={4}
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              error={showCommentError}
-            />
-            {(showCommentError) && (
-              <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-                Skriv inn en kommentar til ratingen
-              </FormHelperText>
-            )}
+            <section>
+              {(showRatingError) && (
+                <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+                  Klikk på en stjerne for å velge rating
+                </FormHelperText>
+              )}
+              <FormLabel style={{ color: 'white', fontSize: 'large'}}>Kommentarer</FormLabel>
+              <Textarea
+                size="md"
+                placeholder="Eks: En skummel, men spennende film!"
+                minRows={4}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                error={showCommentError}
+              />
+              {(showCommentError) && (
+                <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+                  Skriv inn en kommentar til ratingen
+                </FormHelperText>
+              )}
+            </section>
             <button 
               className="ml-5 rounded-lg w-16 h-8 sm:w-16 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple" 
               type="submit"
