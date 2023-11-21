@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://web-team-05:EJYez2cLugo6oyeU@cluster0.aytvtnm.mongodb.net/moviesDB?retryWrites=true&w=majority",
+  "mongodb://admin:EJYez2cLugo6oyeU@it2810-05.idi.ntnu.no:27017/moviesDB?authSource=admin&authMechanism=DEFAULT",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
