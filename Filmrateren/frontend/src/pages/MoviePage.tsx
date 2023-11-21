@@ -66,9 +66,9 @@ function MoviePage() {
         </section>
       </main>{' '}
       {showPopup && (
-        <article className="fixed inset-0 flex items-center justify-center z-10">
+        <section className="fixed inset-0 flex items-center justify-center z-10">
         <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
-      </article>
+      </section>
       )}
     </>
   );
