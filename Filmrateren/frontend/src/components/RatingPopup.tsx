@@ -6,14 +6,13 @@ import FormLabel from '@mui/joy/FormLabel';
 import { FormHelperText } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
-import { Movie } from './types';
 
 type RatingPopupProps = {
   onClose: () => void;
-  movie: Movie;
+  movieID: number;
 };
 
-function RatingPopup({ onClose, movie }: RatingPopupProps) {
+function RatingPopup({ onClose, movieID }: RatingPopupProps) {
   const [name, setName] = useState('');
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
@@ -24,31 +23,26 @@ function RatingPopup({ onClose, movie }: RatingPopupProps) {
 
   const [addRatingToMovie] = useMutation(ADD_RATING_TO_MOVIE);
 
-  const nameIsValid = !(/^\s+$/.test(name)) && name; // Check if name contains other characters than whitespace
-  const commentIsValid = !(/^\s+$/.test(comment)) && comment; // Check if comment contains  other characters than whitespace
-  const ratingIsValid = (rating !== null);
+  const nameIsValid = !/^\s+$/.test(name) && name; // Check if name contains other characters than whitespace
+  const commentIsValid = !/^\s+$/.test(comment) && comment; // Check if comment contains  other characters than whitespace
+  const ratingIsValid = rating !== null;
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (movieID && ratingIsValid && nameIsValid && commentIsValid) {
-
       const variables = {
-        movieId: movie.id,
+        movieId: movieID,
         rating: {
           name: name,
           rating: rating,
           comment: comment,
         },
-        avgUserRating: avgRating,
       };
-
-      
 
       addRatingToMovie({ variables })
         .then((response) => {
           console.log('Rating added successfully', response.data.addRatingToMovie);
-          // Call the callback function with the new avgUserRating value
         })
         .catch((error) => {
           console.error('Error adding rating', error);
@@ -57,12 +51,17 @@ function RatingPopup({ onClose, movie }: RatingPopupProps) {
       if (onClose) {
         onClose();
       }
-    }
-    else {
-        console.error('Incomplete data. Please fill in all fields.');
-        if (!nameIsValid) {setNameError(true)} else setNameError(false)
-        if (!ratingIsValid) {setRatingError(true)} else setRatingError(false)
-        if (!commentIsValid) {setCommentError(true)} else setCommentError(false)
+    } else {
+      console.error('Incomplete data. Please fill in all fields.');
+      if (!nameIsValid) {
+        setNameError(true);
+      } else setNameError(false);
+      if (!ratingIsValid) {
+        setRatingError(true);
+      } else setRatingError(false);
+      if (!commentIsValid) {
+        setCommentError(true);
+      } else setCommentError(false);
     }
   };
 
@@ -86,7 +85,7 @@ function RatingPopup({ onClose, movie }: RatingPopupProps) {
             onChange={(e) => setName(e.target.value)}
             error={showNameError}
           />
-          {(showNameError) && (
+          {showNameError && (
             <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
               Skriv inn navnet ditt
             </FormHelperText>
@@ -107,12 +106,12 @@ function RatingPopup({ onClose, movie }: RatingPopupProps) {
               </button>
             ))}
           </section>
-          {(showRatingError) && (
+          {showRatingError && (
             <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
               Klikk på en stjerne for å velge rating
             </FormHelperText>
           )}
-          <FormLabel style={{ color: 'white', fontSize: 'large'}}>Kommentarer</FormLabel>
+          <FormLabel style={{ color: 'white', fontSize: 'large' }}>Kommentarer</FormLabel>
           <Textarea
             size="md"
             placeholder="Eks: En skummel, men spennende film!"
@@ -121,15 +120,15 @@ function RatingPopup({ onClose, movie }: RatingPopupProps) {
             onChange={(e) => setComment(e.target.value)}
             error={showCommentError}
           />
-          {(showCommentError) && (
+          {showCommentError && (
             <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
               Skriv inn en kommentar til ratingen
             </FormHelperText>
           )}
-          <button 
+          <button
             className="ml-5 rounded-lg w-44 h-14 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
             type="submit"
-            >
+          >
             Send inn
           </button>
         </Stack>
