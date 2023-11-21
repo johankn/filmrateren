@@ -37,13 +37,13 @@ function MoviePage() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 p-4">
+      <main className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
+        <ScrollToTop />
+        <nav className="fixed top-0 left-0 p-4">
           <button className="hover:scale-125" onClick={() => navigate(-1)}>
             <span className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
           </button>
         </nav>
-      <main className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
-        <ScrollToTop />
         <section className="pt-7 ">
           <MovieCard movie={movie} />
         </section>
