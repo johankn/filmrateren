@@ -67,11 +67,15 @@ function HomePage() {
     targetWidthSearch,
     checkBoxStyle,
     resetStyle,
-    checkBoxOpacity,
   } = getHomePageStyles(
     windowSize,
     scrollPosition,
-    selectedSort == 'RELEASEYEAR_ASC' || selectedSort == 'RUNTIME_ASC' || selectedSort == 'IMDB_ASC',
+    selectedSort == 'RELEASEYEAR_ASC' ||
+      selectedSort == 'RELEASEYEAR_DESC' ||
+      selectedSort == 'RUNTIME_ASC' ||
+      selectedSort == 'RUNTIME_DESC' ||
+      selectedSort == 'IMDB_ASC' ||
+      selectedSort == 'IMDB_DESC',
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
   );
 
@@ -256,16 +260,16 @@ function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
-  const handleFocus = () => {
-    const searchBar = document.getElementById('new-search-bar');
-    if (searchBar) {
-      searchBar.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest',
-      });
-    }
-  };
+  // const handleFocus = () => {
+  //   const searchBar = document.getElementById('new-search-bar');
+  //   if (searchBar) {
+  //     searchBar.scrollIntoView({
+  //       behavior: 'smooth',
+  //       block: 'start',
+  //       inline: 'nearest',
+  //     });
+  //   }
+  // };
 
   return (
     <div
@@ -325,7 +329,7 @@ function HomePage() {
           <TextField
             className="bg-white rounded fixed"
             style={{ width: targetWidthSearch }}
-            onFocus={handleFocus}
+            // onFocus={handleFocus}
             id="new-search-bar"
             label="Tittel..."
             variant="outlined"
@@ -391,13 +395,6 @@ function HomePage() {
             />
           </Tooltip>
         </section>
-        <button
-          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
-          style={resetStyle}
-          onClick={handleResetClick}
-        >
-          Reset
-        </button>
         {/* Sort */}
         <section className="absolute" style={sortStyle}>
           <Sort
@@ -416,7 +413,11 @@ function HomePage() {
             Søk
           </button>
         </section>
-        <button className="absolute text-zinc-800 underline" style={resetStyle} onClick={handleResetClick}>
+        <button
+          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          style={resetStyle}
+          onClick={handleResetClick}
+        >
           Reset
         </button>
       </main>
