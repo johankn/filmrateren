@@ -9,7 +9,6 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
   const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
 
   const handleSortChange = (event: SelectChangeEvent) => {
-    console.log('event.target.value: ', event.target.value);
     setSelectedSort(event.target.value);
   };
 

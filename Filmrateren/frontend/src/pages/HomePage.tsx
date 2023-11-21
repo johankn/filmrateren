@@ -127,7 +127,6 @@ function HomePage() {
     });
 
     setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
-    console.log('Cards to show:', cardsToShow);
   };
 
   const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
@@ -138,7 +137,6 @@ function HomePage() {
 
       // Check if movies have loaded, and set the moviesLoaded state accordingly
       if (moviesData.getFilteredMovies.length > 0) {
-
         // Set a timeout to change the height of the screen so that it has time to return to the previous scroll position when returning from MoviePage
         setTimeout(() => {
           setChangeHeight(true);
@@ -188,7 +186,6 @@ function HomePage() {
   };
 
   const handleSearchClick = useCallback(() => {
-    console.log('Selected Sort:', selectedSort);
     setCardsToShow(initialCardsToShow);
     setPagedMovies([]);
     setPreviousTitle(selectedTitle);
@@ -209,7 +206,6 @@ function HomePage() {
   }, [selectedTitle, selectedGenres, selectedSort, isChecked]);
 
   const handleRender = useCallback(() => {
-    console.log('Selected Sort:', selectedSort);
     setCardsToShow(cardsToShow);
     setPagedMovies([]);
     setPreviousTitle(selectedTitle);
