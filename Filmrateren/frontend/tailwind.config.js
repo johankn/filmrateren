@@ -4,20 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        white: '#FFFFFF',
         yellow: '#ffce00',
         darkblue: '#393C5C',
         gold: '#e1c26b',
         lightgrey: '#FFF7EE',
         darkgrey: '#3D3D3D',
         darkblue: '#413b5c',
+        blue: '#295de3',
         red: '#d6353c',
         darkpurple: '#441c4c',
         screen: '#E5DCD8',
-      },
-      fontFamily: {
-        inter: '@apply sans-serif',
-        roboto: '@aaply sans-serif',
       },
       fontSize: {
         twoxl: '4rem',
