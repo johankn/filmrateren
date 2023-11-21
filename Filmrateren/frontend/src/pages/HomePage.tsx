@@ -208,7 +208,7 @@ function HomePage() {
         skip: 0,
       },
     });
-  }, [selectedTitle, selectedGenres, selectedSort, isChecked]);
+  }, [selectedTitle, selectedGenres, selectedSort, isChecked, getFilteredMovies, setCardsToShow]);
 
   const handleRender = useCallback(() => {
     setCardsToShow(cardsToShow);
@@ -228,7 +228,7 @@ function HomePage() {
         skip: 0,
       },
     });
-  }, [selectedTitle, selectedGenres, selectedSort, isChecked]);
+  }, [setCardsToShow, cardsToShow, selectedTitle, selectedGenres, selectedSort, isChecked, getFilteredMovies]);
 
   const hasSelectionChanged = () => {
     return (
@@ -254,6 +254,7 @@ function HomePage() {
 
   useEffect(() => {
     handleRender();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const scrollToTop = () => {

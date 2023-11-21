@@ -43,14 +43,30 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem value="">
           <em>Ingen</em>
         </MenuItem>
-        <MenuItem value="ALPHABETICAL_ASC">Alfabetisk A-Å</MenuItem>
-        <MenuItem value="ALPHABETICAL_DESC">Alfabetisk Å-A</MenuItem>
-        <MenuItem value="IMDB_DESC">Rating IMDB synkende</MenuItem>
-        <MenuItem value="IMDB_ASC">Rating IMDB stigende</MenuItem>
-        <MenuItem value="RELEASEYEAR_DESC">Nyest utgivelsesår</MenuItem>
-        <MenuItem value="RELEASEYEAR_ASC">Eldst utgivelsesår</MenuItem>
-        <MenuItem value="RUNTIME_DESC">Lengst varighet</MenuItem>
-        <MenuItem value="RUNTIME_ASC">Kortest varighet</MenuItem>
+        <MenuItem className="italic" value="ALPHABETICAL_ASC">
+          Alfabetisk A-Å
+        </MenuItem>
+        <MenuItem className="italic" value="ALPHABETICAL_DESC">
+          Alfabetisk Å-A
+        </MenuItem>
+        <MenuItem className="italic" value="IMDB_DESC">
+          Rating IMDB synkende
+        </MenuItem>
+        <MenuItem className="italic" value="IMDB_ASC">
+          Rating IMDB stigende
+        </MenuItem>
+        <MenuItem className="italic" value="RELEASEYEAR_DESC">
+          Nyest utgivelsesår
+        </MenuItem>
+        <MenuItem className="italic" value="RELEASEYEAR_ASC">
+          Eldst utgivelsesår
+        </MenuItem>
+        <MenuItem className="italic" value="RUNTIME_DESC">
+          Lengst varighet
+        </MenuItem>
+        <MenuItem className="italic" value="RUNTIME_ASC">
+          Kortest varighet
+        </MenuItem>
       </Select>
     </FormControl>
   );
