@@ -9,12 +9,18 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
   const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
 
   const handleSortChange = (event: SelectChangeEvent) => {
+    console.log('event.target.value: ', event.target.value);
     setSelectedSort(event.target.value);
   };
 
   return (
     <FormControl
-      sx={{ m: 1, minWidth: smallScreen ? 143 : mediumScreen ? 278 : 200, minHeight: 10 }}
+      sx={{
+        m: 1,
+        minWidth: smallScreen ? 143 : mediumScreen ? 278 : 200,
+        minHeight: 10,
+        maxWidth: smallScreen ? 143 : undefined,
+      }}
       className="bg-white rounded"
     >
       <InputLabel
@@ -29,7 +35,12 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         label="Sortering"
         value={selectedSort}
         onChange={handleSortChange}
-        sx={{ fontSize: mediumScreen ? '0.5rem' : '1rem' }}
+        inputProps={{
+          sx: {
+            padding: mediumScreen ? '13.5px' : undefined, // Adjust the padding value as needed
+          },
+        }}
+        sx={{ fontSize: mediumScreen ? '0.8rem' : '1rem' }}
       >
         <MenuItem value="">
           <em>Ingen</em>
@@ -42,6 +53,7 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem value="RELEASEYEAR_ASC">Eldst</MenuItem>
         <MenuItem value="RUNTIME_DESC">Lengst</MenuItem>
         <MenuItem value="RUNTIME_ASC">Kortest</MenuItem>
+        <MenuItem value="AVG_USER_RATING_DESC">Avg</MenuItem>
       </Select>
     </FormControl>
   );

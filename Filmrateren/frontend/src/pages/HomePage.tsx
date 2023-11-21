@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchHitCard from '../components/SearchHitCard';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import {
   selectedSortState,
   scrollPositionState,
@@ -37,9 +37,9 @@ function HomePage() {
     height: window.innerHeight,
   });
 
-  const selectedGenres = useRecoilValue(selectedGenresState);
+  const [selectedGenres, setSelectedGenres] = useRecoilState(selectedGenresState);
   const [previousGenres, setPreviousGenres] = useState<string[]>([]);
-  const selectedSort = useRecoilValue(selectedSortState);
+  const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
   const [previousSort, setPreviousSort] = useState<string>('');
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
   const [previousTitle, setPreviousTitle] = useState<string>('');
@@ -67,7 +67,13 @@ function HomePage() {
     newSearchBarStyle,
     targetWidthSearch,
     checkBoxStyle,
-  } = getHomePageStyles(windowSize, scrollPosition, selectedSort != '');
+    resetStyle,
+  } = getHomePageStyles(
+    windowSize,
+    scrollPosition,
+    selectedSort == 'RELEASEYEAR_ASC' || selectedSort == 'RUNTIME_ASC' || selectedSort == 'IMDB_ASC',
+    selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
+  );
 
   useEffect(() => {
     // Setup a debouncer for 1500ms
@@ -148,7 +154,7 @@ function HomePage() {
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
-      console.log('Scroll Position:', window.scrollY);
+      // console.log('Scroll Position:', window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -241,6 +247,12 @@ function HomePage() {
     [setIsChecked],
   );
 
+  const handleResetClick = () => {
+    setSelectedTitle('');
+    setSelectedSort('');
+    setSelectedGenres([]);
+  };
+
   useEffect(() => {
     handleRender();
   }, []);
@@ -256,7 +268,7 @@ function HomePage() {
 
   return (
     <div
-      className="m-0 flex flex-col justify-start items-center w-full min-h-[400vh] overflow-x-hidden gap-16"
+      className="m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16"
       style={homePageStyle}
     >
       {/* Clickable logo top left */}
@@ -346,6 +358,9 @@ function HomePage() {
               }}
             />
           </Tooltip>
+        </div>
+        <div className="absolute italic text-zinc-600 underline" style={resetStyle} onClick={handleResetClick}>
+          Reset
         </div>
         {/* Sort */}
         <div className="absolute" style={sortStyle}>

@@ -7,6 +7,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import { GET_MOVIE_BY_ID_QUERY } from '../queries/SearchQueries';
 import { useQuery } from '@apollo/client';
 import { Movie } from '../components/types';
+import { modalDialogClasses } from '@mui/joy';
 
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
@@ -17,6 +18,7 @@ function MoviePage() {
   const { loading, error, data } = useQuery(GET_MOVIE_BY_ID_QUERY, {
     variables: { movieId: Number(movieID) },
   });
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -25,7 +27,7 @@ function MoviePage() {
   const movie: Movie | undefined = data.getMovieByID;
   if (!movie) return <p>Movie not found</p>;
 
-  const handleClosePopup = () => {
+  const handleClosePopup = async () => {
     setShowPopup(false);
   };
 
@@ -70,7 +72,7 @@ function MoviePage() {
       </div>{' '}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
-          <RatingPopup onClose={handleClosePopup} movieID={Number(movieID)} />
+          <RatingPopup onClose={handleClosePopup} movie={movie} />
         </div>
       )}
     </div>

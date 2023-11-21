@@ -64,6 +64,9 @@ const resolvers = {
         case "RUNTIME_ASC":
           sortOption = { runtime: 1 };
           break;
+        case "AVG_USER_RATING_DESC":
+          sortOption = { avgUserRating: -1 };
+          break;
 
         default:
           if (!sort) {
@@ -97,7 +100,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    addRatingToMovie: async (_, { movieId, rating }) => {
+    addRatingToMovie: async (_, { movieId, rating, avgUserRating }) => {
       // Find the movie by its ID from the JSON
       const movie = await Movie.findOne({ id: movieId });
 
@@ -107,6 +110,8 @@ const resolvers = {
 
       // Add the new rating to the movie's userRatings array
       movie.userRatings.push(rating);
+      console.log("AvgUserRating: ", avgUserRating);
+      movie.avgUserRating = avgUserRating;
 
       // Save the movie with the new rating
       await movie.save();

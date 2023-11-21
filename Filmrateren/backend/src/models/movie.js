@@ -19,6 +19,7 @@ const movieSchema = new Schema({
   releaseYear: String,
   userRatings: [userRatingSchema], // an array of user ratings
   runtime: Number,
+  avgUserRating: Number,
 });
 
 module.exports = mongoose.model("Movie", movieSchema, "movies");

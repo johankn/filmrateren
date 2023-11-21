@@ -12,10 +12,6 @@ type MovieCardProps = {
 };
 
 function MovieCard({ movie }: MovieCardProps) {
-  const totalUserRatings = movie.userRatings.reduce((acc, curr) => acc + curr.rating, 0);
-
-  const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
-
   useEffect(() => {
     return () => {
       window.speechSynthesis.cancel();
@@ -45,7 +41,7 @@ function MovieCard({ movie }: MovieCardProps) {
         }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Beskrivelse av filmen: ${
           movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot
         }.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${
-          movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)
+          movie.userRatings.length < 1 ? 'Ingen anmeldelser' : movie.avgUserRating.toFixed(1)
         } `}
         rate={0.8}
         startBtn={startBtn}
@@ -98,10 +94,10 @@ function MovieCard({ movie }: MovieCardProps) {
             <div>
               <p>
                 <span className="font-bold">Bruker-rating:</span>{' '}
-                {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5`}
+                {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${movie.avgUserRating.toFixed(1)} / 5.0`}
               </p>
               <div className="flex text-yellow">
-                <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
+                <Stars rating={parseFloat(movie.avgUserRating.toFixed(1))} />
               </div>
             </div>
           </div>

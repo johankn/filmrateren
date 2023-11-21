@@ -6,13 +6,14 @@ import Textarea from '@mui/joy/Textarea';
 import FormLabel from '@mui/joy/FormLabel';
 import { useMutation } from '@apollo/client';
 import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
+import { Movie } from './types';
 
 type RatingPopupProps = {
   onClose: () => void;
-  movieID: number;
+  movie: Movie;
 };
 
-function RatingPopup({ onClose, movieID }: RatingPopupProps) {
+function RatingPopup({ onClose, movie }: RatingPopupProps) {
   const [name, setName] = useState('');
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
@@ -22,19 +23,26 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (movieID && name && rating !== null && comment) {
+    if (movie.id && name && rating !== null && comment) {
+      const totalUserRatings = movie.userRatings.reduce((acc, curr) => acc + curr.rating, 0);
+      const avgRating = movie.userRatings.length > 0 ? (totalUserRatings + rating) / (movie.userRatings.length + 1) : 0;
+
+      console.log('avgRating: ', avgRating);
+
       const variables = {
-        movieId: movieID,
+        movieId: movie.id,
         rating: {
           name: name,
           rating: rating,
           comment: comment,
         },
+        avgUserRating: avgRating,
       };
 
       addRatingToMovie({ variables })
         .then((response) => {
           console.log('Rating added successfully', response.data.addRatingToMovie);
+          // Call the callback function with the new avgUserRating value
         })
         .catch((error) => {
           console.error('Error adding rating', error);

@@ -13,4 +13,5 @@ export type Movie = {
     comment: string;
   }[];
   runtime: number;
+  avgUserRating: number;
 };
