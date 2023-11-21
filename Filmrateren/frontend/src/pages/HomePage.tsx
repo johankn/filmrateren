@@ -395,13 +395,6 @@ function HomePage() {
             />
           </Tooltip>
         </section>
-        {/* Sort */}
-        <section className="absolute" style={sortStyle}>
-          <Sort
-            smallScreen={windowSize.width < 740 ? true : false}
-            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
-          />
-        </section>
         {/* Search button */}
         <section className="absolute z-999" style={btnStyle}>
           <button
