@@ -9,10 +9,11 @@ import { ADD_RATING_TO_MOVIE } from '../queries/AddRatingMutation';
 
 type RatingPopupProps = {
   onClose: () => void;
+  onRatingSuccess: () => void;
   movieID: number;
 };
 
-function RatingPopup({ onClose, movieID }: RatingPopupProps) {
+function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
   const [name, setName] = useState('');
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
@@ -31,7 +32,6 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
     event.preventDefault();
 
     if (movieID && ratingIsValid && nameIsValid && commentIsValid) {
-
       const variables = {
         movieId: movieID,
         rating: {
@@ -41,11 +41,10 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
         },
       };
 
-      
-
       addRatingToMovie({ variables })
         .then((response) => {
           console.log('Rating added successfully', response.data.addRatingToMovie);
+          onRatingSuccess(); // Notify MoviePage about the success
         })
         .catch((error) => {
           console.error('Error adding rating', error);
@@ -54,12 +53,11 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
       if (onClose) {
         onClose();
       }
-    }
-    else {
-        console.error('Incomplete data. Please fill in all fields.');
-        if (!nameIsValid) {setNameError(true)} else setNameError(false)
-        if (!ratingIsValid) {setRatingError(true)} else setRatingError(false)
-        if (!commentIsValid) {setCommentError(true)} else setCommentError(false)
+    } else {
+      console.error('Incomplete data. Please fill in all fields.');
+      setNameError(!nameIsValid);
+      setRatingError(!ratingIsValid);
+      setCommentError(!commentIsValid);
     }
   };
 
@@ -83,7 +81,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
             onChange={(e) => setName(e.target.value)}
             error={showNameError}
           />
-          {(showNameError) && (
+          {showNameError && (
             <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
               Skriv inn navnet ditt
             </FormHelperText>
@@ -104,7 +102,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
               </button>
             ))}
           </section>
-          {(showRatingError) && (
+          {showRatingError && (
             <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
               Klikk på en stjerne for å velge rating
             </FormHelperText>
@@ -118,7 +116,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
             onChange={(e) => setComment(e.target.value)}
             error={showCommentError}
           />
-          {(showCommentError) && (
+          {showCommentError && (
             <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
               Skriv inn en kommentar til ratingen
             </FormHelperText>
