@@ -367,7 +367,6 @@ function HomePage() {
             TransitionComponent={Zoom}
             arrow
             onChange={handleCheckBoxChange}
-            style={{ pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']) }}
             title={
               <h2 className="text-base">
                 Denne knappen vil fjerne alle filmer som ikke har den dataen du har sortert på. F.eks. filmer som ikke
