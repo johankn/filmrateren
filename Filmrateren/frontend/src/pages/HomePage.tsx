@@ -67,10 +67,16 @@ function HomePage() {
     targetWidthSearch,
     checkBoxStyle,
     resetStyle,
+    checkBoxOpacity,
   } = getHomePageStyles(
     windowSize,
     scrollPosition,
-    selectedSort == 'RELEASEYEAR_ASC' || selectedSort == 'RUNTIME_ASC' || selectedSort == 'IMDB_ASC',
+    selectedSort == 'RELEASEYEAR_ASC' ||
+      selectedSort == 'RELEASEYEAR_DESC' ||
+      selectedSort == 'RUNTIME_ASC' ||
+      selectedSort == 'RUNTIME_DESC' ||
+      selectedSort == 'IMDB_ASC' ||
+      selectedSort == 'IMDB_DESC',
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
   );
 
@@ -367,6 +373,7 @@ function HomePage() {
             TransitionComponent={Zoom}
             arrow
             onChange={handleCheckBoxChange}
+            style={{ pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']) }}
             title={
               <h2 className="text-base">
                 Denne knappen vil fjerne alle filmer som ikke har den dataen du har sortert på. F.eks. filmer som ikke
@@ -390,6 +397,20 @@ function HomePage() {
               }}
             />
           </Tooltip>
+        </section>
+        <button
+          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          style={resetStyle}
+          onClick={handleResetClick}
+        >
+          Reset
+        </button>
+        {/* Sort */}
+        <section className="absolute" style={sortStyle}>
+          <Sort
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+          />
         </section>
         {/* Search button */}
         <section className="absolute z-999" style={btnStyle}>
