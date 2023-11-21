@@ -33,7 +33,15 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
         width: `${titleWidth}rem`,
       }}
     >
-      <a onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
+      <a 
+        onClick={() => navigate(`/project2/moviePage/${movie.id}`)} 
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            navigate(`/project2/moviePage/${movie.id}`);
+          }
+        }}
+        >
         <figcaption className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} leading-5 h-10 line-clamp-2`}>
           <h1
             ref={h1Ref}

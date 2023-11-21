@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Input from '@mui/joy/Input';
-import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Textarea from '@mui/joy/Textarea';
 import FormLabel from '@mui/joy/FormLabel';
@@ -125,7 +124,7 @@ function RatingPopup({ onClose, movieID }: RatingPopupProps) {
             </FormHelperText>
           )}
           <button 
-            className="ml-5 rounded-lg w-16 h-8 sm:w-16 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple" 
+            className="ml-5 rounded-lg w-44 h-14 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
             type="submit"
             >
             Send inn
