@@ -2,8 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:ital,wght@1,300&display=swap');
-
 @layer base {
   h1,
   h2,
@@ -14,9 +12,7 @@
   span,
   input,
   label {
-    @apply font-inter font-bold;
+    @apply font-bold;
   }
-  button {
-    @apply font-roboto;
-  }
+  
 }
