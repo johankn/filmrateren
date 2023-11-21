@@ -64,10 +64,6 @@ const resolvers = {
         case "RUNTIME_ASC":
           sortOption = { runtime: 1 };
           break;
-        case "AVG_USER_RATING_DESC":
-          sortOption = { avgUserRating: -1 };
-          break;
-
         default:
           if (!sort) {
             const movies = await Movie.find(query).limit(limit).skip(skip);

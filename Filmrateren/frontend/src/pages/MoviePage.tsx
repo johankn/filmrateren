@@ -7,7 +7,6 @@ import ScrollToTop from '../components/ScrollToTop';
 import { GET_MOVIE_BY_ID_QUERY } from '../queries/SearchQueries';
 import { useQuery } from '@apollo/client';
 import { Movie } from '../components/types';
-import { modalDialogClasses } from '@mui/joy';
 
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();

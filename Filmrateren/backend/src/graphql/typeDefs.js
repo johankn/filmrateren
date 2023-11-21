@@ -13,7 +13,6 @@ const typeDefs = gql`
     releaseYear: String!
     userRatings: [UserRating!]!
     runtime: Int!
-    avgUserRating: Float!
   }
 
   type UserRating {
@@ -42,11 +41,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addRatingToMovie(
-      movieId: ID!
-      rating: UserRatingInput!
-      avgUserRating: Float!
-    ): Movie!
+    addRatingToMovie(movieId: ID!, rating: UserRatingInput!): Movie!
   }
 `;
 

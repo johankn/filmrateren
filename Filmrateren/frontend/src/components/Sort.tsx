@@ -53,7 +53,6 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem value="RELEASEYEAR_ASC">Eldst</MenuItem>
         <MenuItem value="RUNTIME_DESC">Lengst</MenuItem>
         <MenuItem value="RUNTIME_ASC">Kortest</MenuItem>
-        <MenuItem value="AVG_USER_RATING_DESC">Avg</MenuItem>
       </Select>
     </FormControl>
   );
