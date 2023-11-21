@@ -1,7 +1,7 @@
 export function getHomePageStyles(
   windowSize: { width: number },
   scrollPosition: number,
-  isChecked: boolean,
+  certainSort: boolean,
   isEmpty: boolean,
 ) {
   const transitionDuration = '0.2s';
@@ -114,16 +114,16 @@ export function getHomePageStyles(
     targetMarginTopReset = 142 + (125 - 142) * checkBoxOpacity;
     targetRightReset = 530;
   } else {
-    targetHeight = isChecked ? 250 : 200 + (250 - 200) * opacity;
+    targetHeight = certainSort ? 250 : 200 + (250 - 200) * opacity;
     targetWidth = 350 + (350 - 350) * opacity;
     targetMarginTop = 526 + (146 - 526) * opacity;
     targetMarginTopSearch = 15 + (165 - 15) * opacity;
     targetWidthSearch = 300;
     targetLeftSearch = 25;
-    targetMarginTopBtn = isChecked ? 180 + (160 - 180) * opacity : 141 + (160 - 141) * opacity;
+    targetMarginTopBtn = certainSort ? 180 + (160 - 180) * opacity : 141 + (160 - 141) * opacity;
     targetRightBtn = 139;
     targetMarginTopSeats = 0 + (10 - 0) * opacity;
-    targetTopSearch = isChecked ? 750 + (840 - 750) * opacity : 710 + (800 - 710) * opacity;
+    targetTopSearch = certainSort ? 750 + (840 - 750) * opacity : 710 + (800 - 710) * opacity;
     targetRightFilter = 172;
     targetRightSort = 18;
     targetTopFilterSort = 70 + (150 - 70) * opacity;
@@ -133,7 +133,7 @@ export function getHomePageStyles(
     targetButtonWidth = 4;
     targetMarginTopCheck = 135 + (0 - 0) * checkBoxOpacity;
     targetRightCheck = 67 + (0 - 0) * checkBoxOpacity;
-    targetMarginTopReset = isChecked ? 210 + (190 - 210) * checkBoxOpacity : 170 + (190 - 170) * checkBoxOpacity;
+    targetMarginTopReset = certainSort ? 210 + (190 - 210) * checkBoxOpacity : 170 + (190 - 170) * checkBoxOpacity;
     targetRightReset = 20;
   }
 
@@ -224,7 +224,7 @@ export function getHomePageStyles(
   };
 
   const checkBoxStyle = {
-    opacity: isChecked ? 1 - checkBoxOpacity : '0',
+    opacity: certainSort ? 1 - checkBoxOpacity : '0',
     marginTop: `${targetMarginTopCheck}px`,
     right: `${targetRightCheck}px`,
     pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),

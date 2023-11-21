@@ -347,7 +347,21 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </section>
-        <section style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
+        <section
+  style={{
+    ...checkBoxStyle,
+    pointerEvents:
+      selectedSort === 'RELEASEYEAR_ASC' ||
+      selectedSort === 'RELEASEYEAR_DESC' ||
+      selectedSort === 'RUNTIME_ASC' ||
+      selectedSort === 'RUNTIME_DESC' ||
+      selectedSort === 'IMDB_ASC' ||
+      selectedSort === 'IMDB_DESC' 
+        ? 'auto'
+        : 'none',
+  }}
+  className="absolute flex flex-row justify-center items-center"
+>
           <p className="text-zinc-800">Fjern filmer uten data</p>
           <Tooltip
             TransitionComponent={Zoom}
