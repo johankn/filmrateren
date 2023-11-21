@@ -249,9 +249,21 @@ function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
+  const scrollToElement = (element: HTMLElement) => {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+  };
+
   const handleFocus = () => {
     // Scroll back to the stored position when focusing on the text field, bug on mobile devices
-    window.scrollTo(0, scrollPosition);
+    // window.scrollTo(0, scrollPosition);
+    const searchBar = document.getElementById('new-search-bar');
+    if (searchBar) {
+      scrollToElement(searchBar);
+    }
   };
 
   return (
@@ -284,12 +296,6 @@ function HomePage() {
                 setOpen(true);
               }
             }}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                // Prevent's default 'Enter' behavior.
-                event.defaultMuiPrevented = true;
-              }
-            }}
             onClose={() => setOpen(false)}
             inputValue={inputValue}
             onInputChange={(_e, value) => {        
@@ -299,8 +305,7 @@ function HomePage() {
                 setOpen(false);
               }
             }}
-
-            freeSolo
+            freeSolo={false}
             placeholder="Tittel..."
             options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
             getOptionLabel={(option) => (option as Movie)?.title || ''}
@@ -315,6 +320,7 @@ function HomePage() {
         <div className="absolute z-50" style={newSearchBarStyle}>
           <TextField
             className="bg-white rounded fixed"
+            id="new-search-bar"
             style={{ width: targetWidthSearch }}
             onFocus={handleFocus}
             label="Tittel..."
@@ -330,12 +336,19 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </div>
+        {/* Sort */}
+        <div className="absolute" style={sortStyle}>
+          <Sort
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+          />
+        </div>
         <div style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
           <div className="italic text-zinc-600">Fjern filmer uten data</div>
           <Tooltip
             TransitionComponent={Zoom}
-            arrow
             onChange={handleCheckBoxChange}
+            arrow
             title={
               <h2 style={{ fontSize: '14px' }}>
                 Denne knappen vil fjerne alle filmer som ikke har den dataen du har sortert på. F.eks. filmer som ikke
@@ -345,6 +358,12 @@ function HomePage() {
           >
             <Checkbox
               checked={isChecked}
+              tabIndex={selectedSort != '' ? 0 : -1}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
+                  setIsChecked(!isChecked);
+                }
+              }}
               sx={{
                 color: 'gray-700',
                 '&.Mui-checked': {
@@ -353,13 +372,6 @@ function HomePage() {
               }}
             />
           </Tooltip>
-        </div>
-        {/* Sort */}
-        <div className="absolute" style={sortStyle}>
-          <Sort
-            smallScreen={windowSize.width < 740 ? true : false}
-            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
-          />
         </div>
         {/* Search button */}
         <div className="absolute z-999" style={btnStyle}>
@@ -409,7 +421,15 @@ function HomePage() {
             ) : (
               <div className="h-40 flex justify-center items-center w-full">
                 <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] bg-gray-700 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
-                  <button className="h-14" onClick={loadMoreCards}>
+                  <button 
+                    className="h-14" 
+                    onClick={loadMoreCards} 
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        loadMoreCards();
+                      }
+                    }}
+                  >
                     Last flere filmer
                   </button>
                 </div>
