@@ -8,7 +8,7 @@ const Stars: React.FC<StarProps> = ({ rating }) => {
   const emptyStars = 5 - roundedStars;
 
   return (
-    <div>
+    <div className="stars">
       {[...Array(roundedStars)].map((_, i) => (
         <span key={`full-${i}`}>★</span>
       ))}
