@@ -6,10 +6,10 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
   "baseElement": <body>
     <div>
       <div
-        class="m-0 flex flex-col justify-start items-center w-full min-h-[150vh] overflow-x-hidden gap-16"
+        class="home-page m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16"
         style="box-shadow: inset 0 0 0 1000px rgba(16, 16, 16, 0.6); transition: box-shadow 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       >
-        <div
+        <figure
           class="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998"
         >
           <img
@@ -18,12 +18,12 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             src="/project2/src/assets/film_rateren.svg"
             style="opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           />
-        </div>
-        <div
+        </figure>
+        <main
           class="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative"
           style="box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9); height: 382px; width: 700px; margin-top: 96px; transition: height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
-          <div
+          <figure
             class="absolute flex flex-row justify-center"
           >
             <img
@@ -31,13 +31,14 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               src="/project2/src/assets/medium_screen.svg"
               style="opacity: 1; height: 380px; margin-top: 0px; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
             />
-          </div>
-          <div
+          </figure>
+          <section
             class="absolute z-50"
+            id="autocomplete-search-bar"
             style="opacity: 1; margin-top: 250px; width: 380px; left: 165px; pointer-events: auto; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <div
-              class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 rounded css-1fr0cu4-JoyAutocomplete-root"
+              class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 rounded css-1fr0cu4-JoyAutocomplete-root"
             >
               <div
                 class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
@@ -55,9 +56,28 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                   value=""
                 />
               </div>
+              <button
+                aria-label="Open"
+                class="MuiAutocomplete-popupIndicator css-1ghvixx-JoyAutocomplete-popupIndicator"
+                tabindex="-1"
+                title="Open"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-sizeMd css-1r2bn3-JoySvgIcon-root"
+                  data-testid="ArrowDropDownIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </button>
             </div>
-          </div>
-          <div
+          </section>
+          <section
             class="absolute z-50"
             style="opacity: 0; margin-top: 250px; left: 165px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
@@ -68,8 +88,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for=":r3:"
-                id=":r3:-label"
+                for="new-search-bar"
+                id="new-search-bar-label"
               >
                 Tittel...
               </label>
@@ -79,7 +99,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 <input
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                  id=":r3:"
+                  id="new-search-bar"
                   type="text"
                   value=""
                 />
@@ -97,8 +117,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 </fieldset>
               </div>
             </div>
-          </div>
-          <div
+          </section>
+          <section
             class="absolute"
             style="opacity: 0; right: 255px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
@@ -113,14 +133,14 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 Sjanger
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-fp7wkn-MuiInputBase-root-MuiOutlinedInput-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-lyf4my-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <div
                   aria-controls=":r5:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
                   aria-labelledby="genreLabel genre"
-                  class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                  class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                   id="genre"
                   role="combobox"
                   tabindex="0"
@@ -157,19 +177,19 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                     class="css-yjsfm1"
                   >
                     <span>
-                      Sjanger (kun demo)
+                      Sjanger
                     </span>
                   </legend>
                 </fieldset>
               </div>
             </div>
-          </div>
-          <div
+          </section>
+          <section
             class="absolute"
             style="opacity: 0; right: 145px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <div
-              class="MuiFormControl-root bg-white rounded css-pw6fgj-MuiFormControl-root"
+              class="MuiFormControl-root bg-white rounded css-od98sm-MuiFormControl-root"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-i6nwqp-MuiFormLabel-root-MuiInputLabel-root"
@@ -179,14 +199,14 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 Sortering
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1drctv7-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-ihq25t-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
               >
                 <div
                   aria-controls=":r7:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
                   aria-labelledby="sort-select-label sort-select"
-                  class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                  class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                   id="sort-select"
                   role="combobox"
                   tabindex="0"
@@ -229,37 +249,76 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 </fieldset>
               </div>
             </div>
-          </div>
-          <div
+          </section>
+          <section
+            class="absolute flex flex-row justify-center items-center"
+            style="opacity: 0; margin-top: 100px; right: 155px; pointer-events: none;"
+          >
+            <p
+              class="text-zinc-800"
+            >
+              Fjern filmer uten data
+            </p>
+            <span
+              class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-nvimzm-MuiButtonBase-root-MuiCheckbox-root"
+              data-mui-internal-clone-element="true"
+            >
+              <input
+                class="PrivateSwitchBase-input css-1m9pwf3"
+                data-indeterminate="false"
+                tabindex="-1"
+                type="checkbox"
+              />
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="CheckBoxOutlineBlankIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </span>
+          </section>
+          <section
             class="absolute z-999"
             style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <button
-              class="bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+              class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
               disabled=""
               style="min-height: 0rem; width: 4rem; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
             >
               Søk
             </button>
-          </div>
-        </div>
-        <div
-          class="text-[rgba(255,247,238,0.5)] absolute top-[92%] flex flex-col justify-center items-center text-medium"
-          style="opacity: 1;"
+          </section>
+          <button
+            class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            style="opacity: 0; margin-top: 50px; right: 100px; height: 45px; width: 4rem; pointer-events: none;"
+          >
+            Reset
+          </button>
+        </main>
+        <p
+          class="text-[rgba(255,247,238,0.8)] fixed top-[92%] flex flex-col justify-center items-center text-base"
+          style="opacity: 1; text-shadow: 0 0 20px rgba(255, 247, 238, 0.6);"
         >
-          <p>
-            Bla ned for avansert søk
-          </p>
-          <p>
+          Bla ned for avansert søk
+          <span>
             ↓
-          </p>
-        </div>
+          </span>
+        </p>
         <img
           alt="seats"
           src="/project2/src/assets/seats.png"
           style="opacity: 1; margin-top: 60px; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         />
-        <div
+        <section
           class="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white"
           style="opacity: 0; top: 625px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
@@ -286,17 +345,17 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               </svg>
             </span>
           </div>
-        </div>
+        </section>
       </div>
       ,
     </div>
   </body>,
   "container": <div>
     <div
-      class="m-0 flex flex-col justify-start items-center w-full min-h-[150vh] overflow-x-hidden gap-16"
+      class="home-page m-0 flex flex-col justify-start items-center w-full min-h-[180vh] overflow-x-hidden gap-16"
       style="box-shadow: inset 0 0 0 1000px rgba(16, 16, 16, 0.6); transition: box-shadow 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
     >
-      <div
+      <figure
         class="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998"
       >
         <img
@@ -305,12 +364,12 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           src="/project2/src/assets/film_rateren.svg"
           style="opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         />
-      </div>
-      <div
+      </figure>
+      <main
         class="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative"
         style="box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9); height: 382px; width: 700px; margin-top: 96px; transition: height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       >
-        <div
+        <figure
           class="absolute flex flex-row justify-center"
         >
           <img
@@ -318,13 +377,14 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             src="/project2/src/assets/medium_screen.svg"
             style="opacity: 1; height: 380px; margin-top: 0px; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           />
-        </div>
-        <div
+        </figure>
+        <section
           class="absolute z-50"
+          id="autocomplete-search-bar"
           style="opacity: 1; margin-top: 250px; width: 380px; left: 165px; pointer-events: auto; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 rounded css-1fr0cu4-JoyAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 rounded css-1fr0cu4-JoyAutocomplete-root"
           >
             <div
               class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
@@ -342,9 +402,28 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 value=""
               />
             </div>
+            <button
+              aria-label="Open"
+              class="MuiAutocomplete-popupIndicator css-1ghvixx-JoyAutocomplete-popupIndicator"
+              tabindex="-1"
+              title="Open"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-sizeMd css-1r2bn3-JoySvgIcon-root"
+                data-testid="ArrowDropDownIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </button>
           </div>
-        </div>
-        <div
+        </section>
+        <section
           class="absolute z-50"
           style="opacity: 0; margin-top: 250px; left: 165px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
@@ -355,8 +434,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
-              for=":r3:"
-              id=":r3:-label"
+              for="new-search-bar"
+              id="new-search-bar-label"
             >
               Tittel...
             </label>
@@ -366,7 +445,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r3:"
+                id="new-search-bar"
                 type="text"
                 value=""
               />
@@ -384,8 +463,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               </fieldset>
             </div>
           </div>
-        </div>
-        <div
+        </section>
+        <section
           class="absolute"
           style="opacity: 0; right: 255px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
@@ -400,14 +479,14 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               Sjanger
             </label>
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-fp7wkn-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-lyf4my-MuiInputBase-root-MuiOutlinedInput-root"
             >
               <div
                 aria-controls=":r5:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-labelledby="genreLabel genre"
-                class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                 id="genre"
                 role="combobox"
                 tabindex="0"
@@ -444,19 +523,19 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                   class="css-yjsfm1"
                 >
                   <span>
-                    Sjanger (kun demo)
+                    Sjanger
                   </span>
                 </legend>
               </fieldset>
             </div>
           </div>
-        </div>
-        <div
+        </section>
+        <section
           class="absolute"
           style="opacity: 0; right: 145px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
-            class="MuiFormControl-root bg-white rounded css-pw6fgj-MuiFormControl-root"
+            class="MuiFormControl-root bg-white rounded css-od98sm-MuiFormControl-root"
           >
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-i6nwqp-MuiFormLabel-root-MuiInputLabel-root"
@@ -466,14 +545,14 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               Sortering
             </label>
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1drctv7-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-ihq25t-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
             >
               <div
                 aria-controls=":r7:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-labelledby="sort-select-label sort-select"
-                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                 id="sort-select"
                 role="combobox"
                 tabindex="0"
@@ -516,37 +595,76 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               </fieldset>
             </div>
           </div>
-        </div>
-        <div
+        </section>
+        <section
+          class="absolute flex flex-row justify-center items-center"
+          style="opacity: 0; margin-top: 100px; right: 155px; pointer-events: none;"
+        >
+          <p
+            class="text-zinc-800"
+          >
+            Fjern filmer uten data
+          </p>
+          <span
+            class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-nvimzm-MuiButtonBase-root-MuiCheckbox-root"
+            data-mui-internal-clone-element="true"
+          >
+            <input
+              class="PrivateSwitchBase-input css-1m9pwf3"
+              data-indeterminate="false"
+              tabindex="-1"
+              type="checkbox"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckBoxOutlineBlankIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+        </section>
+        <section
           class="absolute z-999"
           style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <button
-            class="bg-gray-700 rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
             disabled=""
             style="min-height: 0rem; width: 4rem; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             Søk
           </button>
-        </div>
-      </div>
-      <div
-        class="text-[rgba(255,247,238,0.5)] absolute top-[92%] flex flex-col justify-center items-center text-medium"
-        style="opacity: 1;"
+        </section>
+        <button
+          class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          style="opacity: 0; margin-top: 50px; right: 100px; height: 45px; width: 4rem; pointer-events: none;"
+        >
+          Reset
+        </button>
+      </main>
+      <p
+        class="text-[rgba(255,247,238,0.8)] fixed top-[92%] flex flex-col justify-center items-center text-base"
+        style="opacity: 1; text-shadow: 0 0 20px rgba(255, 247, 238, 0.6);"
       >
-        <p>
-          Bla ned for avansert søk
-        </p>
-        <p>
+        Bla ned for avansert søk
+        <span>
           ↓
-        </p>
-      </div>
+        </span>
+      </p>
       <img
         alt="seats"
         src="/project2/src/assets/seats.png"
         style="opacity: 1; margin-top: 60px; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       />
-      <div
+      <section
         class="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white"
         style="opacity: 0; top: 625px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       >
@@ -573,7 +691,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             </svg>
           </span>
         </div>
-      </div>
+      </section>
     </div>
     ,
   </div>,
@@ -637,7 +755,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
   "baseElement": <body>
     <div>
       <div
-        class="grid max-h-full gap-7 mt-6 ml-2 text-white italic place-items-center  "
+        class="movie-card grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center "
       >
         <div
           style="display: flex; column-gap: 1rem;"
@@ -646,7 +764,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
             role="button"
           >
             <button
-              class="text-large transform hover:scale-125 transition-transform"
+              class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
             >
               <svg
                 fill="currentColor"
@@ -667,7 +785,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
             role="button"
           >
             <button
-              class="text-large transform hover:scale-125 transition-transform"
+              class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
             >
               <svg
                 fill="currentColor"
@@ -685,211 +803,25 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
             </button>
           </span>
         </div>
-        <div
+        <h1
           class="text-base sm:text-medium md:text-large lg:text-xl "
         >
-          <h1>
-            Sample Movie
-          </h1>
-        </div>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-4   "
-        >
-          <div
-            class="flex flex-col"
-          >
-            <div
-              class="mt-9 flex justify-center md:justify-end max-w-full  "
-            >
-              <img
-                alt="Sample Movie"
-                class="w-3/4 md:w-96 h-auto object-contain"
-                src="https://example.com/poster.jpg"
-              />
-            </div>
-          </div>
-          <div
-            class="mt-8  info text-xsmall sm:text-small md:text-small lg:text-base pl-4 "
-          >
-            <div
-              class="mb-5"
-            >
-              <p
-                class="mb-2"
-              >
-                <span
-                  class="font-bold"
-                >
-                  Sjanger: 
-                </span>
-                 
-                Action
-              </p>
-              <p
-                class="mb-2"
-              >
-                <span
-                  class="font-bold"
-                >
-                  Regi: 
-                </span>
-                 
-                Director 1
-              </p>
-              <p
-                class="mb-2"
-              >
-                <span
-                  class="font-bold"
-                >
-                  Utgivelsesår: 
-                </span>
-                 
-                2023
-              </p>
-              <p>
-                <span
-                  class="font-bold"
-                >
-                  Beskrivelse: 
-                </span>
-                 
-                Sample plot of the movie.
-              </p>
-            </div>
-            <div
-              class="rating"
-            >
-              <p
-                class="mb-2"
-              >
-                <span
-                  class="font-bold"
-                >
-                  IMDB rating:
-                </span>
-                 
-                7.5
-              </p>
-              <div>
-                 
-              </div>
-              <div>
-                <p>
-                  <span
-                    class="font-bold"
-                  >
-                    Brukeranmeldelser:
-                  </span>
-                   
-                  2.5
-                </p>
-                <div
-                  class="flex text-yellow"
-                >
-                  <div>
-                    <span>
-                      ★
-                    </span>
-                    <span>
-                      ★
-                    </span>
-                    <span>
-                      ★
-                    </span>
-                    <span>
-                      ☆
-                    </span>
-                    <span>
-                      ☆
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="grid max-h-full gap-7 mt-6 ml-2 text-white italic place-items-center  "
-    >
-      <div
-        style="display: flex; column-gap: 1rem;"
-      >
-        <span
-          role="button"
-        >
-          <button
-            class="text-large transform hover:scale-125 transition-transform"
-          >
-            <svg
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 1024 1024"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M892.1 737.8l-110.3-63.7a15.9 15.9 0 0 0-21.7 5.9l-19.9 34.5c-4.4 7.6-1.8 17.4 5.8 21.8L856.3 800a15.9 15.9 0 0 0 21.7-5.9l19.9-34.5c4.4-7.6 1.7-17.4-5.8-21.8zM760 344a15.9 15.9 0 0 0 21.7 5.9L892 286.2c7.6-4.4 10.2-14.2 5.8-21.8L878 230a15.9 15.9 0 0 0-21.7-5.9L746 287.8a15.99 15.99 0 0 0-5.8 21.8L760 344zm174 132H806c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16zM625.9 115c-5.9 0-11.9 1.6-17.4 5.3L254 352H90c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h164l354.5 231.7c5.5 3.6 11.6 5.3 17.4 5.3 16.7 0 32.1-13.3 32.1-32.1V147.1c0-18.8-15.4-32.1-32.1-32.1z"
-              />
-            </svg>
-          </button>
-        </span>
-        <span
-          role="button"
-        >
-          <button
-            class="text-large transform hover:scale-125 transition-transform"
-          >
-            <svg
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 512 512"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M256 388c-72.597 0-132-59.405-132-132 0-72.601 59.403-132 132-132 36.3 0 69.299 15.4 92.406 39.601L278 234h154V80l-51.698 51.702C348.406 99.798 304.406 80 256 80c-96.797 0-176 79.203-176 176s78.094 176 176 176c81.045 0 148.287-54.134 169.401-128H378.85c-18.745 49.561-67.138 84-122.85 84z"
-              />
-            </svg>
-          </button>
-        </span>
-      </div>
-      <div
-        class="text-base sm:text-medium md:text-large lg:text-xl "
-      >
-        <h1>
           Sample Movie
         </h1>
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-4   "
-      >
         <div
-          class="flex flex-col"
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  "
         >
-          <div
-            class="mt-9 flex justify-center md:justify-end max-w-full  "
+          <figure
+            class=" flex justify-center md:justify-end  max-w-full"
           >
             <img
               alt="Sample Movie"
               class="w-3/4 md:w-96 h-auto object-contain"
               src="https://example.com/poster.jpg"
             />
-          </div>
-        </div>
-        <div
-          class="mt-8  info text-xsmall sm:text-small md:text-small lg:text-base pl-4 "
-        >
-          <div
-            class="mb-5"
+          </figure>
+          <section
+            class="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4"
           >
             <p
               class="mb-2"
@@ -924,6 +856,17 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
                
               2023
             </p>
+            <p
+              class="mb-2"
+            >
+              <span
+                class="font-bold"
+              >
+                Varighet: 
+              </span>
+               
+              120 min
+            </p>
             <p>
               <span
                 class="font-bold"
@@ -933,58 +876,217 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
                
               Sample plot of the movie.
             </p>
-          </div>
-          <div
-            class="rating"
-          >
             <p
-              class="mb-2"
+              class="mt-5 mb-2"
             >
               <span
                 class="font-bold"
               >
-                IMDB rating:
+                IMDB-rating:
               </span>
                
-              7.5
+              7.5 / 10
             </p>
-            <div>
-               
-            </div>
-            <div>
-              <p>
-                <span
-                  class="font-bold"
-                >
-                  Brukeranmeldelser:
-                </span>
-                 
-                2.5
-              </p>
+            <span
+              class="font-bold"
+            >
+              Bruker-rating:
+            </span>
+             
+            2.5 / 5.0
+            <figure
+              class="flex text-yellow"
+            >
               <div
-                class="flex text-yellow"
+                class="stars"
               >
-                <div>
-                  <span>
-                    ★
-                  </span>
-                  <span>
-                    ★
-                  </span>
-                  <span>
-                    ★
-                  </span>
-                  <span>
-                    ☆
-                  </span>
-                  <span>
-                    ☆
-                  </span>
-                </div>
+                <span>
+                  ★
+                </span>
+                <span>
+                  ★
+                </span>
+                <span>
+                  ★
+                </span>
+                <span>
+                  ☆
+                </span>
+                <span>
+                  ☆
+                </span>
               </div>
-            </div>
-          </div>
+            </figure>
+          </section>
         </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="movie-card grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center "
+    >
+      <div
+        style="display: flex; column-gap: 1rem;"
+      >
+        <span
+          role="button"
+        >
+          <button
+            class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M892.1 737.8l-110.3-63.7a15.9 15.9 0 0 0-21.7 5.9l-19.9 34.5c-4.4 7.6-1.8 17.4 5.8 21.8L856.3 800a15.9 15.9 0 0 0 21.7-5.9l19.9-34.5c4.4-7.6 1.7-17.4-5.8-21.8zM760 344a15.9 15.9 0 0 0 21.7 5.9L892 286.2c7.6-4.4 10.2-14.2 5.8-21.8L878 230a15.9 15.9 0 0 0-21.7-5.9L746 287.8a15.99 15.99 0 0 0-5.8 21.8L760 344zm174 132H806c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16zM625.9 115c-5.9 0-11.9 1.6-17.4 5.3L254 352H90c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h164l354.5 231.7c5.5 3.6 11.6 5.3 17.4 5.3 16.7 0 32.1-13.3 32.1-32.1V147.1c0-18.8-15.4-32.1-32.1-32.1z"
+              />
+            </svg>
+          </button>
+        </span>
+        <span
+          role="button"
+        >
+          <button
+            class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 388c-72.597 0-132-59.405-132-132 0-72.601 59.403-132 132-132 36.3 0 69.299 15.4 92.406 39.601L278 234h154V80l-51.698 51.702C348.406 99.798 304.406 80 256 80c-96.797 0-176 79.203-176 176s78.094 176 176 176c81.045 0 148.287-54.134 169.401-128H378.85c-18.745 49.561-67.138 84-122.85 84z"
+              />
+            </svg>
+          </button>
+        </span>
+      </div>
+      <h1
+        class="text-base sm:text-medium md:text-large lg:text-xl "
+      >
+        Sample Movie
+      </h1>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  "
+      >
+        <figure
+          class=" flex justify-center md:justify-end  max-w-full"
+        >
+          <img
+            alt="Sample Movie"
+            class="w-3/4 md:w-96 h-auto object-contain"
+            src="https://example.com/poster.jpg"
+          />
+        </figure>
+        <section
+          class="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4"
+        >
+          <p
+            class="mb-2"
+          >
+            <span
+              class="font-bold"
+            >
+              Sjanger: 
+            </span>
+             
+            Action
+          </p>
+          <p
+            class="mb-2"
+          >
+            <span
+              class="font-bold"
+            >
+              Regi: 
+            </span>
+             
+            Director 1
+          </p>
+          <p
+            class="mb-2"
+          >
+            <span
+              class="font-bold"
+            >
+              Utgivelsesår: 
+            </span>
+             
+            2023
+          </p>
+          <p
+            class="mb-2"
+          >
+            <span
+              class="font-bold"
+            >
+              Varighet: 
+            </span>
+             
+            120 min
+          </p>
+          <p>
+            <span
+              class="font-bold"
+            >
+              Beskrivelse: 
+            </span>
+             
+            Sample plot of the movie.
+          </p>
+          <p
+            class="mt-5 mb-2"
+          >
+            <span
+              class="font-bold"
+            >
+              IMDB-rating:
+            </span>
+             
+            7.5 / 10
+          </p>
+          <span
+            class="font-bold"
+          >
+            Bruker-rating:
+          </span>
+           
+          2.5 / 5.0
+          <figure
+            class="flex text-yellow"
+          >
+            <div
+              class="stars"
+            >
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ☆
+              </span>
+              <span>
+                ☆
+              </span>
+            </div>
+          </figure>
+        </section>
       </div>
     </div>
   </div>,
@@ -1048,44 +1150,44 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
   "baseElement": <body>
     <div>
       <div
-        class=" shadow-md rounded-md space-y-2 pb-4 w-full"
+        class="rating-card shadow-lg rounded-md space-y-2 pb-4 w-full"
       >
         <h4
-          class="md:text-base text-small text-white font-bold"
+          class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
         >
           User1
         </h4>
-        <div
-          class="flex justify-start space-x-1"
+        <figure
+          class="ml-4 flex justify-start space-x-1"
         >
           <span
-            class="md:text-2xl text:medium text-yellow"
+            class="sm:text-base md:text-2xl text:medium text-yellow"
           >
             ★
           </span>
           <span
-            class="md:text-2xl text:medium text-yellow"
+            class="sm:text-base md:text-2xl text:medium text-yellow"
           >
             ★
           </span>
           <span
-            class="md:text-2xl text:medium text-yellow"
+            class="sm:text-base md:text-2xl text:medium text-yellow"
           >
             ★
           </span>
           <span
-            class="md:text-2xl text:medium text-lightgrey"
+            class="sm:text-base md:text-2xl text:medium text-lightgrey"
           >
             ★
           </span>
           <span
-            class="md:text-2xl text:medium text-lightgrey"
+            class="sm:text-base md:text-2xl text:medium text-lightgrey"
           >
             ★
           </span>
-        </div>
+        </figure>
         <p
-          class="mt-2 text-white md:text-base text-md italic"
+          class="mt-2 ml-4 text-white sm:text-base md:text-medium text-md italic"
         >
           Great movie!
         </p>
@@ -1094,44 +1196,44 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
   </body>,
   "container": <div>
     <div
-      class=" shadow-md rounded-md space-y-2 pb-4 w-full"
+      class="rating-card shadow-lg rounded-md space-y-2 pb-4 w-full"
     >
       <h4
-        class="md:text-base text-small text-white font-bold"
+        class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
       >
         User1
       </h4>
-      <div
-        class="flex justify-start space-x-1"
+      <figure
+        class="ml-4 flex justify-start space-x-1"
       >
         <span
-          class="md:text-2xl text:medium text-yellow"
+          class="sm:text-base md:text-2xl text:medium text-yellow"
         >
           ★
         </span>
         <span
-          class="md:text-2xl text:medium text-yellow"
+          class="sm:text-base md:text-2xl text:medium text-yellow"
         >
           ★
         </span>
         <span
-          class="md:text-2xl text:medium text-yellow"
+          class="sm:text-base md:text-2xl text:medium text-yellow"
         >
           ★
         </span>
         <span
-          class="md:text-2xl text:medium text-lightgrey"
+          class="sm:text-base md:text-2xl text:medium text-lightgrey"
         >
           ★
         </span>
         <span
-          class="md:text-2xl text:medium text-lightgrey"
+          class="sm:text-base md:text-2xl text:medium text-lightgrey"
         >
           ★
         </span>
-      </div>
+      </figure>
       <p
-        class="mt-2 text-white md:text-base text-md italic"
+        class="mt-2 ml-4 text-white sm:text-base md:text-medium text-md italic"
       >
         Great movie!
       </p>
@@ -1196,21 +1298,21 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
+      <button
         class="text-white italic flex flex-col justify-center items-center"
         style="height: 21rem; width: 13rem;"
       >
-        <div>
-          <div
-            class="h-10 flex flex-col justify-end w-52 leading-5 h-10 line-clamp-2"
+        <a>
+          <figcaption
+            class="h-10 flex flex-col justify-end w-52 text-base leading-5"
           >
             <h1
-              class="text-center overflow-hidden text-base leading-5 h-10 line-clamp-2 flex flex-col justify-end"
+              class="text-center overflow-hidden line-clamp-2"
             >
               Sample Movie
             </h1>
-          </div>
-          <div
+          </figcaption>
+          <figure
             class="flex justify-center items-center h-full group"
           >
             <img
@@ -1219,27 +1321,27 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
               src="https://example.com/poster.jpg"
               style="height: 17.8rem; max-width: 100%; border-radius: 1rem;"
             />
-          </div>
-        </div>
-      </div>
+          </figure>
+        </a>
+      </button>
     </div>
   </body>,
   "container": <div>
-    <div
+    <button
       class="text-white italic flex flex-col justify-center items-center"
       style="height: 21rem; width: 13rem;"
     >
-      <div>
-        <div
-          class="h-10 flex flex-col justify-end w-52 leading-5 h-10 line-clamp-2"
+      <a>
+        <figcaption
+          class="h-10 flex flex-col justify-end w-52 text-base leading-5"
         >
           <h1
-            class="text-center overflow-hidden text-base leading-5 h-10 line-clamp-2 flex flex-col justify-end"
+            class="text-center overflow-hidden line-clamp-2"
           >
             Sample Movie
           </h1>
-        </div>
-        <div
+        </figcaption>
+        <figure
           class="flex justify-center items-center h-full group"
         >
           <img
@@ -1248,9 +1350,9 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
             src="https://example.com/poster.jpg"
             style="height: 17.8rem; max-width: 100%; border-radius: 1rem;"
           />
-        </div>
-      </div>
-    </div>
+        </figure>
+      </a>
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

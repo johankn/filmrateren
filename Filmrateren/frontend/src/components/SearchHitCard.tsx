@@ -35,15 +35,13 @@ function SearchHitCard({ movie, smallScreen }: SearchHitCardProps) {
         }
       }}
     >
-      <a
-        onClick={() => navigate(`/project2/moviePage/${movie.id}`)}
-      >
+      <a onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
         <figcaption
           className={`h-10 flex flex-col justify-end ${smallScreen ? 'w-40' : 'w-52'} ${
             smallScreen ? 'text-small' : 'text-base'
-          } leading-5 h-10`}
+          } leading-5`}
         >
-          <h1 className="text-center leading-5 overflow-hidden line-clamp-2">{movie.title}</h1>
+          <h1 className="text-center overflow-hidden line-clamp-2">{movie.title}</h1>
         </figcaption>
         <figure className={`flex justify-center items-center ${smallScreen ? 'h-[95%]' : 'h-full'} group`}>
           <img

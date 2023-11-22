@@ -68,9 +68,10 @@ export function getHomePageStyles(
   let targetRightCheck;
   let targetMarginTopReset;
   let targetRightReset;
+  let targetResetHeight;
 
   if (windowSize.width >= 1110) {
-    targetHeight = 125 + (382 - 125) * opacity;
+    targetHeight = isEmpty ? 125 + (382 - 125) * opacity : 140 + (382 - 125) * opacity;
     targetWidth = 1040 + (910 - 1040) * opacity;
     targetMarginTop = 374 + (96 - 374) * opacity;
     targetMarginTopSearch = 35 + (250 - 35) * opacity;
@@ -87,12 +88,13 @@ export function getHomePageStyles(
     targetTopScreenContent = 1 + (10 - 1) * opacity;
     targetButtonHeight = 3.3;
     targetButtonWidth = 4;
-    targetMarginTopCheck = 86 + (60 - 86) * checkBoxOpacity;
+    targetMarginTopCheck = 93 + (60 - 93) * checkBoxOpacity;
     targetRightCheck = 103 + (103 - 103) * checkBoxOpacity;
-    targetMarginTopReset = 96 + (70 - 96) * checkBoxOpacity;
-    targetRightReset = 500;
+    targetMarginTopReset = 100 + (70 - 100) * checkBoxOpacity;
+    targetRightReset = 489;
+    targetResetHeight = 30;
   } else if (windowSize.width >= 740) {
-    targetHeight = 172 + (382 - 138) * opacity;
+    targetHeight = 172 + (382 - 172) * opacity;
     targetWidth = 720 + (700 - 720) * opacity;
     targetMarginTop = 376 + (96 - 376) * opacity;
     targetMarginTopSearch = 32 + (250 - 32) * opacity;
@@ -107,12 +109,13 @@ export function getHomePageStyles(
     targetTopFilterSort = 87 + (245 - 87) * opacity;
     targetHeightImg = 0 + (380 - 0) * opacity;
     targetTopScreenContent = 0;
-    targetButtonHeight = 6.6 + (0 - 6.6) * opacity;
+    targetButtonHeight = isEmpty ? 6.6 + (0 - 6.6) * opacity : 3.4 + (0 - 3.4) * opacity;
     targetButtonWidth = 5 + (4 - 5) * opacity;
     targetMarginTopCheck = 133 + (100 - 133) * checkBoxOpacity;
     targetRightCheck = 155;
-    targetMarginTopReset = 142 + (125 - 142) * checkBoxOpacity;
-    targetRightReset = 530;
+    targetMarginTopReset = 95 + (50 - 95) * checkBoxOpacity;
+    targetRightReset = 31 + (100 - 31) * opacity;
+    targetResetHeight = 45;
   } else {
     targetHeight = certainSort ? 250 : 200 + (250 - 200) * opacity;
     targetWidth = 350 + (350 - 350) * opacity;
@@ -121,7 +124,7 @@ export function getHomePageStyles(
     targetWidthSearch = 300;
     targetLeftSearch = 25;
     targetMarginTopBtn = certainSort ? 180 + (160 - 180) * opacity : 141 + (160 - 141) * opacity;
-    targetRightBtn = 139;
+    targetRightBtn = isEmpty ? 144 : 104;
     targetMarginTopSeats = 0 + (10 - 0) * opacity;
     targetTopSearch = certainSort ? 750 + (840 - 750) * opacity : 710 + (800 - 710) * opacity;
     targetRightFilter = 172;
@@ -133,8 +136,9 @@ export function getHomePageStyles(
     targetButtonWidth = 4;
     targetMarginTopCheck = 135 + (0 - 0) * checkBoxOpacity;
     targetRightCheck = 67 + (0 - 0) * checkBoxOpacity;
-    targetMarginTopReset = certainSort ? 210 + (190 - 210) * checkBoxOpacity : 170 + (190 - 170) * checkBoxOpacity;
-    targetRightReset = 20;
+    targetMarginTopReset = certainSort ? 180 + (160 - 180) * opacity : 141 + (160 - 141) * opacity;
+    targetRightReset = 180;
+    targetResetHeight = 53;
   }
 
   const homePageStyle = {
@@ -234,6 +238,8 @@ export function getHomePageStyles(
     opacity: isEmpty ? '0' : 1 - checkBoxOpacity,
     marginTop: `${targetMarginTopReset}px`,
     right: `${targetRightReset}px`,
+    height: `${targetResetHeight}px`,
+    width: `${targetButtonWidth}rem`,
     pointerEvents: checkBoxOpacity == 0 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
   };
 
@@ -256,5 +262,6 @@ export function getHomePageStyles(
     targetWidthSearch,
     checkBoxStyle,
     resetStyle,
+    checkBoxOpacity,
   };
 }

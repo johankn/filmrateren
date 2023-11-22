@@ -24,10 +24,9 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
 
   const [addRatingToMovie] = useMutation(ADD_RATING_TO_MOVIE);
 
-  const nameIsValid = !(/^\s+$/.test(name)) && name; // Check if name contains other characters than whitespace
-  const commentIsValid = !(/^\s+$/.test(comment)) && comment; // Check if comment contains  other characters than whitespace
-  const ratingIsValid = (rating !== null);
-
+  const nameIsValid = !/^\s+$/.test(name) && name; // Check if name contains other characters than whitespace
+  const commentIsValid = !/^\s+$/.test(comment) && comment; // Check if comment contains  other characters than whitespace
+  const ratingIsValid = rating !== null;
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

@@ -10,7 +10,10 @@ const RatingCard: React.FC<RatingProps> = ({ name, rating, comment }) => {
       <h4 className=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold">{name}</h4>
       <figure className="ml-4 flex justify-start space-x-1">
         {[...Array(5)].map((_, i) => (
-          <span key={i} className={`sm:text-base md:text-2xl text:medium ${i < rating ? 'text-yellow' : 'text-lightgrey'}`}>
+          <span
+            key={i}
+            className={`sm:text-base md:text-2xl text:medium ${i < rating ? 'text-yellow' : 'text-lightgrey'}`}
+          >
             ★
           </span>
         ))}
