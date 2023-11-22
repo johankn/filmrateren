@@ -16,11 +16,14 @@ function MovieCard({ movie }: MovieCardProps) {
 
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
-  useEffect(() => {
-    return () => {
-      window.speechSynthesis.cancel();
-    };
-  }, []);
+  if (window.speechSynthesis) {  
+    useEffect(() => {
+      return () => {
+        window.speechSynthesis.cancel();
+      };
+    }, []);
+  }
+
 
   const startBtn = (
     <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">

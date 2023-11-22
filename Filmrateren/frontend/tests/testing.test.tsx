@@ -60,6 +60,7 @@ describe('Test of SearchHitCard', () => {
     IMDBrating: 7.5,
     posterUrl: 'https://example.com/poster.jpg',
     userRatings: [],
+    runtime: 120,
   };
 
   beforeEach(() => {
@@ -109,6 +110,7 @@ describe('Test of MovieCard', () => {
         comment: 'Enjoyable but could be better.',
       },
     ],
+    runtime: 120,
   };
   beforeEach(() => {
     movieCard = render(<MovieCard movie={mockMovie}></MovieCard>);
@@ -122,9 +124,11 @@ describe('Test of MovieCard', () => {
     expect(screen.getAllByText(/Sjanger/i)).toBeTruthy();
     expect(screen.getAllByText(/Regi/i)).toBeTruthy();
     expect(screen.getAllByText(/Utgivelsesår/i)).toBeTruthy();
+    expect(screen.getAllByText(/Varighet/i)).toBeTruthy();
     expect(screen.getAllByText(/Beskrivelse/i)).toBeTruthy();
-    expect(screen.getAllByText(/IMDB rating/i)).toBeTruthy();
-    expect(screen.getAllByText(/Brukeranmeldelser/i)).toBeTruthy();
+    expect(screen.getAllByText(/IMDB-rating/i)).toBeTruthy();
+    expect(screen.getAllByText(/Bruker-rating/i)).toBeTruthy();
+
   });
   it('Displays correct movie details', () => {
     expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
@@ -132,11 +136,16 @@ describe('Test of MovieCard', () => {
     expect(screen.getByText(`${mockMovie.directors}`)).toBeInTheDocument();
     expect(screen.getByText(`${mockMovie.releaseYear}`)).toBeInTheDocument();
     expect(screen.getByText(`${mockMovie.plot}`)).toBeInTheDocument();
-    expect(screen.getByText(`${mockMovie.IMDBrating}`)).toBeInTheDocument();
 
-    const averageUserRating =
-      mockMovie.userRatings.reduce((acc, curr) => acc + curr.rating, 0) / mockMovie.userRatings.length;
-    expect(screen.getByText(`${averageUserRating.toFixed(1)}`)).toBeInTheDocument();
+    const runtimeRegex = new RegExp(`${mockMovie.runtime}`, 'i');
+    expect(screen.getByText(runtimeRegex)).toBeInTheDocument();
+    
+    const IMDBRatingRegex = new RegExp(`${mockMovie.IMDBrating}`, 'i');
+    expect(screen.getByText(IMDBRatingRegex)).toBeInTheDocument();
+
+    const averageUserRating = mockMovie.userRatings.reduce((acc, curr) => acc + curr.rating, 0) / mockMovie.userRatings.length;
+    const userRatingRegex = new RegExp(`${averageUserRating.toFixed(1)}`, 'i');
+    expect(screen.getByText(userRatingRegex)).toBeInTheDocument();
   });
 });
 
@@ -170,6 +179,7 @@ describe('Test of RatingCard', () => {
 
 describe('Test of RatingPopup', () => {
   const mockOnClose = vi.fn();
+  const mockOnRatingSuccess = vi.fn();
   const mockMovieID = 1;
   let movieIdOfAddedRating = 0;
 
@@ -207,13 +217,14 @@ describe('Test of RatingPopup', () => {
   beforeEach(() => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <RatingPopup onClose={mockOnClose} movieID={mockMovieID} />
+        <RatingPopup onClose={mockOnClose} onRatingSuccess={mockOnRatingSuccess} movieID={mockMovieID} />
       </MockedProvider>,
     );
   });
 
   afterEach(() => {
     mockOnClose.mockClear();
+    mockOnRatingSuccess.mockClear();
     movieIdOfAddedRating = 0;
   });
 
@@ -242,6 +253,7 @@ describe('Test of RatingPopup', () => {
     await userEvent.click(submitButton);
 
     expect(mockOnClose).toHaveBeenCalled();
+    expect(mockOnRatingSuccess).toHaveBeenCalled();
     expect(movieIdOfAddedRating).toBe(mockMovieID);
   });
 
@@ -251,6 +263,7 @@ describe('Test of RatingPopup', () => {
     await userEvent.click(submitButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(0);
+    expect(mockOnRatingSuccess).toHaveBeenCalledTimes(0);
     expect(movieIdOfAddedRating).toBe(0);
   });
 });
