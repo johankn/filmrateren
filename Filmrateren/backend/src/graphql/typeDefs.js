@@ -13,6 +13,8 @@ const typeDefs = gql`
     releaseYear: String!
     userRatings: [UserRating!]!
     runtime: Int!
+    IMDBnumber: Int!
+    score: Float!
   }
 
   type UserRating {

@@ -13,4 +13,6 @@ export type Movie = {
     comment: string;
   }[];
   runtime: number;
+  IMDBnumber: number;
+  score: number;
 };

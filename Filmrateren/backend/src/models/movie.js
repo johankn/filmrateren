@@ -19,6 +19,8 @@ const movieSchema = new Schema({
   releaseYear: String,
   userRatings: [userRatingSchema], // an array of user ratings
   runtime: Number,
+  IMDBnumber: Number,
+  score: Number,
 });
 
 module.exports = mongoose.model("Movie", movieSchema, "movies");

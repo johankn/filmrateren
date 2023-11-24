@@ -16,14 +16,13 @@ function MovieCard({ movie }: MovieCardProps) {
 
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
-  if (window.speechSynthesis) {  
+  if (window.speechSynthesis) {
     useEffect(() => {
       return () => {
         window.speechSynthesis.cancel();
       };
     }, []);
   }
-
 
   const startBtn = (
     <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
@@ -86,7 +85,7 @@ function MovieCard({ movie }: MovieCardProps) {
           </p>
           <p className="mt-5 mb-2">
             <span className="font-bold">IMDB-rating:</span>{' '}
-            {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10`}
+            {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10 (${movie.IMDBnumber})`}
           </p>
           <span className="font-bold">Bruker-rating:</span>{' '}
           {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}

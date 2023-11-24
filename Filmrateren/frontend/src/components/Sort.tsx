@@ -67,6 +67,9 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem className="italic" value="RUNTIME_ASC">
           Kortest varighet
         </MenuItem>
+        <MenuItem className="italic" value="POPULARITY_DESC">
+          Popularitet
+        </MenuItem>
       </Select>
     </FormControl>
   );
