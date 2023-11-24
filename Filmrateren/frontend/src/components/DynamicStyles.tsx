@@ -71,7 +71,7 @@ export function getHomePageStyles(
   let targetResetHeight;
 
   if (windowSize.width >= 1110) {
-    targetHeight = isEmpty ? 125 + (382 - 125) * opacity : 140 + (382 - 125) * opacity;
+    targetHeight = isEmpty ? 125 + (382 - 125) * opacity : 133 + (382 - 133) * opacity;
     targetWidth = 1040 + (910 - 1040) * opacity;
     targetMarginTop = 374 + (96 - 374) * opacity;
     targetMarginTopSearch = 35 + (250 - 35) * opacity;
@@ -88,10 +88,10 @@ export function getHomePageStyles(
     targetTopScreenContent = 1 + (10 - 1) * opacity;
     targetButtonHeight = 3.3;
     targetButtonWidth = 4;
-    targetMarginTopCheck = 93 + (60 - 93) * checkBoxOpacity;
+    targetMarginTopCheck = 90 + (60 - 93) * checkBoxOpacity;
     targetRightCheck = 103 + (103 - 103) * checkBoxOpacity;
-    targetMarginTopReset = 100 + (70 - 100) * checkBoxOpacity;
-    targetRightReset = 489;
+    targetMarginTopReset = 95 + (70 - 95) * checkBoxOpacity;
+    targetRightReset = 36;
     targetResetHeight = 30;
   } else if (windowSize.width >= 740) {
     targetHeight = 172 + (382 - 172) * opacity;
