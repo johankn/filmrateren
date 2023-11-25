@@ -5,8 +5,11 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import { useRecoilState } from 'recoil';
-import { selectedGenresState } from '../atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { selectedGenresState, selectedTitleState } from '../atoms';
+import { GET_AVAILABLE_GENRES_QUERY } from '../queries/SearchQueries';
+import { useLazyQuery } from '@apollo/client';
+import { useEffect, useState } from 'react';
 
 interface FilterProps {
   smallScreen: boolean;
@@ -24,6 +27,17 @@ function MultipleSelectCheckmarks(props: FilterProps) {
       },
     },
   };
+
+  const selectedTitle = useRecoilValue(selectedTitleState);
+
+  const [availableGenres, setAvailableGenres] = useState<string[]>([]);
+
+  const [getAvailableGenres, { data: genresData, loading: genresLoading, error: genresError }] =
+    useLazyQuery(GET_AVAILABLE_GENRES_QUERY);
+
+  if (genresError) {
+    console.error('Error fetching movies:', genresError.message);
+  }
 
   const names = [
     'Action',
@@ -59,6 +73,19 @@ function MultipleSelectCheckmarks(props: FilterProps) {
     );
   };
 
+  const handleOpen = () => {
+    getAvailableGenres({
+      variables: {
+        title: selectedTitle,
+        genresSelected: selectedGenres,
+      },
+    });
+  };
+
+  useEffect(() => {
+    setAvailableGenres(genresData?.getAvailableGenres?.genres || []);
+  }, [genresData]);
+
   return (
     <FormControl
       sx={{ m: 1, width: props.smallScreen ? 143 : props.mediumScreen ? 278 : 200 }}
@@ -79,6 +106,7 @@ function MultipleSelectCheckmarks(props: FilterProps) {
         multiple
         value={selectedGenres}
         onChange={handleChange}
+        onOpen={handleOpen}
         input={
           <OutlinedInput
             label="Sjanger"
@@ -95,7 +123,7 @@ function MultipleSelectCheckmarks(props: FilterProps) {
         sx={{ fontSize: props.mediumScreen ? '0.8rem' : '1rem' }}
       >
         {names.map((name) => (
-          <MenuItem key={name} value={name}>
+          <MenuItem key={name} value={name} disabled={selectedTitle != '' && !availableGenres.includes(name)}>
             <Checkbox checked={selectedGenres.indexOf(name) > -1} />
             <ListItemText primary={name} />
           </MenuItem>

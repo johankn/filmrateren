@@ -17,3 +17,8 @@ export type Movie = {
   score: number;
   providers: string[];
 };
+
+
+export type GenresResult = {
+  genres: string[];
+};

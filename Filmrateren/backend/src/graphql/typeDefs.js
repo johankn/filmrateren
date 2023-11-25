@@ -35,6 +35,7 @@ const typeDefs = gql`
     ): [Movie]
     searchMovies(title: String!): [Movie]
     getMovieByID(movieId: ID!): Movie!
+    getAvailableGenres(title: String): GenresResult
   }
 
   input UserRatingInput {
@@ -46,6 +47,10 @@ const typeDefs = gql`
   type Mutation {
     addRatingToMovie(movieId: ID!, rating: UserRatingInput!): Movie!
     deleteReview(movieId: ID!, comment: String!): Boolean
+  }
+
+  type GenresResult {
+    genres: [String!]
   }
 `;
 

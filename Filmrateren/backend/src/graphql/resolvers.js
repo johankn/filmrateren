@@ -100,6 +100,23 @@ const resolvers = {
 
       return movie;
     },
+
+    getAvailableGenres: async (_, { title }) => {
+      let query = {};
+
+      if (title) {
+        query.title = new RegExp(title, "i"); // For case insensitive matching
+      }
+
+      const filteredMovies = await Movie.find(query);
+
+      // Extract distinct genres
+      const genres =
+        Array.from(new Set(filteredMovies.flatMap((movie) => movie.genres))) ||
+        [];
+
+      return { genres };
+    },
   },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {

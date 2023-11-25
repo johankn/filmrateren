@@ -43,3 +43,11 @@ export const GET_MOVIE_BY_ID_QUERY = gql`
     }
   }
 `;
+
+export const GET_AVAILABLE_GENRES_QUERY = gql`
+  query ($title: String) {
+    getAvailableGenres(title: $title) {
+      genres
+    }
+  }
+`;

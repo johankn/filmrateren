@@ -47,22 +47,6 @@ function StreamButton({ provider }: { provider: string }) {
     }
   };
 
-  // Define background image based on the provider
-  const backgroundImage: BackgroundImage = {
-    Netflix: '/Logos/Netflix.png',
-    Viaplay: '/Logos/Viaplay.png',
-    AppleTV: '/Logos/Apple.png',
-    AmazonPrimeVideo: '/Logos/Amazon.png',
-    Disney: '/Logos/Disney.png',
-    HBO: '/Logos/HBO.png',
-    HBOMax: '/Logos/HBOMax.png',
-    GooglePlayMovies: '/Logos/Google.png',
-    SFAnytime: '/Logos/SF.png',
-    Strim: '/Logos/Strim.png',
-    TV2Play: '/Logos/TV2.png',
-    default: '', // Default image if the provider is not matched
-  };
-
   return (
     <Button
       style={{
@@ -72,7 +56,7 @@ function StreamButton({ provider }: { provider: string }) {
         backgroundColor: 'black',
         marginTop: '10px',
         marginBottom: '10px',
-        background: `url('${backgroundImage[provider] || backgroundImage.default}')`, // Replace 'your-image-url.jpg' with the actual URL of your image
+        background: `url('/Logos/${provider}.png')`, // Replace 'your-image-url.jpg' with the actual URL of your image
         backgroundSize: '100% auto',
         backgroundPosition: 'center',
       }}
