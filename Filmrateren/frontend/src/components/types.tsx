@@ -15,4 +15,5 @@ export type Movie = {
   runtime: number;
   IMDBnumber: number;
   score: number;
+  providers: string[];
 };

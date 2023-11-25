@@ -21,6 +21,7 @@ const movieSchema = new Schema({
   runtime: Number,
   IMDBnumber: Number,
   score: Number,
+  providers: [String],
 });
 
 module.exports = mongoose.model("Movie", movieSchema, "movies");

@@ -35,11 +35,12 @@ const resolvers = {
       ) {
         // Exclude records with "Unknown" runtime
         query.runtime = { $ne: 0 };
+      } else if (checkbox && sort === "POPULARITY_DESC") {
+        // Exclude records with "Unknown" score
+        query.score = { $ne: 0 };
       }
 
       let sortOption = {};
-
-      console.log(1);
 
       switch (sort) {
         case "ALPHABETICAL_ASC":
@@ -67,8 +68,6 @@ const resolvers = {
           sortOption = { runtime: 1 };
           break;
         case "POPULARITY_DESC":
-          console.log("POPULARITY_DESC");
-          console.log(score);
           sortOption = { score: -1 };
           break;
         default:

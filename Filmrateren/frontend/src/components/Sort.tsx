@@ -43,6 +43,9 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         <MenuItem value="">
           <em>Ingen</em>
         </MenuItem>
+        <MenuItem className="italic" value="POPULARITY_DESC">
+          Popularitet
+        </MenuItem>
         <MenuItem className="italic" value="ALPHABETICAL_ASC">
           Alfabetisk A-Å
         </MenuItem>
@@ -66,9 +69,6 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
         </MenuItem>
         <MenuItem className="italic" value="RUNTIME_ASC">
           Kortest varighet
-        </MenuItem>
-        <MenuItem className="italic" value="POPULARITY_DESC">
-          Popularitet
         </MenuItem>
       </Select>
     </FormControl>

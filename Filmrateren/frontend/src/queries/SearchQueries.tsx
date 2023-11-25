@@ -39,6 +39,7 @@ export const GET_MOVIE_BY_ID_QUERY = gql`
       runtime
       IMDBnumber
       score
+      providers
     }
   }
 `;

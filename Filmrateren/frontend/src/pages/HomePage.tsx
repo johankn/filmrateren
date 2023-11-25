@@ -75,7 +75,8 @@ function HomePage() {
       selectedSort == 'RUNTIME_ASC' ||
       selectedSort == 'RUNTIME_DESC' ||
       selectedSort == 'IMDB_ASC' ||
-      selectedSort == 'IMDB_DESC',
+      selectedSort == 'IMDB_DESC' ||
+      selectedSort == 'POPULARITY_DESC',
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
   );
 
@@ -361,7 +362,8 @@ function HomePage() {
               selectedSort === 'RUNTIME_ASC' ||
               selectedSort === 'RUNTIME_DESC' ||
               selectedSort === 'IMDB_ASC' ||
-              selectedSort === 'IMDB_DESC'
+              selectedSort === 'IMDB_DESC' ||
+              selectedSort === 'POPULARITY_DESC'
                 ? 'auto'
                 : 'none',
           }}

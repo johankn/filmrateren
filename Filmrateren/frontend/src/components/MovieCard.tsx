@@ -1,5 +1,6 @@
 import Stars from './Stars';
 import noPoster from '../assets/noImage.png';
+import StreamButton from './StreamButton';
 import { Movie } from './types';
 import Speech from 'react-text-to-speech';
 import { AiFillSound } from 'react-icons/ai';
@@ -85,7 +86,15 @@ function MovieCard({ movie }: MovieCardProps) {
           </p>
           <p className="mt-5 mb-2">
             <span className="font-bold">IMDB-rating:</span>{' '}
-            {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10 (${movie.IMDBnumber})`}
+            {movie.IMDBrating == 0
+              ? 'Ingen anmeldelser'
+              : `${movie.IMDBrating} / 10 (${
+                  movie.IMDBnumber < 1000
+                    ? movie.IMDBnumber
+                    : movie.IMDBnumber < 10000
+                    ? (movie.IMDBnumber / 1000).toFixed(1) + 'K'
+                    : (movie.IMDBnumber / 1000).toFixed(0) + 'K'
+                })`}
           </p>
           <span className="font-bold">Bruker-rating:</span>{' '}
           {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}

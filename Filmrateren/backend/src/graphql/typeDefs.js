@@ -15,6 +15,7 @@ const typeDefs = gql`
     runtime: Int!
     IMDBnumber: Int!
     score: Float!
+    providers: [String!]!
   }
 
   type UserRating {
