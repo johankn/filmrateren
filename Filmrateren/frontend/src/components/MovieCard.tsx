@@ -1,6 +1,5 @@
 import Stars from './Stars';
 import noPoster from '../assets/noImage.png';
-import StreamButton from './StreamButton';
 import { Movie } from './types';
 import Speech from 'react-text-to-speech';
 import { AiFillSound } from 'react-icons/ai';
