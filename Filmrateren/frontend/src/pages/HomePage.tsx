@@ -323,6 +323,21 @@ function HomePage() {
               const movie = newValue as Movie;
               navigate(`/project2/moviePage/${movie.id}`);
             }}
+            onKeyDown={(event) => {
+              if (event.key === 'Tab') {
+                console.log("tab")
+                // Scroll to the new-search-bar element
+                const searchBar = document.getElementById('new-search-bar');
+                console.log("searchbar", searchBar != null)
+                if (searchBar) {
+                  console.log("scroll")
+                  window.scrollTo({
+                    top: searchBar.offsetTop,
+                    behavior: 'smooth',
+                  });
+                }
+              }}
+            }
           />
         </section>
         {/* Search bar input */}
@@ -381,7 +396,13 @@ function HomePage() {
           >
             <Checkbox
               checked={isChecked}
-              tabIndex={selectedSort != '' ? 0 : -1}
+              tabIndex={selectedSort === 'RELEASEYEAR_ASC' ||
+                        selectedSort === 'RELEASEYEAR_DESC' ||
+                        selectedSort === 'RUNTIME_ASC' ||
+                        selectedSort === 'RUNTIME_DESC' ||
+                        selectedSort === 'IMDB_ASC' ||
+                        selectedSort === 'IMDB_DESC'  
+                        ? 0 : -1}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   setIsChecked(!isChecked);
@@ -402,13 +423,13 @@ function HomePage() {
             style={buttonStyle}
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            className="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
           >
-            Søk
+            Søk 
           </button>
         </section>
         <button
-          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
           style={resetStyle}
           onClick={handleResetClick}
         >
