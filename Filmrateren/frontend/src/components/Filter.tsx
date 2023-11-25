@@ -123,7 +123,11 @@ function MultipleSelectCheckmarks(props: FilterProps) {
         sx={{ fontSize: props.mediumScreen ? '0.8rem' : '1rem' }}
       >
         {names.map((name) => (
-          <MenuItem key={name} value={name} disabled={selectedTitle != '' && !availableGenres.includes(name)}>
+          <MenuItem
+            key={name}
+            value={name}
+            disabled={(selectedTitle != '' && !availableGenres.includes(name)) || genresLoading}
+          >
             <Checkbox checked={selectedGenres.indexOf(name) > -1} />
             <ListItemText primary={name} />
           </MenuItem>

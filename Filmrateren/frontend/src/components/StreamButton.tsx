@@ -1,9 +1,5 @@
 import { Button } from '@mui/material';
 
-type BackgroundImage = {
-  [key: string]: string;
-};
-
 function StreamButton({ provider }: { provider: string }) {
   const openProvider = () => {
     // Open the corresponding link based on the provider
