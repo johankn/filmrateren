@@ -28,6 +28,7 @@ const typeDefs = gql`
     getFilteredMovies(
       title: String
       genres: [String!]
+      providers: [String!]
       sort: String
       checkbox: Boolean
       limit: Int
@@ -35,7 +36,11 @@ const typeDefs = gql`
     ): [Movie]
     searchMovies(title: String!): [Movie]
     getMovieByID(movieId: ID!): Movie!
-    getAvailableGenres(title: String): GenresResult
+    getAvailableFilters(
+      title: String
+      genres: [String!]
+      providers: [String!]
+    ): FilterResults
   }
 
   input UserRatingInput {
@@ -49,8 +54,9 @@ const typeDefs = gql`
     deleteReview(movieId: ID!, comment: String!): Boolean
   }
 
-  type GenresResult {
-    genres: [String!]
+  type FilterResults {
+    availableGenres: [String!]
+    availableProviders: [String!]
   }
 `;
 

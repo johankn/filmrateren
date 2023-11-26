@@ -31,6 +31,9 @@ export default {
       screens: {
         small: '100px',
       },
+      opacity: {
+        15: '0.15',
+      },
     },
     plugins: [],
   },

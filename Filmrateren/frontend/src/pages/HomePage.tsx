@@ -19,6 +19,7 @@ import {
   cardsToShowState,
   selectedTitleState,
   isCheckedState,
+  selectedProvidersState,
 } from '../atoms';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
@@ -38,6 +39,8 @@ function HomePage() {
 
   const [selectedGenres, setSelectedGenres] = useRecoilState(selectedGenresState);
   const [previousGenres, setPreviousGenres] = useState<string[]>([]);
+  const [selectedProviders, setSelectedProviders] = useRecoilState(selectedProvidersState);
+  const [previousProviders, setPreviousProviders] = useState<string[]>([]);
   const [selectedSort, setSelectedSort] = useRecoilState(selectedSortState);
   const [previousSort, setPreviousSort] = useState<string>('');
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
@@ -55,7 +58,8 @@ function HomePage() {
     homePageStyle,
     screenStyle,
     searchBarWrapperStyle,
-    filterStyle,
+    genresStyle,
+    providersStyle,
     sortStyle,
     btnStyle,
     seatsStyle,
@@ -64,7 +68,7 @@ function HomePage() {
     logoStyle,
     buttonStyle,
     newSearchBarStyle,
-    targetWidthSearch,
+    searchWidth,
     checkBoxStyle,
     resetStyle,
   } = getHomePageStyles(
@@ -77,7 +81,7 @@ function HomePage() {
       selectedSort == 'IMDB_ASC' ||
       selectedSort == 'IMDB_DESC' ||
       selectedSort == 'POPULARITY_DESC',
-    selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0,
+    selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0 && selectedProviders.length == 0,
   );
 
   useEffect(() => {
@@ -125,6 +129,7 @@ function HomePage() {
       variables: {
         title: selectedTitle,
         genres: selectedGenres,
+        providers: selectedProviders,
         sort: selectedSort,
         checkbox: Boolean(isChecked),
         limit: initialCardsToShow,
@@ -196,6 +201,7 @@ function HomePage() {
     setPagedMovies([]);
     setPreviousTitle(selectedTitle);
     setPreviousGenres(selectedGenres);
+    setPreviousProviders(selectedProviders);
     setPreviousSort(selectedSort);
     setPreviousCheckbox(isChecked);
 
@@ -203,19 +209,21 @@ function HomePage() {
       variables: {
         title: selectedTitle,
         genres: selectedGenres,
+        providers: selectedProviders,
         sort: selectedSort,
         checkbox: Boolean(isChecked),
         limit: initialCardsToShow,
         skip: 0,
       },
     });
-  }, [selectedTitle, selectedGenres, selectedSort, isChecked, getFilteredMovies, setCardsToShow]);
+  }, [selectedTitle, selectedGenres, selectedProviders, selectedSort, isChecked, getFilteredMovies, setCardsToShow]);
 
   const handleRender = useCallback(() => {
     setCardsToShow(cardsToShow);
     setPagedMovies([]);
     setPreviousTitle(selectedTitle);
     setPreviousGenres(selectedGenres);
+    setPreviousProviders(selectedProviders);
     setPreviousSort(selectedSort);
     setPreviousCheckbox(isChecked);
 
@@ -223,17 +231,28 @@ function HomePage() {
       variables: {
         title: selectedTitle,
         genres: selectedGenres,
+        providers: selectedProviders,
         sort: selectedSort,
         checkbox: Boolean(isChecked),
         limit: cardsToShow,
         skip: 0,
       },
     });
-  }, [setCardsToShow, cardsToShow, selectedTitle, selectedGenres, selectedSort, isChecked, getFilteredMovies]);
+  }, [
+    setCardsToShow,
+    cardsToShow,
+    selectedTitle,
+    selectedGenres,
+    selectedProviders,
+    selectedSort,
+    isChecked,
+    getFilteredMovies,
+  ]);
 
   const hasSelectionChanged = () => {
     return (
       JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
+      JSON.stringify(previousProviders) !== JSON.stringify(selectedProviders) ||
       previousSort !== selectedSort ||
       previousTitle !== selectedTitle ||
       previousCheckbox !== isChecked
@@ -251,12 +270,17 @@ function HomePage() {
     setSelectedTitle('');
     setSelectedSort('');
     setSelectedGenres([]);
+    setSelectedProviders([]);
   };
 
   useEffect(() => {
     handleRender();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleScrollDown = () => {
+    window.scrollTo({ top: 300, behavior: 'smooth' });
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
@@ -283,10 +307,7 @@ function HomePage() {
         <img src={logo} alt="logo" className="cursor-pointer" style={logoStyle} />
       </figure>
       {/* Movie screen container */}
-      <main
-        className="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative"
-        style={screenStyle}
-      >
+      <main className="bg-screen flex flex-col justify-start items-center relative" style={screenStyle}>
         {/* Picture with logo and screen content */}
         <figure className="absolute flex flex-row justify-center">
           <img
@@ -298,7 +319,10 @@ function HomePage() {
         {/* Search bar autocomplete*/}
         <section className="absolute z-50" id="autocomplete-search-bar" style={searchBarWrapperStyle}>
           <Autocomplete
-            className="h-14 bg-white p-2 rounded"
+            sx={{
+              borderRadius: '10px',
+            }}
+            className="h-14 bg-white p-2"
             open={open}
             onOpen={() => {
               // only open when in focus and inputValue is not empty
@@ -330,20 +354,38 @@ function HomePage() {
         <section className="absolute z-50" style={newSearchBarStyle}>
           <TextField
             className="bg-white rounded fixed"
-            style={{ width: targetWidthSearch }}
+            style={{ width: searchWidth }}
             // onFocus={handleFocus}
             id="new-search-bar"
             label="Tittel..."
             variant="outlined"
             value={selectedTitle}
             onChange={handleTitleChange}
+            sx={{
+              borderRadius: '14px',
+            }}
+            InputProps={{
+              sx: {
+                '& fieldset': {
+                  borderRadius: '14px',
+                },
+              },
+            }}
           />
         </section>
         {/* Filter on genres*/}
-        <section className="absolute" style={filterStyle}>
+        <section className="absolute" style={genresStyle}>
           <Filter
             smallScreen={windowSize.width < 740 ? true : false}
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+            filterType="genres"
+          />
+        </section>
+        <section className="absolute" style={providersStyle}>
+          <Filter
+            smallScreen={windowSize.width < 740 ? true : false}
+            mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
+            filterType="providers"
           />
         </section>
         {/* Sort */}
@@ -353,22 +395,7 @@ function HomePage() {
             mediumScreen={windowSize.width >= 740 && windowSize.width < 1110 ? true : false}
           />
         </section>
-        <section
-          style={{
-            ...checkBoxStyle,
-            pointerEvents:
-              selectedSort === 'RELEASEYEAR_ASC' ||
-              selectedSort === 'RELEASEYEAR_DESC' ||
-              selectedSort === 'RUNTIME_ASC' ||
-              selectedSort === 'RUNTIME_DESC' ||
-              selectedSort === 'IMDB_ASC' ||
-              selectedSort === 'IMDB_DESC' ||
-              selectedSort === 'POPULARITY_DESC'
-                ? 'auto'
-                : 'none',
-          }}
-          className="absolute flex flex-row justify-center items-center"
-        >
+        <section style={checkBoxStyle} className="absolute flex flex-row justify-center items-center">
           <p className="text-zinc-800">Fjern filmer uten data</p>
           <Tooltip
             TransitionComponent={Zoom}
@@ -404,13 +431,13 @@ function HomePage() {
             style={buttonStyle}
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            className="bg-darkgrey rounded-[14px] text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
           >
             Søk
           </button>
         </section>
         <button
-          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          className="absolute bg-darkgrey rounded-[14px] text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
           style={resetStyle}
           onClick={handleResetClick}
         >
@@ -418,20 +445,25 @@ function HomePage() {
         </button>
       </main>
       {/* Scroll down indicator */}
-      <p
-        className={`text-[rgba(255,247,238,0.8)] fixed ${
+      <button
+        className={`text-[rgba(255,247,238,0.8)] fixed hover:scale-105 ${
           windowSize.width < 740 ? 'top-[90%]' : 'top-[92%]'
         } flex flex-col justify-center items-center ${windowSize.width < 740 ? 'text-base' : 'text-base'}`}
-        style={{ opacity: opacityScreenImg, textShadow: '0 0 20px rgba(255, 247, 238, 0.6)' }}
+        style={{
+          opacity: opacityScreenImg,
+          pointerEvents: opacityScreenImg == 1 ? 'auto' : ('none' as React.CSSProperties['pointerEvents']),
+          textShadow: '0 0 20px rgba(255, 247, 238, 0.6)',
+        }}
+        onClick={handleScrollDown}
       >
         Bla ned for avansert søk
         <span>&darr;</span>
-      </p>
+      </button>
       {/* Seats */}
       <img src={windowSize.width < 740 ? mobileSeats : seats} alt="seats" style={seatsStyle} />
       {/* Search hits */}
       <section
-        className="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white"
+        className="absolute flex flex-wrap flex-row justify-center w-[83%] gap-14 text-white"
         style={searchStyle}
       >
         <div style={heightStyle} />
@@ -443,7 +475,11 @@ function HomePage() {
           <>
             {/* Display SearchHitCard components based on the current 'cardsToShow' state */}
             {pagedMovies.slice(0, cardsToShow).map((movie, index) => (
-              <SearchHitCard key={index} movie={movie} smallScreen={windowSize.width < 740 ? true : false} />
+              <SearchHitCard
+                key={index}
+                movie={movie}
+                screenSize={windowSize.width < 740 ? 'small' : windowSize.width < 1110 ? 'medium' : ''}
+              />
             ))}
 
             {/* "Load More" button */}
@@ -455,7 +491,7 @@ function HomePage() {
               </section>
             ) : (
               <section className="h-40 flex justify-center items-center w-full">
-                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-[14px] text-white p-3.3 flex justify-center items-center w-60 text-lg">
                   <button
                     className="h-14"
                     onClick={loadMoreCards}

@@ -10,31 +10,31 @@ function StreamButton({ provider }: { provider: string }) {
       case 'Viaplay':
         window.open('https://viaplay.no/no-nb/', '_blank');
         break;
-      case 'AppleTV':
-        window.open('https://tv.apple.com/', '_blank');
+      case 'Apple TV':
+        window.open('https://tv.apple.com/no', '_blank');
         break;
-      case 'AmazonPrimeVideo':
+      case 'Amazon Prime Video':
         window.open('https://www.primevideo.com/', '_blank');
         break;
-      case 'Disney':
+      case 'Disney +':
         window.open('https://www.disneyplus.com/', '_blank');
         break;
       case 'HBO':
         window.open('https://www.hbo.com/', '_blank');
         break;
-      case 'HBOMax':
+      case 'HBO Max':
         window.open('https://www.hbomax.com/no/no', '_blank');
         break;
-      case 'GooglePlayMovies':
+      case 'Google Play Movies':
         window.open('https://play.google.com/store/movies', '_blank');
         break;
-      case 'SFAnytime':
+      case 'SF Anytime':
         window.open('https://www.sfanytime.com/no/', '_blank');
         break;
       case 'Strim':
         window.open('https://www.strim.no/', '_blank');
         break;
-      case 'TV2Play':
+      case 'TV 2 Play':
         window.open('https://play.tv2.no/', '_blank');
         break;
       default:
@@ -45,6 +45,7 @@ function StreamButton({ provider }: { provider: string }) {
 
   return (
     <Button
+      className="shadow-md hover:scale-110"
       style={{
         minHeight: '50px',
         minWidth: '80px',

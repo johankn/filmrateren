@@ -8,7 +8,7 @@ const resolvers = {
     },
     getFilteredMovies: async (
       _,
-      { title, genres, sort, checkbox, limit, skip }
+      { title, genres, providers, sort, checkbox, limit, skip }
     ) => {
       let query = {};
 
@@ -18,6 +18,10 @@ const resolvers = {
 
       if (genres && genres.length > 0) {
         query.genres = { $in: genres };
+      }
+
+      if (providers && providers.length > 0) {
+        query.providers = { $in: providers };
       }
 
       if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
@@ -101,21 +105,59 @@ const resolvers = {
       return movie;
     },
 
-    getAvailableGenres: async (_, { title }) => {
-      let query = {};
+    getAvailableFilters: async (_, { title, genres, providers }) => {
+      // Filter movies based on title and providers to get availableGenres
 
-      if (title) {
-        query.title = new RegExp(title, "i"); // For case insensitive matching
+      let providersQuery = {};
+      let genresQuery = {};
+
+      if (title && genres && genres.length > 0) {
+        providersQuery = {
+          title: new RegExp(title, "i"),
+          genres: { $in: genres },
+        };
+      } else if (title) {
+        providersQuery = {
+          title: new RegExp(title, "i"),
+        };
+      } else if (genres && genres.length > 0) {
+        providersQuery = {
+          genres: { $in: genres },
+        };
       }
 
-      const filteredMovies = await Movie.find(query);
+      const providersFilteredMovies = await Movie.find(providersQuery);
 
-      // Extract distinct genres
-      const genres =
-        Array.from(new Set(filteredMovies.flatMap((movie) => movie.genres))) ||
-        [];
+      // Extract distinct genres from the filtered movies
+      const availableProviders =
+        Array.from(
+          new Set(providersFilteredMovies.flatMap((movie) => movie.providers))
+        ) || [];
 
-      return { genres };
+      if (title && providers && providers.length > 0) {
+        genresQuery = {
+          title: new RegExp(title, "i"),
+          providers: { $in: providers },
+        };
+      } else if (title) {
+        genresQuery = {
+          title: new RegExp(title, "i"),
+        };
+      } else if (providers && providers.length > 0) {
+        genresQuery = {
+          providers: { $in: providers },
+        };
+      }
+
+      const genresFilteredMovies = await Movie.find(genresQuery);
+
+      // Extract distinct providers from the filtered movies
+      const availableGenres =
+        Array.from(
+          new Set(genresFilteredMovies.flatMap((movie) => movie.genres))
+        ) || [];
+
+      return { availableGenres, availableProviders };
     },
   },
   Mutation: {
