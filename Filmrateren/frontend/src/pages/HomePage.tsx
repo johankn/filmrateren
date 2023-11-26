@@ -81,10 +81,10 @@ function HomePage() {
   );
 
   useEffect(() => {
-    // Setup a debouncer for 1500ms
+    // Setup a debouncer for 500ms
     const debouncer = setTimeout(() => {
       setDebouncedValue(inputValue);
-    }, 1500);
+    }, 500);
 
     // Cleanup the debouncer
     return () => {
