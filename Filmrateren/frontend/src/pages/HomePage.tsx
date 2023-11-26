@@ -261,16 +261,17 @@ function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
-  // const handleFocus = () => {
-  //   const searchBar = document.getElementById('new-search-bar');
-  //   if (searchBar) {
-  //     searchBar.scrollIntoView({
-  //       behavior: 'smooth',
-  //       block: 'start',
-  //       inline: 'nearest',
-  //     });
-  //   }
-  // };
+  const handleTab = () => {
+    const searchBar = document.getElementById('new-search-bar');
+    console.log("searchbar", searchBar != null)
+    if (searchBar) {
+      console.log("scroll")
+      searchBar.scrollIntoView({
+        block: 'start',
+        inline: 'nearest',
+      });
+    }
+  };
 
   return (
     <div
@@ -326,16 +327,7 @@ function HomePage() {
             onKeyDown={(event) => {
               if (event.key === 'Tab') {
                 console.log("tab")
-                // Scroll to the new-search-bar element
-                const searchBar = document.getElementById('new-search-bar');
-                console.log("searchbar", searchBar != null)
-                if (searchBar) {
-                  console.log("scroll")
-                  window.scrollTo({
-                    top: searchBar.offsetTop,
-                    behavior: 'smooth',
-                  });
-                }
+                handleTab();
               }}
             }
           />
@@ -345,7 +337,6 @@ function HomePage() {
           <TextField
             className="bg-white rounded fixed"
             style={{ width: targetWidthSearch }}
-            // onFocus={handleFocus}
             id="new-search-bar"
             label="Tittel..."
             variant="outlined"
