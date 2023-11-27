@@ -156,7 +156,8 @@ function HomePage() {
     }
   }, [moviesData, cardsToShow]);
 
-  const heightStyle = changeHeight ? { height: '0px', width: '100%' } : { height: '50000px', width: '100%' };
+  const heightStyle =
+    changeHeight || moviesError ? { height: '0px', width: '100%' } : { height: '50000px', width: '100%' };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -466,7 +467,9 @@ function HomePage() {
         className="absolute flex flex-wrap flex-row justify-center w-[83%] gap-14 text-white"
         style={searchStyle}
       >
-        <div style={heightStyle} />
+        <div style={heightStyle} className="absolute top-[200px] flex justify-center">
+          {moviesError ? 'Klarte ikke å laste filmer' : undefined}
+        </div>
         {moviesLoading ? (
           <div className="flex justify-center items-center w-full">
             <CircularProgress />
@@ -489,7 +492,7 @@ function HomePage() {
                   Ingen flere filmer funnet.
                 </p>
               </section>
-            ) : (
+            ) : !moviesError ? (
               <section className="h-40 flex justify-center items-center w-full">
                 <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-[14px] text-white p-3.3 flex justify-center items-center w-60 text-lg">
                   <button
@@ -505,7 +508,7 @@ function HomePage() {
                   </button>
                 </div>
               </section>
-            )}
+            ) : undefined}
           </>
         )}
       </section>

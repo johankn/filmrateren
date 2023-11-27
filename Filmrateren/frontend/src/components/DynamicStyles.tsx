@@ -45,7 +45,7 @@ export function getHomePageStyles(
   let btnTop = certainSort ? 175 + (160 - 175) * opacity : 138 + (160 - 138) * opacity;
   let btnRight = 12;
   let seatsTop = 0 + (10 - 0) * opacity;
-  let searchResultTop = certainSort ? 753 + (840 - 753) * opacity : 718 + (800 - 718) * opacity;
+  let searchResultTop = certainSort ? 753 + (840 - 753) * opacity : 760 + (840 - 760) * opacity;
   let genresRight = 224;
   let providersRight = 114;
   let sortRight = 5;
@@ -72,7 +72,7 @@ export function getHomePageStyles(
     btnTop = 36 + (251 - 36) * opacity;
     btnRight = 36 + (500 - 36) * opacity;
     seatsTop = 0 + (60 - 0) * opacity;
-    searchResultTop = 508 + (525 - 508) * opacity;
+    searchResultTop = 548 + (565 - 548) * opacity;
     genresRight = 420 + (500 - 420) * opacity;
     providersRight = 260 + (500 - 260) * opacity;
     sortRight = 100 + (500 - 100) * opacity;
@@ -97,7 +97,7 @@ export function getHomePageStyles(
     btnTop = 23 + (250 - 23) * opacity;
     btnRight = 31 + (300 - 31) * opacity;
     seatsTop = 0 + (60 - 0) * opacity;
-    searchResultTop = 550 + (625 - 550) * opacity;
+    searchResultTop = 570 + (645 - 570) * opacity;
     genresRight = 496 + (255 - 496) * opacity;
     providersRight = 306.7 + (255 - 306.7) * opacity;
     sortRight = 117 + (145 - 117) * opacity;
