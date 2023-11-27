@@ -279,6 +279,8 @@ function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const noMoreMovies = moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length < 28;
+
   const handleScrollDown = () => {
     window.scrollTo({ top: 300, behavior: 'smooth' });
   };
@@ -494,17 +496,22 @@ function HomePage() {
               </section>
             ) : !moviesError ? (
               <section className="h-40 flex justify-center items-center w-full">
-                <div className="border-2 border-transparent cursor-pointer transition duration-250 hover:border-blue bg-darkgrey rounded-[14px] text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <div
+                  className={`border-2 ${
+                    noMoreMovies ? 'opacity-50 border-transparent' : 'hover:border-blue cursor-pointer border-yellow'
+                  } bg-darkgrey rounded-[14px] text-white p-3.3 flex justify-center items-center w-60 text-lg`}
+                >
                   <button
                     className="h-14"
                     onClick={loadMoreCards}
+                    disabled={noMoreMovies}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {
                         loadMoreCards();
                       }
                     }}
                   >
-                    Last flere filmer
+                    {noMoreMovies ? 'Ingen flere filmer' : 'Last flere filmer'}
                   </button>
                 </div>
               </section>
