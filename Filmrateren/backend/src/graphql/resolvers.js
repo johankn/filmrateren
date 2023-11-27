@@ -10,90 +10,133 @@ const resolvers = {
       _,
       { title, genres, providers, sort, checkbox, limit, skip }
     ) => {
-      let query = {};
-
-      if (title) {
-        query.title = new RegExp(title, "i"); // For case insensitive matching
-      }
-
-      if (genres && genres.length > 0) {
-        query.genres = { $in: genres };
-      }
-
-      if (providers && providers.length > 0) {
-        query.providers = { $in: providers };
-      }
-
-      if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
-        // Exclude records with "Unknown" IMDBrating
-        query.IMDBrating = { $ne: 0 };
-      } else if (
-        checkbox &&
-        (sort === "RELEASEYEAR_DESC" || sort === "RELEASEYEAR_ASC")
+      if (
+        !sort &&
+        ((genres && genres.length > 0) || (providers && providers.length > 0))
       ) {
-        // Exclude records with "Unknown" releaseYear
-        query.releaseYear = { $ne: "0" };
-      } else if (
-        checkbox &&
-        (sort === "RUNTIME_DESC" || sort === "RUNTIME_ASC")
-      ) {
-        // Exclude records with "Unknown" runtime
-        query.runtime = { $ne: 0 };
-      } else if (checkbox && sort === "POPULARITY_DESC") {
-        // Exclude records with "Unknown" score
-        query.score = { $ne: 0 };
+        let matchConditions = {};
+
+        if (genres.length > 0 && providers.length > 0) {
+          // Both genres and providers are provided
+          matchConditions.$and = [
+            { title: new RegExp(title, "i") },
+
+            {
+              $and: [
+                { providers: { $in: providers } },
+                { genres: { $in: genres } },
+              ],
+            },
+          ];
+        } else {
+          // Either genres or providers are provided
+          matchConditions.$and = [
+            { title: new RegExp(title, "i") },
+            {
+              $or: [
+                { providers: { $in: providers } },
+                { genres: { $in: genres } },
+              ],
+            },
+          ];
+        }
+        // Aggregation pipeline to retrieve movies with at least one match
+        const atLeastOneMatchPipeline = [
+          {
+            $match: matchConditions,
+          },
+          {
+            $addFields: {
+              totalMatches: {
+                $sum: [
+                  { $size: { $setIntersection: [providers, "$providers"] } },
+                  { $size: { $setIntersection: [genres, "$genres"] } },
+                ],
+              },
+            },
+          },
+          {
+            $sort: {
+              totalMatches: -1,
+            },
+          },
+          {
+            $limit: limit,
+          },
+        ];
+
+        const aggregatedMovies = await Movie.aggregate(atLeastOneMatchPipeline);
+        return aggregatedMovies;
+      } else {
+        let query = {};
+
+        if (title) {
+          query.title = new RegExp(title, "i"); // For case insensitive matching
+        }
+
+        if (genres && genres.length > 0) {
+          query.genres = { $in: genres };
+        }
+
+        if (providers && providers.length > 0) {
+          query.providers = { $in: providers };
+        }
+
+        if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
+          // Exclude records with "Unknown" IMDBrating
+          query.IMDBrating = { $ne: 0 };
+        } else if (
+          checkbox &&
+          (sort === "RELEASEYEAR_DESC" || sort === "RELEASEYEAR_ASC")
+        ) {
+          // Exclude records with "Unknown" releaseYear
+          query.releaseYear = { $ne: "0" };
+        } else if (
+          checkbox &&
+          (sort === "RUNTIME_DESC" || sort === "RUNTIME_ASC")
+        ) {
+          // Exclude records with "Unknown" runtime
+          query.runtime = { $ne: 0 };
+        } else if (checkbox && sort === "POPULARITY_DESC") {
+          // Exclude records with "Unknown" score
+          query.score = { $ne: 0 };
+        }
+
+        let sortOption = {};
+
+        switch (sort) {
+          case "ALPHABETICAL_ASC":
+            sortOption = { title: 1 }; // 1 means ascending order in MongoDB
+            break;
+          case "ALPHABETICAL_DESC":
+            sortOption = { title: -1 }; // -1 means descending order in MongoDB
+            break;
+          case "IMDB_DESC":
+            sortOption = { IMDBrating: -1 };
+            break;
+          case "IMDB_ASC":
+            sortOption = { IMDBrating: 1 };
+            break;
+          case "RELEASEYEAR_DESC":
+            sortOption = { releaseYear: -1 };
+            break;
+          case "RELEASEYEAR_ASC":
+            sortOption = { releaseYear: 1 };
+            break;
+          case "RUNTIME_DESC":
+            sortOption = { runtime: -1 };
+            break;
+          case "RUNTIME_ASC":
+            sortOption = { runtime: 1 };
+            break;
+          case "POPULARITY_DESC":
+            sortOption = { score: -1 };
+            break;
+          default:
+            break; // No sorting
+        }
+        return await Movie.find(query).sort(sortOption).limit(limit).skip(skip);
       }
-
-      let sortOption = {};
-
-      switch (sort) {
-        case "ALPHABETICAL_ASC":
-          sortOption = { title: 1 }; // 1 means ascending order in MongoDB
-          break;
-        case "ALPHABETICAL_DESC":
-          sortOption = { title: -1 }; // -1 means descending order in MongoDB
-          break;
-        case "IMDB_DESC":
-          sortOption = { IMDBrating: -1 };
-          break;
-        case "IMDB_ASC":
-          sortOption = { IMDBrating: 1 };
-          break;
-        case "RELEASEYEAR_DESC":
-          sortOption = { releaseYear: -1 };
-          break;
-        case "RELEASEYEAR_ASC":
-          sortOption = { releaseYear: 1 };
-          break;
-        case "RUNTIME_DESC":
-          sortOption = { runtime: -1 };
-          break;
-        case "RUNTIME_ASC":
-          sortOption = { runtime: 1 };
-          break;
-        case "POPULARITY_DESC":
-          sortOption = { score: -1 };
-          break;
-        default:
-          if (!sort) {
-            const movies = await Movie.find(query).limit(limit).skip(skip);
-
-            // Sort movies based on the count of genre matches
-            return movies.sort((a, b) => {
-              const genreMatchesA = genres.filter((genre) =>
-                a.genres.includes(genre)
-              ).length;
-              const genreMatchesB = genres.filter((genre) =>
-                b.genres.includes(genre)
-              ).length;
-
-              return genreMatchesB - genreMatchesA; // Sort in descending order
-            });
-          }
-          break; // No sorting
-      }
-
-      return await Movie.find(query).sort(sortOption).limit(limit).skip(skip);
     },
     getMovieByID: async (_, { movieId }) => {
       const movie = await Movie.findOne({ id: movieId });
