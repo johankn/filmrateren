@@ -59,12 +59,12 @@ npm run test
 ### 5. Run all the playwright tests (e2e). Make sure to do it from the root folder of the project:
 
 ```bash
-npm install
+npx playwright install
 npx playwright test
 ```
 *To run the tests in Playwright's UI-mode, use the following command:*
 ```bash
-npm install
+npx playwright install
 npx playwright test --ui
 ```
 
