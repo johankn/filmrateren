@@ -17,12 +17,11 @@ interface FilterProps {
 }
 
 function Filter(props: FilterProps) {
-  const ITEM_HEIGHT = 80;
-  const ITEM_PADDING_TOP = 8;
+  // Props to set the styling of the dropdown menu
   const MenuProps = {
     PaperProps: {
       style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        maxHeight: 400,
         maxWidth: 230,
         borderRadius: '12px',
       },
@@ -40,7 +39,7 @@ function Filter(props: FilterProps) {
   if (filtersError) {
     console.error('Error fetching movies:', filtersError.message);
   }
-
+  // Items shown in the dropdown menu based on the filterType prop
   const names =
     props.filterType == 'genres'
       ? [
@@ -83,27 +82,23 @@ function Filter(props: FilterProps) {
   const [selectedGenres, setSelectedGenres] = useRecoilState(selectedGenresState);
   const [selectedProviders, setSelectedProviders] = useRecoilState(selectedProvidersState);
 
+  // Update the selectedGenres and selectedProviders states when the user selects or deselects an item
   const handleChange =
     props.filterType == 'genres'
       ? (event: SelectChangeEvent<typeof selectedGenres>) => {
           const {
             target: { value },
           } = event;
-          setSelectedGenres(
-            // On autofill we get a stringified value.
-            typeof value === 'string' ? value.split(',') : value,
-          );
+          setSelectedGenres(typeof value === 'string' ? value.split(',') : value);
         }
       : (event: SelectChangeEvent<typeof selectedProviders>) => {
           const {
             target: { value },
           } = event;
-          setSelectedProviders(
-            // On autofill we get a stringified value.
-            typeof value === 'string' ? value.split(',') : value,
-          );
+          setSelectedProviders(typeof value === 'string' ? value.split(',') : value);
         };
 
+  // Get the available genres and providers based on the selected title, genres and providers
   const handleOpen = () => {
     if (selectedTitle != '' || selectedGenres.length > 0 || selectedProviders.length > 0) {
       getAvailableFilters({
@@ -116,6 +111,7 @@ function Filter(props: FilterProps) {
     }
   };
 
+  // Update the available genres and providers when the query is returned and filtersData changes
   useEffect(() => {
     setAvailableGenres(filtersData?.getAvailableFilters?.availableGenres || []);
     setAvailableProviders(filtersData?.getAvailableFilters?.availableProviders || []);
@@ -123,6 +119,7 @@ function Filter(props: FilterProps) {
 
   return (
     <FormControl
+      id="filter"
       sx={{
         m: 1,
         width: props.smallScreen ? 106 : props.mediumScreen ? 185 : 155,
@@ -131,6 +128,7 @@ function Filter(props: FilterProps) {
       className="bg-white rounded"
     >
       <InputLabel
+        htmlFor="filter"
         id="filterLabel"
         sx={{
           fontSize: props.mediumScreen ? '0.9rem' : props.smallScreen ? '0.8rem' : '1rem',
@@ -142,7 +140,6 @@ function Filter(props: FilterProps) {
       </InputLabel>
       <Select
         labelId="filterLabel"
-        id="filter"
         multiple
         label={label}
         value={props.filterType == 'genres' ? selectedGenres : selectedProviders}
@@ -156,6 +153,7 @@ function Filter(props: FilterProps) {
           <MenuItem
             key={name}
             value={name}
+            // Disable the item if the item is not in available genres or providers
             disabled={
               props.filterType == 'genres'
                 ? (!(selectedTitle == '' && selectedProviders.length == 0) && !availableGenres.includes(name)) ||

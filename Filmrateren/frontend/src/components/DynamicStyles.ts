@@ -11,6 +11,7 @@ export function getHomePageStyles(
   // Easing functions for smoother transitions
   const easeOutQuart = 'cubic-bezier(0.165, 0.84, 0.44, 1)';
 
+  // Function for calculating opacity based on scroll position. The opacity is also used in calculations for other styles.
   const calcOpacity = (max: number, startMob: number, endMob: number, start: number, end: number) => {
     return mobile
       ? Math.max(0, Math.min(max, 1 - (scrollPosition - startMob) / endMob))
@@ -23,6 +24,7 @@ export function getHomePageStyles(
       : Math.min(1, Math.max(0, (scrollPosition - start) / end));
   };
 
+  // Calculate the opacites for the different elements
   const opacity = calcOpacity(1, 95, 60, 195, 60);
   const opacityScreenImg = calcOpacity(1, 85, 30, 185, 30);
   const opacitySeats = calcOpacity(1, 90, 60, 190, 30);
@@ -35,6 +37,9 @@ export function getHomePageStyles(
     ? Math.max(0, Math.min(1, (scrollPosition - 95) / 10))
     : Math.max(0, Math.min(1, (scrollPosition - 195) / 10));
 
+  // Calculate the style values for the different elements, based on the opacities, and indirectly the scrollposition
+  // The values are different depending on the screen size
+  // This is for screens with a width of 740px or less
   let screenHeight = certainSort ? 242 + (236 - 242) * opacity : 200 + (236 - 200) * opacity;
   let screenWidth = 350;
   let screenTop = 526 + (146 - 526) * opacity;
@@ -61,6 +66,7 @@ export function getHomePageStyles(
   let resetRight = 233;
   let resetHeight = 53;
 
+  // Calculate values for screens with a width of 1110px or more
   if (windowSize.width >= 1110) {
     screenHeight = isEmpty ? 125 + (382 - 125) * opacity : 132 + (382 - 132) * opacity;
     screenWidth = 1040 + (910 - 1040) * opacity;
@@ -86,6 +92,8 @@ export function getHomePageStyles(
     resetWidth = 64 + (44 - 64) * opacity;
     resetRight = 36;
     resetHeight = 30;
+
+    // Calculate values for screens with a width between 740px and 1110px
   } else if (windowSize.width >= 740) {
     screenHeight = certainSort ? 180 + (382 - 180) * opacity : 160 + (382 - 160) * opacity;
     screenWidth = 720 + (700 - 720) * opacity;
@@ -113,6 +121,8 @@ export function getHomePageStyles(
     resetRight = 31 + (100 - 31) * opacity;
     resetHeight = 54;
   }
+
+  // Create the styles for the components, based on the values calculated above
 
   const homePageStyle = {
     boxShadow: `inset 0 0 0 1000px rgba(16, 16, 16, ${boxShadowOpacity})`,
@@ -234,6 +244,7 @@ export function getHomePageStyles(
       : ('none' as React.CSSProperties['pointerEvents']),
   };
 
+  // Return the styles to be used in the components
   return {
     opacitySearch,
     opacityFilterSort,

@@ -27,6 +27,9 @@ export default {
       backgroundImage: {
         redpurple: "url('/background.svg')",
       },
+      borderRadius: {
+        base: '14px',
+      },
       screens: {
         small: '100px',
       },
