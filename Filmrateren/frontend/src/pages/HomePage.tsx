@@ -315,7 +315,7 @@ function HomePage() {
     >
       {/* Clickable logo top left */}
       <figure className="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998" onClick={handleLogoClick}>
-        <img src={logo} alt="logo" className="cursor-pointer" style={logoStyle} />
+        <img src={logo} alt="Film Rateren Logo" className="cursor-pointer" style={logoStyle} />
       </figure>
       {/* Movie screen container */}
       <main className="bg-screen flex flex-col justify-start items-center relative" style={screenStyle}>
@@ -445,7 +445,7 @@ function HomePage() {
                 color: 'gray-700',
                 '&.Mui-checked': {
                   color: 'rgb(55, 65, 81)',
-                },
+                }, 
               }}
             />
           </Tooltip>
