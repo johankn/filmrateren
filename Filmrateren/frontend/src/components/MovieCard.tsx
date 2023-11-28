@@ -33,17 +33,17 @@ function MovieCard({ movie }: MovieCardProps) {
 
   // Text-to-Speech buttons
   const startBtn = (
-    <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button aria-label='start' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <AiFillSound></AiFillSound>
     </button>
   );
   const pauseBtn = (
-    <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button aria-label='pause' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <FaVolumeMute></FaVolumeMute>
     </button>
   );
   const stopBtn = (
-    <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button aria-label='stop' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <IoMdRefresh></IoMdRefresh>
     </button>
   );
@@ -53,11 +53,11 @@ function MovieCard({ movie }: MovieCardProps) {
       <Speech
         text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${
           movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')
-        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Filmens varighet: ${
-          movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} minutter`
-        }. Beskrivelse av filmen: ${movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot}.IMBD rating: ${
-          movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating
-        }. Brukeranmeldelser: ${movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)} `}
+        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Filmens varighet: ${movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} minutter`}. Beskrivelse av filmen: ${
+          movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot
+        }.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${
+          movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)
+        } `}
         rate={0.8}
         startBtn={startBtn}
         pauseBtn={pauseBtn}
@@ -72,63 +72,56 @@ function MovieCard({ movie }: MovieCardProps) {
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
-            className="w-3/4 md:w-96 h-auto object-contain rounded-base shadow-2xl"
+            className="w-3/4 md:w-96 h-auto object-contain rounded-lg shadow-2xl"
           />
         </figure>
         {/* Information about movie */}
         <section className="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4">
-          <p className="mb-2">
-            <span className="font-bold">Sjanger: </span> {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Regi: </span>{' '}
+          <div className="mb-2">
+            <strong className="font-bold">Sjanger: </strong> {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
+          </div>
+          <div className="mb-2">
+            <strong className="font-bold">Regi: </strong>{' '}
             {movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')}
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Utgivelsesår: </span> {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Varighet: </span>{' '}
+          </div>
+          <div className="mb-2">
+            <strong className="font-bold">Utgivelsesår: </strong> {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
+          </div>
+          <div className="mb-2">
+            <strong className="font-bold">Varighet: </strong>{' '}
             {movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} min`}
-          </p>
+          </div>
           {/* Movie plot */}
-          <p>
-            <span className="font-bold">Beskrivelse: </span>{' '}
-            {
-              // If the plot is more than 340 characters, the text will be cut off and a button will appear to show more text
-              movie.plot == ''
-                ? 'Finner ingen beskrivelse'
-                : showMore
-                ? `${movie.plot} `
-                : movie.plot.length <= 340
-                ? movie.plot
-                : `${movie.plot.substring(0, 340)}... `
-            }
+          <div>
+            <strong className="font-bold">Beskrivelse: </strong>{' '}
+            {movie.plot == ''
+              ? 'Finner ingen beskrivelse'
+              : showMore
+              ? `${movie.plot} `
+              : movie.plot.length <= 340
+              ? movie.plot
+              : `${movie.plot.substring(0, 340)}... `}
             {movie.plot.length > 340 ? (
-              // The button updates the number of characters shown
               <button className="italic text-[#facc15]" onClick={() => setShowMore(!showMore)}>
                 {showMore ? 'Vis mindre' : 'Vis mer'}
               </button>
             ) : null}
-          </p>
+          </div>
           {/* IMDB-rating */}
-          <p className="mt-5 mb-2">
-            <span className="font-bold">IMDB-rating:</span>{' '}
-            {
-              // Show the IMDB rating and number of reviews in a fitting format
-              movie.IMDBrating == 0
-                ? 'Ingen anmeldelser'
-                : `${movie.IMDBrating} / 10 (${
-                    movie.IMDBnumber < 1000
-                      ? movie.IMDBnumber
-                      : movie.IMDBnumber < 10000
-                      ? (movie.IMDBnumber / 1000).toFixed(1) + 'K'
-                      : (movie.IMDBnumber / 1000).toFixed(0) + 'K'
-                  })`
-            }
-          </p>
+          <div className="mt-5 mb-2">
+            <strong className="font-bold">IMDB-rating:</strong>{' '}
+            {movie.IMDBrating == 0
+              ? 'Ingen anmeldelser'
+              : `${movie.IMDBrating} / 10 (${
+                  movie.IMDBnumber < 1000
+                    ? movie.IMDBnumber
+                    : movie.IMDBnumber < 10000
+                    ? (movie.IMDBnumber / 1000).toFixed(1) + 'K'
+                    : (movie.IMDBnumber / 1000).toFixed(0) + 'K'
+                })`}
+          </div>
           {/* User-rating */}
-          <span className="font-bold">Bruker-rating:</span>{' '}
+          <strong className="font-bold">Bruker-rating:</strong>{' '}
           {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}
           <figure className="flex text-yellow">
             <Stars rating={parseFloat(averageUserRating.toFixed(1))} />

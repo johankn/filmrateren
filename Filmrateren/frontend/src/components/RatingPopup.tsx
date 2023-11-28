@@ -76,69 +76,78 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
       </div>
       {/* Rating form */}
       <form onSubmit={handleSubmit} className="flex-grow">
-        <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-          <FormLabel style={{ color: 'white', fontSize: 'large' }}>Navn</FormLabel>
+      <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
+        <FormLabel htmlFor="name" style={{ color: 'white', fontSize: 'large' }}>Navn</FormLabel>
           {/* Name input */}
-          <Input
-            size="md"
-            placeholder="Eks: Ola Nordmann"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            error={showNameError}
-          />
+        <Input
+          id="name"
+          aria-label="Name"
+          size="md"
+          placeholder="Eks: Ola Nordmann"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          error={showNameError}
+        />
           {/* Error message for name */}
-          {showNameError && (
-            <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-              Skriv inn navnet ditt
-            </FormHelperText>
-          )}
-          <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
+        {showNameError && (
+          <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+            Skriv inn navnet ditt
+          </FormHelperText>
+        )}
+
+        <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
           {/* Rating input as stars */}
-          <section>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                type="button"
-                key={star}
-                style={{
-                  color: star <= (rating || 0) ? 'gold' : 'lightgrey',
-                  fontSize: '4vw',
-                }}
-                onClick={() => setRating(star)}
-              >
-                ★
-              </button>
-            ))}
-          </section>
+        <section>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              type="button"
+              key={star}
+              style={{
+                color: star <= (rating || 0) ? 'gold' : 'lightgrey',
+                fontSize: '4vw',
+              }}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </button>
+          ))}
+        </section>
           {/* Error message for rating */}
-          {showRatingError && (
-            <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-              Klikk på en stjerne for å velge rating
-            </FormHelperText>
-          )}
-          <FormLabel style={{ color: 'white', fontSize: 'large' }}>Kommentarer</FormLabel>
+        {showRatingError && (
+          <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+            Klikk på en stjerne for å velge rating
+          </FormHelperText>
+        )}
+
+      <FormLabel htmlFor="comment" style={{ color: 'white', fontSize: 'large' }}>
+        Kommentarer
+      </FormLabel>
           {/* Comment input */}
-          <Textarea
-            size="md"
-            placeholder="Eks: En skummel, men spennende film!"
-            minRows={4}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            error={showCommentError}
-          />
+      <Textarea
+        id="comment"
+        aria-label="Kommentarer"
+        size="md"
+        placeholder="Eks: En skummel, men spennende film!"
+        minRows={4}
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        error={showCommentError}
+      />
           {/* Error message for comment */}
-          {showCommentError && (
-            <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
-              Skriv inn en kommentar til ratingen
-            </FormHelperText>
-          )}
+      {showCommentError && (
+        <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
+          Skriv inn en kommentar til ratingen
+        </FormHelperText>
+      )}
           {/* Submit button */}
-          <button
-            className="ml-5 rounded-lg w-44 h-14 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
-            type="submit"
-          >
-            Send inn
-          </button>
-        </Stack>
+        <button aria-label='Submit'
+          className="ml-5 rounded-lg w-44 h-14 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+          type="submit"
+        >
+          Send inn
+        </button>
+      </Stack>
+
       </form>
     </div>
   );
