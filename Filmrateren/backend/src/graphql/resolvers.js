@@ -1,10 +1,10 @@
-const Movie = require("../models/movie");
+const Movie = require('../models/movie');
 
 const resolvers = {
   Query: {
     searchMovies: async (_, { title }) => {
       // Use a regex for case-insensitive and partial matching
-      return await Movie.find({ title: new RegExp(title, "i") });
+      return await Movie.find({ title: new RegExp(title, 'i') });
     },
     getFilteredMovies: async (
       _,
@@ -14,64 +14,64 @@ const resolvers = {
         !sort &&
         ((genres && genres.length > 0) || (providers && providers.length > 0))
       ) {
-        let matchConditions = {};
+        const matchConditions = {};
 
         if (genres.length > 0 && providers.length > 0) {
           // Both genres and providers are provided
           matchConditions.$and = [
-            { title: new RegExp(title, "i") },
+            { title: new RegExp(title, 'i') },
 
             {
               $and: [
                 { providers: { $in: providers } },
-                { genres: { $in: genres } },
-              ],
-            },
+                { genres: { $in: genres } }
+              ]
+            }
           ];
         } else {
           // Either genres or providers are provided
           matchConditions.$and = [
-            { title: new RegExp(title, "i") },
+            { title: new RegExp(title, 'i') },
             {
               $or: [
                 { providers: { $in: providers } },
-                { genres: { $in: genres } },
-              ],
-            },
+                { genres: { $in: genres } }
+              ]
+            }
           ];
         }
         // Aggregation pipeline to retrieve movies with at least one match
         const atLeastOneMatchPipeline = [
           {
-            $match: matchConditions,
+            $match: matchConditions
           },
           {
             $addFields: {
               totalMatches: {
                 $sum: [
-                  { $size: { $setIntersection: [providers, "$providers"] } },
-                  { $size: { $setIntersection: [genres, "$genres"] } },
-                ],
-              },
-            },
+                  { $size: { $setIntersection: [providers, '$providers'] } },
+                  { $size: { $setIntersection: [genres, '$genres'] } }
+                ]
+              }
+            }
           },
           {
             $sort: {
-              totalMatches: -1,
-            },
+              totalMatches: -1
+            }
           },
           {
-            $limit: limit,
-          },
+            $limit: limit
+          }
         ];
 
         const aggregatedMovies = await Movie.aggregate(atLeastOneMatchPipeline);
         return aggregatedMovies;
       } else {
-        let query = {};
+        const query = {};
 
         if (title) {
-          query.title = new RegExp(title, "i"); // For case insensitive matching
+          query.title = new RegExp(title, 'i'); // For case insensitive matching
         }
 
         if (genres && genres.length > 0) {
@@ -82,22 +82,22 @@ const resolvers = {
           query.providers = { $in: providers };
         }
 
-        if (checkbox && (sort === "IMDB_DESC" || sort === "IMDB_ASC")) {
+        if (checkbox && (sort === 'IMDB_DESC' || sort === 'IMDB_ASC')) {
           // Exclude records with "Unknown" IMDBrating
           query.IMDBrating = { $ne: 0 };
         } else if (
           checkbox &&
-          (sort === "RELEASEYEAR_DESC" || sort === "RELEASEYEAR_ASC")
+          (sort === 'RELEASEYEAR_DESC' || sort === 'RELEASEYEAR_ASC')
         ) {
           // Exclude records with "Unknown" releaseYear
-          query.releaseYear = { $ne: "0" };
+          query.releaseYear = { $ne: '0' };
         } else if (
           checkbox &&
-          (sort === "RUNTIME_DESC" || sort === "RUNTIME_ASC")
+          (sort === 'RUNTIME_DESC' || sort === 'RUNTIME_ASC')
         ) {
           // Exclude records with "Unknown" runtime
           query.runtime = { $ne: 0 };
-        } else if (checkbox && sort === "POPULARITY_DESC") {
+        } else if (checkbox && sort === 'POPULARITY_DESC') {
           // Exclude records with "Unknown" score
           query.score = { $ne: 0 };
         }
@@ -105,31 +105,31 @@ const resolvers = {
         let sortOption = {};
 
         switch (sort) {
-          case "ALPHABETICAL_ASC":
+          case 'ALPHABETICAL_ASC':
             sortOption = { title: 1 }; // 1 means ascending order in MongoDB
             break;
-          case "ALPHABETICAL_DESC":
+          case 'ALPHABETICAL_DESC':
             sortOption = { title: -1 }; // -1 means descending order in MongoDB
             break;
-          case "IMDB_DESC":
+          case 'IMDB_DESC':
             sortOption = { IMDBrating: -1 };
             break;
-          case "IMDB_ASC":
+          case 'IMDB_ASC':
             sortOption = { IMDBrating: 1 };
             break;
-          case "RELEASEYEAR_DESC":
+          case 'RELEASEYEAR_DESC':
             sortOption = { releaseYear: -1 };
             break;
-          case "RELEASEYEAR_ASC":
+          case 'RELEASEYEAR_ASC':
             sortOption = { releaseYear: 1 };
             break;
-          case "RUNTIME_DESC":
+          case 'RUNTIME_DESC':
             sortOption = { runtime: -1 };
             break;
-          case "RUNTIME_ASC":
+          case 'RUNTIME_ASC':
             sortOption = { runtime: 1 };
             break;
-          case "POPULARITY_DESC":
+          case 'POPULARITY_DESC':
             sortOption = { score: -1 };
             break;
           default:
@@ -142,7 +142,7 @@ const resolvers = {
       const movie = await Movie.findOne({ id: movieId });
 
       if (!movie) {
-        throw new Error("Movie not found");
+        throw new Error('Movie not found');
       }
 
       return movie;
@@ -156,16 +156,16 @@ const resolvers = {
 
       if (title && genres && genres.length > 0) {
         providersQuery = {
-          title: new RegExp(title, "i"),
-          genres: { $in: genres },
+          title: new RegExp(title, 'i'),
+          genres: { $in: genres }
         };
       } else if (title) {
         providersQuery = {
-          title: new RegExp(title, "i"),
+          title: new RegExp(title, 'i')
         };
       } else if (genres && genres.length > 0) {
         providersQuery = {
-          genres: { $in: genres },
+          genres: { $in: genres }
         };
       }
 
@@ -179,16 +179,16 @@ const resolvers = {
 
       if (title && providers && providers.length > 0) {
         genresQuery = {
-          title: new RegExp(title, "i"),
-          providers: { $in: providers },
+          title: new RegExp(title, 'i'),
+          providers: { $in: providers }
         };
       } else if (title) {
         genresQuery = {
-          title: new RegExp(title, "i"),
+          title: new RegExp(title, 'i')
         };
       } else if (providers && providers.length > 0) {
         genresQuery = {
-          providers: { $in: providers },
+          providers: { $in: providers }
         };
       }
 
@@ -201,7 +201,7 @@ const resolvers = {
         ) || [];
 
       return { availableGenres, availableProviders };
-    },
+    }
   },
   Mutation: {
     addRatingToMovie: async (_, { movieId, rating }) => {
@@ -209,7 +209,7 @@ const resolvers = {
       const movie = await Movie.findOne({ id: movieId });
 
       if (!movie) {
-        throw new Error("Movie not found");
+        throw new Error('Movie not found');
       }
 
       // Add the new rating to the movie's userRatings array
@@ -226,7 +226,7 @@ const resolvers = {
         const movie = await Movie.findOne({ id: movieId });
 
         if (!movie) {
-          throw new Error("Movie not found");
+          throw new Error('Movie not found');
         }
 
         const reviewIndex = movie.userRatings.findIndex(
@@ -248,8 +248,8 @@ const resolvers = {
         console.error(error);
         return false; // Error during deletion
       }
-    },
-  },
+    }
+  }
 };
 
 module.exports = resolvers;
