@@ -10,15 +10,18 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
   const MenuProps = {
     PaperProps: {
       style: {
+        maxHeight: 400,
         borderRadius: '12px',
       },
     },
   };
 
+  // Updates the selected sorts state when the user selects a new sort
   const handleSortChange = (event: SelectChangeEvent) => {
     setSelectedSort(event.target.value);
   };
 
+  // Items used to genereate the dropdown menu and the corresponding query values
   const sortItems = {
     POPULARITY_DESC: 'Popularitet',
     ALPHABETICAL_ASC: 'Alfabetisk A-Å',
@@ -33,6 +36,7 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
 
   return (
     <FormControl
+      id="sort-select"
       sx={{
         m: 1,
         width: smallScreen ? 106 : mediumScreen ? 185 : 155,
@@ -41,6 +45,8 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
       className="bg-white"
     >
       <InputLabel
+        aria-label="Sortering"
+        htmlFor="sort-select"
         id="sort-select-label"
         sx={{
           fontSize: mediumScreen ? '0.9rem' : smallScreen ? '0.8rem' : '1rem',
@@ -53,7 +59,6 @@ function Sort({ smallScreen, mediumScreen }: { smallScreen: boolean; mediumScree
       <Select
         className=""
         labelId="sort-select-label"
-        id="sort-select"
         label="Sortering"
         value={selectedSort}
         onChange={handleSortChange}
