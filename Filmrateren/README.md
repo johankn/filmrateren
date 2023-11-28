@@ -72,6 +72,9 @@ _4. Inndatahjelp_
 
 - På alle tekstfelter er det lagt til et default-eksempel som skal hjelpe bruker med å skjønne hva man kan/skal skrive. Dersom bruker likevel utfører en handling "feil", vil de motta klare tilbakemeldinger som gir veiledning om hvordan de kan rette opp i feilene. For eksempel, når en bruker prøver å legge til en rating uten en kommentar, vil de bli varslet om at en kommentar er nødvendig.
 
+_5. Web Accessibility Evaluation_
+- Vi har brukt WAVE Evaluation Tool for Chrome, et verktøy for evaluering av webtilgjengelighet, som gir visuell tilbakemelding om tilgjengeligheten til nettinnholdet ditt. Dette har hjulpet oss med å identifisere og rette opp i tilgjengelighetsproblemer i løpet av utviklingsprosessen. Vi har i tillegg lagt til flere ARIA-etiketter, som bidrar til å gjøre innholdet mer meningsfullt for brukere med nedsatt syn eller andre funksjonshemminger. For eksempel har vi lagt til aria-label på knapper, slik at brukere som bruker skjermleser får en beskrivelse av hva knappen gjør. 
+
 #### Fokus på bærekraftig webutvikling
 
 - Løsningen demonstrerer bærekraftige prinsipper innen webutvikling ved å unngå unødvendig databasehenting. Paging, implementert ved bruk av "limit" og "skip" variabler i Apollo-klienten, sammen med en "Last flere filmer"-knapp, sikrer at vi laster inn kun det antallet filmer som brukeren ønsker. GraphQL-spørringer er nøye optimalisert, og returnerer kun nødvendig data som for eksempel **_id og tittel_** i autocomplete-komponenten, og **_id, tittel, posterURL og genres_** i avansert søk. For individuelle filmvisninger benyttes en dedikert **_GET_MOVIE_BY_ID-forespørsel_**.
