@@ -19,15 +19,16 @@ function MovieCard({ movie }: MovieCardProps) {
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
   const [showMore, setShowMore] = useState(false);
-  const [, setShowPopup] = useRecoilState(showPopupState);
+  const [_showPopup, setShowPopup] = useRecoilState(showPopupState);
 
-  if (window.speechSynthesis) {
-    useEffect(() => {
+  useEffect(() => {
+    if (window.speechSynthesis) {
       return () => {
         window.speechSynthesis.cancel();
       };
-    }, []);
-  }
+    }
+  }, []);
+  
 
   const startBtn = (
     <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">

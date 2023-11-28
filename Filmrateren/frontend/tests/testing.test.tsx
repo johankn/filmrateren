@@ -61,12 +61,15 @@ describe('Test of SearchHitCard', () => {
     posterUrl: 'https://example.com/poster.jpg',
     userRatings: [],
     runtime: 120,
+    IMDBnumber: 10000,
+    score: 8,
+    providers: ['Netflix', 'HBO'],
   };
 
   beforeEach(() => {
     searchHitCard = render(
       <MemoryRouter>
-        <SearchHitCard movie={mockMovie} smallScreen={false} />
+        <SearchHitCard movie={mockMovie} screenSize={"medium"} />
       </MemoryRouter>,
     );
   });
@@ -111,9 +114,13 @@ describe('Test of MovieCard', () => {
       },
     ],
     runtime: 120,
+    IMDBnumber: 10000,
+    score: 8,
+    providers: ['Netflix', 'HBO'],
+
   };
   beforeEach(() => {
-    movieCard = render(<MovieCard movie={mockMovie}></MovieCard>);
+    movieCard = render(<RecoilRoot><MovieCard movie={mockMovie}></MovieCard></RecoilRoot>);
   });
 
   it('Snapshot test: MovieCard has not changed design', () => {
