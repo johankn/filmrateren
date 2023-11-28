@@ -49,10 +49,11 @@ function MoviePage() {
   return (
     <div className="movie-page">
       <div className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
+        {/* Scroll to the top of the page to ensure that the page is not loaded at the same scroll position as the client had in the HomePage */}
         <ScrollToTop />
         <nav className="fixed top-0 left-0 p-4">
-          <button className="hover:scale-125" onClick={() => navigate(-1)}>
-            <span className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
+          <button  aria-label='Go back' className="hover:scale-125" onClick={() => navigate(-1)}>
+            <span aria-label='Back to homepage' className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
           </button>
         </nav>
         <main className="pt-7 ">
@@ -60,9 +61,9 @@ function MoviePage() {
         </main>
         {movie.providers.length > 0 && (
           <section className="mt-14 mb-5 px-10">
-            <p className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
+            <h2 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
               Tilgjengelig på:{' '}
-            </p>
+            </h2>
             <div className="mx-auto w-4/6 flex flex-wrap gap-3">
               {movie.providers.map((index) => (
                 <StreamButton key={index} provider={index} />

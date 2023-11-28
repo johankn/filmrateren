@@ -31,17 +31,17 @@ function MovieCard({ movie }: MovieCardProps) {
   }, []);
 
   const startBtn = (
-    <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button aria-label='start' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <AiFillSound></AiFillSound>
     </button>
   );
   const pauseBtn = (
-    <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button aria-label='pause' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <FaVolumeMute></FaVolumeMute>
     </button>
   );
   const stopBtn = (
-    <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button aria-label='stop' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <IoMdRefresh></IoMdRefresh>
     </button>
   );
@@ -72,22 +72,22 @@ function MovieCard({ movie }: MovieCardProps) {
           />
         </figure>
         <section className="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4">
-          <p className="mb-2">
-            <span className="font-bold">Sjanger: </span> {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Regi: </span>{' '}
+          <div className="mb-2">
+            <strong className="font-bold">Sjanger: </strong> {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
+          </div>
+          <div className="mb-2">
+            <strong className="font-bold">Regi: </strong>{' '}
             {movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')}
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Utgivelsesår: </span> {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
-          </p>
-          <p className="mb-2">
-            <span className="font-bold">Varighet: </span>{' '}
+          </div>
+          <div className="mb-2">
+            <strong className="font-bold">Utgivelsesår: </strong> {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
+          </div>
+          <div className="mb-2">
+            <strong className="font-bold">Varighet: </strong>{' '}
             {movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} min`}
-          </p>
-          <p>
-            <span className="font-bold">Beskrivelse: </span>{' '}
+          </div>
+          <div>
+            <strong className="font-bold">Beskrivelse: </strong>{' '}
             {movie.plot == ''
               ? 'Finner ingen beskrivelse'
               : showMore
@@ -100,9 +100,9 @@ function MovieCard({ movie }: MovieCardProps) {
                 {showMore ? 'Vis mindre' : 'Vis mer'}
               </button>
             ) : null}
-          </p>
-          <p className="mt-5 mb-2">
-            <span className="font-bold">IMDB-rating:</span>{' '}
+          </div>
+          <div className="mt-5 mb-2">
+            <strong className="font-bold">IMDB-rating:</strong>{' '}
             {movie.IMDBrating == 0
               ? 'Ingen anmeldelser'
               : `${movie.IMDBrating} / 10 (${
@@ -112,8 +112,8 @@ function MovieCard({ movie }: MovieCardProps) {
                     ? (movie.IMDBnumber / 1000).toFixed(1) + 'K'
                     : (movie.IMDBnumber / 1000).toFixed(0) + 'K'
                 })`}
-          </p>
-          <span className="font-bold">Bruker-rating:</span>{' '}
+          </div>
+          <strong className="font-bold">Bruker-rating:</strong>{' '}
           {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}
           <figure className="flex text-yellow">
             <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
