@@ -18,16 +18,16 @@ mongoose.connection.once('open', async () => {
     console.log('Movies collection does not exist. Skipping drop...');
   }
 
-  async function importData() {
+  async function importData () {
     try {
-        await Movie.insertMany(moviesData.movies);
-        console.log('Data import completed.');
+      await Movie.insertMany(moviesData.movies);
+      console.log('Data import completed.');
     } catch (error) {
-        console.error('Error inserting data: ', error);
+      console.error('Error inserting data: ', error);
     } finally {
-        mongoose.connection.close();
+      mongoose.connection.close();
     }
-}
+  }
 
-importData();
+  importData();
 });

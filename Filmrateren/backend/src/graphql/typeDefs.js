@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Movie {
@@ -13,6 +13,9 @@ const typeDefs = gql`
     releaseYear: String!
     userRatings: [UserRating!]!
     runtime: Int!
+    IMDBnumber: Int!
+    score: Float!
+    providers: [String!]!
   }
 
   type UserRating {
@@ -25,6 +28,7 @@ const typeDefs = gql`
     getFilteredMovies(
       title: String
       genres: [String!]
+      providers: [String!]
       sort: String
       checkbox: Boolean
       limit: Int
@@ -32,6 +36,11 @@ const typeDefs = gql`
     ): [Movie]
     searchMovies(title: String!): [Movie]
     getMovieByID(movieId: ID!): Movie!
+    getAvailableFilters(
+      title: String
+      genres: [String!]
+      providers: [String!]
+    ): FilterResults
   }
 
   input UserRatingInput {
@@ -43,6 +52,11 @@ const typeDefs = gql`
   type Mutation {
     addRatingToMovie(movieId: ID!, rating: UserRatingInput!): Movie!
     deleteReview(movieId: ID!, comment: String!): Boolean
+  }
+
+  type FilterResults {
+    availableGenres: [String!]
+    availableProviders: [String!]
   }
 `;
 

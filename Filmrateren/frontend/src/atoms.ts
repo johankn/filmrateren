@@ -36,6 +36,16 @@ const cardsToShowState = atom({
   default: initialCardsToShow, // default value (aka initial value)
 });
 
+const selectedProvidersState = atom<string[]>({
+  key: 'selectedProvidersState', // unique ID (with respect to other atoms/selectors)
+  default: [], // default value (aka initial value)
+});
+
+const showPopupState = atom({
+  key: 'showPopupState', // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});
+
 export {
   selectedSortState,
   scrollPositionState,
@@ -44,4 +54,6 @@ export {
   selectedTitleState,
   cardsToShowState,
   isCheckedState,
+  selectedProvidersState,
+  showPopupState,
 };

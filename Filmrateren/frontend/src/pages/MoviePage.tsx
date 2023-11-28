@@ -8,10 +8,13 @@ import { GET_MOVIE_BY_ID_QUERY } from '../queries/SearchQueries';
 import { useQuery } from '@apollo/client';
 import { Movie } from '../components/types';
 import { FaCheck } from 'react-icons/fa';
+import StreamButton from '../components/StreamButton';
+import { showPopupState } from '../atoms';
+import { useRecoilState } from 'recoil';
 
 function MoviePage() {
   const { movieID } = useParams<{ movieID: string }>();
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useRecoilState(showPopupState);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const navigate = useNavigate();
@@ -55,14 +58,18 @@ function MoviePage() {
         <main className="pt-7 ">
           <MovieCard movie={movie} />
         </main>
-        <div className="flex md:justify-center justify-center mx-auto w-full md:ml-28 pb-8  ">
-          <button
-            className="ml-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
-            onClick={() => setShowPopup(true)}
-          >
-            Rate filmen
-          </button>
-        </div>
+        {movie.providers.length > 0 && (
+          <section className="mt-14 mb-5 px-10">
+            <p className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
+              Tilgjengelig på:{' '}
+            </p>
+            <div className="mx-auto w-4/6 flex flex-wrap gap-3">
+              {movie.providers.map((index) => (
+                <StreamButton key={index} provider={index} />
+              ))}
+            </div>
+          </section>
+        )}
         <section className="p-10">
           <h1 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
             RATINGS ({movie.userRatings.length})

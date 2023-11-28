@@ -21,7 +21,7 @@
 
 ### Tema for prosjektet
 
-Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på film. Vi har derfor laget en løsning hvor brukeren kan finne informasjon om norske filmer. Fra forsiden kan brukeren søke på sin ønskede film, eller bla ned for et mer avansert søk med fritekst, sjangerfiltrering og sorteringsvalg. Bruker skal ha mulighet til å trykke på en film for å få opp nøkkelinformasjon om filmen. Basert på denne informasjonen og reviews fra andre brukere kan brukeren vurdere om dette er en film hen vil se. Etter å ha sett en film kan brukeren selv skrive et review og rate filmen. Reviewet publiseres på siden til den aktuelle filmen slik at andre brukere kan ha nytte av det. Ratingen oppdateres også fortløpende basert på de innsendte ratingene. Dermed er brukerne av _Filmrateren_ klare til å utforske alle de beste norske filmene!
+Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på film. Vi har derfor laget en løsning hvor brukeren kan finne informasjon om norske filmer. Fra forsiden kan brukeren søke på sin ønskede film, eller bla ned for et mer avansert søk med fritekst, sjanger- og streamingfiltrering og sorteringsvalg. Bruker skal ha mulighet til å trykke på en film for å få opp nøkkelinformasjon om filmen. Basert på denne informasjonen og reviews fra andre brukere kan brukeren vurdere om dette er en film hen vil se. Etter å ha sett en film kan brukeren selv skrive et review og rate filmen. Reviewet publiseres på siden til den aktuelle filmen slik at andre brukere kan ha nytte av det. Ratingen oppdateres også fortløpende basert på de innsendte ratingene. Dermed er brukerne av *Filmrateren* klare til å utforske alle de beste norske filmene!
 
 ## Valg
 
@@ -43,7 +43,7 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 
 ### 2.Funksjonalitet
 
-- Vi har valgt å ha et søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Dette inputfeltet lager en _debouncevalue_ som brukes i en spørring etter filmer 1.5 sekund etter bruker har sluttet å taste. Dette for å ikke utføre en spørring etter hvert tastetrykk. Brukeren har dog mulighet til å bla ned på forsiden for et mer avansert søk. Her er det mulighet for å skrive inn fritekst hvis man kun husker et par bokstaver i tittelen, man kan filtrere på sjanger og streamingtjeneste, og sortere enten alfabetisk, på IMDB-rating, varighet, popularitet (samlet score basert på IMDB-rating og antall reviews) eller på utgivelsesår. Det er en del filmer i databasen uten data på f.eks IMDB-rating eller utgivelsesår, og disse filmene kan man velge å filtrere bort når man sorterer på disse feltene. Ved hjelp av reset-knappen kan brukeren effektivt og enkelt fjerne alle brukervalg.
+- Vi har valgt å ha et søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Dette inputfeltet lager en _debouncevalue_ som brukes i en spørring etter filmer 0.5 sekund etter bruker har sluttet å taste. Dette for å ikke utføre en spørring etter hvert tastetrykk. Brukeren har dog mulighet til å bla ned på forsiden for et mer avansert søk. Her er det mulighet for å skrive inn fritekst hvis man kun husker et par bokstaver i tittelen, man kan filtrere på sjanger og streamingtjeneste, og sortere enten alfabetisk, på IMDB-rating, varighet, popularitet (samlet score basert på IMDB-rating og antall reviews) eller på utgivelsesår. Det er en del filmer i databasen uten data på f.eks IMDB-rating eller utgivelsesår, og disse filmene kan man velge å filtrere bort når man sorterer på disse feltene. Ved hjelp av reset-knappen kan brukeren effektivt og enkelt fjerne alle brukervalg.
 - Ved å trykke på et søkeresultat (en film) navigerer applikasjonen inn på siden for den aktuelle filmen, og det presenteres mer detaljer om objektet. På denne måten unngår vi at brukeren blir overøset med detaljer når hen skal velge film.
 
 #### Brukergenerert data
@@ -77,16 +77,17 @@ _4. Inndatahjelp_
 - Løsningen demonstrerer bærekraftige prinsipper innen webutvikling ved å unngå unødvendig databasehenting. Paging, implementert ved bruk av "limit" og "skip" variabler i Apollo-klienten, sammen med en "Last flere filmer"-knapp, sikrer at vi laster inn kun det antallet filmer som brukeren ønsker. GraphQL-spørringer er nøye optimalisert, og returnerer kun nødvendig data som for eksempel **_id og tittel_** i autocomplete-komponenten, og **_id, tittel, posterURL og genres_** i avansert søk. For individuelle filmvisninger benyttes en dedikert **_GET_MOVIE_BY_ID-forespørsel_**.
 - Designet er utformet med fokus på et intuitivt brukergrensesnitt og en innbydende presentasjon. Den grafiske profilen, med en kinosal og mørk rødlilla farge, reflekterer applikasjonens filmfokus. Det responsive designet, implementert gjennom grids og flex, sikrer oversikt og tiltalende visning på alle plattformer. Deisgnet er minimalt, og ingen elementer på nettsiden er overflødige.
 
-### 3. Annet teknisk (state management, tailwind og react router)
+### 3. Annet teknisk (kodeformattering, state management, tailwind og react router)
 
-- I underveisinnlevering 2 har vi implementert state management ved hjelp av Recoil.
-  - Atoms i Recoil fungerer som beholdere for enkeltverdier eller små datastykker som skal deles mellom komponenter. I vårt prosjekt har vi opprettet flere atoms for å lagre viktig global tilstand, for eksempel valgt sjanger, valgt sortering, og input-tekst av tittel på film. Ved hjelp av atoms kan vi enkelt få tilgang til og oppdatere denne tilstanden i ulike deler av applikasjonen vår.
-- Tailwind brukes for å gjøre det mest mulig oversiktlig med formatering i frontend.
-- React Router brukes for å optimalisere navigasjonen mellom sidene, noe som gir en mer intuitiv brukeropplevelse.
+- Vi har brukt *Prettier* for å formatere koden vår i frontend. Dette gjør at koden vår er mer lesbar og oversiktlig. *ESLint* er brukt både i frontend og backend for å identifisere feil i koden og skrive konsistent kode. I backend er ESLint også satt opp med formattering, det er derfor vi ikke har Prettier i backend.
+- Vi har implementert state management ved hjelp av *Recoil*.
+  - *Atoms* i Recoil fungerer som beholdere for enkeltverdier eller små datastykker som skal deles mellom komponenter. I vårt prosjekt har vi opprettet flere atoms for å lagre viktig global tilstand, for eksempel valgt sjanger, valgt sortering, og input-tekst av tittel på film. Ved hjelp av atoms kan vi enkelt få tilgang til og oppdatere denne tilstanden i ulike deler av applikasjonen vår.
+- *Tailwind* er brukt for å legge til rette for rask utvikling ved å bruke ferdige, resirkulerbare klassebaserte stiler direkte i HTML. 
+- *React Router* brukes for å optimalisere navigasjonen mellom sidene, noe som gir en mer intuitiv brukeropplevelse.
 
 ### 4. Utvikling og testing
 
-- Vi har brukt issues og issue board på gitlab for å holde oversikt over utviklingsoppgavene. Vi har organisert issuene i labels _setup_, _frontend_ og _backend_. Slik har vi lett holdt oversikt over hvilke typer utviklingsoppgaver som må gjøres. Hver issue har også vært koblet til en milestone. Slik har vi kontinuerlig holdt oversikt over hvor mye som gjenstår på prosjektet. I tillegg har vi opprettet merge request etter hver issue ble ferdig, og en annen på teamet har gått igjennom koden og kvalitetsikret den før den har blitt merget til main (peer review).
+- Vi har brukt issues og issue board på gitlab for å holde oversikt over utviklingsoppgavene. Vi har organisert issuene i labels *setup*, *frontend* og *backend*. Slik har vi lett holdt oversikt over hvilke typer utviklingsoppgaver som må gjøres. Hver issue har også vært koblet til en milestone. Slik har vi kontinuerlig holdt oversikt over hvor mye som gjenstår på prosjektet. I tillegg har vi opprettet merge request etter hver issue ble ferdig, og en annen på teamet har gått igjennom koden og kvalitetsikret den før den har blitt merget til main.
 
 ### Testing av komponenter i frontend:
 

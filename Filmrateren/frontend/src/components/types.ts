@@ -13,4 +13,11 @@ export type Movie = {
     comment: string;
   }[];
   runtime: number;
+  IMDBnumber: number;
+  score: number;
+  providers: string[];
+};
+
+export type GenresResult = {
+  genres: string[];
 };

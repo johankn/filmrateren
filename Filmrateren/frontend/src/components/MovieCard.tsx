@@ -5,7 +5,9 @@ import Speech from 'react-text-to-speech';
 import { AiFillSound } from 'react-icons/ai';
 import { FaVolumeMute } from 'react-icons/fa';
 import { IoMdRefresh } from 'react-icons/io';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { showPopupState } from '../atoms';
 
 type MovieCardProps = {
   movie: Movie;
@@ -16,14 +18,17 @@ function MovieCard({ movie }: MovieCardProps) {
 
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
-  if (window.speechSynthesis) {  
-    useEffect(() => {
+  const [showMore, setShowMore] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_showPopup, setShowPopup] = useRecoilState(showPopupState);
+
+  useEffect(() => {
+    if (window.speechSynthesis) {
       return () => {
         window.speechSynthesis.cancel();
       };
-    }, []);
-  }
-
+    }
+  }, []);
 
   const startBtn = (
     <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
@@ -59,11 +64,11 @@ function MovieCard({ movie }: MovieCardProps) {
       />
       <h1 className="text-base sm:text-medium md:text-large lg:text-xl ">{movie.title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  ">
-        <figure className=" flex justify-center md:justify-end  max-w-full">
+        <figure className=" flex justify-center items-start mt-5 md:justify-end  max-w-full">
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
             alt={movie.title}
-            className="w-3/4 md:w-96 h-auto object-contain"
+            className="w-3/4 md:w-96 h-auto object-contain rounded-lg shadow-2xl"
           />
         </figure>
         <section className="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4">
@@ -83,17 +88,42 @@ function MovieCard({ movie }: MovieCardProps) {
           </p>
           <p>
             <span className="font-bold">Beskrivelse: </span>{' '}
-            {movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot}
+            {movie.plot == ''
+              ? 'Finner ingen beskrivelse'
+              : showMore
+              ? `${movie.plot} `
+              : movie.plot.length <= 340
+              ? movie.plot
+              : `${movie.plot.substring(0, 340)}... `}
+            {movie.plot.length > 340 ? (
+              <button className="italic text-[#facc15]" onClick={() => setShowMore(!showMore)}>
+                {showMore ? 'Vis mindre' : 'Vis mer'}
+              </button>
+            ) : null}
           </p>
           <p className="mt-5 mb-2">
             <span className="font-bold">IMDB-rating:</span>{' '}
-            {movie.IMDBrating == 0 ? 'Ingen anmeldelser' : `${movie.IMDBrating} / 10`}
+            {movie.IMDBrating == 0
+              ? 'Ingen anmeldelser'
+              : `${movie.IMDBrating} / 10 (${
+                  movie.IMDBnumber < 1000
+                    ? movie.IMDBnumber
+                    : movie.IMDBnumber < 10000
+                    ? (movie.IMDBnumber / 1000).toFixed(1) + 'K'
+                    : (movie.IMDBnumber / 1000).toFixed(0) + 'K'
+                })`}
           </p>
           <span className="font-bold">Bruker-rating:</span>{' '}
           {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}
           <figure className="flex text-yellow">
             <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
           </figure>
+          <button
+            className="mt-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+            onClick={() => setShowPopup(true)}
+          >
+            Rate filmen
+          </button>
         </section>
       </div>
     </div>

@@ -20,8 +20,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           />
         </figure>
         <main
-          class="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative"
-          style="box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9); height: 382px; width: 700px; margin-top: 96px; transition: height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+          class="bg-screen flex flex-col justify-start items-center relative"
+          style="box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9); height: 382px; width: 700px; margin-top: 96px; border-radius: 10px; transition: height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <figure
             class="absolute flex flex-row justify-center"
@@ -38,7 +38,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             style="opacity: 1; margin-top: 250px; width: 380px; left: 165px; pointer-events: auto; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <div
-              class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 rounded css-1fr0cu4-JoyAutocomplete-root"
+              class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 css-1s0r8hv-JoyAutocomplete-root"
             >
               <div
                 class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
@@ -82,7 +82,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             style="opacity: 0; margin-top: 250px; left: 165px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <div
-              class="MuiFormControl-root MuiTextField-root bg-white rounded fixed css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root bg-white rounded fixed css-kwy434-MuiFormControl-root-MuiTextField-root"
               style="width: 380px;"
             >
               <label
@@ -94,7 +94,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 Tittel...
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-48zdse-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
                   aria-invalid="false"
@@ -123,25 +123,25 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             style="opacity: 0; right: 255px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <div
-              class="MuiFormControl-root bg-white rounded css-b8lww7-MuiFormControl-root"
+              class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-i6nwqp-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                id="genreLabel"
+                id="filterLabel"
               >
                 Sjanger
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-lyf4my-MuiInputBase-root-MuiOutlinedInput-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-2m3a8v-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
               >
                 <div
                   aria-controls=":r5:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
-                  aria-labelledby="genreLabel genre"
-                  class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="genre"
+                  aria-labelledby="filterLabel filter"
+                  class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                  id="filter"
                   role="combobox"
                   tabindex="0"
                 >
@@ -186,27 +186,93 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           </section>
           <section
             class="absolute"
+            style="opacity: 0; right: 255px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+          >
+            <div
+              class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
+            >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                id="filterLabel"
+              >
+                Streaming
+              </label>
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-2m3a8v-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+              >
+                <div
+                  aria-controls=":r7:"
+                  aria-expanded="false"
+                  aria-haspopup="listbox"
+                  aria-labelledby="filterLabel filter"
+                  class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                  id="filter"
+                  role="combobox"
+                  tabindex="0"
+                >
+                  <span
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </div>
+                <input
+                  aria-hidden="true"
+                  aria-invalid="false"
+                  class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                  tabindex="-1"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                  data-testid="ArrowDropDownIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+                <fieldset
+                  aria-hidden="true"
+                  class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                >
+                  <legend
+                    class="css-yjsfm1"
+                  >
+                    <span>
+                      Streaming
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
+            </div>
+          </section>
+          <section
+            class="absolute"
             style="opacity: 0; right: 145px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <div
-              class="MuiFormControl-root bg-white rounded css-od98sm-MuiFormControl-root"
+              class="MuiFormControl-root bg-white css-1sojgr-MuiFormControl-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-i6nwqp-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 id="sort-select-label"
               >
                 Sortering
               </label>
               <div
-                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-ihq25t-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-2m3a8v-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
               >
                 <div
-                  aria-controls=":r7:"
+                  aria-controls=":r9:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
                   aria-labelledby="sort-select-label sort-select"
-                  class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                  class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                   id="sort-select"
                   role="combobox"
                   tabindex="0"
@@ -252,7 +318,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           </section>
           <section
             class="absolute flex flex-row justify-center items-center"
-            style="opacity: 0; margin-top: 100px; right: 155px; pointer-events: none;"
+            style="opacity: 0; margin-top: 100px; right: 115px; pointer-events: none;"
           >
             <p
               class="text-zinc-800"
@@ -290,39 +356,40 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <button
-              class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+              class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
               disabled=""
-              style="min-height: 0rem; width: 4rem; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+              style="min-height: 0rem; width: 64px; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
             >
               Søk
             </button>
           </section>
           <button
-            class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
-            style="opacity: 0; margin-top: 50px; right: 100px; height: 45px; width: 4rem; pointer-events: none;"
+            class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+            style="opacity: 0; margin-top: 50px; right: 100px; height: 54px; width: 64px; pointer-events: none;"
           >
             Reset
           </button>
         </main>
-        <p
-          class="text-[rgba(255,247,238,0.8)] fixed top-[92%] flex flex-col justify-center items-center text-base"
-          style="opacity: 1; text-shadow: 0 0 20px rgba(255, 247, 238, 0.6);"
+        <button
+          class="text-[rgba(255,247,238,0.8)] fixed hover:scale-105 top-[92%] flex flex-col justify-center items-center text-base"
+          style="opacity: 1; pointer-events: auto; text-shadow: 0 0 20px rgba(255, 247, 238, 0.6);"
         >
           Bla ned for avansert søk
           <span>
             ↓
           </span>
-        </p>
+        </button>
         <img
           alt="seats"
           src="/project2/src/assets/seats.png"
           style="opacity: 1; margin-top: 60px; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         />
         <section
-          class="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white"
-          style="opacity: 0; top: 625px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+          class="absolute flex flex-wrap flex-row justify-center w-[83%] gap-14 text-white"
+          style="opacity: 0; top: 645px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
+            class="absolute top-[200px] flex justify-center"
             style="height: 50000px; width: 100%;"
           />
           <div
@@ -366,8 +433,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         />
       </figure>
       <main
-        class="bg-screen rounded-[0.3rem] flex flex-col justify-start items-center relative"
-        style="box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9); height: 382px; width: 700px; margin-top: 96px; transition: height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+        class="bg-screen flex flex-col justify-start items-center relative"
+        style="box-shadow: 0 0 40px 1px rgba(255, 247, 238, 0.9); height: 382px; width: 700px; margin-top: 96px; border-radius: 10px; transition: height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       >
         <figure
           class="absolute flex flex-row justify-center"
@@ -384,7 +451,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           style="opacity: 1; margin-top: 250px; width: 380px; left: 165px; pointer-events: auto; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
-            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 rounded css-1fr0cu4-JoyAutocomplete-root"
+            class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon MuiAutocomplete-variantOutlined MuiAutocomplete-colorNeutral MuiAutocomplete-sizeMd h-14 bg-white p-2 css-1s0r8hv-JoyAutocomplete-root"
           >
             <div
               class="MuiAutocomplete-wrapper css-n43o-JoyAutocomplete-wrapper"
@@ -428,7 +495,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           style="opacity: 0; margin-top: 250px; left: 165px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), left 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
-            class="MuiFormControl-root MuiTextField-root bg-white rounded fixed css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root bg-white rounded fixed css-kwy434-MuiFormControl-root-MuiTextField-root"
             style="width: 380px;"
           >
             <label
@@ -440,7 +507,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
               Tittel...
             </label>
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-48zdse-MuiInputBase-root-MuiOutlinedInput-root"
             >
               <input
                 aria-invalid="false"
@@ -469,25 +536,25 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           style="opacity: 0; right: 255px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
-            class="MuiFormControl-root bg-white rounded css-b8lww7-MuiFormControl-root"
+            class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-i6nwqp-MuiFormLabel-root-MuiInputLabel-root"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
-              id="genreLabel"
+              id="filterLabel"
             >
               Sjanger
             </label>
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-lyf4my-MuiInputBase-root-MuiOutlinedInput-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-2m3a8v-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
             >
               <div
                 aria-controls=":r5:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="genreLabel genre"
-                class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                id="genre"
+                aria-labelledby="filterLabel filter"
+                class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                id="filter"
                 role="combobox"
                 tabindex="0"
               >
@@ -532,27 +599,93 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         </section>
         <section
           class="absolute"
+          style="opacity: 0; right: 255px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+        >
+          <div
+            class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="false"
+              id="filterLabel"
+            >
+              Streaming
+            </label>
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-2m3a8v-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            >
+              <div
+                aria-controls=":r7:"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-labelledby="filterLabel filter"
+                class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                id="filter"
+                role="combobox"
+                tabindex="0"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </div>
+              <input
+                aria-hidden="true"
+                aria-invalid="false"
+                class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                tabindex="-1"
+                value=""
+              />
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                data-testid="ArrowDropDownIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="css-yjsfm1"
+                >
+                  <span>
+                    Streaming
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </section>
+        <section
+          class="absolute"
           style="opacity: 0; right: 145px; margin-top: 245px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <div
-            class="MuiFormControl-root bg-white rounded css-od98sm-MuiFormControl-root"
+            class="MuiFormControl-root bg-white css-1sojgr-MuiFormControl-root"
           >
             <label
-              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-i6nwqp-MuiFormLabel-root-MuiInputLabel-root"
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
               id="sort-select-label"
             >
               Sortering
             </label>
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-ihq25t-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-2m3a8v-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
             >
               <div
-                aria-controls=":r7:"
+                aria-controls=":r9:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-labelledby="sort-select-label sort-select"
-                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-24u10v-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                 id="sort-select"
                 role="combobox"
                 tabindex="0"
@@ -598,7 +731,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         </section>
         <section
           class="absolute flex flex-row justify-center items-center"
-          style="opacity: 0; margin-top: 100px; right: 155px; pointer-events: none;"
+          style="opacity: 0; margin-top: 100px; right: 115px; pointer-events: none;"
         >
           <p
             class="text-zinc-800"
@@ -636,39 +769,40 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <button
-            class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
             disabled=""
-            style="min-height: 0rem; width: 4rem; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+            style="min-height: 0rem; width: 64px; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             Søk
           </button>
         </section>
         <button
-          class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
-          style="opacity: 0; margin-top: 50px; right: 100px; height: 45px; width: 4rem; pointer-events: none;"
+          class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+          style="opacity: 0; margin-top: 50px; right: 100px; height: 54px; width: 64px; pointer-events: none;"
         >
           Reset
         </button>
       </main>
-      <p
-        class="text-[rgba(255,247,238,0.8)] fixed top-[92%] flex flex-col justify-center items-center text-base"
-        style="opacity: 1; text-shadow: 0 0 20px rgba(255, 247, 238, 0.6);"
+      <button
+        class="text-[rgba(255,247,238,0.8)] fixed hover:scale-105 top-[92%] flex flex-col justify-center items-center text-base"
+        style="opacity: 1; pointer-events: auto; text-shadow: 0 0 20px rgba(255, 247, 238, 0.6);"
       >
         Bla ned for avansert søk
         <span>
           ↓
         </span>
-      </p>
+      </button>
       <img
         alt="seats"
         src="/project2/src/assets/seats.png"
         style="opacity: 1; margin-top: 60px; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       />
       <section
-        class="absolute flex flex-wrap flex-row justify-center w-[76%] gap-14 text-white"
-        style="opacity: 0; top: 625px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
+        class="absolute flex flex-wrap flex-row justify-center w-[83%] gap-14 text-white"
+        style="opacity: 0; top: 645px; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
       >
         <div
+          class="absolute top-[200px] flex justify-center"
           style="height: 50000px; width: 100%;"
         />
         <div
@@ -812,11 +946,11 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
           class="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  "
         >
           <figure
-            class=" flex justify-center md:justify-end  max-w-full"
+            class=" flex justify-center items-start mt-5 md:justify-end  max-w-full"
           >
             <img
               alt="Sample Movie"
-              class="w-3/4 md:w-96 h-auto object-contain"
+              class="w-3/4 md:w-96 h-auto object-contain rounded-lg shadow-2xl"
               src="https://example.com/poster.jpg"
             />
           </figure>
@@ -885,7 +1019,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
                 IMDB-rating:
               </span>
                
-              7.5 / 10
+              7.5 / 10 (10K)
             </p>
             <span
               class="font-bold"
@@ -917,6 +1051,11 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
                 </span>
               </div>
             </figure>
+            <button
+              class="mt-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+            >
+              Rate filmen
+            </button>
           </section>
         </div>
       </div>
@@ -981,11 +1120,11 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
         class="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  "
       >
         <figure
-          class=" flex justify-center md:justify-end  max-w-full"
+          class=" flex justify-center items-start mt-5 md:justify-end  max-w-full"
         >
           <img
             alt="Sample Movie"
-            class="w-3/4 md:w-96 h-auto object-contain"
+            class="w-3/4 md:w-96 h-auto object-contain rounded-lg shadow-2xl"
             src="https://example.com/poster.jpg"
           />
         </figure>
@@ -1054,7 +1193,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
               IMDB-rating:
             </span>
              
-            7.5 / 10
+            7.5 / 10 (10K)
           </p>
           <span
             class="font-bold"
@@ -1086,6 +1225,11 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
               </span>
             </div>
           </figure>
+          <button
+            class="mt-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+          >
+            Rate filmen
+          </button>
         </section>
       </div>
     </div>
@@ -1150,7 +1294,60 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
   "baseElement": <body>
     <div>
       <div
-        class="rating-card shadow-lg rounded-md space-y-2 pb-4 w-full"
+        class="rating-card shadow-2xl rounded-2xl space-y-2 p-3 pb-5 w-full bg-black bg-opacity-15 bg-blend-lighten"
+      >
+        <div
+          class="relative z-10"
+        >
+          <h4
+            class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
+          >
+            User1
+          </h4>
+          <figure
+            class="ml-4 flex justify-start space-x-1"
+          >
+            <span
+              class="sm:text-base md:text-2xl text:medium text-yellow"
+            >
+              ★
+            </span>
+            <span
+              class="sm:text-base md:text-2xl text:medium text-yellow"
+            >
+              ★
+            </span>
+            <span
+              class="sm:text-base md:text-2xl text:medium text-yellow"
+            >
+              ★
+            </span>
+            <span
+              class="sm:text-base md:text-2xl text:medium text-lightgrey"
+            >
+              ★
+            </span>
+            <span
+              class="sm:text-base md:text-2xl text:medium text-lightgrey"
+            >
+              ★
+            </span>
+          </figure>
+          <p
+            class="mt-2 ml-4 text-white sm:text-base md:text-base text-md italic"
+          >
+            Great movie!
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="rating-card shadow-2xl rounded-2xl space-y-2 p-3 pb-5 w-full bg-black bg-opacity-15 bg-blend-lighten"
+    >
+      <div
+        class="relative z-10"
       >
         <h4
           class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
@@ -1187,56 +1384,11 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
           </span>
         </figure>
         <p
-          class="mt-2 ml-4 text-white sm:text-base md:text-medium text-md italic"
+          class="mt-2 ml-4 text-white sm:text-base md:text-base text-md italic"
         >
           Great movie!
         </p>
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="rating-card shadow-lg rounded-md space-y-2 pb-4 w-full"
-    >
-      <h4
-        class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
-      >
-        User1
-      </h4>
-      <figure
-        class="ml-4 flex justify-start space-x-1"
-      >
-        <span
-          class="sm:text-base md:text-2xl text:medium text-yellow"
-        >
-          ★
-        </span>
-        <span
-          class="sm:text-base md:text-2xl text:medium text-yellow"
-        >
-          ★
-        </span>
-        <span
-          class="sm:text-base md:text-2xl text:medium text-yellow"
-        >
-          ★
-        </span>
-        <span
-          class="sm:text-base md:text-2xl text:medium text-lightgrey"
-        >
-          ★
-        </span>
-        <span
-          class="sm:text-base md:text-2xl text:medium text-lightgrey"
-        >
-          ★
-        </span>
-      </figure>
-      <p
-        class="mt-2 ml-4 text-white sm:text-base md:text-medium text-md italic"
-      >
-        Great movie!
-      </p>
     </div>
   </div>,
   "debug": [Function],
@@ -1300,11 +1452,11 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
     <div>
       <button
         class="text-white italic flex flex-col justify-center items-center"
-        style="height: 21rem; width: 13rem;"
+        style="height: 16rem; width: 10rem;"
       >
         <a>
           <figcaption
-            class="h-10 flex flex-col justify-end w-52 text-base leading-5"
+            class="h-10 flex flex-col justify-end w-52 text-base-small leading-5"
           >
             <h1
               class="text-center overflow-hidden line-clamp-2"
@@ -1313,13 +1465,13 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
             </h1>
           </figcaption>
           <figure
-            class="flex justify-center items-center h-full group"
+            class="flex justify-center hover:scale-105 items-center h-[95%] group"
           >
             <img
               alt="Sample Movie"
               class="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
               src="https://example.com/poster.jpg"
-              style="height: 17.8rem; max-width: 100%; border-radius: 1rem;"
+              style="height: 14rem; max-width: 100%; border-radius: 1rem;"
             />
           </figure>
         </a>
@@ -1329,11 +1481,11 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
   "container": <div>
     <button
       class="text-white italic flex flex-col justify-center items-center"
-      style="height: 21rem; width: 13rem;"
+      style="height: 16rem; width: 10rem;"
     >
       <a>
         <figcaption
-          class="h-10 flex flex-col justify-end w-52 text-base leading-5"
+          class="h-10 flex flex-col justify-end w-52 text-base-small leading-5"
         >
           <h1
             class="text-center overflow-hidden line-clamp-2"
@@ -1342,13 +1494,13 @@ exports[`Test of SearchHitCard > Snapshot test: SearchHitCard has not changed de
           </h1>
         </figcaption>
         <figure
-          class="flex justify-center items-center h-full group"
+          class="flex justify-center hover:scale-105 items-center h-[95%] group"
         >
           <img
             alt="Sample Movie"
             class="max-h-full max-w-full group-hover:border-[rgb(41,93,227)] group-hover:border-2"
             src="https://example.com/poster.jpg"
-            style="height: 17.8rem; max-width: 100%; border-radius: 1rem;"
+            style="height: 14rem; max-width: 100%; border-radius: 1rem;"
           />
         </figure>
       </a>

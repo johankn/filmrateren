@@ -61,12 +61,15 @@ describe('Test of SearchHitCard', () => {
     posterUrl: 'https://example.com/poster.jpg',
     userRatings: [],
     runtime: 120,
+    IMDBnumber: 10000,
+    score: 8,
+    providers: ['Netflix', 'HBO'],
   };
 
   beforeEach(() => {
     searchHitCard = render(
       <MemoryRouter>
-        <SearchHitCard movie={mockMovie} smallScreen={false} />
+        <SearchHitCard movie={mockMovie} screenSize={'medium'} />
       </MemoryRouter>,
     );
   });
@@ -111,9 +114,16 @@ describe('Test of MovieCard', () => {
       },
     ],
     runtime: 120,
+    IMDBnumber: 10000,
+    score: 8,
+    providers: ['Netflix', 'HBO'],
   };
   beforeEach(() => {
-    movieCard = render(<MovieCard movie={mockMovie}></MovieCard>);
+    movieCard = render(
+      <RecoilRoot>
+        <MovieCard movie={mockMovie}></MovieCard>
+      </RecoilRoot>,
+    );
   });
 
   it('Snapshot test: MovieCard has not changed design', () => {
@@ -128,7 +138,6 @@ describe('Test of MovieCard', () => {
     expect(screen.getAllByText(/Beskrivelse/i)).toBeTruthy();
     expect(screen.getAllByText(/IMDB-rating/i)).toBeTruthy();
     expect(screen.getAllByText(/Bruker-rating/i)).toBeTruthy();
-
   });
   it('Displays correct movie details', () => {
     expect(screen.getByText(mockMovie.title)).toBeInTheDocument();
@@ -139,11 +148,12 @@ describe('Test of MovieCard', () => {
 
     const runtimeRegex = new RegExp(`${mockMovie.runtime}`, 'i');
     expect(screen.getByText(runtimeRegex)).toBeInTheDocument();
-    
+
     const IMDBRatingRegex = new RegExp(`${mockMovie.IMDBrating}`, 'i');
     expect(screen.getByText(IMDBRatingRegex)).toBeInTheDocument();
 
-    const averageUserRating = mockMovie.userRatings.reduce((acc, curr) => acc + curr.rating, 0) / mockMovie.userRatings.length;
+    const averageUserRating =
+      mockMovie.userRatings.reduce((acc, curr) => acc + curr.rating, 0) / mockMovie.userRatings.length;
     const userRatingRegex = new RegExp(`${averageUserRating.toFixed(1)}`, 'i');
     expect(screen.getByText(userRatingRegex)).toBeInTheDocument();
   });
