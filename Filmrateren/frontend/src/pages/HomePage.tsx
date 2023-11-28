@@ -25,7 +25,7 @@ import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from '../components/DynamicStyles';
 import { Movie } from '../components/types';
-import { Button, Checkbox, TextField, Tooltip, Zoom } from '@mui/material';
+import { Checkbox, TextField, Tooltip, Zoom } from '@mui/material';
 
 function HomePage() {
   const navigate = useNavigate();

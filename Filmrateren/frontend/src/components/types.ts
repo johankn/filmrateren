@@ -18,7 +18,6 @@ export type Movie = {
   providers: string[];
 };
 
-
 export type GenresResult = {
   genres: string[];
 };

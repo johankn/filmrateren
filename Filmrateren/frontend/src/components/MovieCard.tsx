@@ -19,6 +19,7 @@ function MovieCard({ movie }: MovieCardProps) {
   const averageUserRating = movie.userRatings.length > 0 ? totalUserRatings / movie.userRatings.length : 0;
 
   const [showMore, setShowMore] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_showPopup, setShowPopup] = useRecoilState(showPopupState);
 
   useEffect(() => {
@@ -28,7 +29,6 @@ function MovieCard({ movie }: MovieCardProps) {
       };
     }
   }, []);
-  
 
   const startBtn = (
     <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
