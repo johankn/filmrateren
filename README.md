@@ -1,17 +1,14 @@
 # Project 2 - Filmrateren
 
-### The documentation for the project can be found [here](/Filmrateren/README.md). This is written in Norwegian. 
+### The documentation for the project can be found [here](/Filmrateren/README.md). This is written in Norwegian.
 
 ## Link to the project hosted by our virtual machine (must be on NTNU network)
 
-
 http://it2810-05.idi.ntnu.no/project2/
-
 
 The backend server is run by our virtual machine, and is ready at http://it2810-05.idi.ntnu.no:4000/graphql.
 
-
-## Run it all locally
+## Run it all locally (independent of NTNU network)
 
 ### 1. Clone the Repository
 
@@ -21,16 +18,13 @@ First, clone the repository to your local machine:
 git clone https://gitlab.stud.idi.ntnu.no/it2810-h23/Team-5/prosjekt-2.git
 ```
 
-
 Navigate to the project directory:
 
 ```bash
 cd Filmrateren/
 ```
 
-
 ### 2. Navigate to the backend-repository and start the server by running the following commands:
-
 
 ```bash
 cd backend
@@ -62,7 +56,9 @@ npm run test
 npx playwright install
 npx playwright test
 ```
-*To run the tests in Playwright's UI-mode, use the following command:*
+
+_To run the tests in Playwright's UI-mode, use the following command:_
+
 ```bash
 npx playwright install
 npx playwright test --ui

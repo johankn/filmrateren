@@ -14,6 +14,7 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
   let titleHeight;
   let titleWidth;
 
+  // Adjust the size of the poster and title based on the screen size
   if (screenSize == 'small') {
     (posterHeight = '12'), (titleHeight = '14'), (titleWidth = '7.4');
   } else if (screenSize == 'medium') {
@@ -49,6 +50,7 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
               : 'text-base'
           } leading-5`}
         >
+          {/* The tailwind styling makes sure the title only shows up in two lines, and if it does not fit, it is truncated with ... */}
           <h1 className="text-center overflow-hidden line-clamp-2">{movie.title}</h1>
         </figcaption>
         <figure
