@@ -162,7 +162,6 @@ function HomePage() {
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
-      // console.log('Scroll Position:', window.scrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -345,7 +344,8 @@ function HomePage() {
             }}
             freeSolo={false}
             placeholder="Tittel..."
-            options={searchLoading ? [] : (movies as Movie[])} // display empty array if loading
+            // display empty array if loading
+            options={searchLoading ? [] : (movies as Movie[])} 
             getOptionLabel={(option) => (option as Movie)?.title || ''}
             onChange={(_event, newValue) => {
               // Assert that newValue is of type 'Movie'

@@ -3,13 +3,13 @@ type StarProps = {
 };
 
 const Stars: React.FC<StarProps> = ({ rating }) => {
-  const roundedStars = Math.round(rating);
+  const filledStars = Math.round(rating);
 
-  const emptyStars = 5 - roundedStars;
+  const emptyStars = 5 - filledStars;
 
   return (
     <div className="stars">
-      {[...Array(roundedStars)].map((_, i) => (
+      {[...Array(filledStars)].map((_, i) => (
         <span key={`full-${i}`}>★</span>
       ))}
       {[...Array(emptyStars)].map((_, i) => (

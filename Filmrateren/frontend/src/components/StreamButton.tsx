@@ -38,7 +38,7 @@ function StreamButton({ provider }: { provider: string }) {
         window.open('https://play.tv2.no/', '_blank');
         break;
       default:
-        // Default behavior if the provider is not matched
+        // Do not do anything if the provider is not matched
         break;
     }
   };

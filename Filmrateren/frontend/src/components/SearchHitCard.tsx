@@ -8,7 +8,7 @@ type SearchHitCardProps = {
 };
 
 function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   let posterHeight;
   let titleHeight;
@@ -37,7 +37,9 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
         }
       }}
     >
+      {/* Navigation to MoviePage by clicking card*/}
       <a onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
+        {/* Movie title */}
         <figcaption
           className={`h-10 flex flex-col justify-end ${screenSize == 'small' ? 'w-40' : 'w-52'} ${
             screenSize == 'small'
@@ -51,6 +53,7 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
         >
           <h1 className="text-center overflow-hidden line-clamp-2">{movie.title}</h1>
         </figcaption>
+        {/* Movie poster */}
         <figure
           className={`flex justify-center hover:scale-105 items-center ${
             screenSize == '' ? 'h-full' : 'h-[95%]'

@@ -49,6 +49,7 @@ function MoviePage() {
   return (
     <div className="movie-page">
       <div className={`relative min-h-screen ${showPopup ? 'blur-sm' : ''}`}>
+        {/* Scroll to top of page when rendered */}
         <ScrollToTop />
         <nav className="fixed top-0 left-0 p-4">
           <button className="hover:scale-125" onClick={() => navigate(-1)}>
@@ -56,8 +57,10 @@ function MoviePage() {
           </button>
         </nav>
         <main className="pt-7 ">
+          {/* Movie card with information about movie */}
           <MovieCard movie={movie} />
         </main>
+        {/* List of stream providers */}
         {movie.providers.length > 0 && (
           <section className="mt-14 mb-5 px-10">
             <p className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
@@ -70,6 +73,7 @@ function MoviePage() {
             </div>
           </section>
         )}
+        {/* User ratings */}
         <section className="p-10">
           <h1 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
             RATINGS ({movie.userRatings.length})
@@ -90,6 +94,7 @@ function MoviePage() {
           </span>
         </div>
       )}
+      {/* Popup for user to fill in review */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <RatingPopup onClose={handleClosePopup} onRatingSuccess={handleRatingSuccess} movieID={Number(movieID)} />

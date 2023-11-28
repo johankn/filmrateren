@@ -1,49 +1,49 @@
 import { atom } from 'recoil';
 
 const selectedSortState = atom({
-  key: 'selectedSortState', // unique ID (with respect to other atoms/selectors)
-  default: '', // default value (aka initial value)
+  key: 'selectedSortState',  
+  default: '', 
 });
 
 const scrollPositionState = atom({
-  key: 'scrollPositionState', // unique ID (with respect to other atoms/selectors)
-  default: 0, // default value (aka initial value)
+  key: 'scrollPositionState',  
+  default: 0, 
 });
 
 const isCheckedState = atom({
-  key: 'isCheckedState', // unique ID (with respect to other atoms/selectors)
-  default: false, // default value (aka initial value)
+  key: 'isCheckedState',  
+  default: false, 
 });
 
 const selectedGenresState = atom<string[]>({
-  key: 'selectedGenresState', // unique ID (with respect to other atoms/selectors)
-  default: [], // default value (aka initial value)
+  key: 'selectedGenresState',  
+  default: [], 
 });
 
 const inputValueState = atom({
-  key: 'inputValueState', // unique ID (with respect to other atoms/selectors)
-  default: '', // default value (aka initial value)
+  key: 'inputValueState',  
+  default: '', 
 });
 
 const selectedTitleState = atom({
-  key: 'selectedTitleState', // unique ID (with respect to other atoms/selectors)
-  default: '', // default value (aka initial value)
+  key: 'selectedTitleState',  
+  default: '', 
 });
 
-const initialCardsToShow = 28; // Number of cards to display initially
+const initialCardsToShow = 28;
 const cardsToShowState = atom({
-  key: 'cardsToShowState', // unique ID (with respect to other atoms/selectors)
-  default: initialCardsToShow, // default value (aka initial value)
+  key: 'cardsToShowState',  
+  default: initialCardsToShow, 
 });
 
 const selectedProvidersState = atom<string[]>({
-  key: 'selectedProvidersState', // unique ID (with respect to other atoms/selectors)
-  default: [], // default value (aka initial value)
+  key: 'selectedProvidersState',  
+  default: [], 
 });
 
 const showPopupState = atom({
-  key: 'showPopupState', // unique ID (with respect to other atoms/selectors)
-  default: false, // default value (aka initial value)
+  key: 'showPopupState',  
+  default: false, 
 });
 
 export {

@@ -22,6 +22,7 @@ function MovieCard({ movie }: MovieCardProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_showPopup, setShowPopup] = useRecoilState(showPopupState);
 
+ // cancel Text-to-Speech if the card is reloaded
   useEffect(() => {
     if (window.speechSynthesis) {
       return () => {
@@ -30,6 +31,7 @@ function MovieCard({ movie }: MovieCardProps) {
     }
   }, []);
 
+  // Text-to-Speech buttons
   const startBtn = (
     <button className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
       <AiFillSound></AiFillSound>
@@ -47,6 +49,7 @@ function MovieCard({ movie }: MovieCardProps) {
   );
   return (
     <div className="movie-card grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center ">
+      {/* Text-To-Speech */}
       <Speech
         text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${
           movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')
@@ -59,11 +62,12 @@ function MovieCard({ movie }: MovieCardProps) {
         startBtn={startBtn}
         pauseBtn={pauseBtn}
         stopBtn={stopBtn}
-        lang="no-NO" // sets the language to Norwegian
+        lang="no-NO"
         onError={() => console.error('Browser not supported!')}
       />
       <h1 className="text-base sm:text-medium md:text-large lg:text-xl ">{movie.title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  ">
+        {/* Movie poster */}
         <figure className=" flex justify-center items-start mt-5 md:justify-end  max-w-full">
           <img
             src={movie.posterUrl === 'https://image.tmdb.org/t/p/w500None' ? noPoster : movie.posterUrl}
@@ -71,6 +75,7 @@ function MovieCard({ movie }: MovieCardProps) {
             className="w-3/4 md:w-96 h-auto object-contain rounded-lg shadow-2xl"
           />
         </figure>
+        {/* Information about movie */}
         <section className="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4">
           <p className="mb-2">
             <span className="font-bold">Sjanger: </span> {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
@@ -86,6 +91,7 @@ function MovieCard({ movie }: MovieCardProps) {
             <span className="font-bold">Varighet: </span>{' '}
             {movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} min`}
           </p>
+          {/* Movie plot */}
           <p>
             <span className="font-bold">Beskrivelse: </span>{' '}
             {movie.plot == ''
@@ -101,6 +107,7 @@ function MovieCard({ movie }: MovieCardProps) {
               </button>
             ) : null}
           </p>
+          {/* IMDB-rating */}
           <p className="mt-5 mb-2">
             <span className="font-bold">IMDB-rating:</span>{' '}
             {movie.IMDBrating == 0
@@ -113,11 +120,13 @@ function MovieCard({ movie }: MovieCardProps) {
                     : (movie.IMDBnumber / 1000).toFixed(0) + 'K'
                 })`}
           </p>
+          {/* User-rating */}
           <span className="font-bold">Bruker-rating:</span>{' '}
           {movie.userRatings.length < 1 ? 'Ingen anmeldelser' : `${averageUserRating.toFixed(1)} / 5.0`}
           <figure className="flex text-yellow">
             <Stars rating={parseFloat(averageUserRating.toFixed(1))} />
           </figure>
+          {/* Rate movie-button */}
           <button
             className="mt-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
             onClick={() => setShowPopup(true)}
