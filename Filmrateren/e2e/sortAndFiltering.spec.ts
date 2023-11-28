@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 
 // Test for sorting and filtering
 test('test sorting and filtering', async ({ page }) => {
-  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​').click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('Sjanger').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Familie' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Fantasy' }).getByRole('checkbox').check();
@@ -19,11 +19,11 @@ test('test sorting and filtering', async ({ page }) => {
   await page.getByRole('option', { name: 'HBO Max' }).press('Tab');  
   await page.locator('section').filter({ hasText: 'Søk' }).click();
   // this movie should be visible
-  await expect(page.getByRole('button', { name: 'Operasjon Mørkemann' })).toBeVisible();
-  await page.getByRole('button', { name: 'Operasjon Mørkemann' }).click();
+  await expect(page.getByRole('button', { name: 'Operasjon Mørkemann' }).locator('a')).toBeVisible();
+  await page.getByRole('button', { name: 'Operasjon Mørkemann' }).locator('a').click();
 
 
-  await page.getByRole('button', { name: '←' }).click();
+  await page.getByLabel('Go back').click();
   await page.locator('div').filter({ hasText: /^Ingen flere filmer$/ }).click();
   await page.getByText('HBO Max').click();
   await page.getByRole('option', { name: 'HBO Max' }).getByRole('checkbox').uncheck();
@@ -39,18 +39,18 @@ test('test sorting and filtering with text input', async ({ page }) => {
   // Interaction with text input, genre filters, and search
   await page.getByLabel('Tittel...').click();
   await page.getByLabel('Tittel...').fill('kon');
-  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​').click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('Sjanger').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Dokumentar' }).press('Tab');  
   await page.getByRole('button', { name: 'Søk', exact: true }).click();
 
   // Validate visibility of specific movies based on text input and filters
-  await expect(page.getByRole('img', { name: 'Kon-Tiki' })).toBeVisible();
-  await expect(page.getByRole('img', { name: 'Helt Super' })).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Kon-Tiki' }).locator('a')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Helt Super' }).locator('a')).toBeHidden();
 });
 
 test('test remove movies without data toggle', async ({ page }) => {
-  await page.getByLabel('Sortering').click();
+  await page.getByRole('combobox', { name: 'Sortering' }).click();
   await page.getByRole('option', { name: 'Rating IMDB stigende' }).click();
   await page.locator('section').filter({ hasText: 'Søk' }).click();
 

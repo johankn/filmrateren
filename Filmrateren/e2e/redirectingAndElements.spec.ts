@@ -27,9 +27,9 @@ test("autocomplete and redirect", async ({ page }) => {
 
 // Test for scrolling down, clicking on a movie, and validating visibility of elements
 test("scroll down and click on the movie: Helt Super", async ({ page }) => {
-  await page.getByRole("img", { name: "Helt Super" }).click();
+  await page.getByRole('button', { name: 'Helt Super' }).locator('a').click();
   // Validate visibility of elements on the new page
-  await expect(page.getByRole("heading", { name: "Helt Super" })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Helt Super', exact: true })).toBeVisible();
   await expect(page.getByRole("img", { name: "Helt Super" })).toBeVisible();
   await expect(page.getByText("Regi: Rasmus A. Sivertsen")).toBeVisible();
 });
@@ -39,7 +39,7 @@ test("redirecting and rate movie test", async ({ page }) => {
   // Interaction with filters and search
   await page.getByLabel('Tittel...').click();
   await page.getByLabel('Tittel...').fill('hei');
-  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​').click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​Sjanger').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Drama' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Drama' }).press('Tab');
@@ -56,7 +56,7 @@ test("redirecting and rate movie test", async ({ page }) => {
   await page.getByRole('button', { name: '★' }).nth(2).click();
   await page.getByPlaceholder('Eks: En skummel, men spennende film!').click();
   await page.getByPlaceholder('Eks: En skummel, men spennende film!').fill('Dette er for å teste denne funksjonen (e2e). 6847abcdefghijklmnop.');
-  await page.getByRole('button', { name: 'Send inn' }).click();
+  await page.getByLabel('Submit').click();
   
   // Validate the presence of the rated movie
   await expect(page.getByText('Ola Nordmann★★★★★Dette er for å teste denne funksjonen (e2e). 6847abcdefghijklmn')).toBeVisible();
@@ -92,18 +92,18 @@ test("redirecting and rate movie test", async ({ page }) => {
 test("test return button", async ({ page }) => {
   // Interaction with movies and return button
   await page
-    .getByRole("img", { name: "There's Something in the Barn" })
+    .getByRole("button", { name: "There's Something in the Barn" }).locator('a')
     .click();
-  await page.getByRole("button", { name: "←" }).click();
-  await page.getByRole("img", { name: "Verdens verste menneske" }).click();
+  await page.getByLabel('Go back').click();
+  await page.getByRole("button", { name: "Verdens verste menneske" }).locator('a').click();
   await expect(page.getByText("Regi: Joachim Trier")).toBeVisible();
   await expect(
     page.getByRole("img", { name: "Verdens verste menneske" })
   ).toBeVisible();
-  await page.getByRole("button", { name: "←" }).click();
+  await page.getByLabel('Go back').click();
   await page.getByRole("button", { name: "Last flere filmer" }).click();
   await page.getByRole("img", { name: "Børning 2" }).click();
   await expect(page.getByRole("img", { name: "Børning 2" })).toBeVisible();
-  await page.getByRole("button", { name: "←" }).click();
+  await page.getByLabel('Go back').click();
   await expect(page.getByRole("img", { name: "Børning 2" })).toBeVisible();
 });
