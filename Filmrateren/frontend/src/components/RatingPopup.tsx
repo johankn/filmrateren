@@ -31,6 +31,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    // Add rating if movieID and inputs are valid
     if (movieID && ratingIsValid && nameIsValid && commentIsValid) {
       const variables = {
         movieId: movieID,
@@ -54,6 +55,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
         onClose();
       }
     } else {
+      // Show error messages if input is not valid
       console.error('Incomplete data. Please fill in all fields.');
       setNameError(!nameIsValid);
       setRatingError(!ratingIsValid);
@@ -64,6 +66,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
   return (
     <div className="rating-popup grid bg-darkblue bg-opacity-80 rounded-xl p-3 pl-10 pr-10 pb-5">
       <div className="ml-auto">
+        {/* Close button */}
         <button
           className=" text-white hover:text-gold rounded-full p-2 focus:outline-none transition-transform transform hover:scale-125"
           onClick={onClose}
@@ -71,9 +74,11 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
           X
         </button>
       </div>
+      {/* Rating form */}
       <form onSubmit={handleSubmit} className="flex-grow">
       <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
         <FormLabel htmlFor="name" style={{ color: 'white', fontSize: 'large' }}>Navn</FormLabel>
+          {/* Name input */}
         <Input
           id="name"
           aria-label="Name"
@@ -83,6 +88,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
           onChange={(e) => setName(e.target.value)}
           error={showNameError}
         />
+          {/* Error message for name */}
         {showNameError && (
           <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
             Skriv inn navnet ditt
@@ -90,6 +96,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
         )}
 
         <FormLabel style={{ color: 'white', fontSize: 'large' }}>Gi din anmeldelse</FormLabel>
+          {/* Rating input as stars */}
         <section>
           {[1, 2, 3, 4, 5].map((star) => (
             <button
@@ -105,6 +112,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
             </button>
           ))}
         </section>
+          {/* Error message for rating */}
         {showRatingError && (
           <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
             Klikk på en stjerne for å velge rating
@@ -114,6 +122,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
       <FormLabel htmlFor="comment" style={{ color: 'white', fontSize: 'large' }}>
         Kommentarer
       </FormLabel>
+          {/* Comment input */}
       <Textarea
         id="comment"
         aria-label="Kommentarer"
@@ -124,13 +133,13 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
         onChange={(e) => setComment(e.target.value)}
         error={showCommentError}
       />
+          {/* Error message for comment */}
       {showCommentError && (
         <FormHelperText style={{ color: 'red', fontWeight: 'bold', fontSize: 'medium' }}>
           Skriv inn en kommentar til ratingen
         </FormHelperText>
       )}
-
-
+          {/* Submit button */}
         <button aria-label='Submit'
           className="ml-5 rounded-lg w-44 h-14 text-white text-base border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
           type="submit"

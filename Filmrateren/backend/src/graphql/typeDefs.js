@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server-express');
 
+// Definition of types used in the queries
 const typeDefs = gql`
   type Movie {
     id: ID!
