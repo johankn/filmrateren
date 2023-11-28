@@ -31,12 +31,10 @@ function HomePage() {
   const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useRecoilState(scrollPositionState);
   const [changeHeight, setChangeHeight] = useState(false);
-
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
   const [selectedGenres, setSelectedGenres] = useRecoilState(selectedGenresState);
   const [previousGenres, setPreviousGenres] = useState<string[]>([]);
   const [selectedProviders, setSelectedProviders] = useRecoilState(selectedProvidersState);
@@ -46,12 +44,15 @@ function HomePage() {
   const [selectedTitle, setSelectedTitle] = useRecoilState(selectedTitleState);
   const [previousTitle, setPreviousTitle] = useState<string>('');
   const [previousCheckbox, setPreviousCheckbox] = useState(false);
-
   const [open, setOpen] = useState(false);
   const [isChecked, setIsChecked] = useRecoilState(isCheckedState);
   const [inputValue, setInputValue] = useState('');
   const [debouncedValue, setDebouncedValue] = useState(inputValue);
+  const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
+  const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
+  const initialCardsToShow = 28;
 
+  // Import styles from DynamicStyles.tsx so that the components change styling based on the scroll position
   const {
     opacitySearch,
     opacityScreenImg,
@@ -84,6 +85,7 @@ function HomePage() {
     selectedTitle == '' && selectedSort == '' && selectedGenres.length == 0 && selectedProviders.length == 0,
   );
 
+  // Use a debouncer to delay the search query, so that the database is not called on every keystroke
   useEffect(() => {
     // Setup a debouncer for 500ms
     const debouncer = setTimeout(() => {
@@ -96,6 +98,7 @@ function HomePage() {
     };
   }, [inputValue]);
 
+  // Retrieve the response from the simple search query
   const {
     data: searchData,
     loading: searchLoading,
@@ -111,9 +114,7 @@ function HomePage() {
     console.error('Error fetching movies:', searchError.message);
   }
 
-  const initialCardsToShow = 28;
-  const [cardsToShow, setCardsToShow] = useRecoilState(cardsToShowState);
-
+  // Retrieve the response from the filtered search query
   const [getFilteredMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
     useLazyQuery(GET_FILTERED_MOVIES_QUERY);
 
@@ -121,6 +122,7 @@ function HomePage() {
     console.error('Error fetching movies:', moviesError.message);
   }
 
+  // Load the next 28 (or other values set in initialCardsToShow) movies when the user clicks the load more button
   const loadMoreCards = () => {
     const newSkip = cardsToShow;
     console.log('New Skip:', newSkip);
@@ -140,15 +142,17 @@ function HomePage() {
     setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
   };
 
-  const [pagedMovies, setPagedMovies] = useState<Movie[]>([]);
-
   useEffect(() => {
     if (moviesData && moviesData.getFilteredMovies) {
       setPagedMovies((prevMovies) => [...prevMovies, ...moviesData.getFilteredMovies]);
 
-      // Check if movies have loaded, and set the moviesLoaded state accordingly
+      // Check if movies have loaded
       if (moviesData.getFilteredMovies.length > 0) {
-        // Set a timeout to change the height of the screen so that it has time to return to the previous scroll position when returning from MoviePage
+        // Workaround for a bug:
+        // When returning from MoviePage, the screen would jump to the top due to the screen height being insufficient
+        // to scroll to the previous position until the movies have loaded. To address this, we set a timeout to
+        // change the screen height, allowing it time to return to the previous scroll position.
+        // This helps in creating a smoother transition and prevents the screen jump.
         setTimeout(() => {
           setChangeHeight(true);
         }, 1);
@@ -156,9 +160,11 @@ function HomePage() {
     }
   }, [moviesData, cardsToShow]);
 
+  // The height of the screen is changed when changeHeight is updated
   const heightStyle =
     changeHeight || moviesError ? { height: '0px', width: '100%' } : { height: '50000px', width: '100%' };
 
+  // Updates the scroll position to be used in DynamicStyles.tsx
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -172,6 +178,7 @@ function HomePage() {
     };
   }, [setScrollPosition]);
 
+  // Updates the window size to be used in components and DynamicStyles.tsx so that they match
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
@@ -291,9 +298,9 @@ function HomePage() {
 
   const handleTab = () => {
     const searchBar = document.getElementById('new-search-bar');
-    console.log("searchbar", searchBar != null)
+    console.log('searchbar', searchBar != null);
     if (searchBar) {
-      console.log("scroll")
+      console.log('scroll');
       searchBar.scrollIntoView({
         block: 'start',
         inline: 'nearest',
@@ -354,10 +361,10 @@ function HomePage() {
             }}
             onKeyDown={(event) => {
               if (event.key === 'Tab') {
-                console.log("tab")
+                console.log('tab');
                 handleTab();
-              }}
-            }
+              }
+            }}
           />
         </section>
         {/* Search bar input */}
@@ -419,13 +426,16 @@ function HomePage() {
           >
             <Checkbox
               checked={isChecked}
-              tabIndex={selectedSort === 'RELEASEYEAR_ASC' ||
-                        selectedSort === 'RELEASEYEAR_DESC' ||
-                        selectedSort === 'RUNTIME_ASC' ||
-                        selectedSort === 'RUNTIME_DESC' ||
-                        selectedSort === 'IMDB_ASC' ||
-                        selectedSort === 'IMDB_DESC'  
-                        ? 0 : -1}
+              tabIndex={
+                selectedSort === 'RELEASEYEAR_ASC' ||
+                selectedSort === 'RELEASEYEAR_DESC' ||
+                selectedSort === 'RUNTIME_ASC' ||
+                selectedSort === 'RUNTIME_DESC' ||
+                selectedSort === 'IMDB_ASC' ||
+                selectedSort === 'IMDB_DESC'
+                  ? 0
+                  : -1
+              }
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   setIsChecked(!isChecked);
@@ -446,13 +456,13 @@ function HomePage() {
             style={buttonStyle}
             onClick={handleSearchClick}
             disabled={!hasSelectionChanged()}
-            className="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+            className="bg-darkgrey rounded-base text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
           >
-            Søk 
+            Søk
           </button>
         </section>
         <button
-          className="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+          className="absolute bg-darkgrey rounded-base text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
           style={resetStyle}
           onClick={handleResetClick}
         >
@@ -502,7 +512,7 @@ function HomePage() {
             {/* "Load More" button */}
             {moviesData && moviesData.getFilteredMovies && moviesData.getFilteredMovies.length === 0 ? (
               <section className="h-40 flex justify-center items-center w-full">
-                <p className="border-2 border-transparent transition duration-250 rounded-lg text-white p-3.3 flex justify-center items-center w-60 text-lg">
+                <p className="border-2 border-transparent transition duration-250 rounded-base text-white p-3.3 flex justify-center items-center w-60 text-lg">
                   Ingen flere filmer funnet.
                 </p>
               </section>
@@ -513,7 +523,7 @@ function HomePage() {
                     noMoreMovies
                       ? 'opacity-50 border-transparent'
                       : 'hover:bg-zinc-800 hover:scale-110 cursor-pointer border-yellow'
-                  } bg-darkgrey rounded-[14px] text-white p-3.3 flex justify-center items-center w-60 text-lg`}
+                  } bg-darkgrey rounded-base text-white p-3.3 flex justify-center items-center w-60 text-lg`}
                 >
                   <button
                     className="h-14"

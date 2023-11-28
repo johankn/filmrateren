@@ -54,12 +54,13 @@ function StreamButton({ provider }: { provider: string }) {
         backgroundColor: 'black',
         marginTop: '10px',
         marginBottom: '10px',
-        background: `url('/Logos/${provider}.png')`, // Replace 'your-image-url.jpg' with the actual URL of your image
+        // The provider logo is set as the background image. The image file is set to the same name as the provider
+        background: `url('/Logos/${provider}.png')`,
         backgroundSize: '100% auto',
         backgroundPosition: 'center',
       }}
       onClick={openProvider}
-    ></Button>
+    />
   );
 }
 
