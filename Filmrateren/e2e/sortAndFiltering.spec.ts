@@ -13,11 +13,10 @@ test('test sorting and filtering', async ({ page }) => {
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Familie' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Fantasy' }).getByRole('checkbox').check();
-  await page.locator('.MuiBackdrop-root').click();
-
+  await page.getByRole('option', { name: 'Fantasy' }).press('Tab');
   await page.locator('section').filter({ hasText: 'StreamingStreaming' }).getByLabel('Sjanger').click();
   await page.getByRole('option', { name: 'HBO Max' }).getByRole('checkbox').check();
-  await page.locator('.MuiBackdrop-root').click();
+  await page.getByRole('option', { name: 'HBO Max' }).press('Tab');  
   await page.locator('section').filter({ hasText: 'Søk' }).click();
   // this movie should be visible
   await expect(page.getByRole('button', { name: 'Operasjon Mørkemann' })).toBeVisible();
@@ -26,7 +25,7 @@ test('test sorting and filtering', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^Ingen flere filmer$/ }).click();
   await page.getByText('HBO Max').click();
   await page.getByRole('option', { name: 'HBO Max' }).getByRole('checkbox').uncheck();
-  await page.locator('.MuiBackdrop-root').click();
+  await page.getByRole('option', { name: 'HBO Max' }).press('Tab');  
   await page.locator('section').filter({ hasText: 'Søk' }).click();
 
   //after unchecking HBO Max, this movie and others should be visible
@@ -40,8 +39,7 @@ test('test sorting and filtering with text input', async ({ page }) => {
   await page.getByLabel('Tittel...').fill('kon');
   await page.getByLabel('SjangerSjanger').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
-  await page.locator('.MuiBackdrop-root').click();
-  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.getByRole('option', { name: 'Dokumentar' }).press('Tab');  await page.getByRole('button', { name: 'Søk' }).click();
 
   // Validate visibility of specific movies based on text input and filters
   await expect(page.getByRole('img', { name: 'Kon-Tiki' })).toBeVisible();

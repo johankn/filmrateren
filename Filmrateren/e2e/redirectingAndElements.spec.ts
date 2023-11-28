@@ -42,6 +42,8 @@ test("redirecting and rate movie test", async ({ page }) => {
   await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Drama' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'Drama' }).press('Tab');
+
   await page.getByRole('button', { name: 'Søk', exact: true }).click();
 
   // expect that the label "no more movies" is visible
