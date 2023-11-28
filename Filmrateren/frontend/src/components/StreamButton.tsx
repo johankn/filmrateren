@@ -1,6 +1,50 @@
 import { Button } from '@mui/material';
+import React from 'react';
+
+import netflix from '../assets/Netflix.svg';
+import viaplay from '../assets/Viaplay.svg';
+import apple from '../assets/Apple.svg';
+import amazon from '../assets/Amazon.svg';
+import disney from '../assets/Disney.svg';
+import hbo from '../assets/HBO.svg';
+import hbomax from '../assets/HBOMax.svg';
+import google from '../assets/Google.svg';
+import sfanytime from '../assets/SF.svg';
+import strim from '../assets/Strim.svg';
+import tv2 from '../assets/TV2.svg';
+
+const getLogoByProvider = (provider: string) => {
+  switch (provider) {
+    case 'Netflix':
+      return netflix;
+    case 'Viaplay':
+      return viaplay;
+    case 'Apple TV':
+      return apple;
+    case 'Amazon Prime Video':
+      return amazon;
+    case 'Disney +':
+      return disney;
+    case 'HBO':
+      return hbo;
+    case 'HBO Max':
+      return hbomax;
+    case 'Google Play Movies':
+      return google;
+    case 'SF Anytime':
+      return sfanytime;
+    case 'Strim':
+      return strim;
+    case 'TV 2 Play':
+      return tv2;
+    default:
+      return null;
+  }
+};
 
 function StreamButton({ provider }: { provider: string }) {
+  const logo = getLogoByProvider(provider);
+
   const openProvider = () => {
     // Open the corresponding link based on the streaming provider
     switch (provider) {
@@ -48,14 +92,12 @@ function StreamButton({ provider }: { provider: string }) {
       aria-label="Stream"
       className="shadow-md hover:scale-110"
       style={{
-        minHeight: '50px',
-        minWidth: '80px',
+        height: '50px',
+        width: '80px',
         borderRadius: '8px',
-        backgroundColor: 'black',
         marginTop: '10px',
         marginBottom: '10px',
-        // The provider logo is set as the background image. The image file is set to the same name as the provider
-        background: `url('/Logos/${provider}.png')`,
+        backgroundImage: `url(${logo})`,
         backgroundSize: '100% auto',
         backgroundPosition: 'center',
       }}
