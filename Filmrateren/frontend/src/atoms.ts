@@ -2,49 +2,49 @@ import { atom } from 'recoil';
 
 // Define atoms for sharing states between components
 const selectedSortState = atom({
-  key: 'selectedSortState',  
-  default: '', 
+  key: 'selectedSortState',
+  default: '',
 });
 
 const scrollPositionState = atom({
-  key: 'scrollPositionState',  
-  default: 0, 
+  key: 'scrollPositionState',
+  default: 0,
 });
 
 const isCheckedState = atom({
-  key: 'isCheckedState',  
-  default: false, 
+  key: 'isCheckedState',
+  default: false,
 });
 
 const selectedGenresState = atom<string[]>({
-  key: 'selectedGenresState',  
-  default: [], 
+  key: 'selectedGenresState',
+  default: [],
 });
 
 const inputValueState = atom({
-  key: 'inputValueState',  
-  default: '', 
+  key: 'inputValueState',
+  default: '',
 });
 
 const selectedTitleState = atom({
-  key: 'selectedTitleState',  
-  default: '', 
+  key: 'selectedTitleState',
+  default: '',
 });
 
 const initialCardsToShow = 28;
 const cardsToShowState = atom({
-  key: 'cardsToShowState',  
-  default: initialCardsToShow, 
+  key: 'cardsToShowState',
+  default: initialCardsToShow,
 });
 
 const selectedProvidersState = atom<string[]>({
-  key: 'selectedProvidersState',  
-  default: [], 
+  key: 'selectedProvidersState',
+  default: [],
 });
 
 const showPopupState = atom({
-  key: 'showPopupState',  
-  default: false, 
+  key: 'showPopupState',
+  default: false,
 });
 
 export {

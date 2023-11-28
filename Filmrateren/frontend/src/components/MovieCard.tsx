@@ -22,7 +22,7 @@ function MovieCard({ movie }: MovieCardProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_showPopup, setShowPopup] = useRecoilState(showPopupState);
 
- // cancel Text-to-Speech if the card is reloaded
+  // cancel Text-to-Speech if the card is reloaded
   useEffect(() => {
     if (window.speechSynthesis) {
       return () => {
