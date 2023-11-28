@@ -2,26 +2,36 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   // Runs before each test.
-  // await page.goto('http://localhost:5173/project2');
-  await page.goto('http://it2810-05.idi.ntnu.no/project2/');
+  await page.goto('http://localhost:5173/project2');
+  // await page.goto('http://it2810-05.idi.ntnu.no/project2/');
 
 });
 
 // Test for sorting and filtering
 test('test sorting and filtering', async ({ page }) => {
-  // Interaction with genre filters and sorting options
-  await page.getByLabel('Sjanger').click();
-  await page.getByRole('option', { name: 'Animasjon' }).getByRole('checkbox').check();
-  await page.getByRole('option', { name: 'Drama' }).getByRole('checkbox').check();
-  await page.locator('.MuiBackdrop-root').click();
-  await page.getByLabel('Sortering').click();
-  await page.getByRole('option', { name: 'Rating IMDB synkende' }).click();
-  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('Sjanger').click();
+  await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'Familie' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'Fantasy' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'Fantasy' }).press('Tab');
+  await page.locator('section').filter({ hasText: 'StreamingStreaming' }).getByLabel('Sjanger').click();
+  await page.getByRole('option', { name: 'HBO Max' }).getByRole('checkbox').check();
+  await page.getByRole('option', { name: 'HBO Max' }).press('Tab');  
+  await page.locator('section').filter({ hasText: 'Søk' }).click();
+  // this movie should be visible
+  await expect(page.getByRole('button', { name: 'Operasjon Mørkemann' }).locator('a')).toBeVisible();
+  await page.getByRole('button', { name: 'Operasjon Mørkemann' }).locator('a').click();
 
-  // Validate visibility of specific movies
-  await expect(page.getByRole('img', { name: 'Det lyse mørket' })).toBeVisible();
-  await expect(page.getByRole('img', { name: 'Pikselhjerte' })).toBeVisible();
-  await expect(page.getByRole('img', { name: 'Fyret' })).toBeVisible();
+
+  await page.getByLabel('Go back').click();
+  await page.locator('div').filter({ hasText: /^Ingen flere filmer$/ }).click();
+  await page.getByText('HBO Max').click();
+  await page.getByRole('option', { name: 'HBO Max' }).getByRole('checkbox').uncheck();
+  await page.getByRole('option', { name: 'HBO Max' }).press('Tab');  
+  await page.locator('section').filter({ hasText: 'Søk' }).click();
+
+  //after unchecking HBO Max, this movie and others should be visible
+  await expect(page.getByRole('button', { name: 'Helt Super' }).locator('a')).toBeVisible();
 });
 
 // Test for sorting and filtering with text input
@@ -29,29 +39,30 @@ test('test sorting and filtering with text input', async ({ page }) => {
   // Interaction with text input, genre filters, and search
   await page.getByLabel('Tittel...').click();
   await page.getByLabel('Tittel...').fill('kon');
-  await page.getByLabel('Sjanger').click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('Sjanger').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
-  await page.locator('.MuiBackdrop-root').click();
-  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.getByRole('option', { name: 'Dokumentar' }).press('Tab');  
+  await page.getByRole('button', { name: 'Søk', exact: true }).click();
 
   // Validate visibility of specific movies based on text input and filters
-  await expect(page.getByRole('img', { name: 'Kon-Tiki' })).toBeVisible();
-  await expect(page.getByRole('img', { name: 'Helt Super' })).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Kon-Tiki' }).locator('a')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Helt Super' }).locator('a')).toBeHidden();
 });
 
 test('test remove movies without data toggle', async ({ page }) => {
-  await page.getByLabel('Sortering').click();
+  await page.getByRole('combobox', { name: 'Sortering' }).click();
   await page.getByRole('option', { name: 'Rating IMDB stigende' }).click();
-  await page.getByRole('button', { name: 'Søk' }).click();
-  await page.getByRole('img', { name: 'Håndtering av udøde' }).click();
+  await page.locator('section').filter({ hasText: 'Søk' }).click();
 
-  await expect(page.getByText('IMDB-rating: Ingen anmeldelser')).toBeVisible();
-  
-  await page.getByRole('button', { name: '←' }).click();
-  await expect(page.getByText('Fjern filmer uten data')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Håndtering av udøde' }).locator('a')).toBeVisible();
+
   await page.getByRole('checkbox').check();
-  await page.getByRole('button', { name: 'Søk' }).click();
-  await page.getByRole('img', { name: 'Dis - en historie om kjærlighet' }).click();
+  await page.locator('section').filter({ hasText: 'Søk' }).click();
 
-  await expect(page.getByText('IMDB-rating: 1.5 / 10')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Dis - en historie om kjærlighet' }).locator('a')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Håndtering av udøde' }).locator('a')).toBeHidden();
+  
+  await page.getByRole('button', { name: 'Dis - en historie om kjærlighet' }).locator('a').click();
+
+  await expect(page.getByText('IMDB-rating: 1.5 / 10 (3.2K)')).toBeVisible();
 });
