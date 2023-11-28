@@ -13,7 +13,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           class="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998"
         >
           <img
-            alt="logo"
+            alt="Film Rateren Logo"
             class="cursor-pointer"
             src="/project2/src/assets/film_rateren.svg"
             style="opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
@@ -124,10 +124,12 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           >
             <div
               class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
+              id="filter"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
+                for="filter"
                 id="filterLabel"
               >
                 Sjanger
@@ -139,9 +141,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                   aria-controls=":r5:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
-                  aria-labelledby="filterLabel filter"
+                  aria-labelledby="filterLabel"
                   class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="filter"
                   role="combobox"
                   tabindex="0"
                 >
@@ -190,10 +191,12 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           >
             <div
               class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
+              id="filter"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
+                for="filter"
                 id="filterLabel"
               >
                 Streaming
@@ -205,9 +208,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                   aria-controls=":r7:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
-                  aria-labelledby="filterLabel filter"
+                  aria-labelledby="filterLabel"
                   class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="filter"
                   role="combobox"
                   tabindex="0"
                 >
@@ -256,10 +258,13 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           >
             <div
               class="MuiFormControl-root bg-white css-1sojgr-MuiFormControl-root"
+              id="sort-select"
             >
               <label
+                aria-label="Sortering"
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
+                for="sort-select"
                 id="sort-select-label"
               >
                 Sortering
@@ -271,9 +276,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                   aria-controls=":r9:"
                   aria-expanded="false"
                   aria-haspopup="listbox"
-                  aria-labelledby="sort-select-label sort-select"
+                  aria-labelledby="sort-select-label"
                   class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="sort-select"
                   role="combobox"
                   tabindex="0"
                 >
@@ -356,7 +360,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <button
-              class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+              class="bg-darkgrey rounded-base text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
               disabled=""
               style="min-height: 0rem; width: 64px; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
             >
@@ -364,7 +368,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             </button>
           </section>
           <button
-            class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+            class="absolute bg-darkgrey rounded-base text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
             style="opacity: 0; margin-top: 50px; right: 100px; height: 54px; width: 64px; pointer-events: none;"
           >
             Reset
@@ -425,7 +429,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         class="fixed top-0 left-0 mt-8 ml-8 w-16 h-auto z-9998"
       >
         <img
-          alt="logo"
+          alt="Film Rateren Logo"
           class="cursor-pointer"
           src="/project2/src/assets/film_rateren.svg"
           style="opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
@@ -536,10 +540,12 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         >
           <div
             class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
+            id="filter"
           >
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
+              for="filter"
               id="filterLabel"
             >
               Sjanger
@@ -551,9 +557,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 aria-controls=":r5:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="filterLabel filter"
+                aria-labelledby="filterLabel"
                 class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                id="filter"
                 role="combobox"
                 tabindex="0"
               >
@@ -602,10 +607,12 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         >
           <div
             class="MuiFormControl-root bg-white rounded css-1sojgr-MuiFormControl-root"
+            id="filter"
           >
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
+              for="filter"
               id="filterLabel"
             >
               Streaming
@@ -617,9 +624,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 aria-controls=":r7:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="filterLabel filter"
+                aria-labelledby="filterLabel"
                 class="MuiSelect-select MuiSelect-outlined MuiSelect-multiple MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                id="filter"
                 role="combobox"
                 tabindex="0"
               >
@@ -668,10 +674,13 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
         >
           <div
             class="MuiFormControl-root bg-white css-1sojgr-MuiFormControl-root"
+            id="sort-select"
           >
             <label
+              aria-label="Sortering"
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-87pam3-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
+              for="sort-select"
               id="sort-select-label"
             >
               Sortering
@@ -683,9 +692,8 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
                 aria-controls=":r9:"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="sort-select-label sort-select"
+                aria-labelledby="sort-select-label"
                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
-                id="sort-select"
                 role="combobox"
                 tabindex="0"
               >
@@ -768,7 +776,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <button
-            class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+            class="bg-darkgrey rounded-base text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
             disabled=""
             style="min-height: 0rem; width: 64px; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
@@ -776,7 +784,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           </button>
         </section>
         <button
-          class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
+          class="absolute bg-darkgrey rounded-base text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
           style="opacity: 0; margin-top: 50px; right: 100px; height: 54px; width: 64px; pointer-events: none;"
         >
           Reset
@@ -896,6 +904,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
             role="button"
           >
             <button
+              aria-label="start"
               class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
             >
               <svg
@@ -917,6 +926,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
             role="button"
           >
             <button
+              aria-label="stop"
               class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
             >
               <svg
@@ -955,75 +965,75 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
           <section
             class="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4"
           >
-            <p
+            <div
               class="mb-2"
             >
-              <span
+              <strong
                 class="font-bold"
               >
                 Sjanger: 
-              </span>
+              </strong>
                
               Action
-            </p>
-            <p
+            </div>
+            <div
               class="mb-2"
             >
-              <span
+              <strong
                 class="font-bold"
               >
                 Regi: 
-              </span>
+              </strong>
                
               Director 1
-            </p>
-            <p
+            </div>
+            <div
               class="mb-2"
             >
-              <span
+              <strong
                 class="font-bold"
               >
                 Utgivelsesår: 
-              </span>
+              </strong>
                
               2023
-            </p>
-            <p
+            </div>
+            <div
               class="mb-2"
             >
-              <span
+              <strong
                 class="font-bold"
               >
                 Varighet: 
-              </span>
+              </strong>
                
               120 min
-            </p>
-            <p>
-              <span
+            </div>
+            <div>
+              <strong
                 class="font-bold"
               >
                 Beskrivelse: 
-              </span>
+              </strong>
                
               Sample plot of the movie.
-            </p>
-            <p
+            </div>
+            <div
               class="mt-5 mb-2"
             >
-              <span
+              <strong
                 class="font-bold"
               >
                 IMDB-rating:
-              </span>
+              </strong>
                
               7.5 / 10 (10K)
-            </p>
-            <span
+            </div>
+            <strong
               class="font-bold"
             >
               Bruker-rating:
-            </span>
+            </strong>
              
             2.5 / 5.0
             <figure
@@ -1050,7 +1060,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
               </div>
             </figure>
             <button
-              class="mt-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+              class="mt-5 rounded-base w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
             >
               Rate filmen
             </button>
@@ -1070,6 +1080,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
           role="button"
         >
           <button
+            aria-label="start"
             class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
           >
             <svg
@@ -1091,6 +1102,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
           role="button"
         >
           <button
+            aria-label="stop"
             class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
           >
             <svg
@@ -1129,75 +1141,75 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
         <section
           class="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4"
         >
-          <p
+          <div
             class="mb-2"
           >
-            <span
+            <strong
               class="font-bold"
             >
               Sjanger: 
-            </span>
+            </strong>
              
             Action
-          </p>
-          <p
+          </div>
+          <div
             class="mb-2"
           >
-            <span
+            <strong
               class="font-bold"
             >
               Regi: 
-            </span>
+            </strong>
              
             Director 1
-          </p>
-          <p
+          </div>
+          <div
             class="mb-2"
           >
-            <span
+            <strong
               class="font-bold"
             >
               Utgivelsesår: 
-            </span>
+            </strong>
              
             2023
-          </p>
-          <p
+          </div>
+          <div
             class="mb-2"
           >
-            <span
+            <strong
               class="font-bold"
             >
               Varighet: 
-            </span>
+            </strong>
              
             120 min
-          </p>
-          <p>
-            <span
+          </div>
+          <div>
+            <strong
               class="font-bold"
             >
               Beskrivelse: 
-            </span>
+            </strong>
              
             Sample plot of the movie.
-          </p>
-          <p
+          </div>
+          <div
             class="mt-5 mb-2"
           >
-            <span
+            <strong
               class="font-bold"
             >
               IMDB-rating:
-            </span>
+            </strong>
              
             7.5 / 10 (10K)
-          </p>
-          <span
+          </div>
+          <strong
             class="font-bold"
           >
             Bruker-rating:
-          </span>
+          </strong>
            
           2.5 / 5.0
           <figure
@@ -1224,7 +1236,7 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
             </div>
           </figure>
           <button
-            class="mt-5 rounded-lg w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
+            class="mt-5 rounded-base w-24 h-8 sm:w-36 sm:h-12 md:w-44 md:h-14 text-white text-small sm:text-base md:text-lg border-2 border-yellow hover:scale-110 hover:bg-darkpurple"
           >
             Rate filmen
           </button>
@@ -1297,11 +1309,11 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
         <div
           class="relative z-10"
         >
-          <h4
+          <h2
             class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
           >
             User1
-          </h4>
+          </h2>
           <figure
             class="ml-4 flex justify-start space-x-1"
           >
@@ -1331,11 +1343,11 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
               ★
             </span>
           </figure>
-          <p
+          <h3
             class="mt-2 ml-4 text-white sm:text-base md:text-base text-md italic"
           >
             Great movie!
-          </p>
+          </h3>
         </div>
       </div>
     </div>
@@ -1347,11 +1359,11 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
       <div
         class="relative z-10"
       >
-        <h4
+        <h2
           class=" ml-4 pt-2 sm:text-base md:text-medium text-small text-white font-bold"
         >
           User1
-        </h4>
+        </h2>
         <figure
           class="ml-4 flex justify-start space-x-1"
         >
@@ -1381,11 +1393,11 @@ exports[`Test of RatingCard > Snapshot test: RatingCard has not changed design 1
             ★
           </span>
         </figure>
-        <p
+        <h3
           class="mt-2 ml-4 text-white sm:text-base md:text-base text-md italic"
         >
           Great movie!
-        </p>
+        </h3>
       </div>
     </div>
   </div>,
