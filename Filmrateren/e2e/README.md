@@ -4,11 +4,11 @@ This folder contains end-to-end tests for our project using Playwright. Playwrig
 
 
 ### Running the tests
-Commands for running the tests are found in the table below, do them from the root folder of the project.
+Commands for running the tests are found in the table below, do them from the root folder of the project (cd Filmrateren).
 
 | <div style="width:190px">Command</div>| Action |
 | :---------------------- | :----------------------------------------------------------------- |
-| ` npm install` | Install the necessary dependencies. |
+| ` npx playwright install` | Install the necessary dependencies. |
 | ` npx playwright test` | Runs all the playwright tests.
 | ` npx playwright show-report` | To open the HTML report of the last test. |
 | ` npx playwright test --ui` | Run the tests in Playwright's UI-mode.
