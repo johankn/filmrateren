@@ -261,7 +261,7 @@ function HomePage() {
     getFilteredMovies,
   ]);
 
-  // Checks if the user choices has changed 
+  // Checks if the user choices has changed
   const hasSelectionChanged = () => {
     return (
       JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
@@ -288,7 +288,7 @@ function HomePage() {
     setSelectedProviders([]);
   };
 
-  // Reload movies when rendering page 
+  // Reload movies when rendering page
   useEffect(() => {
     reloadMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -361,7 +361,7 @@ function HomePage() {
             freeSolo={false}
             placeholder="Tittel..."
             // display empty array if loading
-            options={searchLoading ? [] : (movies as Movie[])} 
+            options={searchLoading ? [] : (movies as Movie[])}
             getOptionLabel={(option) => (option as Movie)?.title || ''}
             onChange={(_event, newValue) => {
               // Assert that newValue is of type 'Movie'
@@ -435,14 +435,17 @@ function HomePage() {
           >
             <Checkbox
               checked={isChecked}
-              tabIndex={selectedSort === 'RELEASEYEAR_ASC' ||
-                        selectedSort === 'RELEASEYEAR_DESC' ||
-                        selectedSort === 'RUNTIME_ASC' ||
-                        selectedSort === 'RUNTIME_DESC' ||
-                        selectedSort === 'IMDB_ASC' ||
-                        selectedSort === 'IMDB_DESC' ||
-                        selectedSort == 'POPULARITY_DESC'  
-                        ? 0 : -1}
+              tabIndex={
+                selectedSort === 'RELEASEYEAR_ASC' ||
+                selectedSort === 'RELEASEYEAR_DESC' ||
+                selectedSort === 'RUNTIME_ASC' ||
+                selectedSort === 'RUNTIME_DESC' ||
+                selectedSort === 'IMDB_ASC' ||
+                selectedSort === 'IMDB_DESC' ||
+                selectedSort == 'POPULARITY_DESC'
+                  ? 0
+                  : -1
+              }
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   setIsChecked(!isChecked);
@@ -452,7 +455,7 @@ function HomePage() {
                 color: 'gray-700',
                 '&.Mui-checked': {
                   color: 'rgb(55, 65, 81)',
-                }, 
+                },
               }}
             />
           </Tooltip>

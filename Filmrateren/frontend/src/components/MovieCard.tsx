@@ -22,7 +22,7 @@ function MovieCard({ movie }: MovieCardProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_showPopup, setShowPopup] = useRecoilState(showPopupState);
 
- // cancel Text-to-Speech if the card is reloaded
+  // cancel Text-to-Speech if the card is reloaded
   useEffect(() => {
     if (window.speechSynthesis) {
       return () => {
@@ -33,17 +33,26 @@ function MovieCard({ movie }: MovieCardProps) {
 
   // Text-to-Speech buttons
   const startBtn = (
-    <button aria-label='start' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button
+      aria-label="start"
+      className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+    >
       <AiFillSound></AiFillSound>
     </button>
   );
   const pauseBtn = (
-    <button aria-label='pause' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button
+      aria-label="pause"
+      className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+    >
       <FaVolumeMute></FaVolumeMute>
     </button>
   );
   const stopBtn = (
-    <button aria-label='stop' className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform">
+    <button
+      aria-label="stop"
+      className="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+    >
       <IoMdRefresh></IoMdRefresh>
     </button>
   );
@@ -53,11 +62,11 @@ function MovieCard({ movie }: MovieCardProps) {
       <Speech
         text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${
           movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')
-        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Filmens varighet: ${movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} minutter`}. Beskrivelse av filmen: ${
-          movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot
-        }.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${
-          movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)
-        } `}
+        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Filmens varighet: ${
+          movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} minutter`
+        }. Beskrivelse av filmen: ${movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot}.IMBD rating: ${
+          movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating
+        }. Brukeranmeldelser: ${movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)} `}
         rate={0.8}
         startBtn={startBtn}
         pauseBtn={pauseBtn}
@@ -78,14 +87,16 @@ function MovieCard({ movie }: MovieCardProps) {
         {/* Information about movie */}
         <section className="mt-4 text-small sm:text-baseSmall md:text-baseSmall lg:text-base pl-4">
           <div className="mb-2">
-            <strong className="font-bold">Sjanger: </strong> {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
+            <strong className="font-bold">Sjanger: </strong>{' '}
+            {movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}
           </div>
           <div className="mb-2">
             <strong className="font-bold">Regi: </strong>{' '}
             {movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')}
           </div>
           <div className="mb-2">
-            <strong className="font-bold">Utgivelsesår: </strong> {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
+            <strong className="font-bold">Utgivelsesår: </strong>{' '}
+            {movie.releaseYear == '0' ? 'Ukjent' : movie.releaseYear}
           </div>
           <div className="mb-2">
             <strong className="font-bold">Varighet: </strong>{' '}
