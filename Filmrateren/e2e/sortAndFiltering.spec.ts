@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 
 // Test for sorting and filtering
 test('test sorting and filtering', async ({ page }) => {
-  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Familie' }).getByRole('checkbox').check();
   await page.getByRole('option', { name: 'Fantasy' }).getByRole('checkbox').check();
@@ -20,6 +20,8 @@ test('test sorting and filtering', async ({ page }) => {
   await page.locator('section').filter({ hasText: 'Søk' }).click();
   // this movie should be visible
   await expect(page.getByRole('button', { name: 'Operasjon Mørkemann' })).toBeVisible();
+  await page.getByRole('button', { name: 'Operasjon Mørkemann' }).click();
+
 
   await page.getByRole('button', { name: '←' }).click();
   await page.locator('div').filter({ hasText: /^Ingen flere filmer$/ }).click();
@@ -37,9 +39,10 @@ test('test sorting and filtering with text input', async ({ page }) => {
   // Interaction with text input, genre filters, and search
   await page.getByLabel('Tittel...').click();
   await page.getByLabel('Tittel...').fill('kon');
-  await page.getByLabel('SjangerSjanger').click();
+  await page.locator('section').filter({ hasText: 'SjangerSjanger' }).getByLabel('​').click();
   await page.getByRole('option', { name: 'Dokumentar' }).getByRole('checkbox').check();
-  await page.getByRole('option', { name: 'Dokumentar' }).press('Tab');  await page.getByRole('button', { name: 'Søk' }).click();
+  await page.getByRole('option', { name: 'Dokumentar' }).press('Tab');  
+  await page.getByRole('button', { name: 'Søk', exact: true }).click();
 
   // Validate visibility of specific movies based on text input and filters
   await expect(page.getByRole('img', { name: 'Kon-Tiki' })).toBeVisible();
