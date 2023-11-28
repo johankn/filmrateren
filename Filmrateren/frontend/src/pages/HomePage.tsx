@@ -364,7 +364,7 @@ function HomePage() {
         <section className="absolute z-50" style={newSearchBarStyle}>
           <TextField
             className="bg-white rounded fixed"
-            style={{ width: targetWidthSearch }}
+            style={{ width: searchWidth }}
             id="new-search-bar"
             label="Tittel..."
             variant="outlined"
