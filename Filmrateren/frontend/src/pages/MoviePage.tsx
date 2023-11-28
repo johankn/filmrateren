@@ -60,9 +60,9 @@ function MoviePage() {
         </main>
         {movie.providers.length > 0 && (
           <section className="mt-14 mb-5 px-10">
-            <p className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
+            <h2 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
               Tilgjengelig på:{' '}
-            </p>
+            </h2>
             <div className="mx-auto w-4/6 flex flex-wrap gap-3">
               {movie.providers.map((index) => (
                 <StreamButton key={index} provider={index} />
