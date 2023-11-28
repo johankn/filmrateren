@@ -62,6 +62,9 @@ const resolvers = {
           },
           {
             $limit: limit
+          },
+          {
+            $skip: skip
           }
         ];
 
