@@ -47,22 +47,21 @@ function MovieCard({ movie }: MovieCardProps) {
   );
   return (
     <div className="movie-card grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center ">
-      <div className="absolute top-0 right-0 p-12">
-        <Speech
-          text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${
-            movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')
-          }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Beskrivelse av filmen: ${
-            movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot
-          }.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${
-            movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)
-          } `}
-          rate={0.8}
-          startBtn={startBtn}
-          pauseBtn={pauseBtn}
-          stopBtn={stopBtn}
-          onError={() => console.error('Browser not supported!')}
-        />
-      </div>
+      <Speech
+        text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${
+          movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')
+        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Filmens varighet: ${movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} minutter`}. Beskrivelse av filmen: ${
+          movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot
+        }.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${
+          movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)
+        } `}
+        rate={0.8}
+        startBtn={startBtn}
+        pauseBtn={pauseBtn}
+        stopBtn={stopBtn}
+        lang="no-NO" // sets the language to Norwegian
+        onError={() => console.error('Browser not supported!')}
+      />
       <h1 className="text-base sm:text-medium md:text-large lg:text-xl ">{movie.title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-2/3 mb-2  ">
         <figure className=" flex justify-center items-start mt-5 md:justify-end  max-w-full">
