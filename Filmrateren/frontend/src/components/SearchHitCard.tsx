@@ -34,7 +34,7 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
       }}
       onKeyDown={(event) => {
         if (event.key === 'Enter') {
-          navigate(`/project2/moviePage/${movie.id}`);
+          navigate(`/project2/moviePage/${movie.id}`); // Navigation to MoviePage by pressing enter on card
         }
       }}
     >

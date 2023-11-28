@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 
 function StreamButton({ provider }: { provider: string }) {
   const openProvider = () => {
-    // Open the corresponding link based on the provider
+    // Open the corresponding link based on the streaming provider
     switch (provider) {
       case 'Netflix':
         window.open('https://www.netflix.com/no-en/', '_blank');

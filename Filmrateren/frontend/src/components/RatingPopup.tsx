@@ -31,6 +31,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    // Add rating if movieID and inputs are valid
     if (movieID && ratingIsValid && nameIsValid && commentIsValid) {
       const variables = {
         movieId: movieID,
@@ -54,6 +55,7 @@ function RatingPopup({ onClose, onRatingSuccess, movieID }: RatingPopupProps) {
         onClose();
       }
     } else {
+      // Show error messages if input is not valid
       console.error('Incomplete data. Please fill in all fields.');
       setNameError(!nameIsValid);
       setRatingError(!ratingIsValid);

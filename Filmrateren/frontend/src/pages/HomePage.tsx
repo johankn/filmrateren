@@ -142,6 +142,7 @@ function HomePage() {
     setCardsToShow((prev) => prev + initialCardsToShow); // Increase the number of cards to show
   };
 
+  // Updates the paged movies that should be shown
   useEffect(() => {
     if (moviesData && moviesData.getFilteredMovies) {
       setPagedMovies((prevMovies) => [...prevMovies, ...moviesData.getFilteredMovies]);
@@ -193,16 +194,19 @@ function HomePage() {
     };
   }, []);
 
+  // Scrolls to top when logo is clicked
   const handleLogoClick = () => {
     if (opacitySearch == 1) {
       scrollToTop();
     }
   };
 
+  // Sets the title that should be searched for
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setSelectedTitle(event.target.value);
   };
 
+  // Searches for input with user choices
   const handleSearchClick = useCallback(() => {
     setCardsToShow(initialCardsToShow);
     setPagedMovies([]);
@@ -225,7 +229,8 @@ function HomePage() {
     });
   }, [selectedTitle, selectedGenres, selectedProviders, selectedSort, isChecked, getFilteredMovies, setCardsToShow]);
 
-  const handleRender = useCallback(() => {
+  // Make sure that the same cards as before are shown when returning to HomePage, i.e. search and load the same cards
+  const reloadMovies = useCallback(() => {
     setCardsToShow(cardsToShow);
     setPagedMovies([]);
     setPreviousTitle(selectedTitle);
@@ -256,6 +261,7 @@ function HomePage() {
     getFilteredMovies,
   ]);
 
+  // Checks if the user choices has changed 
   const hasSelectionChanged = () => {
     return (
       JSON.stringify(previousGenres) !== JSON.stringify(selectedGenres) ||
@@ -266,6 +272,7 @@ function HomePage() {
     );
   };
 
+  // Updates the check of the checkbox
   const handleCheckBoxChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(event.target.checked);
@@ -273,6 +280,7 @@ function HomePage() {
     [setIsChecked],
   );
 
+  // Resets all user choices
   const handleResetClick = () => {
     setSelectedTitle('');
     setSelectedSort('');
@@ -280,8 +288,9 @@ function HomePage() {
     setSelectedProviders([]);
   };
 
+  // Reload movies when rendering page 
   useEffect(() => {
-    handleRender();
+    reloadMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -295,11 +304,11 @@ function HomePage() {
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   };
 
+  // Scroll to search bar when pressing tab on autocomplete to facilitate for keyboard navigation
   const handleTab = () => {
     const searchBar = document.getElementById('new-search-bar');
     console.log('searchbar', searchBar != null);
     if (searchBar) {
-      console.log('scroll');
       searchBar.scrollIntoView({
         block: 'start',
         inline: 'nearest',

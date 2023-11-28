@@ -3,6 +3,7 @@ type StarProps = {
 };
 
 const Stars: React.FC<StarProps> = ({ rating }) => {
+  // Show rating as filled and empty stars
   const filledStars = Math.round(rating);
 
   const emptyStars = 5 - filledStars;

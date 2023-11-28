@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 
+// Define atoms for sharing states between components
 const selectedSortState = atom({
   key: 'selectedSortState',  
   default: '', 
