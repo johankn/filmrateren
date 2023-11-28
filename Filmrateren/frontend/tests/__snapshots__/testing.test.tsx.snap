@@ -356,7 +356,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
             <button
-              class="bg-darkgrey rounded-[14px] text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+              class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
               disabled=""
               style="min-height: 0rem; width: 64px; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
             >
@@ -364,7 +364,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
             </button>
           </section>
           <button
-            class="absolute bg-darkgrey rounded-[14px] text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
             style="opacity: 0; margin-top: 50px; right: 100px; height: 54px; width: 64px; pointer-events: none;"
           >
             Reset
@@ -769,7 +769,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           style="margin-top: 250px; right: 300px; opacity: 0; pointer-events: none; transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), margin-top 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), right 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
         >
           <button
-            class="bg-darkgrey rounded-[14px] text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+            class="bg-darkgrey rounded-lg text-white p-2 px-4 border-2 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
             disabled=""
             style="min-height: 0rem; width: 64px; transition: min-height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), width 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);"
           >
@@ -777,7 +777,7 @@ exports[`Test of HomePage > Snapshot test: HomePage has not changed design 1`] =
           </button>
         </section>
         <button
-          class="absolute bg-darkgrey rounded-[14px] text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)]"
+          class="absolute bg-darkgrey rounded-lg text-small text-white p-1 px-3 border-transparent cursor-pointer transition duration-250 hover:border-[rgb(41,93,227)] focus:outline-none focus:ring focus:border-[rgb(41,93,227)]"
           style="opacity: 0; margin-top: 50px; right: 100px; height: 54px; width: 64px; pointer-events: none;"
         >
           Reset
@@ -892,54 +892,50 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
         class="movie-card grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center "
       >
         <div
-          class="absolute top-0 right-0 p-12"
+          style="display: flex; column-gap: 1rem;"
         >
-          <div
-            style="display: flex; column-gap: 1rem;"
+          <span
+            role="button"
           >
-            <span
-              role="button"
+            <button
+              class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
             >
-              <button
-                class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 1024 1024"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 1024 1024"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M892.1 737.8l-110.3-63.7a15.9 15.9 0 0 0-21.7 5.9l-19.9 34.5c-4.4 7.6-1.8 17.4 5.8 21.8L856.3 800a15.9 15.9 0 0 0 21.7-5.9l19.9-34.5c4.4-7.6 1.7-17.4-5.8-21.8zM760 344a15.9 15.9 0 0 0 21.7 5.9L892 286.2c7.6-4.4 10.2-14.2 5.8-21.8L878 230a15.9 15.9 0 0 0-21.7-5.9L746 287.8a15.99 15.99 0 0 0-5.8 21.8L760 344zm174 132H806c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16zM625.9 115c-5.9 0-11.9 1.6-17.4 5.3L254 352H90c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h164l354.5 231.7c5.5 3.6 11.6 5.3 17.4 5.3 16.7 0 32.1-13.3 32.1-32.1V147.1c0-18.8-15.4-32.1-32.1-32.1z"
-                  />
-                </svg>
-              </button>
-            </span>
-            <span
-              role="button"
+                <path
+                  d="M892.1 737.8l-110.3-63.7a15.9 15.9 0 0 0-21.7 5.9l-19.9 34.5c-4.4 7.6-1.8 17.4 5.8 21.8L856.3 800a15.9 15.9 0 0 0 21.7-5.9l19.9-34.5c4.4-7.6 1.7-17.4-5.8-21.8zM760 344a15.9 15.9 0 0 0 21.7 5.9L892 286.2c7.6-4.4 10.2-14.2 5.8-21.8L878 230a15.9 15.9 0 0 0-21.7-5.9L746 287.8a15.99 15.99 0 0 0-5.8 21.8L760 344zm174 132H806c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16zM625.9 115c-5.9 0-11.9 1.6-17.4 5.3L254 352H90c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h164l354.5 231.7c5.5 3.6 11.6 5.3 17.4 5.3 16.7 0 32.1-13.3 32.1-32.1V147.1c0-18.8-15.4-32.1-32.1-32.1z"
+                />
+              </svg>
+            </button>
+          </span>
+          <span
+            role="button"
+          >
+            <button
+              class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
             >
-              <button
-                class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  fill="currentColor"
-                  height="1em"
-                  stroke="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 512 512"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M256 388c-72.597 0-132-59.405-132-132 0-72.601 59.403-132 132-132 36.3 0 69.299 15.4 92.406 39.601L278 234h154V80l-51.698 51.702C348.406 99.798 304.406 80 256 80c-96.797 0-176 79.203-176 176s78.094 176 176 176c81.045 0 148.287-54.134 169.401-128H378.85c-18.745 49.561-67.138 84-122.85 84z"
-                  />
-                </svg>
-              </button>
-            </span>
-          </div>
+                <path
+                  d="M256 388c-72.597 0-132-59.405-132-132 0-72.601 59.403-132 132-132 36.3 0 69.299 15.4 92.406 39.601L278 234h154V80l-51.698 51.702C348.406 99.798 304.406 80 256 80c-96.797 0-176 79.203-176 176s78.094 176 176 176c81.045 0 148.287-54.134 169.401-128H378.85c-18.745 49.561-67.138 84-122.85 84z"
+                />
+              </svg>
+            </button>
+          </span>
         </div>
         <h1
           class="text-base sm:text-medium md:text-large lg:text-xl "
@@ -1070,54 +1066,50 @@ exports[`Test of MovieCard > Snapshot test: MovieCard has not changed design 1`]
       class="movie-card grid max-h-full gap-7 md:mt-6 ml-2 text-white italic place-items-center "
     >
       <div
-        class="absolute top-0 right-0 p-12"
+        style="display: flex; column-gap: 1rem;"
       >
-        <div
-          style="display: flex; column-gap: 1rem;"
+        <span
+          role="button"
         >
-          <span
-            role="button"
+          <button
+            class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
           >
-            <button
-              class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                stroke-width="0"
-                viewBox="0 0 1024 1024"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M892.1 737.8l-110.3-63.7a15.9 15.9 0 0 0-21.7 5.9l-19.9 34.5c-4.4 7.6-1.8 17.4 5.8 21.8L856.3 800a15.9 15.9 0 0 0 21.7-5.9l19.9-34.5c4.4-7.6 1.7-17.4-5.8-21.8zM760 344a15.9 15.9 0 0 0 21.7 5.9L892 286.2c7.6-4.4 10.2-14.2 5.8-21.8L878 230a15.9 15.9 0 0 0-21.7-5.9L746 287.8a15.99 15.99 0 0 0-5.8 21.8L760 344zm174 132H806c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16zM625.9 115c-5.9 0-11.9 1.6-17.4 5.3L254 352H90c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h164l354.5 231.7c5.5 3.6 11.6 5.3 17.4 5.3 16.7 0 32.1-13.3 32.1-32.1V147.1c0-18.8-15.4-32.1-32.1-32.1z"
-                />
-              </svg>
-            </button>
-          </span>
-          <span
-            role="button"
+              <path
+                d="M892.1 737.8l-110.3-63.7a15.9 15.9 0 0 0-21.7 5.9l-19.9 34.5c-4.4 7.6-1.8 17.4 5.8 21.8L856.3 800a15.9 15.9 0 0 0 21.7-5.9l19.9-34.5c4.4-7.6 1.7-17.4-5.8-21.8zM760 344a15.9 15.9 0 0 0 21.7 5.9L892 286.2c7.6-4.4 10.2-14.2 5.8-21.8L878 230a15.9 15.9 0 0 0-21.7-5.9L746 287.8a15.99 15.99 0 0 0-5.8 21.8L760 344zm174 132H806c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16zM625.9 115c-5.9 0-11.9 1.6-17.4 5.3L254 352H90c-8.8 0-16 7.2-16 16v288c0 8.8 7.2 16 16 16h164l354.5 231.7c5.5 3.6 11.6 5.3 17.4 5.3 16.7 0 32.1-13.3 32.1-32.1V147.1c0-18.8-15.4-32.1-32.1-32.1z"
+              />
+            </svg>
+          </button>
+        </span>
+        <span
+          role="button"
+        >
+          <button
+            class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
           >
-            <button
-              class="text-medium sm:text-large md:text-xl transform hover:scale-125 transition-transform"
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                stroke-width="0"
-                viewBox="0 0 512 512"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M256 388c-72.597 0-132-59.405-132-132 0-72.601 59.403-132 132-132 36.3 0 69.299 15.4 92.406 39.601L278 234h154V80l-51.698 51.702C348.406 99.798 304.406 80 256 80c-96.797 0-176 79.203-176 176s78.094 176 176 176c81.045 0 148.287-54.134 169.401-128H378.85c-18.745 49.561-67.138 84-122.85 84z"
-                />
-              </svg>
-            </button>
-          </span>
-        </div>
+              <path
+                d="M256 388c-72.597 0-132-59.405-132-132 0-72.601 59.403-132 132-132 36.3 0 69.299 15.4 92.406 39.601L278 234h154V80l-51.698 51.702C348.406 99.798 304.406 80 256 80c-96.797 0-176 79.203-176 176s78.094 176 176 176c81.045 0 148.287-54.134 169.401-128H378.85c-18.745 49.561-67.138 84-122.85 84z"
+              />
+            </svg>
+          </button>
+        </span>
       </div>
       <h1
         class="text-base sm:text-medium md:text-large lg:text-xl "
