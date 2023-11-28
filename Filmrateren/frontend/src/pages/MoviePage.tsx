@@ -52,8 +52,13 @@ function MoviePage() {
         {/* Scroll to the top of the page to ensure that the page is not loaded at the same scroll position as the client had in the HomePage */}
         <ScrollToTop />
         <nav className="fixed top-0 left-0 p-4">
-          <button  aria-label='Go back' className="hover:scale-125" onClick={() => navigate(-1)}>
-            <span aria-label='Back to homepage' className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
+          <button aria-label="Go back" className="hover:scale-125" onClick={() => navigate(-1)}>
+            <span
+              aria-label="Back to homepage"
+              className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl "
+            >
+              ←
+            </span>
           </button>
         </nav>
         <main className="pt-7 ">

@@ -445,7 +445,7 @@ function HomePage() {
                 color: 'gray-700',
                 '&.Mui-checked': {
                   color: 'rgb(55, 65, 81)',
-                }, 
+                },
               }}
             />
           </Tooltip>

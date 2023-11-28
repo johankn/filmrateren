@@ -45,8 +45,8 @@ function StreamButton({ provider }: { provider: string }) {
 
   return (
     <Button
-    aria-label='Stream'
-    className="shadow-md hover:scale-110"
+      aria-label="Stream"
+      className="shadow-md hover:scale-110"
       style={{
         minHeight: '50px',
         minWidth: '80px',
