@@ -52,13 +52,20 @@ function MoviePage() {
         {/* Scroll to the top of the page to ensure that the page is not loaded at the same scroll position as the client had in the HomePage */}
         <ScrollToTop />
         <nav className="fixed top-0 left-0 p-4">
-          <button  aria-label='Go back' className="hover:scale-125" onClick={() => navigate(-1)}>
-            <span aria-label='Back to homepage' className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl ">←</span>
+          <button aria-label="Go back" className="hover:scale-125" onClick={() => navigate(-1)}>
+            <span
+              aria-label="Back to homepage"
+              className="custom-arrow-icon text-white text-medium sm:text-large md:text-xl lg:text-twoxl "
+            >
+              ←
+            </span>
           </button>
         </nav>
         <main className="pt-7 ">
+          {/* Movie card with information about movie */}
           <MovieCard movie={movie} />
         </main>
+        {/* List of stream providers */}
         {movie.providers.length > 0 && (
           <section className="mt-14 mb-5 px-10">
             <h2 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-base italic">
@@ -71,6 +78,7 @@ function MoviePage() {
             </div>
           </section>
         )}
+        {/* User ratings */}
         <section className="p-10">
           <h1 className="font-bold text-white mb-4 mx-auto w-4/6 sm:text-base md:text-base lg:text-large">
             RATINGS ({movie.userRatings.length})
@@ -91,6 +99,7 @@ function MoviePage() {
           </span>
         </div>
       )}
+      {/* Popup for user to fill in review */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <RatingPopup onClose={handleClosePopup} onRatingSuccess={handleRatingSuccess} movieID={Number(movieID)} />

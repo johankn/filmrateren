@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 
 function StreamButton({ provider }: { provider: string }) {
   const openProvider = () => {
-    // Open the corresponding link based on the provider
+    // Open the corresponding link based on the streaming provider
     switch (provider) {
       case 'Netflix':
         window.open('https://www.netflix.com/no-en/', '_blank');
@@ -38,15 +38,15 @@ function StreamButton({ provider }: { provider: string }) {
         window.open('https://play.tv2.no/', '_blank');
         break;
       default:
-        // Default behavior if the provider is not matched
+        // Do not do anything if the provider is not matched
         break;
     }
   };
 
   return (
     <Button
-    aria-label='Stream'
-    className="shadow-md hover:scale-110"
+      aria-label="Stream"
+      className="shadow-md hover:scale-110"
       style={{
         minHeight: '50px',
         minWidth: '80px',
