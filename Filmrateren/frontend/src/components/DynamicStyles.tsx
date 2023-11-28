@@ -213,11 +213,12 @@ export function getHomePageStyles(
     opacity: certainSort ? 1 - checkBoxOpacity : '0',
     marginTop: `${checkTop}px`,
     right: `${checkRight}px`,
-    pointerEvents: isEmpty
-      ? ('none' as React.CSSProperties['pointerEvents'])
-      : opacityFilterSort == 1
-      ? 'auto'
-      : ('none' as React.CSSProperties['pointerEvents']),
+    pointerEvents:
+      isEmpty || !certainSort
+        ? ('none' as React.CSSProperties['pointerEvents'])
+        : opacityFilterSort == 1
+        ? 'auto'
+        : ('none' as React.CSSProperties['pointerEvents']),
   };
 
   const resetStyle = {

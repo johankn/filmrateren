@@ -25,7 +25,7 @@ import { useQuery, useLazyQuery } from '@apollo/client';
 import { SEARCH_MOVIES_QUERY, GET_FILTERED_MOVIES_QUERY } from '../queries/SearchQueries';
 import { getHomePageStyles } from '../components/DynamicStyles';
 import { Movie } from '../components/types';
-import { Checkbox, TextField, Tooltip, Zoom } from '@mui/material';
+import { Button, Checkbox, TextField, Tooltip, Zoom } from '@mui/material';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -498,7 +498,9 @@ function HomePage() {
               <section className="h-40 flex justify-center items-center w-full">
                 <div
                   className={`border-2 ${
-                    noMoreMovies ? 'opacity-50 border-transparent' : 'hover:border-blue cursor-pointer border-yellow'
+                    noMoreMovies
+                      ? 'opacity-50 border-transparent'
+                      : 'hover:bg-zinc-800 hover:scale-110 cursor-pointer border-yellow'
                   } bg-darkgrey rounded-[14px] text-white p-3.3 flex justify-center items-center w-60 text-lg`}
                 >
                   <button
