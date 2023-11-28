@@ -28,7 +28,6 @@ describe('Test of HomePage', () => {
             <MemoryRouter>
               <HomePage />
             </MemoryRouter>
-            ,
           </ApolloProvider>
         </RecoilRoot>
       </StrictMode>,
@@ -42,6 +41,7 @@ describe('Test of HomePage', () => {
   it('Content test: HomePage has not changed content', () => {
     expect(screen.getAllByText(/Bla ned for avansert søk/i)).toBeTruthy();
     expect(screen.getAllByText(/Sjanger/i)).toBeTruthy();
+    expect(screen.getAllByText(/Streaming/i)).toBeTruthy();
     expect(screen.getAllByText(/Sortering/i)).toBeTruthy();
     expect(screen.getAllByText(/Søk/i)).toBeTruthy();
     expect(screen.getAllByPlaceholderText(/Tittel.../i)).toBeTruthy();

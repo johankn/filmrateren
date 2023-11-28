@@ -424,7 +424,8 @@ function HomePage() {
                         selectedSort === 'RUNTIME_ASC' ||
                         selectedSort === 'RUNTIME_DESC' ||
                         selectedSort === 'IMDB_ASC' ||
-                        selectedSort === 'IMDB_DESC'  
+                        selectedSort === 'IMDB_DESC' ||
+                        selectedSort == 'POPULARITY_DESC'  
                         ? 0 : -1}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {

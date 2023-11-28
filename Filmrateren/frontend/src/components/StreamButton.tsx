@@ -53,7 +53,7 @@ function StreamButton({ provider }: { provider: string }) {
         backgroundColor: 'black',
         marginTop: '10px',
         marginBottom: '10px',
-        background: `url('/Logos/${provider}.png')`, // Replace 'your-image-url.jpg' with the actual URL of your image
+        background: `url('/Logos/${provider}.png')`,
         backgroundSize: '100% auto',
         backgroundPosition: 'center',
       }}
