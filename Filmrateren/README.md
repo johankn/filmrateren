@@ -10,7 +10,7 @@
    - [Server side](#server-side)
    - [Klient side](#klient-side)
 2. [Funksjonalitet](#2.funksjonalitet)
-   - [Brukergenerertdata](#brukergenerert-data)
+   - [Brukergenerert data](#brukergenerert-data)
    - [Fokus på universell utforming og tilgjengelighet](#fokus-på-universell-utforming-og-tilgjengelighet)
    - [Fokus på bærekraftig utvikling](#fokus-på-bærekraftig-webutvikling)
 3. [Annet teknisk](#3-annet-teknisk-state-management-tailwind-og-react-router)
@@ -43,7 +43,7 @@ Det er høst, og dermed sesong for å sitte inne under et varmt pledd og se på 
 
 ### 2.Funksjonalitet
 
-- Vi har valgt å ha et søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Dette inputfeltet lager en _debouncevalue_ som brukes i en spørring etter filmer 1.5 sekund etter bruker har sluttet å taste. Dette for å ikke utføre en spørring etter hvert tastetrykk. Brukeren har dog mulighet til å bla ned på forsiden for et mer avansert søk. Her er det mulighet for å skrive inn fritekst hvis man kun husker et par bokstaver i tittelen, man kan filtrere på sjanger, og sortere enten alfabetisk, på IMDB-rating, varighet, eller på utgivelsesår. Det er en del filmer i databasen uten data på f.eks IMDB-rating eller utgivelsesår, og disse filmene kan man velge å filtrere bort når man sorterer på disse feltene.
+- Vi har valgt å ha et søkefelt for input av søk for å gjøre brukergrensesnittet så enkelt som mulig. For at brukeren skal slippe å skrive inn hele filmnavnet gir søkefeltet forslag for autocomplete. Dette inputfeltet lager en _debouncevalue_ som brukes i en spørring etter filmer 1.5 sekund etter bruker har sluttet å taste. Dette for å ikke utføre en spørring etter hvert tastetrykk. Brukeren har dog mulighet til å bla ned på forsiden for et mer avansert søk. Her er det mulighet for å skrive inn fritekst hvis man kun husker et par bokstaver i tittelen, man kan filtrere på sjanger og streamingtjeneste, og sortere enten alfabetisk, på IMDB-rating, varighet, popularitet (samlet score basert på IMDB-rating og antall reviews) eller på utgivelsesår. Det er en del filmer i databasen uten data på f.eks IMDB-rating eller utgivelsesår, og disse filmene kan man velge å filtrere bort når man sorterer på disse feltene. Ved hjelp av reset-knappen kan brukeren effektivt og enkelt fjerne alle brukervalg.
 - Ved å trykke på et søkeresultat (en film) navigerer applikasjonen inn på siden for den aktuelle filmen, og det presenteres mer detaljer om objektet. På denne måten unngår vi at brukeren blir overøset med detaljer når hen skal velge film.
 
 #### Brukergenerert data
@@ -62,9 +62,9 @@ _2. Tastatur-navigasjon_
 
 - Vi implementert tastaturtilgjengelighet, slik at funksjoner på Homepage kan betjenes uten bruk av mus. Dette er spesielt nyttig for brukere med ulike bevegelsesvansker eller de som foretrekker tastaturinteraksjon.
 
-_3. Kognisjon, god interkasjonsdesign og semantisk koding_
+_3. Kognisjon, god interaksjonsdesign og semantisk koding_
 
-- Vi har prioritert å integrere prinsippene for kontinuitet, kognisjon og god interaksjonsdesign. Dette innebærer å sikre at våre løsninger ikke bare er teknisk solide, men også at de gir en intuitiv og meningsfull opplevelse for brukeren. Det inkluderer tydelig tilbakemelding til brukeren for å veilede dem gjennom handlingene på nettstedet. For eksempel vil brukeren motta umiddelbar beskjed når de har lagt til en vurdering på en film, og den er blitt registrert. Vi har også tatt hensyn til lesetiden, slik at brukeren har tilstrekkelig tid til å absorbere informasjonen.
+- Vi har prioritert å integrere prinsippene for kontinuitet, kognisjon og god interaksjonsdesign. Dette innebærer å sikre at våre løsninger ikke bare er teknisk solide, men også at de gir en intuitiv og meningsfull opplevelse for brukeren. Det inkluderer tydelig tilbakemelding til brukeren for å veilede dem gjennom handlingene på nettstedet. For eksempel vil brukeren motta umiddelbar beskjed når de har lagt til en vurdering på en film, og den er blitt registrert. Vi har også tatt hensyn til lesetiden, slik at brukeren har tilstrekkelig tid til å absorbere informasjonen. Brukeren vil kun ha mulighet til å velge filtreringsalternativer som har resultater for det gitte inputet, for å gjøre det tydelig for brukeren hvilke alternativer som gjelder. I tilfelle brukeren søker på et input som ikke gir noen resultater, så får hen beskjed om det i stedet for at siden bare blir helt tom, for å unngå forvirring. 
 - Vi har gjort interaktive elementer responsive, enten ved å endre farge eller forstørre størrelsen, slik at det blir tydelig for brukeren at det er mulig å utføre en handling. Lignende elementer, feks knapper, har likt design på de ulike sidene, for å gi brukeren en intutiv følelse av hvordn de kan utføre lignende handlinger på webapplikasjonen.
 - Vi har implementert semantiske HTML-tags, som f.eks < nav > og < section >, der det har vært hensiktsmessig enn < div >, for å tydeligere beskrive elementets rolle.
 
