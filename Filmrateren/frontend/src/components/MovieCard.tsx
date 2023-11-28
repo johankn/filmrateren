@@ -45,7 +45,7 @@ function MovieCard({ movie }: MovieCardProps) {
       <Speech
         text={`${movie.title}. Sjanger er ${movie.genres.length < 1 ? 'Ukjent' : movie.genres.join(', ')}. Regi av: ${
           movie.directors.length < 1 ? 'Ukjent' : movie.directors.join(', ')
-        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Beskrivelse av filmen: ${
+        }. Utgivelsesår er ${movie.releaseYear == 'Unknown' ? 'Ukjent' : movie.releaseYear}. Filmens varighet: ${movie.runtime == 0 ? 'Finner ingen varighet' : `${movie.runtime} minutter`}. Beskrivelse av filmen: ${
           movie.plot == '' ? 'Finner ingen beskrivelse' : movie.plot
         }.IMBD rating: ${movie.IMDBrating == 0 ? 'Ingen anmeldelser' : movie.IMDBrating}. Brukeranmeldelser: ${
           movie.userRatings.length < 1 ? 'Ingen anmeldelser' : averageUserRating.toFixed(1)
@@ -54,6 +54,7 @@ function MovieCard({ movie }: MovieCardProps) {
         startBtn={startBtn}
         pauseBtn={pauseBtn}
         stopBtn={stopBtn}
+        lang="no-NO" // sets the language to Norwegian
         onError={() => console.error('Browser not supported!')}
       />
       <h1 className="text-base sm:text-medium md:text-large lg:text-xl ">{movie.title}</h1>
