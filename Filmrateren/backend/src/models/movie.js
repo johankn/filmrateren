@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Definition of schemas for movie
 const userRatingSchema = new Schema({
   name: String,
   rating: Number,

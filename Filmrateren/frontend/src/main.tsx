@@ -26,8 +26,6 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RecoilRoot>
       <ApolloProvider client={apolloClient}>
-        {' '}
-        {/* <-- Wrap your app with ApolloProvider */}
         <RouterProvider router={router} />
       </ApolloProvider>
     </RecoilRoot>

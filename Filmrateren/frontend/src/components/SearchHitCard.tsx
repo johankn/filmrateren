@@ -8,7 +8,7 @@ type SearchHitCardProps = {
 };
 
 function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   let posterHeight;
   let titleHeight;
@@ -34,11 +34,13 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
       }}
       onKeyDown={(event) => {
         if (event.key === 'Enter') {
-          navigate(`/project2/moviePage/${movie.id}`);
+          navigate(`/project2/moviePage/${movie.id}`); // Navigation to MoviePage by pressing enter on card
         }
       }}
     >
+      {/* Navigation to MoviePage by clicking card*/}
       <a onClick={() => navigate(`/project2/moviePage/${movie.id}`)}>
+        {/* Movie title */}
         <figcaption
           className={`h-10 flex flex-col justify-end ${screenSize == 'small' ? 'w-40' : 'w-52'} ${
             screenSize == 'small'
@@ -53,6 +55,7 @@ function SearchHitCard({ movie, screenSize }: SearchHitCardProps) {
           {/* The tailwind styling makes sure the title only shows up in two lines, and if it does not fit, it is truncated with ... */}
           <h1 className="text-center overflow-hidden line-clamp-2">{movie.title}</h1>
         </figcaption>
+        {/* Movie poster */}
         <figure
           className={`flex justify-center hover:scale-105 items-center ${
             screenSize == '' ? 'h-full' : 'h-[95%]'
