@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import screen from '../assets/screenContent.svg';
+import screen from '../assets/screen_content.svg';
 import mobileScreen from '../assets/mobile_screen.svg';
 import mediumScreen from '../assets/medium_screen.svg';
 import seats from '../assets/seats.png';
