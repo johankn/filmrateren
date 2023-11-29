@@ -57,14 +57,15 @@ const resolvers = {
           },
           {
             $sort: {
-              totalMatches: -1
+              totalMatches: -1,
+              id: 1
             }
           },
           {
-            $limit: limit
+            $skip: skip
           },
           {
-            $skip: skip
+            $limit: limit
           }
         ];
 
