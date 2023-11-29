@@ -1,6 +1,4 @@
 import { Button } from '@mui/material';
-import React from 'react';
-
 import netflix from '../assets/Netflix.svg';
 import viaplay from '../assets/Viaplay.svg';
 import apple from '../assets/Apple.svg';
